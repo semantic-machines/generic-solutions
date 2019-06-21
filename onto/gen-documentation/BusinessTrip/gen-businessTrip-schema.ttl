@@ -1,0 +1,417 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-businessTrip-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Командировка. Схема"@ru ;
+  rdfs:label "GEN ontology. Business trip. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ КЛАССЫ --
+
+#-----------------------------------------------------------Командировка
+gen:BusinessTrip
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:BusinessTrip ;
+  rdfs:subClassOf v-s:Labeled ;
+  rdfs:subClassOf v-s:AutomaticallyVersioned ;
+  v-s:labelPattern "{@.v-s:hasBusinessTripRegistrationRecord.v-s:registrationNumber} ({@.gen:hasBusinessTripDirection.v-s:shortLabel}) {@.v-s:businessTripEmployee.rdfs:label} ({@.v-s:hasClassifierCountry.rdfs:label}, {@.v-s:dateFrom} - {@.v-s:dateTo})" ;
+  rdfs:label "Командировка"@ru ;
+  rdfs:label "BusinessTrip"@en ;
+  v-ui:hasTemplate gen:BusinessTripTemplate ;
+.
+
+gen:TS_BusinessTrip
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:defaultTemplate gen:BusinessTripTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+#-----Регистрационная запись
+#v-s:hasBusinessTripRegistrationRecord
+
+#-----Сотрудник
+#v-s:businessTripEmployee
+gen:PS_businessTripEmployee_BusinessTrip
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty v-s:businessTripEmployee ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 1 ;
+  v-ui:queryPrefix "(('rdf:type'=='v-s:Appointment' )&& ('v-s:origin'=='sap hr' || 'v-s:origin'=='Internal'|| 'v-s:origin'=='External' || 'v-s:origin'=='Group' )) || (('rdf:type'=='v-s:Position') && ( 'v-s:origin'=='Role'))"^^xsd:string ;
+  v-ui:tooltip "Необязательно к заполнению, единичное значение. Ссылка на объект класса Назначение."@ru ;
+  v-ui:tooltip "Non-required, simple value. Link to instance of Appointment class"@en ;
+  rdfs:label "Спецификация инициатора для класса Командировка"@ru ;
+  rdfs:label "Initiator specification for BusinessTrip  class"@en ;
+.
+
+#-----Подразделение
+#v-s:businessTripDepartment
+gen:PS_businessTripDepartment_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty v-s:businessTripDepartment ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:businessTripDepartment для класса gen:BusinessTrip"@ru ;
+  rdfs:label "v-s:businessTripDepartment property specification for gen:BusinessTrip class"@en ;
+.
+
+#-----Цель
+#v-s:businessTripGoal
+gen:PS_businessTripGoal_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty v-s:businessTripGoal ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:businessTripGoal для класса gen:BusinessTrip"@ru ;
+  rdfs:label "v-s:businessTripGoal property specification for gen:BusinessTrip class"@en ;
+.
+
+#-----Организация назначения(mnd-s:DestinationOrganizationBundle)
+#v-s:supplier
+gen:PS_supplier_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty v-s:supplier ;
+  v-ui:placeholder "Начните ввод и выберите организацию из списка"@ru ;
+  v-ui:placeholder "Start typing and select value"@en ;
+  rdfs:label "Спецификация свойства v-s:supplier для класса gen:BusinessTrip"@ru ;
+  rdfs:label "v-s:supplier property specification for gen:BusinessTrip class"@en ;
+  v-ui:rangeRestriction v-s:Organization ;
+.
+
+gen:businessTripOrganization
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Организация"@ru ;
+  rdfs:label "Organization"@en ;
+  rdfs:range xsd:string ;
+  rdfs:domain gen:BusinessTrip ;
+.
+gen:PS_businessTripOrganization_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty gen:businessTripOrganization ;
+  v-ui:placeholder "или введите наименование вручную"@ru ;
+  v-ui:placeholder "or enter name manually"@en ;
+  rdfs:label "Спецификация свойства gen:businessTripOrganization для класса gen:BusinessTrip"@ru ;
+  rdfs:label "gen:businessTripOrganization property specification for gen:BusinessTrip class"@en ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+.
+
+#-----Страна
+#v-s:hasClassifierCountry
+gen:PS_hasClassifierCountry_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty v-s:hasClassifierCountry ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:hasClassifierCountry для класса gen:BusinessTrip"@ru ;
+  rdfs:label "v-s:hasClassifierCountry property specification for gen:BusinessTrip class"@en ;
+.
+
+#-----Направление командировки
+gen:hasBusinessTripDirection
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Направление командировки"@ru ;
+  rdfs:label "Business trip direction"@en ;
+  rdfs:range gen:ContractDirection ;
+  rdfs:domain gen:BusinessTrip ;
+.
+
+#-----Вид транспорта
+gen:hasBusinessTripTransportKind
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Вид транспорта"@ru ;
+  rdfs:label "Transport kind"@en ;
+  rdfs:range gen:BusinessTripTransportKind ;
+  rdfs:domain gen:BusinessTrip ;
+.
+gen:PS_hasBusinessTripTransportKind_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty gen:hasBusinessTripTransportKind ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства gen:hasBusinessTripTransportKind для класса gen:BusinessTrip"@ru ;
+  rdfs:label "gen:hasBusinessTripTransportKind property specification for gen:BusinessTrip class"@en ;
+.
+
+#----Область.Район.Город
+gen:businessTripOrganizationDescription
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Область. Район. Город."@ru ;
+  rdfs:label "Address"@en ;
+  rdfs:range xsd:string ;
+  rdfs:domain gen:BusinessTrip ;
+.
+gen:PS_businessTripOrganizationDescription_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty gen:businessTripOrganizationDescription ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства gen:businessTripOrganizationDescription для класса gen:BusinessTrip"@ru ;
+  rdfs:label "gen:businessTripOrganizationDescription property specification for gen:BusinessTrip class"@en ;
+.
+
+#----Требуется поддержка
+gen:hasBusinessTripSupport
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Требуется поддержка"@ru ;
+  rdfs:label "Support required"@en ;
+  rdfs:range gen:BusinessTripSupport ;
+  rdfs:domain gen:BusinessTrip ;
+.
+gen:PS_hasBusinessTripSupport_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty gen:hasBusinessTripSupport ;
+  rdfs:label "Спецификация свойства gen:hasBusinessTripSupport для класса gen:BusinessTrip"@ru ;
+  rdfs:label "gen:hasBusinessTripSupport property specification for gen:BusinessTrip class"@en ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+.
+
+#-----Дата начала
+#v-s:dateFrom
+gen:PS_dateFrom_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty v-s:dateFrom ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:dateFrom для класса gen:BusinessTrip"@ru ;
+  rdfs:label "v-s:dateFrom property specification for gen:BusinessTrip class"@en ;
+.
+
+#-----Дата окончания
+#v-s:dateTo
+gen:PS_dateTo_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty v-s:dateTo ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:dateTo для класса gen:BusinessTrip"@ru ;
+  rdfs:label "v-s:dateTo property specification for gen:BusinessTrip class"@en ;
+.
+
+#-----Длительность
+#v-s:duration
+gen:PS_duration_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty v-s:duration ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:duration для класса gen:BusinessTrip"@ru ;
+  rdfs:label "v-s:duration property specification for gen:BusinessTrip class"@en ;
+.
+
+#-----Изменение сроков
+gen:hasChangeOfTerms
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Изменение сроков"@ru ;
+  rdfs:label "Change of terms"@en ;
+  rdfs:range gen:ChangeOfTerms ;
+  rdfs:domain gen:BusinessTrip ;
+.
+gen:PS_hasChangeOfTerms_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:forProperty gen:hasChangeOfTerms ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства gen:hasChangeOfTerms для класса mnd-s:BusinessTrip"@ru ;
+  rdfs:label "gen:hasChangeOfTerms property specification for mnd-s:BusinessTrip class"@en ;
+.
+
+#-----Отклонение по расходам
+gen:hasDeviationOnExpenses
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Отклонение по расходам"@ru ;
+  rdfs:label "Deviation on expenses"@en ;
+  rdfs:range gen:DeviationOnExpenses ;
+  rdfs:domain gen:BusinessTrip ;
+.
+
+
+#-------Обмен
+gen:PS_isTicketExchange_BusinessTrip
+  rdf:type v-ui:DatatypePropertySpecification ;
+  v-ui:forProperty gen:isTicketExchange ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:trueLabel "Обменный" ;
+  v-ui:falseLabel "Необменный" ;
+  rdfs:label "Спецификация к свойству mnd-s:isTicketExchange для класса gen:BusinessTrip"@ru ;
+  rdfs:label "Spec for property mnd-s:isTicketExchange for class gen:BusinessTrip"@en ;
+.
+gen:isTicketExchange
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Обмен билетов"@ru ;
+  rdfs:label "Ticket exchange"@en ;
+  rdfs:range xsd:boolean ;
+  rdfs:domain gen:BusinessTrip ;
+.
+
+#-------Возврат
+gen:PS_isTicketRefund_BusinessTrip
+  rdf:type v-ui:DatatypePropertySpecification ;
+  v-ui:forProperty gen:isTicketRefund ;
+  v-ui:forClass gen:BusinessTrip ;
+  v-ui:trueLabel "Возвратный" ;
+  v-ui:falseLabel "Невозвратный" ;
+  rdfs:label "Спецификация к свойству mnd-s:isTicketRefund для класса gen:BusinessTrip"@ru ;
+  rdfs:label "Spec for property mnd-s:isTicketRefund for class gen:BusinessTrip"@en ;
+.
+gen:isTicketRefund
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Возврат билетов"@ru ;
+  rdfs:label "Ticket refund"@en ;
+  rdfs:range xsd:boolean ;
+  rdfs:domain gen:BusinessTrip ;
+.
+
+#------Комментарий
+gen:ticketComment
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Комментарий к билетам"@ru ;
+  rdfs:label "Ticket comment"@en ;
+  rdfs:range xsd:string ;
+  rdfs:domain gen:BusinessTrip ;
+.
+
+#-----------------------------------------------------------Регистрационная запись
+#v-s:BusinessTripRegistrationRecord
+
+gen:TS_BusinessTripRegistrationRecord
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:BusinessTripRegistrationRecord ;
+  v-ui:defaultTemplate gen:BusinessTripRegistrationRecordTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+#-----Регистрационный № (gen:RegNumBusinessTripBundle)
+#v-s:registrationNumber
+
+#-----Дата регистрации
+#v-s:registrationDate
+
+#--------------------------------------------------------------Изменение сроков
+gen:ChangeOfTerms
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:subClassOf v-s:Temporal ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:label "Изменение сроков командировки"@ru ;
+  rdfs:label "Change of terms"@en ;
+  v-ui:hasTemplate gen:ChangeOfTermsTemplate ;
+.
+
+gen:TS_ChangeOfTerms
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass gen:ChangeOfTerms ;
+  v-ui:defaultTemplate gen:ChangeOfTermsTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+#-----Длительность
+#v-s:duration
+
+#-----Дата начала
+#v-s:dateFrom
+
+#-----Дата окончания
+#v-s:dateTo
+
+#-----Статус
+#v-s:hasStatus
+gen:PS_hasStatus_BusinessTrip
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:ChangeOfTerms ;
+  v-ui:forProperty v-s:hasStatus ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 0 ;
+  v-ui:queryPrefix "('@' == 'v-s:StatusCanceled' || '@' == 'v-s:StatusChangedOfTermes')"^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:hasStatus для класса gen:ChangeOfTerms"@ru ;
+  rdfs:label "v-s:hasStatus property specification for gen:ChangeOfTerms class"@en ;
+.
+
+#-----Комментарий
+#rdfs:comment
+#-----------------------------------------------------------Отклонение по расходам
+gen:DeviationOnExpenses
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:label "Отклонение по расходам"@ru ;
+  rdfs:label "Deviation оn expenses"@en ;
+  v-ui:hasTemplate gen:DeviationOnExpensesTemplate ;
+.
+
+gen:TS_DeviationOnExpenses
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass gen:DeviationOnExpenses ;
+  v-ui:defaultTemplate gen:DeviationOnExpensesTemplate ;
+  v-s:loadPriority 10 ;
+.
+#-----Причина отклонения
+gen:hasBusinessTripReasonDeviationOnExpenses
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Причина отклонения"@ru ;
+  rdfs:label "Deviation reason"@en ;
+  rdfs:range gen:BusinessTripReasonDeviationOnExpenses ;
+  rdfs:domain gen:DeviationOnExpenses ;
+.
+gen:PS_hasBusinessTripReasonDeviationOnExpenses_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:DeviationOnExpenses ;
+  v-ui:forProperty gen:hasBusinessTripReasonDeviationOnExpenses ;
+  rdfs:label "Спецификация свойства gen:hasBusinessTripReasonDeviationOnExpenses для класса gen:DeviationOnExpenses"@ru ;
+  rdfs:label "gen:hasBusinessTripReasonDeviationOnExpenses property specification for gen:DeviationOnExpenses class"@en ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+.
+#-----Описание
+#v-s:description
+gen:PS_descriptionForDeviationOnExpenses_BusinessTrip
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:DeviationOnExpenses ;
+  v-ui:forProperty v-s:description ;
+  rdfs:label "Спецификация свойства v-s:description для класса gen:DeviationOnExpenses"@ru ;
+  rdfs:label "v-s:description property specification for gen:DeviationOnExpenses class"@en ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+.
+#-----Вложение
+#v-s:attachment
+
+#-----Вид транспорта
+gen:BusinessTripTransportKind
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:label "Вид транспорта для командировок"@ru ;
+  rdfs:label "Transport kind"@en ;
+.
+
+#-----Поддержка в оформлении
+gen:BusinessTripSupport
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:label "Поддержка по командировке"@ru ;
+  rdfs:label "Business trip support"@en ;
+.

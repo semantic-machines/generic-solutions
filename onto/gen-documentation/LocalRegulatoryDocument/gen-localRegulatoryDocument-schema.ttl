@@ -1,0 +1,120 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-localRegulatoryDocument-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Локальный нормативный документ. Схема"@ru ;
+  rdfs:label "GEN ontology. Local regulatory document. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ КЛАССЫ --
+gen:LocalRegulatoryDocument
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:LocalRegulatoryDocument ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:subClassOf v-s:Enumerated ;
+  rdfs:subClassOf v-s:Labeled ;
+  rdfs:label "Локальный нормативный документ"@ru ;
+  rdfs:label "Local regulatory document"@en ;
+  v-s:hasNumeration v-s:RegistrationNumberYearNumeration2_6 ;
+  v-s:labelPattern "{@.v-s:registrationNumber} - {@.v-s:title}" ;
+  v-ui:hasTemplate gen:LocalRegulatoryDocumentTemplate ;
+  v-s:hasLinksTree gen:LocalRegulatoryDocumentLinksTree ;
+.
+gen:LocalRegulatoryDocumentLinksTree
+  rdf:type v-s:LinksTree ;
+  v-s:outProperty v-s:hasVersionOfLocalRegulatoryDocument;
+  v-s:allowedType gen:VersionOfLocalRegulatoryDocument ;
+ .
+#v-s:hasDocumentKind
+#v-s:valid
+#v-s:shortLabel
+#v-s:registrationNumber
+#v-s:title
+#rdfs:comment
+#v-s:isFixedTerm
+#v-s:hasComment
+gen:isAccessLimited
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Ограниченный доступ"@ru ;
+  rdfs:label "Is access limited"@en ;
+  rdfs:range xsd:boolean ;
+  rdfs:domain gen:LocalRegulatoryDocument ;
+.
+gen:appliesTo
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Распространяется на"@ru ;
+  rdfs:label "Applies to"@en ;
+  rdfs:range v-s:Department ;
+  rdfs:range v-s:Appointment ;
+  rdfs:domain gen:LocalRegulatoryDocument ;
+.
+gen:hasPositionDictionary
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Должность"@ru ;
+  rdfs:label "Position"@en ;
+  rdfs:range gen:PositionDictionary ;
+  rdfs:domain gen:LocalRegulatoryDocument ;
+.
+#-----------------------------------------------------
+gen:VersionOfLocalRegulatoryDocument
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:subClassOf v-s:VersionOfLocalRegulatoryDocument ;
+  rdfs:subClassOf v-s:Labeled ;
+  rdfs:label "Версия документов"@ru ;
+  rdfs:label "Version of documents"@en ;
+  v-s:labelPattern "{@.v-s:registrationNumber} - {@.v-s:title}" ;
+  v-ui:hasTemplate gen:VersionOfLocalRegulatoryDocumentTemplate ;
+  v-s:hasLinksTree gen:VersionOfLocalRegulatoryDocumentLinksTree ;
+.
+gen:VersionOfLocalRegulatoryDocumentLinksTree
+  rdf:type v-s:LinksTree ;
+  v-s:inProperty v-s:hasVersionOfLocalRegulatoryDocument ;
+  v-s:outProperty v-s:hasConfidentialDocument;
+  v-s:allowedType gen:LocalRegulatoryDocument ;
+.
+#-----------------------------------------------------
+gen:DescriptionOfChange
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:DescriptionOfChange ;
+  rdfs:label "Описание изменений"@ru ;
+  rdfs:label "Description of changes"@en ;
+.
+#-----------------------------------------------------
+gen:PositionDictionary
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:label "Должность"@ru ;
+  rdfs:label "Position"@en ;
+.
+#--------------СПЕЦИФИКАЦИИ-----------------------
+gen:PS_hasDocumentKind_LocalRegulatoryDocument
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:LocalRegulatoryDocument ;
+  v-ui:forProperty v-s:hasDocumentKind ;
+  v-ui:queryPrefix "('@'=='d:ae1c31e5a-5ac7-60b9-5f9a-9170c5c011b4' || '@'=='d:28c2f3899c174412a33c5512ac1fa10b' || '@'=='d:c9e0a1dd43d943ed87f5072a6790d5c2' || '@'=='d:ce0724eb71a546f48048c229739ec914')"^^xsd:string ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:hasDocumentKind для класса gen:LocalRegulatoryDocument"@ru ;
+  rdfs:label "v-s:hasDocumentKind property specification for gen:LocalRegulatoryDocument class"@en ;
+.
+gen:PS_owner_LocalRegulatoryDocument
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:LocalRegulatoryDocument ;
+  v-ui:forProperty v-s:owner ;
+  v-ui:queryPrefix "('@'=='d:org_RU1121016110_1' || '@'=='d:org_RU1121016110_2') "^^xsd:string ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:owner для класса gen:LocalRegulatoryDocument"@ru ;
+  rdfs:label "v-s:owner property specification for gen:LocalRegulatoryDocument class"@en ;
+.

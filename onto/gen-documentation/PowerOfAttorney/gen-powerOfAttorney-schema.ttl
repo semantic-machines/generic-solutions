@@ -1,0 +1,212 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-powerOfAttorney-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Доверенность. Схема"@ru ;
+  rdfs:label "GEN ontology. Power of attorney. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ КЛАССЫ --
+
+#-----------------------------------------------------------Доверенность
+gen:PowerOfAttorney
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:PowerOfAttorney ;
+  rdfs:subClassOf v-s:Labeled ;
+  rdfs:subClassOf v-s:Enumerated ;
+  v-s:labelPattern "({@.v-s:registrationNumber} - {@.v-s:registrationDate}) {@.v-s:grantor.v-s:correspondentPerson.rdfs:label}{@.v-s:grantor.v-s:correspondentPersonDescription} -> {@.v-s:grantee.v-s:correspondentPerson.rdfs:label}{@.v-s:grantee.v-s:correspondentPersonDescription} [{@.v-s:dateFrom} - {@.v-s:dateTo}]" ;
+  rdfs:label "Доверенность"@ru ;
+  rdfs:label "Power of attorney"@en ;
+  v-ui:hasTemplate gen:PowerOfAttorneyTemplate ;
+  v-s:hasNumeration v-s:RegistrationNumberSimpleNumerationYear ;
+.
+
+#-----Регистрационная запись
+gen:hasPowerOfAttorneyRegistrationRecord
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Регистрационная запись"@ru ;
+  rdfs:label "Registration record"@en ;
+  rdfs:range gen:PowerOfAttorneyRegistrationRecord ;
+  rdfs:domain gen:PowerOfAttorney ;
+. 
+
+#-----Регистрационный номер
+#v-s:registrationNumber
+
+#-----Форма доверенности
+#v-s:hasFormOfPowerOfAttorney
+gen:PS_hasFormOfPowerOfAttorney_PowerOfAttorney
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  v-ui:forProperty v-s:hasFormOfPowerOfAttorney ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:hasFormOfPowerOfAttorney для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "v-s:hasFormOfPowerOfAttorney property specification for gen:PowerOfAttorney class"@en ;
+.
+
+#-----Дата доверенности (gen:PowerOfAttorney_date_Bundle)
+#v-s:registrationDate
+gen:PS_registrationDate_PowerOfAttorney
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  v-ui:forProperty v-s:registrationDate ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:registrationDate  для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "v-s:registrationDate property specification for gen:PowerOfAttorney class"@en ;
+.
+
+#-----Оформляется на период отсутствия работника
+#v-s:isIssuedForAbsencePeriodOfEmployee
+gen:PS_isIssuedForAbsencePeriodOfEmployee_PowerOfAttorney
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  v-ui:forProperty v-s:isIssuedForAbsencePeriodOfEmployee ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:isIssuedForAbsencePeriodOfEmployee для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "v-s:isIssuedForAbsencePeriodOfEmployee property specification for gen:PowerOfAttorney class"@en ;
+.
+#v-s:issuedForAbsencePeriodOfEmployee
+gen:PS_issuedForAbsencePeriodOfEmployee_PowerOfAttorney
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  v-ui:forProperty v-s:issuedForAbsencePeriodOfEmployee ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment' && ('v-s:origin' == 'SAP HR' || 'v-s:origin' == 'Internal')"^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:issuedForAbsencePeriodOfEmployee для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "v-s:issuedForAbsencePeriodOfEmployee property specification for gen:PowerOfAttorney class"@en ;
+.
+
+#-----Дата начала
+#v-s:dateFrom
+gen:PS_dateFrom_PowerOfAttorney
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  v-ui:forProperty v-s:dateFrom ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:dateFrom для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "v-s:dateFrom property specification for gen:PowerOfAttorney class"@en ;
+.
+
+#-----Дата окончания
+#v-s:dateTo
+gen:PS_dateTo_PowerOfAttorney
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  v-ui:forProperty v-s:dateTo ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:dateTo для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "v-s:dateTo property specification for gen:PowerOfAttorney class"@en ;
+.
+
+#-----Трбуется продление?
+gen:isPowerOfAttorneyProlongationRequired
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Требуется продление?"@ru ;
+  rdfs:label "Is prolongation required?"@en ;
+  rdfs:range xsd:boolean ;
+  rdfs:domain gen:PowerOfAttorney ;
+.
+gen:PS_isPowerOfAttorneyProlongationRequired_PowerOfAttorney
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  v-ui:forProperty gen:isPowerOfAttorneyProlongationRequired ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства gen:isPowerOfAttorneyProlongationRequired для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "gen:isPowerOfAttorneyProlongationRequired property specification for gen:PowerOfAttorney class"@en ;
+.
+
+#-----Причина оформления доверенности (gen:PowerOfAttorney_reason_Bundle)
+#v-s:hasReasonForPowerOfAttorney
+gen:PS_hasReasonForPowerOfAttorney_PowerOfAttorney
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  v-ui:forProperty v-s:hasReasonForPowerOfAttorney ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства v-s:hasReasonForPowerOfAttorney для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "v-s:hasReasonForPowerOfAttorney property specification for gen:PowerOfAttorney class"@en ;
+.
+
+#-----Доверитель
+#v-s:grantor
+gen:PS_grantor_PowerOfAttorney
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  v-ui:forProperty v-s:grantor ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:grantor для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "v-s:grantor property specification for gen:PowerOfAttorney class"@en ;
+.
+
+#-----Доверенный
+#v-s:grantee
+gen:PS_grantee_PowerOfAttorney
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  v-ui:forProperty v-s:grantee ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:grantee  для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "v-s:grantee  property specification for gen:PowerOfAttorney class"@en ;
+.
+
+#-----Вложение
+#v-s:attachment
+#v-ui:PSAttachmentThing
+
+#------------------------------------------------------Регистрационная запись
+gen:PowerOfAttorneyRegistrationRecord
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:RegistrationRecord ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:subClassOf v-s:Labeled ;
+  rdfs:label "Регистрационная запись"@ru ;
+  rdfs:label "Registration record"@en ;
+  v-ui:hasTemplate mnd-s:PowerOfAttorneyRegistrationRecordTemplate ;
+  v-s:labelPattern "{@.v-s:registrationDate}";
+.
+
+#----Дата доверенности
+#v-s:registrationDate
+
+#----Вложение
+#v-s:attachment
+#v-ui:PSAttachmentThing
+
+#----Комментарий
+#rdfs:comment
+
+
+#------------------------------------------------------Доверитель/Доверенности
+#v-s:Correspondent 
+#    a owl:Class;
+#    rdfs:isDefinedBy <http://semantic-machines.com/veda/veda-correspondence-schema>;
+#    rdfs:label "Корреспондент"@ru, "Correspondent"@en;
+#    rdfs:subClassOf v-s:UserThing, v-s:Embedded;
+
+#-----Организация
+#v-s:correspondentOrganization
+
+#-----Подразделение
+#v-s:correspondentDepartment
+
+#-----Персона
+#v-s:correspondentPerson

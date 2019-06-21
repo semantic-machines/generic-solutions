@@ -1,0 +1,908 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-businessTrip-ui>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Командировка. UI"@ru ;
+  rdfs:label "GEN ontology. Business trip. UI"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ СТРОКИ --
+gen:RegNumBusinessTripBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Регистрационный №"@ru ;
+  rdfs:label "Registration №"@en ;
+.
+gen:DestinationOrganizationBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Организация назначения"@ru ;
+  rdfs:label "Destination organization"@en ;
+.
+gen:NotifyBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Уведомить"@ru ;
+  rdfs:label "Notify"@en ;
+.
+gen:CoordinationLimitBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Согласовать превышение лимитов"@ru ;
+  rdfs:label "Coordination limit deviation"@en ;
+.
+gen:CoordinationPenaltyBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Согласовать оплату штрафов, пени"@ru ;
+  rdfs:label "Coordfintation penalty deviation"@en ;
+.
+gen:AdvanceReportBusinessTripBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Шаблон авансового отчета.xlsx"@ru ;
+  rdfs:label "Шаблон авансового отчета.xlsx"@en ;
+.
+gen:ScanAttachmentBusinessTripBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Сканированный загранпаспорт"@ru ;
+  rdfs:label "Scanned international passport"@en ;
+.
+
+# ------------------------------------------------------------ ШАБЛОНЫ --
+gen:BusinessTripTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:BusinessTrip ;
+  rdfs:label "Шаблон для класса gen:BusinessTrip (Командировка)"@ru ;
+  rdfs:label "Template for gen:BusinessTrip class"@en ;
+  v-ui:template """
+<script>
+  //Права зеленных кнопок
+  var _class  = new veda.IndividualModel("v-s:BusinessTripRegistrationRecord");
+  var _class2 = new veda.IndividualModel("gen:ChangeOfTerms");
+  _class.canCreate().then(function(result) {
+    if (!result) $("#add-regEntry", template).remove();
+  });
+  var changeOfTermsCanCreate = _class2.canCreate();
+  changeOfTermsCanCreate.then(function(result){
+    if (!result) $("#add-ChangeOfTerms", template).remove();
+  });
+  function handler() {
+    changeOfTermsCanCreate.then(function(result) {
+      if(!result){
+        $("#notify.action", template).remove();
+      } else if( result && !individual.hasValue("gen:hasChangeOfTerms") ) {
+        $("#notify.action", template).hide();
+      } else {
+        $("#notify.action", template).show();
+      }
+    });
+  }
+  individual.canUpdate().then(function(result) {
+    if (result) {
+      $("#add-Deviation", template).show();
+    } else {
+      $("#add-Deviation", template).hide();
+    }
+  })
+  handler("gen:hasChangeOfTerms", individual["gen:hasChangeOfTerms"]);
+  individual.on("propertyModified", handler);
+  template.one("remove", function () {
+    individual.off("propertyModified", handler);
+  });
+  template.on("validate", function () {
+    var result = {};
+    if ( individual.hasValue("gen:hasBusinessTripTransportKind","d:2078749d2bcf42e0ae80c5d8287d19d9") ) {
+      result["gen:isTicketRefund"] = {
+        state: individual.hasValue("gen:isTicketRefund"),
+        cause: ["v-ui:minCardinality"]
+      };
+      result["gen:isTicketExchange"] = {
+        state: individual.hasValue("gen:isTicketExchange"),
+        cause: ["v-ui:minCardinality"]
+      };
+    }
+    template.trigger("validated", result);
+  });
+  //# sourceURL=gen:BusinessTripTemplate_pre
+</script>
+<div>
+  <div class="container sheet">
+    <h2>
+      <span about="@" property="rdf:type"></span>
+      <small about="@" property="rdfs:label"></small>
+    </h2>
+    <hr>
+    
+    <section id="MainProperties">
+      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div class="panel panel-default view -edit -search hidden" id="add-regEntry">
+						<div class="panel-body bg-default">
+							<button class="btn btn-success pull-right" about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></button>
+						</div>
+					</div>
+					<div id="new-regEntry"></div>
+					<div about="@" rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordTemplate" class="view edit -search create"></div>
+					<div class="panel panel-default -view -edit search">
+						<div class="panel-body bg-default">
+							<em about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label" class="-view -edit search"></em>
+							<hr class="-view -edit search">
+							<div rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordTemplate" data-embedded="true" class="-view -edit search create"></div>
+							<veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" class="-view -edit search create"></veda-control>
+						</div>
+					</div>
+       </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:businessTripEmployee" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:businessTripEmployee" class="view -edit search" data-template="gen:BusinessTrip_EmployeeTemplate"></div>
+          <veda-control data-type="link" rel="v-s:businessTripEmployee" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:businessTripDepartment" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:businessTripDepartment" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:businessTripDepartment" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>  
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:businessTripGoal" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:businessTripGoal" class="view -edit search"></div>
+          <veda-control data-type="text" property="v-s:businessTripGoal" class="-view edit search"></veda-control>
+        </div>
+      </div>  
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:DestinationOrganizationBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:supplier" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:supplier" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>        
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div property="gen:businessTripOrganization" class="view -edit -search"></div>
+					<veda-control data-type="string" property="gen:businessTripOrganization" class="-view edit search"></veda-control>
+        </div>
+      </div>        
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasClassifierCountry" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasClassifierCountry" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasClassifierCountry" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>             
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:businessTripOrganizationDescription" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div property="gen:businessTripOrganizationDescription" class="view -edit -search"></div>
+					<veda-control data-type="string" property="gen:businessTripOrganizationDescription" class="-view edit search"></veda-control>
+        </div>
+      </div>       
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:hasBusinessTripTransportKind" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="gen:hasBusinessTripTransportKind" class="view edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="gen:hasBusinessTripTransportKind" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>                                                 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:hasBusinessTripSupport" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="gen:hasBusinessTripSupport" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="checkbox" rel="gen:hasBusinessTripSupport" class="-view edit search"></veda-control>
+        </div>
+      </div>                                                 
+			<div id="ticketRefund" class="hidden">
+				<div class="row row-attribute">
+					<div class="col-sm-3 col-xs-5">
+						<em about="gen:isTicketRefund" property="rdfs:label"></em>
+					</div>
+					<div class="col-sm-9 col-xs-7">
+						<veda-control property="gen:isTicketRefund" data-type="booleanRadio"></veda-control>
+					</div>
+				</div>
+				<div class="row row-attribute">
+					<div class="col-sm-3 col-xs-5">
+						<em about="gen:isTicketExchange" property="rdfs:label"></em>
+					</div>
+					<div class="col-sm-9 col-xs-7">
+						<veda-control property="gen:isTicketExchange" data-type="booleanRadio"></veda-control>
+					</div>
+				</div>
+				<div class="row row-attribute">
+					<div class="col-sm-3 col-xs-5">
+						<em about="gen:ticketComment" property="rdfs:label"></em>
+					</div>
+					<div class="col-sm-9 col-xs-7">
+						<div property="gen:ticketComment" class="view -edit -search"></div>
+						<veda-control data-type="text" property="gen:ticketComment" class="-view edit search"></veda-control>
+					</div>
+				</div>
+			</div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:date" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-4 col-xs-7">
+					<div property="v-s:dateFrom" class="view -edit -search"></div>
+					<veda-control data-type="date" property="v-s:dateFrom" class="-view edit search"></veda-control>
+        </div>
+        <div class="col-sm-4 col-xs-7">
+					<div property="v-s:dateTo" class="view -edit -search"></div>
+					<veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
+        </div>
+      </div>                 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:duration" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-4 col-xs-7">
+					<div property="v-s:duration" class="view -edit -search"></div>
+					<veda-control data-type="decimal" property="v-s:duration" class="-view edit search"></veda-control>
+        </div>
+      </div>                                          
+		</section>
+		<div class="row row-attribute">
+			<div class="col-sm-3 col-xs-5">
+				<label about="gen:hasChangeOfTerms" property="rdfs:label"></label>
+			</div>
+			<div class="col-sm-9 col-xs-7">
+        <div rel="gen:hasChangeOfTerms" class="-view -edit search" data-template="gen:ChangeOfTermsEmbededTemplate" data-embedded="true"></div>
+        <div rel="gen:hasChangeOfTerms" class="view edit -search" data-template="gen:ChangeOfTermsEmbededTemplate"></div>
+        <veda-control data-type="link" rel="gen:hasChangeOfTerms" class="-view -edit search create"></veda-control>
+        <div class="clearfix view -edit -search">
+          <button id="add-ChangeOfTerms" class="btn btn-success pull-right">
+            <span class="glyphicon glyphicon-zoom-in"></span>
+            <span about="gen:hasChangeOfTerms" property="rdfs:label"></span>
+          </button>
+        </div>
+			</div>
+		</div>			
+		<div class="row row-attribute">
+			<div class="col-sm-3 col-xs-5">
+				<label about="gen:hasDeviationOnExpenses" property="rdfs:label"></label>
+			</div>
+			<div class="col-sm-9 col-xs-7">
+        <div rel="gen:hasDeviationOnExpenses" class="-view -edit search" data-template="gen:DeviationOnExpensesEmbeddedTemplate" data-embedded="true"></div>
+        <div rel="gen:hasDeviationOnExpenses" class="view edit -search" data-template="gen:DeviationOnExpensesEmbeddedTemplate"></div>
+        <veda-control data-type="link" rel="gen:hasDeviationOnExpenses" class="-view -edit search create"></veda-control>
+        <div class="clearfix view -edit -search">
+          <button id="add-Deviation" class="btn btn-success pull-right">
+            <span class="glyphicon glyphicon-zoom-in"></span>
+            <span about="gen:hasDeviationOnExpenses" property="rdfs:label"></span>
+          </button>
+        </div>
+			</div>
+		</div>                                          
+		
+    <hr>
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <!-- BUTTONS -->
+    <div class="actions view edit -search">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal journal-dms task"></span>
+      <span class=" view -edit -search">
+        <button type="button" class="action btn btn-warning view -edit -search" id="notify" about="gen:NotifyBundle" property="rdfs:label"/>
+      </span>
+    </div>
+  </div>
+  <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
+  <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
+</div>
+<script>
+  $("#add-copy", template).click(function () {
+    var _class = new veda.IndividualModel("gen:BusinessTrip"),
+        BusinessTrip = new veda.IndividualModel(),
+        tmpl = "gen:BusinessTripTemplate" ;
+    BusinessTrip["rdf:type"] = [_class] ;
+    BusinessTrip["v-s:businessTripEmployee"]=individual["v-s:businessTripEmployee"] ;
+    BusinessTrip["v-s:businessTripDepartment"]=individual["v-s:businessTripDepartment"] ;
+    BusinessTrip["v-s:businessTripGoal"]=individual["v-s:businessTripGoal"] ;
+    BusinessTrip["gen:businessTripOrganization"]=individual["gen:businessTripOrganization"] ;
+    BusinessTrip["gen:hasBusinessTripPurpose"]=individual["gen:hasBusinessTripPurpose"] ;
+    BusinessTrip["v-s:hasClassifierCountry"]=individual["v-s:hasClassifierCountry"] ;
+    BusinessTrip["gen:hasBusinessTripDirection"]=individual["gen:hasBusinessTripDirection"] ;
+    BusinessTrip["gen:businessTripOrganizationDescription"]=individual["gen:businessTripOrganizationDescription"] ;
+    BusinessTrip["v-s:dateFrom"]=individual["v-s:dateFrom"] ;
+    BusinessTrip["v-s:dateTo"]=individual["v-s:dateTo"] ;
+    BusinessTrip["v-s:duration"]=individual["v-s:duration"] ;
+    riot.route( ["#", BusinessTrip.id, "#main", tmpl, "edit"].join("/") ) ;
+    BusinessTrip.one("afterSave", function () {
+      riot.route("#/" + BusinessTrip.id, false);
+    });
+  });
+
+//Скрипты зеленных кнопок
+  $("#add-Deviation", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+      _class = new veda.IndividualModel("gen:DeviationOnExpenses"),
+      ChangeOfTerms = new veda.IndividualModel(),
+      tmpl = new veda.IndividualModel("gen:DeviationOnExpensesTemplate");
+    ChangeOfTerms["rdf:type"] = [_class];
+    ChangeOfTerms["v-s:backwardTarget"] = [individual];
+    ChangeOfTerms["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasDeviationOnExpenses")];
+    ChangeOfTerms["v-s:canRead"] = [ true ];
+    ChangeOfTerms.present(cntr, tmpl, "edit");
+    ChangeOfTerms.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    ChangeOfTerms.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+
+  $("#add-ChangeOfTerms", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+      _class = new veda.IndividualModel("gen:ChangeOfTerms"),
+      ChangeOfTerms = new veda.IndividualModel(),
+      tmpl = new veda.IndividualModel("gen:ChangeOfTermsTemplate");
+    ChangeOfTerms["rdf:type"] = [_class];
+    ChangeOfTerms["v-s:backwardTarget"] = [individual];
+    ChangeOfTerms["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasChangeOfTerms")];
+    ChangeOfTerms["v-s:canRead"] = [ true ];
+    ChangeOfTerms.present(cntr, tmpl, "edit");
+    ChangeOfTerms.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    ChangeOfTerms.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+
+  $("#add-regEntry", template).click(function () {
+    var cntr = $("#new-regEntry", template),
+      _class = new veda.IndividualModel("v-s:BusinessTripRegistrationRecord"),
+      status = new veda.IndividualModel(),
+      tmpl = "gen:BusinessTripRegistrationRecordTemplate";
+    status["rdf:type"] = [_class];
+    status["v-s:backwardTarget"] = [individual];
+    status["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasBusinessTripRegistrationRecord")];
+    status["v-s:backwardForceUpdate"] = [true];
+    status.present(cntr, tmpl, "edit");
+    status.one("beforeReset", function () {
+      cntr.empty();
+    });
+    status.one("afterSave", function () {
+      cntr.empty();
+    });
+  });
+
+  function DeviationsHandler(){
+    if (template.data("mode") !== "search") {
+    var isLimitDeviation = false;
+    var isPenaltyDeviation = false;
+    if (individual.hasValue('gen:hasDeviationOnExpenses')) {
+      var deviationPromises = [];
+      individual['gen:hasDeviationOnExpenses'].forEach(function(deviation){
+        deviationPromises.push(deviation.load());
+      });
+      Promise.all(deviationPromises).then(function(deviations) {
+        deviations.forEach( function(deviation){
+          if (deviation.hasValue('gen:hasBusinessTripReasonDeviationOnExpenses', 'd:mzafmsd6da53vqfimut3v8ki9t')) {
+            isLimitDeviation = true;
+          }
+          if (deviation.hasValue('gen:hasBusinessTripReasonDeviationOnExpenses', 'd:ycxpay8s3fr6l5c75u2g6fgt3q')) {
+            isPenaltyDeviation = true;
+          }
+        });
+        if (isLimitDeviation) {
+          $('#send-CoordLimit', template).off("click");
+          $('#send-CoordLimit', template).removeClass("hidden");
+          $('#send-CoordLimit', template).on('click', function () {
+            veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:BusinessTrip_CoordLimitStartForm_Template');
+          });
+        } else {
+          $('#send-CoordLimit', template).addClass("hidden");
+        }
+        if (isPenaltyDeviation) {
+          $('#send-CoordPenalty', template).off("click");
+          $('#send-CoordPenalty', template).removeClass("hidden");
+          $('#send-CoordPenalty', template).on('click', function () {
+            veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:BusinessTrip_CoordPenaltyStartForm_Template');
+          });
+        } else {
+          $('#send-CoordPenalty', template).addClass("hidden");
+        }
+      });
+    } else {
+      $('#send-CoordLimit', template).addClass("hidden");
+      $('#send-CoordPenalty', template).addClass("hidden");
+    }
+    }
+  }
+  DeviationsHandler();
+
+  function ModifiedHandlerSupplier() {
+    if (template.data("mode") === "edit" && individual.hasValue("v-s:supplier")){
+      if (!individual.hasValue("gen:businessTripOrganization")) {
+        individual.getPropertyChain('v-s:supplier', 'v-s:shortLabel').then(function(shortLabel) {
+          if (shortLabel.length > 0) individual["gen:businessTripOrganization"] = shortLabel;
+        })
+      }
+      if (!individual.hasValue("gen:hasClassifierCountry")) {
+        individual.getPropertyChain('v-s:supplier', 'v-s:hasClassifierCountry').then(function(country) {
+          if (country.length > 0) individual["gen:hasClassifierCountry"] = country;
+        })
+      }
+
+      if (!individual.hasValue("gen:businessTripOrganizationDescription")) {
+        individual.getPropertyChain('v-s:supplier', 'v-s:legalAddress').then(function(legalAddress) {
+          if (legalAddress.length > 0) individual["gen:businessTripOrganizationDescription"] = legalAddress;
+        })
+      }
+    }
+  }
+  ModifiedHandlerSupplier();
+
+  function getDepartment () {
+    if ( individual.hasValue("v-s:businessTripEmployee") && template.data("mode") === "edit" ){
+      individual.getPropertyChain('v-s:businessTripEmployee', 'v-s:parentUnit').then(function(parentUnit) {
+        individual["v-s:businessTripDepartment"] = parentUnit ;
+      })
+    }
+  }
+
+  function directionBT () {
+    if ( template.data("mode") === "edit" ) {
+      if (individual.hasValue("v-s:hasClassifierCountry", new veda.IndividualModel("d:Country_RUS")) ){
+        individual["gen:hasBusinessTripDirection"] = [new veda.IndividualModel("d:87116c2092da45cba4300daa6de0b748")] ;
+      }
+      else
+        individual["gen:hasBusinessTripDirection"] = [new veda.IndividualModel("d:d4cf39d06aec4a9aafcd4663f7996125")] ;
+    }
+  }
+
+  individual.on("v-s:supplier", ModifiedHandlerSupplier);
+  individual.on("v-s:businessTripEmployee", getDepartment);
+  individual.on('gen:hasDeviationOnExpenses', DeviationsHandler);
+  individual.on('v-s:hasClassifierCountry', directionBT);
+  template.one("remove", function () {
+    individual.off("v-s:supplier", ModifiedHandlerSupplier);
+    individual.off("v-s:businessTripEmployee", getDepartment);
+    individual.off('gen:hasDeviationOnExpenses', DeviationsHandler);
+    individual.off('v-s:hasClassifierCountry', directionBT);
+  });
+
+  //Процессная часть
+  function processHandler() {
+    individual.canUpdate().then(function (canUpdate) {
+      var userId = "d:mondi_employee_00051114"//Римерт О.
+      if ( veda.user.id !==  userId && individual.hasValue("v-wf:isProcess") ) {
+        $('#send.action', template).remove();
+        $('#save.action', template).remove();
+        $('#edit.action', template).remove();
+        $('#delete.action', template).remove();
+      } else if (individual.isNew() || canUpdate) {
+        $('#send.action', template).off("click");
+        $('#send.action', template).on('click', function () {
+          veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:BusinessTrip_ComplexRouteStartForm_Template');
+        });
+      } else {
+          $('#send.action', template).remove();
+          $('#delete.action', template).remove();
+      }
+    })
+  }
+  processHandler();
+
+  individual.on("afterReset", processHandler);
+  template.one("remove", function () {
+    individual.off("afterReset", processHandler);
+  });
+
+  function notifyHandler() {
+    if ( template.data("mode") != "search" ) {
+      if ( individual.hasValue("gen:hasChangeOfTerms") ) {
+        $('#notify.action', template).removeClass("hidden");
+        $('#notify.action', template).off("click");
+        $('#notify.action', template).on('click', function () {
+          veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:BusinessTrip_ComplexRouteStartForm_Template');
+        });
+      } else {
+        $('#notify.action', template).addClass("hidden");
+      }
+    }
+  }
+  notifyHandler();
+
+  individual.on("gen:hasChangeOfTerms", notifyHandler);
+  template.one("remove", function () {
+    individual.off("gen:hasChangeOfTerms", notifyHandler);
+  });
+
+  function handler(property_uri) {
+    if ( individual.hasValue("v-s:hasBusinessTripRegistrationRecord") ) {
+      $("#add-regEntry", template).addClass("hidden");
+    } else {
+      $("#add-regEntry", template).removeClass("hidden");
+    }
+  }
+  handler("v-s:hasBusinessTripRegistrationRecord");
+
+  individual.on("propertyModified", handler);
+  template.one("remove", function () {
+    individual.off("propertyModified", handler);
+  });
+
+  $('#createReport1', template).on('click', function (e) {
+    veda.Util.createReport('gen:businessTrip_printBlank', individual);
+  });
+
+  $('#createReport2', template).on('click', function (e) {
+    veda.Util.createReport('gen:businessTrip_ServiceTask_printBlank', individual);
+  });
+
+  if ( template.data("mode") === "edit" &&
+    veda.user.id !== "d:mondi_employee_00051114" // Римерт О.
+    && (
+      individual.hasValue("v-wf:hasStatusWorkflow", "v-wf:Completed")
+      || individual.hasValue("v-wf:isProcess")
+    )
+  ) {
+    $(".action#save, .action#edit, .action#cancel, .action#delete", template).remove();
+  }
+
+  function showBoolean () {
+    if ( mode != "search") {
+      if ( individual.hasValue("gen:hasBusinessTripTransportKind","d:2078749d2bcf42e0ae80c5d8287d19d9") ) {
+        $("#ticketRefund", template).removeClass("hidden");
+      } else {
+        $("#ticketRefund", template).addClass("hidden");
+        individual["gen:isTicketRefund"] = [] ;
+        individual["gen:isTicketExchange"] = [] ;
+      }
+    }
+    else if ( mode === "search") {
+      $("#ticketRefund", template).removeClass("hidden") ;
+    }
+  }
+  showBoolean();
+  individual.on("gen:hasBusinessTripTransportKind", showBoolean);
+  template.one("remove", function () {
+    individual.off("gen:hasBusinessTripTransportKind", showBoolean);
+  });
+
+  //# sourceURL=gen:BusinessTripTemplate_post
+</script>
+"""
+.
+
+
+gen:BusinessTripRegistrationRecordTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass v-s:BusinessTripRegistrationRecord ;
+  rdfs:label "Шаблон для класса v-s:BusinessTripRegistrationRecord (Регистрационная запись командировки)"@ru ;
+  rdfs:label "Template for v-s:BusinessTripRegistrationRecord class"@en ;
+  v-ui:template """
+<div class="panel panel-default">
+  <div class="panel-body bg-default">
+    <strong about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label" class="view edit -search"></strong>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <em about="gen:RegNumBusinessTripBundle" property="rdfs:label"></em>
+        <div about="@" property="v-s:registrationNumber" class="view  -edit search"></div>
+        <veda-control data-type="text" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+      </div>
+      <div class="col-md-6">
+        <em about="v-s:registrationDate" property="rdfs:label" ></em>
+        <div property="v-s:registrationDate" class="view -edit search"></div>
+        <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
+      </div>
+    </div>
+    <br>
+    <div class="actions">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete"></span>
+    </div>
+  </div>
+</div>
+"""
+.
+
+gen:ChangeOfTermsTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:ChangeOfTerms ;
+  rdfs:label "Шаблон для класса gen:ChangeOfTerms (Изменение сроков командировки)"@ru ;
+  rdfs:label "Template gen:ChangeOfTerms class"@en ;
+  v-ui:template """
+<div class="container sheet">
+  <h2>
+    <span about="@" property="rdf:type"></span>
+    <small about="@" property="rdfs:label"></small>
+  </h2>
+  <hr>
+  <div class="row">
+    <div class="col-md-3">
+      <em about="v-s:duration" property="rdfs:label"></em>
+      <div property="v-s:duration" class="view -edit -search"></div>
+      <veda-control data-type="decimal" property="v-s:duration" class="-view edit search"></veda-control>
+    </div>
+    <div class="col-md-3">
+      <em about="v-s:dateFrom" property="rdfs:label" ></em>
+      <div property="v-s:dateFrom" class="view -edit -search"></div>
+      <veda-control property="v-s:dateFrom" data-type="date" class="-view edit search"></veda-control>
+    </div>
+    <div class="col-md-3">
+      <em about="v-s:dateTo" property="rdfs:label" ></em>
+      <div property="v-s:dateTo" class="view -edit -search"></div>
+      <veda-control property="v-s:dateTo" data-type="date" class="-view edit search"></veda-control>
+    </div>
+    <div class="col-md-3">
+      <em about="v-s:hasStatus" property="rdfs:label"></em>
+      <div rel="v-s:hasStatus" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="v-s:hasStatus" class="-view edit search fulltext dropdown"></veda-control>
+    </div>
+  </div>
+  <em about="rdfs:comment" property="rdfs:label"></em>
+  <div property="rdfs:comment" class="view -edit -search"></div>
+  <veda-control data-type="text" property="rdfs:comment" class="-view edit search"></veda-control>
+
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <br>
+  <!-- BUTTONS -->
+  <div class="actions view edit -search">
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal journal-dms"></span>
+  </div>
+</div>
+"""
+.
+
+gen:ChangeOfTermsEmbededTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:ChangeOfTerms ;
+  rdfs:label "Вложенный шаблон для класса gen:ChangeOfTerms (Изменение сроков командировки)"@ru ;
+  rdfs:label "Embeded template gen:ChangeOfTerms class"@en ;
+  v-ui:template """
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class ="row">
+      <div class="col-md-8">
+        <span about="@" data-template="v-ui:IconModalTemplate" class="view edit -search"></span>
+      </div>
+      <div class="col-md-4 clearfix">
+        <span class="pull-right">
+          <span class="label label-info"  rel="v-s:hasStatus"  data-template="v-ui:LabelTemplate"></span>
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <em about="v-s:dateFrom" property="rdfs:label" ></em>
+        <div property="v-s:dateFrom" class="view -edit search"></div>
+        <veda-control property="v-s:dateFrom" data-type="date" class="-view edit search"></veda-control>
+      </div>
+      <div class="col-md-3">
+        <em about="v-s:dateTo" property="rdfs:label" ></em>
+        <div property="v-s:dateTo" class="view -edit search"></div>
+        <veda-control property="v-s:dateTo" data-type="date" class="-view edit search"></veda-control>
+      </div>
+      <div class="col-md-6">
+        <em about="v-s:duration" property="rdfs:label"></em>
+        <div property="v-s:duration" class="view -edit -search"></div>
+        <veda-control data-type="decimal" property="v-s:duration" class="-view edit search"></veda-control>
+      </div>
+    </div>
+    <em about="rdfs:comment" property="rdfs:label"></em>
+    <div property="rdfs:comment" class="view -edit -search"></div>
+    <veda-control data-type="text" property="rdfs:comment" class="-view edit search"></veda-control>
+  </div>
+</div>
+"""
+.
+
+gen:DeviationOnExpensesTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:ChangeOfTerms ;
+  rdfs:label "Вложенный шаблон для класса gen:DeviationOnExpenses"@ru ;
+  rdfs:label "Embeded template gen:DeviationOnExpenses class"@en ;
+  v-ui:template """
+
+<div class="container sheet">
+  <h2>
+    <span about="@" property="rdf:type"></span>
+    <small about="@" property="rdfs:label"></small>
+  </h2>
+  <hr>
+  <div class="row">
+    <div class="col-md-4">
+      <em about="gen:hasBusinessTripReasonDeviationOnExpenses" property="rdfs:label"></em>
+      <div rel="gen:hasBusinessTripReasonDeviationOnExpenses" data-template="v-ui:LabelTemplate" class="view -edit -search"></div>
+      <veda-control data-type="link" rel="gen:hasBusinessTripReasonDeviationOnExpenses" class="-view edit search fulltext dropdown"></veda-control>
+    </div>
+    <div class="col-md-8">
+      <em about="v-s:description" property="rdfs:label"></em>
+      <div property="v-s:description" class="view -edit -search"></div>
+      <veda-control data-type="text" rows="3" property="v-s:description" class="-view edit search"></veda-control>
+    </div>
+  </div>
+  <em about="v-s:attachment" property="rdfs:label" class="view edit -search"></em>
+  <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
+  <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
+
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <br>
+  <!-- BUTTONS -->
+  <div class="actions view edit -search">
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal journal-dms"></span>
+  </div>
+</div>
+"""
+.
+
+gen:DeviationOnExpensesEmbeddedTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:ChangeOfTerms ;
+  rdfs:label "Вложенный шаблон для класса gen:DeviationOnExpenses"@ru ;
+  rdfs:label "Embeded template gen:DeviationOnExpenses class"@en ;
+  v-ui:template """
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class ="row">
+      <div class="col-md-8">
+        <span about="@" data-template="v-ui:IconModalTemplate" class="view edit -search"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <em about="gen:hasBusinessTripReasonDeviationOnExpenses" property="rdfs:label"></em>
+        <div rel="gen:hasBusinessTripReasonDeviationOnExpenses" data-template="v-ui:LabelTemplate" class="view -edit search"></div>
+        <veda-control data-type="link" rel="gen:hasBusinessTripReasonDeviationOnExpenses" class="-view edit search fulltext dropdown"></veda-control>
+      </div>
+      <div class="col-md-6">
+        <em about="v-s:description" property="rdfs:label"></em>
+        <div property="v-s:description" class="view -edit -search"></div>
+        <veda-control data-type="string" property="v-s:description" class="-view edit search"></veda-control>
+      </div>
+    </div>
+  </div>
+</div>
+"""
+.
+
+gen:BusinessTrip_listReportParametersTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон Параметров отчета cписок командировок для утверждения"@ru ;
+  rdfs:label "BusinessTrip_listReportParameters template"@en ;
+  v-ui:forClass gen:BusinessTrip_listReportParameters ;
+  v-ui:template
+  """
+<div class="container sheet">
+  <h3 about="gen:BusinessTrip_listReportParameters" property="rdfs:label"></h3>
+  <div class="row">
+    <div class="col-md-6">
+      <em about="v-s:responsible" property="rdfs:label"></em>
+      <div rel="v-s:responsible" data-template="v-ui:LabelTemplate" class="view -edit -search"></div>
+      <veda-control rel="v-s:responsible" data-type="select" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>
+
+  <br><br>
+  <div class="actions">
+    <button type="button" class="action btn btn-success -view edit -search" id="createReport" about="v-s:CreateReport" property="rdfs:label"/>
+  </div>
+</div>
+<script>
+  $('#createReport', template).on('click', function () {
+    veda.Util.createReport('gen:BusinessTrip_listReport', individual);
+  });
+</script>
+""" ;
+.
+
+gen:BusinessTrip_EmployeeTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон сотрудника в командировке"@ru ;
+  rdfs:label "BusinessTrip employee template"@en ;
+  v-ui:template
+  """
+<div>
+  <span about="@" rel="v-s:employee">
+    <script>
+      if ( !individual.hasValue("v-s:tabNumber") ) {
+        var regexp = new RegExp("(\\" + "D*([0-9]+)\\" + "D*)");
+        var tabNumber = individual.id.replace(regexp, "$2");
+        $("#tabNumber", template)
+          .removeAttr("about")
+          .removeAttr("property")
+          .text(tabNumber);
+      }
+      //# sourceURL=gen:BusinessTrip_EmployeeTemplate_pre
+    </script>
+    <span>
+      <span about="@" property="v-s:lastName"></span>
+      <span about="@" property="v-s:firstName"></span>
+      <span about="@" property="v-s:middleName"></span> -
+      <span id="tabNumber" about="@" property="v-s:tabNumber"></span>
+    </span>
+  </span>-
+  <span about="@" rel="v-s:occupation" data-template="v-ui:LabelTemplate"></span>
+</div>
+  """ ;
+.
+
+gen:msg-template-incurance-notify
+  rdf:type v-s:Notification ;
+  v-s:hasMessageType v-s:OtherNotification ;
+  v-s:notificationLanguage v-ui:RU ;
+  v-s:notificationSubject "{{app_name}}. Уведомление: Список сотрудников отправляющихся в командировки" ;
+  v-s:notificationBody
+  """
+  <html>
+    <div>
+      <table width='100%' cellpadding='5'>
+        <tbody>
+          <tr align='left'>
+            <th width='30%'>ФИО</th>
+            <th width='15%'>Табельный номер</th>
+            <th width='15%'>Сроки</th>
+            <th>Страна</th>
+            <th>Адрес</th>
+          </tr>
+          {{#data}}
+            <tr align='left'>
+              <td>{{employee}}</td>
+              <td>{{tabNumber}}</td>
+              <td>{{date}}</td>
+              <td>{{country}}</td>
+              <td>{{address}}</td>
+            </tr>
+          {{/data}}
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div>
+      Это сообщение сформировано автоматически. Отвечать на него не нужно.
+      Система {{app_name}}
+    </div>
+  </html>
+""" ;
+.

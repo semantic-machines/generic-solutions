@@ -1,0 +1,39 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-function-search/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+
+<http://semantic-machines.com/veda/gen-localRegulatoryDocument-blanks>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Локальный нормативный документ. Бланки"@ru ;
+  rdfs:label "GEN ontology. Local regulatory document. Blanks"@en ;
+  v-s:loadPriority 20 ;
+.
+#---------------Бланки----------------------
+gen:LocalRegulatoryDocumentBlank
+  a v-fc:Blank ;
+  rdfs:label "Локальный нормативный документ"@ru ;
+  rdfs:label "Local regulatory document"@en ;
+  v-fc:targetType gen:LocalRegulatoryDocument ;
+.
+gen:LocalRegulatoryDocumentSearchBlank
+  rdf:type v-fc:Blank ;
+  rdfs:label "Локальный нормативный документ"@ru ;
+  rdfs:label "Local regulatory document"@en ;
+  v-fc:targetType gen:LocalRegulatoryDocument ;
+.
+gen:VersionOfLocalRegulatoryDocumentSearchBlank
+  rdf:type v-fc:Blank ;
+  rdfs:label "Должностные инструкции"@ru ;
+  rdfs:label "Job descriptions"@en ;
+  v-fc:targetType gen:VersionOfLocalRegulatoryDocument ;
+.

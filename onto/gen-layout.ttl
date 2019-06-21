@@ -1,0 +1,183 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-function-search/> .
+@prefix v-ft: <http://semantic-machines.com/veda/veda-function-tasks/> .
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+
+<http://semantic-machines.com/veda/gen-layout>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология разметки Generic-solutions"@ru ;
+  rdfs:label "Generic-solutions layout ontology"@en ;
+  #owl:versionInfo "0.2" ;
+  v-s:loadPriority 10 ;
+.
+
+# MAIN PAGE ------------------------------------------------------------
+
+gen:Main
+  rdf:type rdfs:Resource ;
+  rdfs:label "Общие решения Веды"@ru ;
+  rdfs:label "Generic solutions"@en ;
+  rdfs:comment "ОБЩИЕ РЕШЕНЯ"@ru ;
+  rdfs:comment "GEN"@en ;
+  v-ui:hasTemplate gen:MainTemplate ;
+.
+
+gen:MainTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон Главной страницы"@ru ;
+  rdfs:label "Main page template"@en ;
+  v-ui:template """
+<script>
+  // Markdown
+  var main = document;
+  var observer = new MutationObserver(function(mutations, observer) {
+    var lastMutation = mutations.pop();
+    processMain(lastMutation);
+  });
+  var mainConfig = { childList: true, subtree: true };
+  var markdownConfig = { childList: true };
+  observer.observe(main, mainConfig);
+  template.one("remove", function () {
+    observer.disconnect();
+  });
+  function processMain(mutation) {
+    var target = $(mutation.target);
+    var markdown = target.find(".markdown:not(.observed)");
+    markdown.each(function () {
+      this.classList.add("observed");
+      var text = this.textContent;
+      this.innerHTML = marked(text);
+      var markdownObserver = new MutationObserver(function(mutations, observer) {
+        var lastMutation = mutations.pop();
+        processMarkdown(lastMutation, observer);
+      });
+      markdownObserver.observe(this, markdownConfig);
+      $(this).one("remove", function () {
+        markdownObserver.disconnect();
+      });
+    });
+  }
+  function processMarkdown(mutation, observer) {
+    observer.disconnect();
+    var target = mutation.target;
+    var text = target.textContent;
+    target.innerHTML = marked(text);
+    observer.observe(target, markdownConfig);
+  }
+
+//# sourceURL=gen:MainTemplate_pre
+</script>
+<div class="page">
+  <nav role="navigation" class="navbar navbar-veda">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="btn btn-default navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+        <a class="navbar-brand" style="margin-top:-15px;width:225px;" href="#/gen:Welcome" about="gen:Logo" data-template="v-ui:ImageTemplate"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li about="v-s:Favorites" data-template="v-s:FavoritesIndicatorTemplate" style="border-right:1px solid #ddd;"></li>
+          <li about="v-s:NewsSearchUser" data-template="v-s:NewsIndicatorTemplate"></li>
+          <li about="v-s:Contacts">
+            <script>
+              template.tooltip({
+                container: template,
+                placement: "bottom",
+                trigger: "hover",
+                title: individual["rdfs:label"].join(" ")
+              });
+            </script>
+            <a href="#/@"><span class="fa fa-lg fa-user-o"></span></a>
+          </li>
+          <li about="v-fs:FulltextSearch">
+            <script>
+              template.tooltip({
+                container: template,
+                placement: "bottom",
+                trigger: "hover",
+                title: individual["rdfs:label"].join(" ")
+              });
+            </script>
+            <a href="#/@"><span class="fa fa-lg fa-search"></span></a>
+          </li>
+          <li about="v-cal:TasksCalendar" data-template="v-cal:FunctionCalendarIndicatorTemplate"></li>
+          <li about="v-ft:Inbox" data-template="v-ft:FunctionTasksIndicatorTemplate"></li>
+          <li about="v-s:Drafts" data-template="v-ui:DraftsIndicatorTemplate"></li>
+          <li id="user-info"></li>
+          <li id="menu" class="dropdown" about="gen:MainMenu" data-template="v-s:MenuTemplate"></li>
+          <li about="v-ui:AvailableLanguage" data-template="v-ui:LanguageSwitchTemplate"></li>
+          <li style="padding-left:10px; margin-left:10px; border-left:1px solid #ddd;" about="@" data-template="v-ui:FullWidthSwitchTemplate"></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main"></div>
+
+  <nav id="copyright" class="navbar-fixed-bottom container clearfix hidden-print">
+    <div class="pull-left">
+      <span><span property="v-s:appBuildVersion"></span> <span property="v-s:appBuildDate"></span></span>&nbsp;
+    </div>
+    <div class="pull-right text-muted" about="v-s:vedaInfo">
+      <div>
+        <span about="v-s:PoweredBy" property="rdfs:label"></span>
+        <a about="v-s:VedaPlatform" property="rdfs:label"></a>.
+        &copy; <a href="http://www.semantic-machines.com" about="v-s:SemanticMachines" property="rdfs:label"></a>.
+        <span about="v-s:License" property="rdfs:label"></span>
+        <a alt="GNU General Public License version 3 official text" href="http://www.gnu.org/licenses/gpl.html">GPLv3.</a>
+      </div>
+    </div>
+  </nav>
+</div>
+<script>
+  document.title = new veda.IndividualModel("v-s:vedaInfo").toString();
+
+  // Render user
+  var userInfo = $("#user-info", template);
+  var userInfoTmpl = new veda.IndividualModel("v-ui:IconPersonTemplate");
+  userInfo.empty();
+  veda.user.present(userInfo, userInfoTmpl);
+
+  template.on("click", ".table-sortable > thead > tr:last-child th", function (e) {
+    $(this).closest("table").tableSortable(this);
+  });
+
+  //# sourceURL=gen:MainTemplate
+</script>
+  """ ;
+.
+
+# IMAGES ---------------------------------------------------------------
+
+gen:Logo
+  a v-s:File;
+  v-s:fileUri "gen-logo.svg"^^xsd:string ;
+  v-s:fileName "gen-logo.svg"^^xsd:string;
+  v-s:filePath "/gen"^^xsd:string ;
+.
+
+# MAIN MENU ------------------------------------------------------------
+
+gen:MainMenu
+  rdf:type v-s:Menu ;
+  rdfs:label "Главное меню"@ru ;
+  rdfs:label "Main menu"@en ;
+  v-s:menuItem v-s:Inbox ;
+  v-s:menuItem v-s:Outbox ;
+  v-s:menuItem v-s:Completed ;
+  v-s:menuItem v-s:Divider ;
+  v-s:menuItem v-s:Administration ;
+  v-s:menuItem v-s:Clear ;
+  v-s:menuItem v-s:Divider ;
+  v-s:menuItem v-s:Exit ;
+.

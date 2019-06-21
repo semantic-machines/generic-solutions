@@ -1,0 +1,74 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix : <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix td: <http://semantic-machines.com/veda/test-data/> .
+@prefix s-wf: <http://semantic-machines.com/veda/simple-workflow-base/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+
+<http://semantic-machines.com/veda/gen-Correspondence-application>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Приложение. Корреспонденция"@ru ;
+  rdfs:label "GEN ontology. Application. Correspondence"@en ;
+  v-s:loadPriority 20 ;
+.
+
+gen:CorrespondenceApplication
+  rdf:type v-s:Application ;
+  rdfs:label "Корреспонденция"@ru ;
+  rdfs:label "Correspondence"@en ;
+  rdfs:comment "Словом и делом."@ru ;
+  rdfs:comment "Words and deeds."@en ;
+  v-s:shortLabel "Корреспонденция"@ru ;
+  v-s:shortLabel "Correspondence"@en ;
+  v-s:hasIcon gen:CorrespondenceApplicationIcon ;
+  v-ui:hasTemplate v-s:ApplicationTemplate ;
+
+  v-s:hasCreate gen:LetterCreate ;
+  v-s:hasCreate gen:InternalDocumentCreate ;
+  v-s:hasCreate gen:OrganizationCreate ;
+
+#  v-s:hasRegistry gen:IncomingLetterSearch ;
+#  v-s:hasRegistry gen:OutgoingLetterSearch ;
+#  v-s:hasRegistry gen:InternalDocumentSearch ;
+#  v-s:hasRegistry gen:OrganizationSearch ;
+
+#  v-s:hasReport v-s:CountOfUsersTasks_Report ;
+#  v-s:hasReport v-s:CompletedTasksCount_Report ;
+#  v-s:hasReport gen:IncomingLetter_byDate_Report ;
+
+  v-s:description """
+Приложение предназначено для автоматизации делопроизводственных процессов организации.
+
+**Приложение обеспечивает возможность:**
+- Автоматически регистрировать входящую и исходящую корреспонденцию организации.
+- Создавать и исполнять внутренние документы общего харакетера.
+- Контролировать процессы исполнения документов.
+  """@ru;
+  v-s:description """
+The application is designed to automate record-keeping processes of the organization.
+
+**The application allows to:**
+- Automatically register all incoming and outgoing correspondence.
+- Create and execute generic internal documents.
+- Monitor the execution of documents.
+  """@en;
+
+  v-s:attachment gen:VEDA_SM_02_Correspondence_pdf ;
+  v-s:attachment gen:VEDA_SM_03_Internal_Document_pdf ;
+.
+
+gen:CorrespondenceApplicationIcon
+  a v-s:File ;
+  v-s:fileUri "correspondence.svg"^^xsd:string ;
+  v-s:fileName "correspondence.svg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.

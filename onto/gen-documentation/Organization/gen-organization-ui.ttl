@@ -1,0 +1,387 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+
+<http://semantic-machines.com/veda/gen-organization-ui>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Организация. UI."@ru ;
+  rdfs:label "GEN ontology. Organization. UI."@en ;
+#  owl:versionInfo "1.3" ;
+  v-s:loadPriority 6 ;
+.
+
+# ------------------------------------------------------------ МОДЕЛИ --
+
+# ------------------------------------------------------------ ШАБЛОНЫ --
+
+gen:OrganizationTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:Organization ;
+  rdfs:label "Шаблон для класса gen:Organization"@ru ;
+  rdfs:label "Template for gen:Organization class"@en ;
+  v-ui:template """
+<script>
+  var _class = new veda.IndividualModel("gen:Subsidiary");
+
+  Promise.all([_class.rights, individual.rights]).then(function (rights) {
+    var class_rights = rights[0],
+        individual_rights = rights[1];
+    if ( !class_rights.hasValue("v-s:canCreate", true) || !individual_rights.hasValue("v-s:canUpdate", true) ) {
+      $("#add-subsidiary", template).remove();
+    }
+  }).catch(function (error) {
+    console.log(error);
+  });
+
+  var prevTaxId = individual.hasValue("v-s:taxId") && individual["v-s:taxId"][0].toString();
+
+  // Validation
+  template.on("validate", function () {
+    var result = {state: true},
+        regexp;
+    if ( individual.hasValue("v-s:hasClassifierCountry", "d:Country_RUS") && individual.hasValue("v-s:hasClassifierLegalForm", "d:OKOPF_50102") ) {
+      regexp = /^([0-9]{12})$/gi;
+    } else if ( individual.hasValue("v-s:hasClassifierCountry", "d:Country_RUS") ) {
+      regexp = /^([0-9]{10})$/gi;
+    } else if ( individual.hasValue("v-s:hasClassifierCountry", "d:Country_NLD") ) {
+      regexp = /^[A-Z]{1,3}[0-9]{9}[B]{1}[0-9]{2}$/gi;
+    } else if ( individual.hasValue("v-s:hasClassifierCountry") ) {
+      regexp = /^[A-Z]{1,3}[0-9]{4,}$/gi;
+    }
+    if ( !individual.hasValue("v-s:taxId") ) {
+      result["v-s:taxId"] = {
+        state: false,
+        cause: ["v-ui:minCardinality"]
+      }
+    } else {
+      // Check regexp
+      var taxId = individual["v-s:taxId"][0].toString();
+      if(taxId != '0000000000' && taxId != '000000000000') {
+        result["v-s:taxId"] = {
+          state: regexp.test( taxId ),
+          cause: ["v-ui:regexp"]
+        }
+      } else {
+        result["v-s:taxId"] = {
+        state: false,
+        cause: ["v-s:ForSafeTaxId"]
+        }
+      }
+
+      // Check unique
+      var newTaxId = individual.hasValue("v-s:taxId") && individual["v-s:taxId"][0].toString();
+      if ( prevTaxId !== newTaxId ) { prevTaxId = newTaxId; }
+      if ( result["v-s:taxId"].state ) {
+        veda.Backend.query(veda.ticket, "'rdf:type'==='v-s:Organization' && 'v-s:taxId'=='" + taxId + "'").then(function (queryResult) {
+          var queryResult = queryResult.result;
+          result["v-s:taxId"] = {
+            state: (!queryResult.length || queryResult[0] === individual.id),
+            cause: ["v-s:NonUniqueTaxId"]
+          }
+          template.trigger("validated", result);
+        });
+      }
+    }
+    // Если значение поля v-s:hasClassifierCountry=d:Country_RUS то поле v-s:hasClassifierLegalForm Обязательное
+    if (individual.hasValue("v-s:hasClassifierCountry", "d:Country_RUS") ) {
+      result["v-s:hasClassifierLegalForm"] = {
+        state: individual.hasValue("v-s:hasClassifierLegalForm"),
+        cause: ["v-ui:minCardinality"]
+      }
+    }
+    // Если значение поля v-s:hasClassifierCountry=d:Country_RUS и поле v-s:hasClassifierLegalForm=d:OKOPF_50102 то поле v-s:taxRegistrationCause должно быть обязательным.
+    if (individual.hasValue("v-s:hasClassifierCountry", "d:Country_RUS") && !individual.hasValue("v-s:hasClassifierLegalForm", "d:OKOPF_50102") && !individual.hasValue("v-s:hasClassifierLegalForm", "d:OKOPF_50000") ) {
+      result["v-s:taxRegistrationCause"] = {
+        state: /^[0-9]{9}$/.test(individual["v-s:taxRegistrationCause"][0]),
+        cause: ["v-ui:regexp"]
+      }
+    }
+    template.trigger("validated", result);
+  });
+
+  //# sourceURL=gen:OrganizationTemplate_pre
+</script>
+<div>
+  <div class="container sheet">
+    <h3 class="margin-sm">
+      <span about="@" property="rdf:type"></span>
+      <small about="@" property="rdfs:label" class="view edit -search"></small>
+    </h3>
+    <section id="MainProperties">
+      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:shortLabel" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="v-s:shortLabel" class="view -edit -search"></div>
+          <veda-control data-type="string" property="v-s:shortLabel" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasClassifierCountry" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasClassifierCountry" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasClassifierCountry" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasClassifierLegalForm" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasClassifierLegalForm" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasClassifierLegalForm" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>     
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:taxId" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="v-s:taxId" class="view -edit -search"></div>
+          <veda-control data-type="string" property="v-s:taxId" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:taxRegistrationCause" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
+          <veda-control data-type="string" property="v-s:taxRegistrationCause" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:legalAddress" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="v-s:legalAddress" class="view -edit -search"></div>
+          <veda-control data-type="text" rows="3" property="v-s:legalAddress" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:postalAddress" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="v-s:postalAddress" class="view -edit -search"></div>
+          <veda-control data-type="text" rows="3" property="v-s:postalAddress" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:LegalEntityExistencePeriodBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+		  <div property="v-s:dateFromFact" class="view -edit -search"></div>
+          <veda-control data-type="date" property="v-s:dateFromFact" class="-view edit search"></veda-control>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+		  <div property="v-s:dateToFact" class="view -edit -search"></div>
+          <veda-control data-type="date" property="v-s:dateToFact" class="-view edit search"></veda-control>
+        </div>
+      </div>  
+
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+			<em about="v-s:hasSubsidiary" property="rdfs:label"></em>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+			<table class="table table-condensed table-bordered">
+			  <thead>
+				<tr class="view -edit -search active">
+				  <th width="1%"><span class="glyphicon glyphicon-search"></th>
+				  <th about="v-s:shortLabel" property="rdfs:label"></th>
+				  <th about="v-s:taxRegistrationCause" property="rdfs:label"></th>
+				  <th about="v-s:postalAddress" property="rdfs:label"></th>
+				</tr>
+			  </thead>
+			  <tbody rel="v-s:hasSubsidiary" data-embedded="true">
+				<tr>
+				  <td about="@" data-template="v-ui:IconModalTemplate"></td>
+				  <td>
+					<div property="v-s:shortLabel" class="view -edit -search"></div>
+					<veda-control property="v-s:shortLabel" data-type="string" class="-view edit search"></div>
+				  </td>
+				  <td>
+					<div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
+					<veda-control property="v-s:taxRegistrationCause" data-type="string" class="-view edit search"></div>
+				  </td>
+				  <td>
+					<div property="v-s:postalAddress" class="view -edit -search"></div>
+					<veda-control property="v-s:postalAddress" data-type="string" class="-view edit search"></div>
+				  </td>
+				</tr>
+			  </tbody>
+			</table>
+			<div class="view -edit -search">
+			  <button class="btn btn-success" id="add-subsidiary">
+				<span class="glyphicon glyphicon-zoom-in"></span>
+				<span about="v-s:AddSubsidiary" property="rdfs:label"></span>
+			  </button>
+			</div>      
+        </div>
+      </div> 			
+                
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:HeadOrganization" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:parentUnit" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:parentUnit" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>          
+    </section>
+    <hr>
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <div class="actions">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal"></span>
+    </div>
+  </div>
+  <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
+  <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
+</div>
+<script>
+  //Генерация Uri
+  veda.Util.registerHandler(individual, template, "beforeSave", function () {
+    var shortLabel = individual["v-s:hasClassifierCountry"][0]["v-s:shortLabel"];
+    var taxId = individual["v-s:taxId"] ;
+    if ( individual.hasValue("v-s:hasClassifierCountry", "d:Country_RUS") && individual.isNew() ){
+      individual.id = "d:org_"+ shortLabel + taxId ;
+    } else if ( individual.isNew() ) {
+      individual.id = "d:org_"+ taxId ;
+    }
+  });
+
+  $("#add-subsidiary", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("gen:Subsidiary"),
+        subsidiary = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("gen:SubsidiaryTemplate");
+    subsidiary["rdf:type"] = [_class];
+    subsidiary["v-s:backwardTarget"] = [individual];
+    subsidiary["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasSubsidiary")];
+    subsidiary["v-s:canRead"] = [ true ];
+    subsidiary.present(cntr, tmpl, "edit");
+    subsidiary.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    subsidiary.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+  //# sourceURL=gen:OrganizationTemplate_post
+</script>
+  """ ;
+.
+
+gen:SubsidiaryTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:Subsidiary ;
+  rdfs:label "Шаблон для класса gen:Subsidiary"@ru ;
+  rdfs:label "Template for gen:Subsidiary class"@en ;
+  v-ui:template """
+<div>
+  <div class="container sheet">
+	<span about="@" data-template="v-ui:RabbitHole"></span>
+	<hr>
+    <h3 class="margin-sm">
+      <span about="@" property="rdf:type"></span>
+      <small about="@" property="rdfs:label" class="view edit -search"></small>
+    </h3>
+    <section id="MainProperties">
+      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:parentOrganization" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <span about="@" rel="v-s:backwardTarget" class="view -edit search" data-template="v-ui:LabelLinkTemplate"></span>
+        </div>
+      </div>
+      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:parentUnit" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:parentUnit" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:parentUnit" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>          
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="rdfs:label" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="rdfs:label" class="view -edit -search"></div>
+          <veda-control data-type="string" property="rdfs:label" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:shortLabel" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="v-s:shortLabel" class="view -edit -search"></div>
+          <veda-control data-type="string" property="v-s:shortLabel" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:taxRegistrationCause" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
+          <veda-control data-type="string" property="v-s:taxRegistrationCause" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:postalAddress" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="v-s:postalAddress" class="view -edit -search"></div>
+          <veda-control data-type="text" rows="3" property="v-s:postalAddress" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="rdfs:comment" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="rdfs:comment" class="view -edit -search"></div>
+          <veda-control data-type="string" property="rdfs:comment" class="-view edit search"></veda-control>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <div class="actions">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete"></span>
+    </div>
+  </div>
+</div>  
+  """ ;
+.

@@ -1,0 +1,505 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-localRegulatoryDocument-ui>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Локальный нормативный документ. UI"@ru ;
+  rdfs:label "GEN ontology. Local regulatory document. UI"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ СОБЫТИЯ --
+
+# ------------------------------------------------------------ СТРОКИ --
+gen:shortLabelBundleLND
+  rdf:type v-s:Bundle ;
+  rdfs:label "Шифр документа"@ru ;
+  rdfs:label "Code of the document"@en ;
+.
+gen:LocalRegulatoryDocument_KeydetailsBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Основные реквизиты"@ru ;
+  rdfs:label "Key details"@en ;
+.
+gen:LocalRegulatoryDocument_VersionsDocumentsBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Версии документов"@ru ;
+  rdfs:label "Versions of documents"@en ;
+.
+gen:LocalRegulatoryDocument_PeriodBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Период действия документа"@ru ;
+  rdfs:label "Document validity period"@en ;
+.
+# ------------------------------------------------------------ ШАБЛОНЫ --
+gen:LocalRegulatoryDocumentTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:LocalRegulatoryDocument ;
+  rdfs:label "Шаблон для класса gen:LocalRegulatoryDocument"@ru ;
+  rdfs:label "Template for gen:LocalRegulatoryDocument class"@en ;
+  v-ui:template """
+  
+<div>
+  <div class="container sheet">
+    <h3 class="margin-sm">
+      <span about="@" property="rdf:type"></span>
+      <small about="@" property="rdfs:label" class="view edit -search"></small>
+    </h3>
+    <section id="MainProperties">
+      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:registrationNumber" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div about="@" property="v-s:registrationNumber" class="view edit -search"></div>
+          <veda-control data-type="string" property="v-s:registrationNumber" class="-view -edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:registrationDate" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-7">
+          <div property="v-s:registrationDate" class="view -edit search"></div>
+          <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:valid" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="checkbox no-margin">
+            <label>
+              <veda-control property="v-s:valid" data-type="boolean"></veda-control>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:isFixedTerm" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="checkbox no-margin">
+            <label>
+              <veda-control property="v-s:isFixedTerm" data-type="boolean"></veda-control>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:title" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="view -edit -search bg-warning padding-md"><strong property="v-s:title"></strong></div>
+          <veda-control data-type="multilingualString" property="v-s:title" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="rdfs:comment" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="rdfs:comment" class="view -edit -search"></div>
+          <veda-control data-type="text" property="rdfs:comment" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:owner" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:owner" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="select" rel="v-s:owner" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+    </section>
+		<section id="DocumentKind">    
+			<div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasDocumentKind" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<table class="table no-margin">
+						<tbody rel="v-s:hasDocumentKind">
+							<tr>
+								<td property="rdfs:label" class="view edit search"></td>
+								<td property="rdfs:comment" class="view edit search"></td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<veda-control data-type="link" rel="v-s:hasDocumentKind" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>    
+    </section>
+    <section id="VersionsDocuments" class="view -edit -search">    
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasVersionOfLocalRegulatoryDocument" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div class="table-responsive">
+						<table class="table no-margin">
+							<thead>
+								<tr>
+									<th width="1%"><span class="glyphicon glyphicon-search"></th>
+									<th about="rdfs:label" property="rdfs:label"></th>
+									<th about="v-s:dateFrom" property="rdfs:label"></th>
+									<th about="v-s:dateTo" property="rdfs:label"></th>
+								</tr>
+							</thead>
+							<tbody rel="v-s:hasVersionOfLocalRegulatoryDocument">
+								<tr>
+									<td about="@" data-template="v-ui:IconModalTemplate"></td>
+									<td>
+										<div property="rdfs:label" class="view -edit -search"></div>
+									</td>
+									<td>
+										<div property="v-s:dateFrom" class="view -edit -search"></div>
+									</td>
+									<td>
+										<div property="v-s:dateTo" class="view -edit -search"></div>
+									</td>
+								</tr>
+							</tbody>
+						</table><br>
+						<div class="view -edit -search">
+							<button class="btn btn-success" id="add-RegulatoryDocument">
+								<span class="glyphicon glyphicon-zoom-in"></span>
+								<span about="v-s:hasVersionOfLocalRegulatoryDocument" property="rdfs:label"></span>
+							</button>
+						</div>
+					</div>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <!-- BUTTONS -->
+    <div class="actions view edit -search">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal journal-dms task"></span>
+    </div>
+  </div>
+  <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
+  <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
+</div>
+<script>
+  $("#add-RegulatoryDocument", template).click(function () {
+    var _class = new veda.IndividualModel("gen:VersionOfLocalRegulatoryDocument"),
+        RegulatoryDocument = new veda.IndividualModel(),
+        tmpl = "gen:VersionOfLocalRegulatoryDocumentTemplate";
+    RegulatoryDocument["rdf:type"] = [_class];
+    RegulatoryDocument["v-s:backwardTarget"] = [individual];
+    RegulatoryDocument["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasVersionOfLocalRegulatoryDocument")];
+    RegulatoryDocument["v-s:canRead"] = [ true ];
+    RegulatoryDocument["v-s:hasDocumentKind"] = individual["v-s:hasDocumentKind"] ;
+    RegulatoryDocument["v-s:title"] = individual["v-s:title"] ;
+    var newRegNumber = individual["v-s:hasVersionOfLocalRegulatoryDocument"].reduce(function(max, current) {
+      if (current.hasValue("v-s:registrationNumberAdd")) {
+        var numberAdd = +current["v-s:registrationNumberAdd"][0];
+        if ( !isNaN(numberAdd) ) {
+          if (numberAdd > max) max = numberAdd;
+        }
+      }
+      return max;
+    }, 0) + 1;
+    RegulatoryDocument["v-s:registrationNumberAdd"] = [newRegNumber];
+    RegulatoryDocument["v-s:registrationNumber"] = [ individual["v-s:registrationNumber"][0] + "." + newRegNumber ];
+    riot.route( ["#", RegulatoryDocument.id, "#main", tmpl, "edit"].join("/") );
+  });
+  if (template.data("mode") == "view" && new Date (2018,10,27) > individual["v-s:created"][0]){
+    $('button#send').hide();
+    $('button#edit').hide();
+  }
+  //# sourceURL=gen:LocalRegulatoryDocumentTemplate_post
+</script>
+    """ ;
+.
+
+gen:VersionOfLocalRegulatoryDocumentTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:VersionOfLocalRegulatoryDocument ;
+  rdfs:label "Шаблон для класса gen:VersionOfLocalRegulatoryDocument"@ru ;
+  rdfs:label "Template for gen:VersionOfLocalRegulatoryDocument class"@en ;
+  v-ui:template """
+<script>
+  template.on("validate", function () {
+    var result = {};
+    var numberArr = [];
+    individual["v-s:backwardTarget"][0]["v-s:hasVersionOfLocalRegulatoryDocument"].forEach(function(doc){
+      if (doc.id !== individual.id) {
+        numberArr.push(String(doc["v-s:registrationNumberAdd"][0]));
+      };
+    });
+    var number = String(individual["v-s:registrationNumberAdd"][0]);
+    if ( numberArr.indexOf(number) !== -1 ) {
+      $("veda-control[property='v-s:registrationNumberAdd'] input", template).popover({
+        placement: "top",
+        trigger: "hover",
+        content: "Регистрационный номер уже существует"
+      });
+      result["v-s:registrationNumberAdd"] = {
+        state: false,
+        cause: []
+      };
+    } else {
+      $("veda-control[property='v-s:registrationNumberAdd'] input", template).popover("destroy");
+    };
+    template.trigger("validated", result);
+  });
+  //# sourceURL=gen:VersionOfLocalRegulatoryDocumentTemplate_pre
+</script>
+<div>
+  <div class="container sheet">
+    <h3 class="margin-sm">
+      <span about="@" property="rdf:type"></span>
+      <small about="@" property="rdfs:label" class="view edit -search"></small>
+    </h3>
+    <span about="@" data-template="v-ui:RabbitHole"></span>
+    <section id="MainProperties">
+      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:registrationNumber" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-7">
+          <div about="@" property="v-s:registrationNumber" class="view edit -search"></div>
+          <veda-control data-type="string" property="v-s:registrationNumber" class="-view -edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:registrationNumberAdd" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-7">
+          <div property="v-s:registrationNumberAdd" class="view -edit -search"></div>
+          <veda-control data-type="string" property="v-s:registrationNumberAdd" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:registrationDate" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-7">
+          <div property="v-s:registrationDate" class="view -edit -search"></div>
+          <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:valid" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="checkbox no-margin">
+            <label>
+              <veda-control property="v-s:valid" data-type="boolean"></veda-control>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:isFixedTerm" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="checkbox no-margin">
+            <label>
+              <veda-control property="v-s:isFixedTerm" data-type="boolean"></veda-control>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:title" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="view -edit -search bg-warning padding-md"><strong property="v-s:title"></strong></div>
+          <veda-control data-type="multilingualString" property="v-s:title" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:initiator" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:initiator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute -view -edit search">
+        <div class="col-sm-3 col-xs-5">
+          <label about="stg:LocalRegulatoryDocument_PeriodBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="form-inline">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span property="v-s:dateFrom" class="view -edit search"></span>
+                  <veda-control property="v-s:dateFrom" data-type="date" class="-view edit search"></veda-control>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <span property="v-s:dateTo" class="view -edit search"></span>
+                  <veda-control property="v-s:dateTo" data-type="date" class="-view edit search"></veda-control>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-attribute view edit -search">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:LocalRegulatoryDocument_PeriodBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="form-inline">
+            <div class="form-group">
+              <span property="v-s:dateFrom" class="view -edit search"></span>
+              <veda-control property="v-s:dateFrom" data-type="date" class="-view edit search"></veda-control>
+            </div>
+            <div class="form-group">
+              <span property="v-s:dateTo" class="view -edit search"></span>
+              <veda-control property="v-s:dateTo" data-type="date" class="-view edit search"></veda-control>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:signedBy" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:signedBy" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:signedBy" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="rdfs:comment" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="rdfs:comment" class="view -edit -search"></div>
+          <veda-control data-type="text" property="rdfs:comment" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:attachment" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true" class="view edit -search"></div>
+          <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
+        </div>
+      </div>
+    </section>
+    <section id="DescriptionOfChange" class="view edit -search">
+			<div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasDescriptionOfChange" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div class="table-responsive">
+						<table class="table no-margin">
+							<thead>
+								<tr>
+									<th about="v-s:asis" property="rdfs:label"></th>
+									<th about="v-s:tobe" property="rdfs:label"></th>
+								</tr>
+							</thead>
+							<tbody rel="v-s:hasDescriptionOfChange" data-embedded="true">
+								<tr>
+									<td>
+										<div property="v-s:asis" class="view -edit -search"></div>
+										<veda-control data-type="text" property="v-s:asis" class="-view edit search"></veda-control>
+									</td>
+									<td>
+										<div property="v-s:tobe" class="view -edit -search"></div>
+										<veda-control data-type="text" property="v-s:tobe" class="-view edit search"></veda-control>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div><br>
+					<veda-control rel="v-s:hasDescriptionOfChange" data-type="link" class="-view edit -search create"></veda-control>
+        </div>
+      </div>    
+    </section>
+    <hr>
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <br>
+    <div class="actions view edit -search">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal journal-dms task"></span>
+      <button type="button" class="action btn btn-info view -edit -search" id="lnd_printBlank" about="stg:LND_PrintBlank_dolgn" property="rdfs:label"/>
+    </div>
+  </div>
+  <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
+  <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
+</div>
+<script>
+  // Печатные бланки
+  $('#lnd_printBlank', template).on('click', function (e) {
+    veda.Util.createReport('gen:LND_PrintBlank_dolgn', individual);
+  });
+  function regNumberAddHandler(){
+    var prefix = individual["v-s:registrationNumber"][0].split(".")[0];
+    var postfix = individual.hasValue("v-s:registrationNumberAdd")? individual["v-s:registrationNumberAdd"][0] : "";
+    individual["v-s:registrationNumber"] = [prefix + "." + postfix];
+  };
+  individual.on("v-s:registrationNumberAdd", regNumberAddHandler);
+  template.one("remove", function () {
+    individual.off("v-s:registrationNumberAdd", regNumberAddHandler);
+  });
+  function processHandler() {
+    if (individual.hasValue("v-wf:isProcess")
+      && individual["v-wf:isProcess"][0].hasValue("v-wf:instanceOf")
+      && individual["v-wf:isProcess"][0]["v-wf:instanceOf"][0].id === "s-wf:net_complex_route"
+    ) {
+      $('#send.action', template).remove();
+      // $('#save.action', template).remove();
+      // $('#edit.action', template).remove();
+      $('#delete.action', template).remove();
+    } else if (individual.isNew() || individual.rights['v-s:canUpdate'][0] === true) {
+      $('#send.action', template).off("click");
+      $('#send.action', template).on('click', function () {
+        veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:VersionOfLocalregulatoryDocument_ComplexRouteStartForm_Template');
+      });
+    } else {
+      $('#send.action', template).remove();
+      // $('#save.action', template).remove();
+      // $('#edit.action', template).remove();
+      $('#delete.action', template).remove();
+    }
+  }
+  individual.on("afterReset", processHandler);
+  template.one("remove", function () {
+    individual.off("afterReset", processHandler);
+  });
+  processHandler();
+  if (template.data("mode") == "view" && new Date (2018,10,27) > individual["v-s:created"][0]){
+    $('button#send').hide();
+    $('button#edit').hide();
+  }
+  if (template.data("mode") == "search"){
+    individual["v-s:hasDocumentKind"] = [ new veda.IndividualModel("d:c9e0a1dd43d943ed87f5072a6790d5c2") ];
+  }
+  //# sourceURL=gen:VersionOfLocalRegulatoryDocumentTemplate_post
+</script>
+  """ ;
+.

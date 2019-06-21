@@ -1,0 +1,503 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-powerOfAttorney-ui>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Монди. Доверенность. UI"@ru ;
+  rdfs:label "Mondi ontology. Power of attorney. UI"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ СОБЫТИЯ --
+
+# ------------------------------------------------------------ СТРОКИ --
+gen:PowerOfAttorney_date_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Дата доверенности"@ru ;
+  rdfs:label "Date of power of attorney"@en ;
+.
+gen:PowerOfAttorney_duration_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Срок действия"@ru ;
+  rdfs:label "Duration"@en ;
+.
+gen:PowerOfAttorney_copy_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Сделать копию"@ru ;
+  rdfs:label "Copy"@en ;
+.
+gen:PowerOfAttorney_linkedCopy_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Сделать связанную копию"@ru ;
+  rdfs:label "Linked copy"@en ;
+.
+gen:PowerOfAttorney_reason_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Причина оформления доверенности"@ru ;
+  rdfs:label "Reason"@en ;
+.
+# ------------------------------------------------------------ ШАБЛОНЫ --
+gen:PowerOfAttorneyTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:PowerOfAttorney ;
+  rdfs:label "Шаблон для класса gen:PowerOfAttorney"@ru ;
+  rdfs:label "Template for gen:PowerOfAttorney class"@en ;
+  v-ui:template """
+<script>
+  if ( template.data("mode") === "edit" && individual.isNew() ) {
+    var _class = new veda.IndividualModel("v-s:Correspondent"),
+        Grantor = new veda.IndividualModel();
+    Grantor["rdf:type"] = [_class];
+    Grantor["v-s:correspondentOrganization"] = [new veda.IndividualModel("d:org_RU1121003135")];
+    Grantor["v-s:correspondentPerson"] = [new veda.IndividualModel("d:mondi_appointment_00063551_70013758")];
+    individual["v-s:grantor"]=[Grantor];
+  }
+
+  template.on("validate", function () {
+    var result = {};
+    if ( individual.hasValue("v-s:isIssuedForAbsencePeriodOfEmployee",true) && !individual.hasValue("v-s:issuedForAbsencePeriodOfEmployee")  ) {
+      result["v-s:issuedForAbsencePeriodOfEmployee"] = {
+        state: false,
+        cause: ["v-ui:minCardinality"]
+      };
+    };
+    template.trigger("validated", result);
+  });
+
+
+  var _class = new veda.IndividualModel("gen:PowerOfAttorney");
+  _class.canCreate().then(function(canCreate) {
+    if (!canCreate) {
+      $("#add-copy", template).remove();
+      $("#add-linkedCopy", template).remove();
+    }
+  })
+</script>
+<div>
+  <div class="container sheet">
+    <h2>
+     <span about="gen:PowerOfAttorney" property="rdfs:label"></span>
+     <small about="@" property="rdfs:label"></small>
+    </h2>
+    <hr>
+    <section id="MainProperties">
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:hasPowerOfAttorneyRegistrationRecord" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div rel="gen:hasPowerOfAttorneyRegistrationRecord" class="view edit search" data-template="gen:PowerOfAttorneyRegistrationRecordEmbadedTemplate"></div>
+					<div class="view -edit -search">
+						<div class="panel panel-default" id="buttonReg">
+							<div class="panel-body bg-default">
+								<button type="button" class="action btn btn-success view -edit -search" id="add-RegRecord" about="gen:hasPowerOfAttorneyRegistrationRecord" property="rdfs:label"></button>
+								<em about="gen:hasPowerOfAttorneyRegistrationRecord" property="rdfs:label" class="-view -edit search"></em>
+								<veda-control data-type="link" rel="gen:hasPowerOfAttorneyRegistrationRecord" class="-view -edit search create"></veda-control><br>
+							</div>
+						</div>
+					</div>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:registrationNumber" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:registrationNumber" class="view -edit search"></div>
+          <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:PowerOfAttorney_date_Bundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:registrationDate" class="view -edit search"></div>
+          <veda-control data-type="date" property="v-s:registrationDate" class="-view edit search"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasFormOfPowerOfAttorney" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasFormOfPowerOfAttorney" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="radio" rel="v-s:hasFormOfPowerOfAttorney" class="-view edit search"></veda-control>
+        </div>
+      </div>  
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:isIssuedForAbsencePeriodOfEmployee" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div class="checkbox">
+						<label>
+							<veda-control property="v-s:isIssuedForAbsencePeriodOfEmployee" data-type="boolean"></veda-control>
+						</label>
+					</div>
+					<div property="v-s:issuedForAbsencePeriodOfEmployee" class="view edit search"></div>
+					<div id="toggle-AbsencePeriod">
+						<veda-control data-type="link" rel="v-s:issuedForAbsencePeriodOfEmployee" class="-view edit search fulltext"></veda-control>
+					</div>
+        </div>
+      </div>  
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:PowerOfAttorney_duration_Bundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-4 col-xs-3">
+          <div property="v-s:dateFrom" class="view -edit search"></div>
+          <veda-control data-type="date" property="v-s:dateFrom" class="-view edit search"></veda-control>
+        </div>
+        <div class="col-sm-4 col-xs-3">
+          <div property="v-s:dateTo" class="view -edit search"></div>
+          <veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
+        </div>
+      </div>  
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:isPowerOfAttorneyProlongationRequired" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div class="checkbox">
+						<label>
+							<veda-control property="gen:isPowerOfAttorneyProlongationRequired" data-type="boolean"></veda-control>
+						</label>
+					</div>
+        </div>
+      </div>        
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+					<span about="gen:PowerOfAttorney_reason_Bundle" property="rdfs:label"></span>
+        </div>
+        <div class="col-sm-4 col-xs-3">
+					<div rel="v-s:hasReasonForPowerOfAttorney" data-template="v-ui:LabelTemplate" class="view edit search"></div>
+					<veda-control data-type="link" rel="v-s:hasReasonForPowerOfAttorney" class="-view edit search fulltext dropdown"></veda-control><br>
+        </div>
+        <div class="col-sm-4 col-xs-3">
+					<div property="v-s:reason" class="view -edit search"></div>
+					<veda-control data-type="text"  property="v-s:reason" class="-view edit search"></veda-control>
+        </div>
+      </div> 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:grantor" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div id="sender" rel="v-s:grantor" class="view edit search" data-template="gen:CorrespondentTemplate" data-embedded="true"></div>
+					<veda-control id="sender-create" data-type="link" rel="v-s:grantor" class="-view edit search create"></veda-control>
+        </div>
+      </div>     
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:grantee" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div id="recipient" rel="v-s:grantee" class="view edit search" data-template="gen:CorrespondentTemplate" data-embedded="true"></div>
+					<veda-control id="recipient-create" data-type="link" rel="v-s:grantee" class="-view edit search create"></veda-control>
+        </div>
+      </div>     
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+					<span about="v-s:attachment" property="rdfs:label"></span>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
+					<veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
+        </div>
+      </div>        
+    </section>
+    
+    <hr>
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <!-- BUTTONS -->
+    <div class="actions view edit -search">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal journal-dms task"></span>
+      <button type="button" class="action btn btn-default view -edit -search" id="add-copy" about="gen:PowerOfAttorney_copy_Bundle" property="rdfs:label" />
+      <button type="button" class="action btn btn-default view -edit -search" id="add-linkedCopy" about="gen:PowerOfAttorney_linkedCopy_Bundle" property="rdfs:label" />
+    </div>
+  </div>
+  <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
+  <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
+</div>
+<script>
+  $("#add-copy", template).click(function () {
+    var _class = new veda.IndividualModel("gen:PowerOfAttorney"),
+        Attorney = new veda.IndividualModel(),
+        tmpl = "gen:PowerOfAttorneyTemplate" ;
+    Attorney["rdf:type"] = [_class] ;
+    copyAttorney(Attorney).then(function(){
+      riot.route( ["#", Attorney.id, "#main", tmpl, "edit"].join("/") ) ;
+      Attorney.one("afterSave", function () {
+        riot.route("#/" + Attorney.id, false);
+      });
+    });
+  });
+
+  $("#add-linkedCopy", template).click(function () {
+    var _class = new veda.IndividualModel("gen:PowerOfAttorney"),
+        Attorney = new veda.IndividualModel(),
+        tmpl = "gen:PowerOfAttorneyTemplate" ;
+    Attorney["rdf:type"] = [_class] ;
+    copyAttorney(Attorney).then(function(){
+      var Link = new veda.IndividualModel();
+      Link["rdf:type"] = [ new veda.IndividualModel("v-s:Link") ];
+      Link["v-s:to"] = [ individual ];
+      Link["v-s:from"] = [ Attorney ];
+      Attorney["v-s:hasLink"]= [ Link ];
+      riot.route( ["#", Attorney.id, "#main", tmpl, "edit"].join("/") ) ;
+    });
+  });
+
+  $("#add-RegRecord", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("gen:PowerOfAttorneyRegistrationRecord"),
+        RegRecord = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("gen:PowerOfAttorneyRegistrationRecordTemplate");
+    RegRecord["rdf:type"] = [_class];
+    RegRecord["v-s:backwardTarget"] = [individual];
+    RegRecord["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasPowerOfAttorneyRegistrationRecord")];
+    RegRecord["v-s:backwardReplace"] = [new veda.IndividualModel("v-s:registrationDate")];
+    RegRecord["v-s:canRead"] = [ true ];
+    RegRecord["v-s:registrationDate"]=individual["v-s:registrationDate"];
+    RegRecord.present(cntr, tmpl, "edit");
+    RegRecord.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    RegRecord.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+
+  function copyAttorney(Attorney){
+    Attorney["v-s:issuedForAbsencePeriodOfEmployee"] = individual["v-s:issuedForAbsencePeriodOfEmployee"] ;
+    Attorney["v-s:hasFormOfPowerOfAttorney"] = individual["v-s:hasFormOfPowerOfAttorney"] ;
+    Attorney["v-s:hasReasonForPowerOfAttorney"] = individual["v-s:hasReasonForPowerOfAttorney"] ;
+    Attorney["v-s:reason"] = individual["v-s:reason"] ;
+
+    var promises = [individual["v-s:grantor"][0].clone(), individual["v-s:grantee"][0].clone()];
+    return Promise.all(promises).then(function(results) {
+      var clonedGrantor = results[0];
+      clonedGrantor["v-s:parent"] = [Attorney.id];
+      var clonedGrantee = results[1];
+      clonedGrantee["v-s:parent"] = [Attorney.id];
+      Attorney["v-s:grantor"] = [clonedGrantor];
+      Attorney["v-s:grantee"] = [clonedGrantee];
+    })
+  };
+
+  function regRecordHandler(){
+    if ( template.data("mode") === "edit" ) {
+      if (individual.hasValue("gen:hasPowerOfAttorneyRegistrationRecord")) {
+        $("#buttonReg", template).hide();
+      } else {
+        $("#buttonReg", template).show();
+      }
+    }
+  };
+  function absencePeriodHandler(){
+    if ( template.data("mode") === "edit" ) {
+      if (individual.hasValue("v-s:isIssuedForAbsencePeriodOfEmployee", true)) {
+        $("#toggle-AbsencePeriod", template).show();
+      } else {
+        individual["v-s:issuedForAbsencePeriodOfEmployee"] = [];
+        $("#toggle-AbsencePeriod textarea", template).val("");
+        $("#toggle-AbsencePeriod", template).hide();
+      }
+    }
+  };
+  function processHandler() {
+    individual.canUpdate().then(function(canUpdate){
+      if (individual.hasValue("v-wf:isProcess")) {
+        $('#send.action', template).remove();
+        $('#delete.action', template).remove();
+      } else if (individual.isNew() || canUpdate) {
+        $('#send.action', template).off("click");
+        $('#send.action', template).on('click', function () {
+          veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:PowerOfAttorney_ComplexRouteStartForm_Template');
+        });
+      } else {
+        $('#send.action', template).remove();
+        $('#delete.action', template).remove();
+      }
+    })
+  }
+  processHandler();
+  regRecordHandler();
+  absencePeriodHandler();
+  individual.on("afterReset", processHandler);
+  individual.on("gen:hasPowerOfAttorneyRegistrationRecord", regRecordHandler);
+  individual.on("v-s:isIssuedForAbsencePeriodOfEmployee", absencePeriodHandler);
+  template.one("remove", function () {
+    individual.off("afterReset", processHandler);
+    individual.off("gen:hasPowerOfAttorneyRegistrationRecord", regRecordHandler);
+    individual.off("v-s:isIssuedForAbsencePeriodOfEmployee", absencePeriodHandler);
+  });
+
+ //# sourceURL=gen:PowerOfAttorneyTemplate_post
+</script>
+      """ ;
+.
+
+gen:PowerOfAttorneyRegistrationRecordTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:PowerOfAttorneyRegistrationRecord ;
+  rdfs:label "Шаблон для класса gen:PowerOfAttorneyRegistrationRecord"@ru ;
+  rdfs:label "Template for gen:PowerOfAttorneyRegistrationRecord class"@en ;
+  v-ui:template """
+<div class="container sheet">
+  <h2>
+    <span about="@" property="rdf:type"></span><br>
+    <small about="@" property="rdfs:label"></small>
+  </h2>
+  <span about="@" data-template="v-ui:RabbitHole"></span>
+  <hr>
+  <div class="row">
+    <div class="col-md-3">
+      <em about="gen:PowerOfAttorney_date_Bundle" property="rdfs:label" ></em>
+      <div property="v-s:registrationDate" class="view -edit search"></div>
+      <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control><br>
+      </div>
+    <div class="col-md-6">
+      <em about="v-s:attachment" property="rdfs:label" class="view edit -search">Вложение</em>
+      <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
+      <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <em about="rdfs:comment" property="rdfs:label" ></em>
+      <div property="rdfs:comment" class="view -edit search"></div>
+      <veda-control property="rdfs:comment" data-type="string" class="-view edit search">
+    </div>
+  </div>
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <br>
+  <!-- BUTTONS -->
+  <div class="actions view edit -search">
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete"></span>
+  </div>
+</div>
+<script>
+  if (mode == "edit" && (!individual.hasValue("v-s:registrationDate"))) {
+    var date = new Date();
+      date.setHours(0);
+      date.setMinutes(0);
+      date.setSeconds(0);
+    individual["v-s:registrationDate"] = [date] ;
+  }
+  //# sourceURL=gen:PowerOfAttorneyRegistrationRecordTemplate_post
+</script>
+"""
+.
+
+gen:PowerOfAttorneyRegistrationRecordEmbadedTemplate
+rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:PowerOfAttorneyRegistrationRecord ;
+  rdfs:label "Вложенный Шаблон для класса gen:PowerOfAttorneyRegistrationRecord (Регистрационная запись)"@ru ;
+  rdfs:label "Embeded Template for gen:PowerOfAttorneyRegistrationRecord"@en ;
+  v-ui:template """
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span about="@" data-template="v-ui:IconModalTemplate" class="view edit -search"></span>
+    <span about="gen:PowerOfAttorneyRegistrationRecord" property="rdfs:label"></span>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <em about="gen:PowerOfAttorney_date_Bundle" property="rdfs:label"></em>
+        <div about="@" property="v-s:registrationDate" class="view edit -search"></div>
+      </div>
+      <div class="col-md-6">
+        <em about="v-s:attachment" property="rdfs:label" class="view edit -search">Вложение</em>
+        <div rel="v-s:attachment" data-template="v-ui:FileMinTemplate" data-embedded="true"></div>
+        <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
+      </div>
+    </div>
+  </div>
+</div>
+"""
+.
+
+cfg:PowerOfAttorney_EmailNotification_Daily
+  rdf:type v-s:Event ;
+  v-s:author cfg:VedaSystem ;
+  rdfs:label "Email уведомление об истечении срока доверенности" ;
+  v-s:triggerByUid cfg:daily ;
+  v-s:runAt "V8.LowPriority";
+  v-s:script """
+print("[cfg:PowerOfAttorney_EmailNotification_Daily] ************************** START **************************");
+//Дата истечечения срока доверенности: сегодня+30 дней
+var bottomDate = new Date();
+bottomDate.setHours(0,0,0,0);
+bottomDate.setDate(bottomDate.getDate()+30);
+var upperDate = new Date(bottomDate);
+upperDate.setDate(upperDate.getDate()+1);;
+upperDate.setMilliseconds(-1);
+
+var queryString = "( 'rdf:type'==='gen:PowerOfAttorney' && 'v-s:dateTo'==[" + bottomDate.toISOString() + "," + upperDate.toISOString() + "] && 'gen:isPowerOfAttorneyProlongationRequired'==='true')";
+
+var result = query(ticket, queryString).result;
+for (var i=0;i<result.length;i++){
+  var individ = get_individual(ticket, result[i]);
+
+  var dateTo = individ["v-s:dateTo"][0];
+  var dateFrom = individ["v-s:dateFrom"][0];
+  var durability = Math.round((dateTo.data - dateFrom.data)/ (1000*60*60*24));
+  if (durability < 200) continue;
+
+  var emailUri = veda.Util.genUri();
+  var sendTo = [individ["v-s:creator"][0], veda.Util.newUri("d:9d3479d9-992a-4ffa-af5a-cba04574489d")[0],veda.Util.newUri("d:61e1919e-2460-41ed-8692-042d2634542a")[0]];
+
+  var type = new veda.IndividualModel('gen:PowerOfAttorney');
+  var docType = type["rdfs:label"];
+  var label = individ["rdfs:label"][0].data;
+
+  var template = new veda.IndividualModel('s-wf:msg-template-universal-notification_prolongate');
+  var view = {
+    "app_name": veda.Workflow.getAppName,
+    "documentType": docType,
+    "document": label,
+    "document_url": "http://optiflow.mp.local:8080/#/" + individ['@']
+  };
+  var subjectTemplate = String(template['v-s:notificationSubject'][0]);
+  var bodyTemplate = String(template['v-s:notificationBody'][0]);
+  var subject = Mustache.render(subjectTemplate, view).replace (/&#x2F;/g, '/');
+  var message = Mustache.render(bodyTemplate, view).replace (/&#x2F;/g, '/');
+
+  var Email= {
+    "@" : emailUri,
+    "rdf:type" : veda.Util.newUri("v-s:Email"),
+    "v-wf:to" : sendTo,
+    "v-wf:from" : veda.Util.newUri("d:SYK-PORTALMS_appointment"),
+    "v-s:subject" : veda.Util.newStr(subject),
+    "v-s:messageBody" : veda.Util.newStr(message),
+    "v-s:hasMessageType" : veda.Util.newUri("v-s:OtherNotification"),
+    "v-s:created" : veda.Util.newDate(new Date()),
+    "v-s:creator" : veda.Util.newUri("d:SYK-PORTALMS_appointment")
+  };
+  put_individual(ticket, Email, _event_id);
+  print("Email create: "+emailUri);
+}
+print("[cfg:PowerOfAttorney_EmailNotification_Daily] *************************** END ***************************");
+  """ ;
+.

@@ -1,0 +1,142 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-Decree-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Распорядительный документ. Схема"@ru ;
+  rdfs:label "GEN ontology. Decree. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ КЛАССЫ --
+gen:Decree
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:Decree ;
+  rdfs:subClassOf v-s:Temporal ;
+  rdfs:subClassOf v-s:Labeled ;
+  rdfs:label "Распорядительный документ"@ru ;
+  rdfs:label "Decree"@en ;
+  v-ui:hasTemplate gen:DecreeTemplate ;
+  v-s:labelPattern "{@.v-s:title} - {@.gen:hasDecreeRegistrationRecord.rdfs:label}" ;
+.
+gen:hasDecreeKind
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Вид распорядительного документа"@ru ;
+  rdfs:label "Decree kind"@en ;
+  rdfs:range v-s:DecreeKind ;
+  rdfs:domain gen:Decree ;
+  rdfs:domain gen:DecreeRegistrationRecord ;
+  rdfs:subPropertyOf v-s:hasDecreeKind ;
+.
+gen:PS_hasDecreeKind_Decree
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Decree ;
+  v-ui:forProperty gen:hasDecreeKind ;
+  v-ui:queryPrefix "('@'=='d:f4b896d9dd5b4e63b044a29f0ee76c25 ' || '@'=='d:6e2c0d2bad144e04a5ddd8b6ba5d0535' || '@'=='d:3c5d0a103a484620b90f26cf79310d15 ')"^^xsd:string ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства gen:hasDecreeKind для класса gen:Decree"@ru ;
+  rdfs:label "gen:hasDecreeKind property specification for gen:Decree class"@en ;
+.
+
+# v-s:owner
+# v-s:title
+# v-s:description
+# v-s:initiator
+# v-s:signedBy
+# v-s:responsible
+# v-s:attachment
+# rdfs:label
+# v-s:isFixedTerm
+# v-s:hasComment
+gen:hasDecreeRegistrationRecord
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Регистрационная запись"@ru ;
+  rdfs:label "DecreeRegistrationRecord"@en ;
+  rdfs:range gen:DecreeRegistrationRecord ;
+  rdfs:domain gen:Decree ;
+.
+# ------------------------------------------------------------
+gen:DecreeRegistrationRecord
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:RegistrationRecord ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:subClassOf v-s:Enumerated ;
+  rdfs:subClassOf v-s:Labeled ;
+  v-s:hasNumeration gen:RegistrationNumberDecreeNumeration ;
+  rdfs:label "Регистрационная запись"@ru ;
+  rdfs:label "DecreeRegistrationRecord"@en ;
+  v-ui:hasTemplate gen:DecreeRegistrationRecordTemplate ;
+  v-s:labelPattern "{@.gen:hasDecreeKind.rdfs:label} - {@.v-s:registrationNumber} - {@.v-s:registrationDate}";
+.
+# v-s:parent
+# v-s:registrationNumber
+# v-s:registrationDate
+# gen:hasDecreeKind
+# v-s:attachment
+# rdfs:comment
+# rdfs:label
+# v-s:backwardTarget
+# v-s:backwardProperty
+#--------------СПЕЦИФИКАЦИИ-----------------------
+gen:PS_title_Decree
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Decree ;
+  v-ui:forProperty v-s:title ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:title для класса gen:Decree"@ru ;
+  rdfs:label "v-s:title property specification for gen:Decree class"@en ;
+.
+
+gen:PS_initiator_Decree
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Decree ;
+  v-ui:forProperty v-s:initiator ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:Appointment') "^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:initiator для класса gen:Decree"@ru ;
+  rdfs:label "v-s:initiator property specification for gen:Decree class"@en ;
+.
+
+gen:PS_signedBy_Decree
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Decree ;
+  v-ui:forProperty v-s:signedBy ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:signedBy для класса gen:Decree"@ru ;
+  rdfs:label "v-s:signedBy property specification for gen:Decree class"@en ;
+.
+
+gen:PS_responsible_Decree
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Decree ;
+  v-ui:forProperty v-s:responsible ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:responsible для класса gen:Decree"@ru ;
+  rdfs:label "v-s:responsible property specification for gen:Decree class"@en ;
+.
+gen:PS_owner_Decree
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Decree ;
+  v-ui:forProperty v-s:owner ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:defaultValue d:org_RU1121016110_1 ;
+  v-ui:optionValue d:org_RU1121016110_1 ;
+  v-ui:optionValue d:org_RU1121016110_2 ;
+#  v-ui:queryPrefix "('@'=='d:org_RU1121016110_1' || '@'=='d:org_RU1121016110_2') "^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:owner для класса gen:Decree"@ru ;
+  rdfs:label "v-s:owner property specification for gen:Decree class"@en ;
+.

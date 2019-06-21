@@ -1,0 +1,31 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-Letter-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Письма. Схема"@ru ;
+  rdfs:label "GEN ontology. Letter. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ КЛАССЫ --
+
+gen:Letter
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:Letter ;
+  v-s:labelPattern "{@.v-s:sender.v-s:correspondentOrganization.v-s:shortLabel} (№{@.v-s:hasLetterRegistrationRecordSender.v-s:registrationNumber}, {@.v-s:hasLetterRegistrationRecordSender.v-s:registrationDate}) -> {@.v-s:recipient.v-s:correspondentOrganization.v-s:shortLabel} (№{@.v-s:hasLetterRegistrationRecordRecipient.v-s:registrationNumber}, {@.v-s:hasLetterRegistrationRecordRecipient.v-s:registrationDate}) - {@.v-s:hasDocumentKind.v-s:shortLabel} - {@.v-s:description}" ;
+  rdfs:label "Письмо"@ru ;
+  rdfs:label "Letter"@en ;
+  v-ui:hasTemplate gen:LetterTemplate ;
+.
+
+
+#--------------СПЕЦИФИКАЦИИ-----------------------

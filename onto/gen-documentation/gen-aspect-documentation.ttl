@@ -1,0 +1,182 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix : <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix td: <http://semantic-machines.com/veda/test-data/> .
+@prefix s-wf: <http://semantic-machines.com/veda/simple-workflow-base/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+
+<http://semantic-machines.com/veda/gen-aspect-documentation>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Управление документами. Аспект"@ru ;
+  rdfs:label "GEN ontology. Documentation aspect"@en ;
+  v-s:loadPriority 10 ;
+.
+# ------------------------------------------------------------
+gen:DocumentationManagementAspect
+  rdf:type v-s:Aspect ;
+  rdfs:label "Управление документами"@ru ;
+  rdfs:label "Documentation management"@en ;
+  v-s:shortLabel "Документы"@ru ;
+  v-s:shortLabel "Documents"@en ;
+  v-ui:hasTemplate v-s:AspectTemplate ;
+
+  v-s:hasApplication gen:CorrespondenceApplication;
+  v-s:hasApplication gen:LocalRegulatoryDocumentApplication;
+  v-s:hasApplication gen:BusinessTripApplication ;
+  v-s:hasApplication gen:PowerOfAttorneyApplication ;
+.
+
+#--------------------------ОТЧЕТЫ ПО ДОКУМЕНТАМ--------------
+
+gen:blankCreateCountOfUsersTasks_Report
+  a v-fc:Blank;
+  rdfs:label "Количество задач"@ru ;
+  rdfs:label "Number of tasks"@en ;
+  v-fc:targetType gen:CountOfUsersTasks_Report_Parameters ;
+.
+gen:blankCreateCompletedTasksCount_Report
+  a v-fc:Blank;
+  rdfs:label "Количество выполненных задач"@ru ;
+  rdfs:label "Number of competed tasks"@en ;
+  v-fc:targetType gen:CompletedTasksCount_Report_Parameters ;
+.
+gen:CountOfUsersTasks_Report
+  rdf:type v-s:Report ;
+  v-s:reportPath "/reports/Documents/CountOfUsersTasks_Report" ;
+  v-s:reportFormat "pdf";
+  v-s:reportBlank gen:blankCreateCountOfUsersTasks_Report ;
+  rdfs:label "Отчет: количество задач"@ru ;
+  rdfs:label "Report: number of tasks"@en ;
+.
+gen:CompletedTasksCount_Report
+  rdf:type v-s:Report ;
+  v-s:reportPath "/reports/Documents/CompletedTasksCount_Report" ;
+  v-s:reportFormat "pdf";
+  v-s:reportBlank gen:blankCreateCompletedTasksCount_Report ;
+  rdfs:label "Отчет: количество выполненных задач"@ru ;
+  rdfs:label "Report: number of completed tasks"@en ;
+.
+# --------------------------------------------------
+gen:CountOfUsersTasks_Report_Parameters
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:SystemThing ;
+  rdfs:label "Параметры отчета по количеству задач"@ru ;
+  rdfs:label "Parameters for number of tasks report"@en ;
+  v-ui:hasTemplate gen:CountOfUsersTasks_Report_ParametersTemplate ;
+.
+gen:CompletedTasksCount_Report_Parameters
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:SystemThing ;
+  rdfs:label "Параметры отчета по количеству выполненных задач"@ru ;
+  rdfs:label "Parameters for number of completed tasks report"@en ;
+  v-ui:hasTemplate gen:CompletedTasksCount_Report_ParametersTemplate ;
+.
+#------------------------------
+gen:PsCheckedDepartmentForCountOfUsersTasks_Report_Parameters
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:CountOfUsersTasks_Report_Parameters ;
+  v-ui:forClass gen:CompletedTasksCount_Report_Parameters ;
+  v-ui:forProperty v-s:checkedDepartment ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'==='v-s:Department')"^^xsd:string ;
+  v-ui:tooltip "Укажите подразделение"@ru ;
+  v-ui:tooltip "Required, single value. Link to instance of Department class"@en ;
+  rdfs:label "Спецификация свойства Подразделение в Отчетах"@ru ;
+  rdfs:label "Department property specification for Reports class"@en ;
+.
+
+# -- ШАБЛОНЫ ОТЧЕТОВ ПО ДОКУМЕНТАМ --
+
+gen:CountOfUsersTasks_Report_ParametersTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон Параметров отчета по количеству задач"@ru ;
+  rdfs:label "NumberOfTasks_ReportParameters template"@en ;
+  v-ui:forClass gen:CountOfUsersTasks_Report_Parameters ;
+  v-ui:template
+  """
+<div class="container sheet">
+  <h3 about="gen:CountOfUsersTasks_Report_Parameters" property="rdfs:label"></h3>
+  <div class="row">
+    <div class="col-md-3">
+      <em about="v-s:dateFrom" property="rdfs:label"></em>
+      <div property="v-s:dateFrom" class="view -edit -search"></div>
+      <veda-control property="v-s:dateFrom" data-type="dateTime" class="-view edit search"></veda-control>
+    </div>
+    <div class="col-md-3">
+      <em about="v-s:dateTo" property="rdfs:label"></em>
+      <div property="v-s:dateTo" class="view -edit -search"></div>
+      <veda-control property="v-s:dateTo" data-type="dateTime" class="-view edit search"></veda-control>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <em about="v-s:checkedDepartment" property="rdfs:label"></em>
+      <div rel="v-s:checkedDepartment" data-template="v-ui:LabelTemplate" class="view edit -search"></div>
+      <veda-control rel="v-s:checkedDepartment" data-type="link" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>
+  <br><br>
+  <div class="actions">
+    <button type="button" class="action btn btn-success -view edit -search" id="createReport" about="v-s:CreateReport" property="rdfs:label"/>
+  </div>
+</div>
+<script>
+  $('#createReport', template).on('click', function () {
+    veda.Util.createReport('gen:CountOfUsersTasks_Report', individual);
+  });
+  //# sourceURL=gen:CountOfUsersTasks_Report_ParametersTemplate
+</script>
+""" ;
+.
+
+gen:CompletedTasksCount_Report_ParametersTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон Параметров отчета по количеству выполненных задач"@ru ;
+  rdfs:label "NumberOfCompletedTasks_ReportParameters template"@en ;
+  v-ui:forClass gen:CompletedTasksCount_Report_Parameters ;
+  v-ui:template
+  """
+<div class="container sheet">
+  <h3 about="gen:CompletedTasksCount_Report_Parameters" property="rdfs:label"></h3>
+  <div class="row">
+    <div class="col-md-3">
+      <em about="v-s:dateFrom" property="rdfs:label"></em>
+      <div property="v-s:dateFrom" class="view -edit -search"></div>
+      <veda-control property="v-s:dateFrom" data-type="dateTime" class="-view edit search"></veda-control>
+    </div>
+    <div class="col-md-3">
+      <em about="v-s:dateTo" property="rdfs:label"></em>
+      <div property="v-s:dateTo" class="view -edit -search"></div>
+      <veda-control property="v-s:dateTo" data-type="dateTime" class="-view edit search"></veda-control>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <em about="v-s:checkedDepartment" property="rdfs:label"></em>
+      <div rel="v-s:checkedDepartment" data-template="v-ui:LabelTemplate" class="view edit -search"></div>
+      <veda-control rel="v-s:checkedDepartment" data-type="link" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>
+  <br><br>
+  <div class="actions">
+    <button type="button" class="action btn btn-success -view edit -search" id="createReport" about="v-s:CreateReport" property="rdfs:label"/>
+  </div>
+</div>
+<script>
+  $('#createReport', template).on('click', function () {
+    veda.Util.createReport('gen:CompletedTasksCount_Report', individual);
+  });
+  //# sourceURL=gen:CompletedTasksCount_Report_ParametersTemplate
+</script>
+""" ;
+.

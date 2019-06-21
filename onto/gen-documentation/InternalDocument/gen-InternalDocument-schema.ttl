@@ -1,0 +1,113 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-InternalDocument-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Внутренний документ. Схема"@ru ;
+  rdfs:label "GEN ontology. Internal document. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ КЛАССЫ --
+gen:InternalDocument
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:InternalDocument ;
+  rdfs:subClassOf v-s:Labeled ;
+	rdfs:subClassOf v-s:Enumerated ;
+  v-s:labelPattern "{@.v-s:registrationNumber} - {@.v-s:hasDocumentKind.rdfs:label} - {@.v-s:theme}" ;
+  rdfs:label "Внутренний документ"@ru ;
+  rdfs:label "Internal document"@en ;
+  v-ui:hasTemplate gen:InternalDocumentTemplate ;
+  v-s:hasNumeration v-s:RegistrationNumberYearNumeration2_6 ;
+.
+#v-s:registrationNumber - унаследовано от v-s:Registered
+
+#v-s:hasDocumentKind - унаследовано от v-s:Thing
+
+#v-s:initiator - под вопросом
+#v-s:responsibleDepartment  - под вопросом
+#v-s:copyTo - под вопросом
+
+#v-s:theme - унаследовано от v-s:Thing
+#v-s:content - унаследовано от v-s:Thing
+#v-s:attachment - унаследовано от v-s:Thing
+#v-s:hasLink - унаследовано от v-s:Thing
+#v-s:hasComment - унаследовано от v-s:Thing
+#rdfs:label - унаследовано от v-s:Thing
+#rdfs:comment - унаследовано от rdfs:Resource
+
+#--------------СПЕЦИФИКАЦИИ-----------------------
+gen:PS_hasDocumentKind_InternalDocument
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:InternalDocument ;
+  v-ui:forProperty v-s:hasDocumentKind ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:defaultValue d:agbxssnddkd2rnk4lfofwhi7 ;
+  rdfs:label "Спецификация свойства v-s:hasDocumentKind для класса gen:InternalDocument"@ru ;
+  rdfs:label "v-s:hasDocumentKind property specification for gen:InternalDocument class"@en ;
+.
+gen:PS_initiator_InternalDocument
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:InternalDocument ;
+  v-ui:forProperty v-s:initiator ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:Department')"^^xsd:string ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства v-s:initiator для класса gen:InternalDocument"@ru ;
+  rdfs:label "v-s:initiator property specification for gen:InternalDocument class"@en ;
+.
+gen:PS_responsibleDepartment_InternalDocument
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:InternalDocument ;
+  v-ui:forProperty v-s:responsibleDepartment ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:Department')"^^xsd:string ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства v-s:responsibleDepartment для класса gen:InternalDocument"@ru ;
+  rdfs:label "v-s:responsibleDepartment property specification for gen:InternalDocument class"@en ;
+.
+gen:PS_copyTo_InternalDocument
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:InternalDocument ;
+  v-ui:forProperty v-s:copyTo ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства v-s:copyTo для класса gen:InternalDocument"@ru ;
+  rdfs:label "v-s:copyTo property specification for gen:InternalDocument class"@en ;
+.
+gen:PS_theme_InternalDocument
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:InternalDocument ;
+  v-ui:forProperty v-s:theme ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:theme для класса gen:InternalDocument"@ru ;
+  rdfs:label "v-s:theme property specification for gen:InternalDocument class"@en ;
+.
+gen:PS_content_InternalDocument
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:InternalDocument ;
+  v-ui:forProperty v-s:content ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:content для класса gen:InternalDocument"@ru ;
+  rdfs:label "v-s:content property specification for gen:InternalDocument class"@en ;
+.
+gen:PS_comment_InternalDocument
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:InternalDocument ;
+  v-ui:forProperty rdfs:comment ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства rdfs:comment для класса gen:InternalDocument"@ru ;
+  rdfs:label "rdfs:comment property specification for gen:InternalDocument class"@en ;
+.

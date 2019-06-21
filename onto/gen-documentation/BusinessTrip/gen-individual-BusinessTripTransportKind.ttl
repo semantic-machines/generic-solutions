@@ -1,0 +1,39 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/>.
+@prefix d: <http://semantic-machines.com/veda/veda-data/>.
+
+<http://semantic-machines.com/veda/gen-individual-BusinessTripTransportKind>
+  rdf:type owl:Ontology ;
+  v-s:loadPriority 10 ;
+.
+
+
+#------------------------------------------------------------------------
+d:2078749d2bcf42e0ae80c5d8287d19d9
+  rdf:type gen:BusinessTripTransportKind ;
+  rdfs:label "Авиатранспорт"@ru;
+  rdfs:label "Air transport"@en;
+  v-s:updateCounter "1"^^xsd:integer.
+
+d:177b4624ed3f4ce6a1c89d7a3bd4f1ce
+  rdf:type gen:BusinessTripTransportKind ;
+  rdfs:label "Железнодорожный транспорт"@ru;
+  rdfs:label "Railway transport"@en;
+  v-s:updateCounter "1"^^xsd:integer.
+
+d:62fbbbc27f8e407c8f51de71e10d0500
+  rdf:type gen:BusinessTripTransportKind ;
+  rdfs:label "Автобус"@ru;
+  rdfs:label "Bus"@en;
+  v-s:updateCounter "1"^^xsd:integer.
+
+d:4067d169e75041cdbbbca913ae8ab03d
+  rdf:type gen:BusinessTripTransportKind ;
+  rdfs:label "Служебный транспорт"@ru;
+  rdfs:label "Company transport"@en;
+  v-s:updateCounter "1"^^xsd:integer.
+
