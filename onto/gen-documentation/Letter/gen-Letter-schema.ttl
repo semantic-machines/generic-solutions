@@ -29,3 +29,24 @@ gen:Letter
 
 
 #--------------СПЕЦИФИКАЦИИ-----------------------
+gen:PS_transportOrganization_Delivery
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass v-s:Delivery ;
+  v-ui:forProperty v-s:transportOrganization ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('@' == 'd:org_RU7724261610' || '@' == 'd:org_RU7826094630' || '@' == 'd:org_RU7715356456' || '@' == 'd:org_RU7707280394' || '@' == 'd:org_RU7709863465' || '@' == 'd:213ee43f668a4338af73e610c2599135' || '@' == 'd:org_RU3904605622' || '@' == 'd:org_RU7713727881' || '@' == 'd:org_RU7723606727' || '@' == 'd:org_RU7743505170' || '@' == 'd:org_RU7723826955')"^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:transportOrganization для класса v-s:Delivery"@ru ;
+  rdfs:label "v-s:transportOrganization property specification for v-s:Delivery class"@en ;
+.
+#--------------СПЕЦИФИКАЦИИ-----------------------
+gen:PS_DeliveryMethod_Delivery
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass v-s:Delivery ;
+  v-ui:forProperty v-s:deliverBy ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+v-ui:queryPrefix " 'rdf:type' == 'v-s:DeliveryMethod' && 'v-s:transportOrganization' == '{ individual[\"v-s:transportOrganization\"][0].id }' ";
+  rdfs:label "Спецификация свойства v-s:DeliveryMethod для класса v-s:Delivery"@ru ;
+  rdfs:label "v-s:DeliveryMethod property specification for v-s:Delivery class"@en ;
+.

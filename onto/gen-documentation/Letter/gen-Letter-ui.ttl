@@ -67,40 +67,45 @@ gen:LetterTemplate
       <span about="@" property="rdf:type"></span>
       <small about="@" property="rdfs:label" class="view edit -search"></small>
     </h3>
-    <div class="row">
-      <div class="col-sm-6">
-        <h3 about="v-s:sender" property="rdfs:label"></h3>
-        <div rel="v-s:sender" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
-        <veda-control data-type="link" rel="v-s:sender" class="-view edit search create pull-left"></veda-control><label class="margin-sm margin-sm-h" about="gen:addSenderBundle" property="rdfs:label"></label>
-        <hr>
-        <h4 about="v-s:hasLetterRegistrationRecordSender" property="rdfs:label"></h4>
-        <div rel="v-s:hasLetterRegistrationRecordSender" class="view edit search" data-template="v-s:LetterRegistrationRecordTemplate" data-embedded="true"></div>
-        <veda-control data-type="link" rel="v-s:hasLetterRegistrationRecordSender" class="-view edit search create"></veda-control>
-      </div>
-      <div class="col-sm-6">
-        <h3 about="v-s:recipient" property="rdfs:label"></h3>
-        <div rel="v-s:recipient" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
-        <veda-control data-type="link" rel="v-s:recipient" class="-view edit search create pull-left"></veda-control><label class="margin-sm margin-sm-h" about="gen:addRecipientBundle" property="rdfs:label"></label>
-        <hr>
-        <h4 about="v-s:hasLetterRegistrationRecordRecipient" property="rdfs:label"></h4>
-        <div rel="v-s:hasLetterRegistrationRecordRecipient" class="view edit search" data-template="v-s:LetterRegistrationRecordTemplate" data-embedded="true"></div>
-        <veda-control data-type="link" rel="v-s:hasLetterRegistrationRecordRecipient" class="-view edit search create"></veda-control>
-      </div>
-    </div>
-    <section id="Delivery">
-      <h4 class="section-header" about="v-s:hasDelivery" property="rdfs:label"></h4>
-      <div rel="v-s:hasDelivery" data-template="v-s:DeliveryEmbeddedTemplate" data-embedded="true"></div>
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <veda-control data-type="link" rel="v-s:hasDelivery" class="-view edit search create margin-md pull-left"></veda-control>
-        </div>
-        <div class="col-sm-9 col-xs-7">
-        </div>
-      </div>
-    </section>
-    
     <section id="MainProperties">
       <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:sender" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div rel="v-s:sender" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
+					<veda-control data-type="link" rel="v-s:sender" class="-view edit search create pull-left"></veda-control><label class="margin-sm margin-sm-h" about="gen:addSenderBundle" property="rdfs:label"></label>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasLetterRegistrationRecordSender" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div rel="v-s:hasLetterRegistrationRecordSender" class="view edit search" data-template="v-s:LetterRegistrationRecordTemplate" data-embedded="true"></div>
+					<veda-control data-type="link" rel="v-s:hasLetterRegistrationRecordSender" class="-view edit search create"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:recipient" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div rel="v-s:recipient" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
+					<veda-control data-type="link" rel="v-s:recipient" class="-view edit search create pull-left"></veda-control><label class="margin-sm margin-sm-h" about="gen:addRecipientBundle" property="rdfs:label"></label>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasLetterRegistrationRecordRecipient" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div rel="v-s:hasLetterRegistrationRecordRecipient" class="view edit search" data-template="v-s:LetterRegistrationRecordTemplate" data-embedded="true"></div>
+					<veda-control data-type="link" rel="v-s:hasLetterRegistrationRecordRecipient" class="-view edit search create"></veda-control>
+        </div>
+      </div>
+
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasDocumentKind" property="rdfs:label"></label>
@@ -156,6 +161,44 @@ gen:LetterTemplate
         </div>
       </div>
     </section>
+		<section id="Delivery">
+			<h4 class="section-header clearfix">
+				<span about="v-s:hasDelivery" property="rdfs:label"></span>
+				<veda-control data-type="link" rel="v-s:hasDelivery" data-template="gen:DeliveryTemplate" class="-view edit search create create-modal pull-right"></veda-control>
+			</h4>
+			<div class="table-responsive">
+				<table class="table no-margin">
+					<thead class="result-header">
+						<tr>
+							<th width="1"><span class="glyphicon glyphicon-search"></span></th>
+							<th about="v-s:date" property="rdfs:label"></th>
+							<th about="v-s:deliverBy" property="rdfs:label"></th>
+							<th about="rdfs:comment" property="rdfs:label"></th>
+							<th about="v-s:attachment" property="rdfs:label"></th>
+						</tr>
+					</thead>
+					<tbody rel="v-s:hasDelivery" >
+						<tr>
+							<td>
+								<a href="#/@" class="glyphicon glyphicon-search"></a>
+							</td>
+							<td>
+								<div about="@" property="v-s:date"></div>
+							</td>
+							<td>
+								<div about="@" property="v-s:deliverBy"></div>
+							</td>
+							<td>
+								<div about="@" property="rdfs:comment"></div>
+							</td>
+							<td>
+								<div rel="v-s:attachment" data-template="v-ui:FileMinTemplate" data-embedded="true"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>    
     <section id="RelatedLetter">
       <h4 class="section-header" about="v-s:hasRelatedLetter" property="rdfs:label"></h4>
       <div class="table-responsive">
@@ -507,48 +550,71 @@ gen:LetterRegistrationRecordTemplate
   """ ;
 .
 
-v-s:DeliveryEmbeddedTemplate
+
+gen:DeliveryTemplate
   rdf:type v-ui:ClassTemplate ;
   rdfs:label "Шаблон доставки"@ru ;
   rdfs:label "Delivery template"@en ;
   v-ui:template """
-<div class="container sheet"><br>
-  <div class="row row-attribute">
-    <div class="col-sm-3 col-xs-5">
-      <label about="v-s:date" property="rdfs:label"></label>
-    </div>
-    <div class="col-sm-3 col-xs-7">
-      <div property="v-s:date" class="view -edit search"></div>
-      <veda-control property="v-s:date" data-type="date" class="-view edit search"></veda-control>
-    </div>
+<div>
+	<h3 class="margin-sm">
+		<span about="@" property="rdf:type"></span>
+		<small about="@" property="rdfs:label" class="view edit -search"></small>
+	</h3>
+	<section id="MainProperties">
+		<h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+		<div class="row row-attribute">
+			<div class="col-sm-3 col-xs-5">
+				<label about="v-s:date" property="rdfs:label"></label>
+			</div>
+			<div class="col-sm-4 col-xs-3">
+				<div property="v-s:date" class="view -edit search"></div>
+				<veda-control property="v-s:date" data-type="date" class="-view edit search"></veda-control>
+			</div>
+		</div>
+		<div class="row row-attribute">
+			<div class="col-sm-3 col-xs-5">
+				<label about="v-s:transportOrganization" property="rdfs:label"></label>
+			</div>
+			<div class="col-sm-9 col-xs-7">
+				<div rel="v-s:transportOrganization" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+				<veda-control data-type="link" rel="v-s:transportOrganization" class="-view edit search fulltext dropdown"></veda-control>
+			</div>
+		</div>
+		<div class="row row-attribute">
+			<div class="col-sm-3 col-xs-5">
+				<label about="v-s:deliverBy" property="rdfs:label"></label>
+			</div>
+			<div class="col-sm-9 col-xs-7">
+				<div rel="v-s:deliverBy" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+				<veda-control data-type="link" rel="v-s:deliverBy" class="-view edit search fulltext dropdown"></veda-control>
+			</div>
+		</div>
+		<div class="row row-attribute">
+			<div class="col-sm-3 col-xs-5">
+				<label about="rdfs:comment" property="rdfs:label"></label>
+			</div>
+			<div class="col-sm-9 col-xs-7">
+				<div property="rdfs:comment" class="view -edit search"></div>
+				<veda-control property="rdfs:comment" data-type="text" class="-view edit search"></veda-control>
+			</div>
+		</div>		
+		<div class="row row-attribute">
+			<div class="col-sm-3 col-xs-5">
+				<label about="v-s:attachment" property="rdfs:label"></label>
+			</div>
+			<div class="col-sm-9 col-xs-7">
+				<div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
+				<veda-control data-type="file" rel="v-s:attachment" class="-view edit -search create"></veda-control>
+			</div>
+		</div>		
+	</section>
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <br>
+  <div class="actions view edit -search">
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal"></span>
   </div>
-  <div class="row row-attribute">
-    <div class="col-sm-3 col-xs-5">
-      <label about="v-s:deliverBy" property="rdfs:label"></label>
-    </div>
-    <div class="col-sm-9 col-xs-7">
-      <div rel="v-s:deliverBy" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-      <veda-control data-type="link" rel="v-s:deliverBy" class="-view edit search fulltext dropdown"></veda-control>
-    </div>
-  </div>
-  <div class="row row-attribute">
-    <div class="col-sm-3 col-xs-5">
-      <label about="rdfs:comment" property="rdfs:label"></label>
-    </div>
-    <div class="col-sm-9 col-xs-7">
-      <div property="rdfs:comment" class="view -edit -search"></div>
-      <veda-control property="rdfs:comment" data-type="text" class="-view edit search"></veda-control>
-    </div>
-  </div>
-  <div class="row row-attribute">
-    <div class="col-sm-3 col-xs-5">
-      <label about="v-s:attachment" property="rdfs:label"></label>
-    </div>
-    <div class="col-sm-9 col-xs-7">
-      <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
-      <veda-control data-type="file" rel="v-s:attachment" class="-view edit -search create"></veda-control>
-    </div>
-  </div>
-</div>
+</div>      
   """ ;
 .
