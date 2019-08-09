@@ -19,21 +19,21 @@
   v-s:loadPriority 10 ;
 .
 
-# MAIN PAGE ------------------------------------------------------------
+# LAYOUT ------------------------------------------------------------
 
-gen:Main
+gen:Layout
   rdf:type rdfs:Resource ;
-  rdfs:label "Общие решения Веды"@ru ;
-  rdfs:label "Generic solutions"@en ;
+  rdfs:label "Макет общие решения Веды"@ru ;
+  rdfs:label "Generic solutions layout"@en ;
   rdfs:comment "ОБЩИЕ РЕШЕНЯ"@ru ;
   rdfs:comment "GEN"@en ;
-  v-ui:hasTemplate gen:MainTemplate ;
+  v-ui:hasTemplate gen:LayoutTemplate ;
 .
 
-gen:MainTemplate
+gen:LayoutTemplate
   rdf:type v-ui:ClassTemplate ;
-  rdfs:label "Шаблон Главной страницы"@ru ;
-  rdfs:label "Main page template"@en ;
+  rdfs:label "Шаблон макета"@ru ;
+  rdfs:label "Layout template"@en ;
   v-ui:template """
 <script>
   // Markdown
@@ -73,7 +73,7 @@ gen:MainTemplate
     observer.observe(target, markdownConfig);
   }
 
-//# sourceURL=gen:MainTemplate_pre
+//# sourceURL=gen:LayoutTemplate_pre
 </script>
 <div class="page">
   <nav role="navigation" class="navbar navbar-veda">
@@ -82,7 +82,7 @@ gen:MainTemplate
         <button type="button" class="btn btn-default navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
           <span class="glyphicon glyphicon-menu-hamburger"></span>
         </button>
-        <a class="navbar-brand" style="margin-top:-15px;width:225px;" href="#/gen:Welcome" about="gen:Logo" data-template="v-ui:ImageTemplate"></a>
+        <a class="navbar-brand" style="margin-top:0px;" href="#/gen:Welcome" about="gen:Logo" data-template="v-ui:ImageTemplate"></a>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -152,7 +152,7 @@ gen:MainTemplate
     $(this).closest("table").tableSortable(this);
   });
 
-  //# sourceURL=gen:MainTemplate
+  //# sourceURL=gen:LayoutTemplate
 </script>
   """ ;
 .
@@ -161,8 +161,8 @@ gen:MainTemplate
 
 gen:Logo
   a v-s:File;
-  v-s:fileUri "gen-logo.svg"^^xsd:string ;
-  v-s:fileName "gen-logo.svg"^^xsd:string;
+  v-s:fileUri "veda-logo.png"^^xsd:string ;
+  v-s:fileName "veda-logo.png"^^xsd:string;
   v-s:filePath "/gen"^^xsd:string ;
 .
 

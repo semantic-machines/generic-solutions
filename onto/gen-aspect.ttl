@@ -23,22 +23,20 @@
 
 # MAIN ASPECT ----------------------------------------------------------
 
-# ASPECT ---------------------------------------------------------------
-
-gen:Welcome
+gen:Main
   rdf:type v-s:Aspect ;
-  rdfs:label "Добро пожаловать"@ru ;
-  rdfs:label "Welcome"@en ;
+  rdfs:label "Главная"@ru ;
+  rdfs:label "Main"@en ;
   v-s:hasBusinessAspect gen:DocumentationManagementAspect ;
 #  v-s:hasBusinessAspect gen:PurchasesSalesAspect ;
 #  v-s:hasBusinessAspect gen:HumanResourcesAspect ;
-  v-ui:hasTemplate gen:WelcomeTemplate ;
+  v-ui:hasTemplate gen:MainTemplate ;
 .
 
-gen:WelcomeTemplate
+gen:MainTemplate
   rdf:type v-ui:ClassTemplate ;
-  rdfs:label "Шаблон аспекта gen:Welcome"@ru ;
-  rdfs:label "gen:Welcome aspect template"@en ;
+  rdfs:label "Шаблон главной"@ru ;
+  rdfs:label "Main template"@en ;
   v-ui:template """
 <div about="@" rel="v-s:hasBusinessAspect" data-limit="1" data-template="gen:AspectTemplate"></div>
   """ ;
