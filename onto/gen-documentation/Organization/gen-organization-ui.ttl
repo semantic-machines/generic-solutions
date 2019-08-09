@@ -183,11 +183,11 @@ gen:OrganizationTemplate
           <label about="v-s:LegalEntityExistencePeriodBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-3 col-xs-3">
-		  <div property="v-s:dateFromFact" class="view -edit -search"></div>
+		  <div property="v-s:dateFromFact" class="view -edit search"></div>
           <veda-control data-type="date" property="v-s:dateFromFact" class="-view edit search"></veda-control>
         </div>
         <div class="col-sm-3 col-xs-3">
-		  <div property="v-s:dateToFact" class="view -edit -search"></div>
+		  <div property="v-s:dateToFact" class="view -edit search"></div>
           <veda-control data-type="date" property="v-s:dateToFact" class="-view edit search"></veda-control>
         </div>
       </div>  

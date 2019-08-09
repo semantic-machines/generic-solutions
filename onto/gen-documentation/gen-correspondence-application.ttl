@@ -38,8 +38,8 @@ gen:CorrespondenceApplication
 
 #  v-s:hasRegistry gen:IncomingLetterSearch ;
 #  v-s:hasRegistry gen:OutgoingLetterSearch ;
-#  v-s:hasRegistry gen:InternalDocumentSearch ;
-#  v-s:hasRegistry gen:OrganizationSearch ;
+  v-s:hasRegistry gen:InternalDocumentSearch ;
+  v-s:hasRegistry gen:OrganizationSearch ;
 
 #  v-s:hasReport v-s:CountOfUsersTasks_Report ;
 #  v-s:hasReport v-s:CompletedTasksCount_Report ;
