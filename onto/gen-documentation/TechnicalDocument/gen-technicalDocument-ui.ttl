@@ -1,0 +1,373 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-technicalDocument-ui>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Технический документ. UI"@ru ;
+  rdfs:label "GEN ontology. Technical document. UI"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ СОБЫТИЯ --
+
+#--------------СТРОКИ------------------------------
+gen:registrationNumberForTechnicalDocumentBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Инвентарный номер"@ru ;
+  rdfs:label "Inventory number"@en ;
+.
+gen:shortLabel_TechnicalDocument_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Номер. Шифр документа разработчика"@ru ;
+  rdfs:label "Number. Code of developers documents"@en ;
+.
+gen:TechnicalDocumentInitiatorBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Подразделение-инициатор"@ru ;
+  rdfs:label "Initiator"@en ;
+.
+gen:backwardTargetBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Родительский комплект документов"@ru ;
+  rdfs:label "Parent Document Set"@en ;
+.
+gen:DateForTechnicalDocumentBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Дата документа"@ru ;
+  rdfs:label "Document date"@en ;
+.
+gen:HasLifecycleStageForTechnicalDocumentBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Стадия разработки документа"@ru ;
+  rdfs:label "Document development stage"@en ;
+.
+gen:MarkCodeForTechnicalDocumentBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Код марки"@ru ;
+  rdfs:label "Mark code"@en ;
+.
+gen:SectionCodeForTechnicalDocumentBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Код раздела"@ru ;
+  rdfs:label "Section code"@en ;
+.
+gen:shortLabel_EngineeringProjectDocumentBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Обозначение документа "@ru ;
+  rdfs:label "Обозначение документа "@en ;
+.
+gen:sheetsCountForEngineeringProjectDocument_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Лист"@ru ;
+  rdfs:label "Лист"@en ;
+.
+gen:coordinateWithCustomer_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Согласовать с заказчиком"@ru ;
+  rdfs:label "Coordinate with customer"@en ;
+.
+
+#--------------Шаблоны----------------------------
+gen:TechnicalDocumentTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:TechnicalDocument ;
+  rdfs:label "Шаблон для класса gen:TechnicalDocument"@ru ;
+  rdfs:label "Template for gen:TechnicalDocument class"@en ;
+  v-ui:template """
+<script>
+  template.on("validate", function () {
+    var result = {};
+    if ( individual.hasValue("v-s:hasLifecycleStage", 'd:a6uu8yexul97649zuczu37abf4f')
+        || (individual.hasValue("v-s:hasLifecycleStage")
+            && individual["v-s:hasLifecycleStage"][0].hasValue("v-s:hasParentLink", 'd:a6uu8yexul97649zuczu37abf4f')) ) {
+      result["v-s:hasClassifierMarkOfWorkingDrawingsSet"] = {
+        state: true,
+        cause: []
+      };
+    }
+    if (!individual.hasValue('v-s:hasDocumentKind', 'd:2fb47ad2cca5420686f5722cbadaee51')){
+      if (individual.hasValue('v-s:hasLifecycleStage', 'd:twejo8o3tb0w00gkfkox62l1bz')) {
+        if (!individual.hasValue('v-s:hasClassifierSectionOfProjectDocumentation')) {
+          result['v-s:hasClassifierSectionOfProjectDocumentation'] = {
+            state: false,
+            cause: ["v-ui:minCardinality"]
+          };
+        }
+      }
+      if (individual.hasValue('v-s:hasLifecycleStage', 'd:yzukiatavri0xticlw3xax2qeg')) {
+        if (!individual.hasValue('v-s:hasClassifierMarkOfWorkingDrawingsSet')) {
+          result['v-s:hasClassifierMarkOfWorkingDrawingsSet'] = {
+            state: false,
+            cause: ["v-ui:minCardinality"]
+          };
+        }
+      }
+    }
+    template.trigger("validated", result);
+  });
+</script>
+<div>
+  <div class="container sheet">
+    <h2>
+      <span about="gen:TechnicalDocument" property="rdfs:label"></span><br>
+      <small about="@" property="rdfs:label"></small>
+    </h2>
+    <span about="@" data-template="v-ui:RabbitHole"></span>
+    <hr>
+    <section id="MainProperties">
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:registrationNumber" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-4">
+          <div property="v-s:registrationNumber" class="view -edit search"></div>
+          <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:shortLabel_TechnicalDocument_Bundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-4">
+					<div property="v-s:shortLabel" class="view -edit -search"></div>
+					<veda-control data-type="string" property="v-s:shortLabel" class="-view edit search"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:DateForTechnicalDocumentBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-4">
+					<div property="v-s:registrationDate" class="view -edit search"></div>
+					<veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:title" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div property="v-s:title" class="view -edit -search"></div>
+					<veda-control data-type="string" property="v-s:title" class="-view edit search"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:HasLifecycleStageForTechnicalDocumentBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div rel="v-s:hasLifecycleStage" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+					<veda-control data-type="link" rel="v-s:hasLifecycleStage" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasClassifierSectionOfProjectDocumentation" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasClassifierSectionOfProjectDocumentation" class="view edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasClassifierSectionOfProjectDocumentation" class="-view edit search fulltext dropdown" data-template="{individual['v-s:shortLabel'][0]} | {individual['rdfs:label'][0]}"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasDocumentKind" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasDocumentKind" class="view edit search" data-template="v-ui:LabelTemplate"></div>
+					<veda-control data-type="link" rel="v-s:hasDocumentKind" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasClassifierMarkOfWorkingDrawingsSet" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasClassifierMarkOfWorkingDrawingsSet" class="view edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasClassifierMarkOfWorkingDrawingsSet" class="-view edit search fulltext dropdown" data-template="{individual['v-s:shortLabel'][0]} | {individual['rdfs:label'][0]}"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:backwardTargetBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+					<div rel="v-s:backwardTarget" class="view edit search" data-template="v-ui:LabelTemplate"></div>
+					<veda-control data-type="link" rel="v-s:backwardTarget" class="-view edit search fulltext"></veda-control><br>
+        </div>
+      </div>      
+			<div class="row row-attribute">
+				<div class="col-sm-3 col-xs-5">
+					<label about="rdfs:comment" property="rdfs:label"></label>
+				</div>
+				<div class="col-sm-9 col-xs-7">
+					<div property="rdfs:comment" class="view -edit -search"></div>
+					<veda-control data-type="text"  property="rdfs:comment" class="-view edit search"></veda-control>
+				</div>
+			</div>      
+			<div class="row row-attribute">
+				<div class="col-sm-3 col-xs-5">
+					<span about="v-s:attachment" property="rdfs:label"></span>
+				</div>
+				<div class="col-sm-9 col-xs-7">
+					<div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
+					<veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
+				</div>
+			</div>        
+			<div class="row row-attribute">
+				<div class="col-sm-3 col-xs-5">
+					<span about="v-s:developer" property="rdfs:label"></span>
+				</div>
+				<div class="col-sm-9 col-xs-7">
+					<div id="sender" rel="v-s:developer" class="view edit search" data-template="gen:CorrespondentTemplate" data-embedded="true"></div>
+					<veda-control id="sender-create" data-type="link" rel="v-s:developer" class="-view edit search create"></veda-control>
+				</div>
+			</div>        
+			
+		</section>   
+
+		<section id="LinkedTechnicalDocuments">
+      <h4 class="section-header" about="gen:hasTechnicalDocument" property="rdfs:label"></h4>
+      <div class="table-responsive">
+        <table class="table no-margin">
+          <thead>
+						<tr>
+							<th width="1%"><span class="glyphicon glyphicon-search"></span></th>
+							<th width="20%" about="v-s:registrationNumber" property="rdfs:label"></th>
+							<th width="20%" about="v-s:hasDocumentKind" property="rdfs:label"></th>
+							<th about="rdfs:label" property="rdfs:label"></th>
+							<th about="gen:shortLabel_TechnicalDocument_Bundle" property="rdfs:label"></th>
+							<th about="gen:SectionCodeForTechnicalDocumentBundle" property="rdfs:label"></th>
+							<th about="gen:MarkCodeForTechnicalDocumentBundle" property="rdfs:label"></th>							
+						</tr>
+					</thead>
+					<tbody rel="gen:hasTechnicalDocument" >
+						<tr>
+							<td about="@" data-template="v-ui:IconModalTemplate"></td>
+							<td><div property="v-s:registrationNumber" class="view -edit -search"></div></td>
+							<td><div rel="v-s:hasDocumentKind" data-template="v-ui:LabelTemplate" class="view -edit -search"></div></td>
+							<td><div property="rdfs:label" class="view -edit -search"></div></td>
+							<td><div property="v-s:shortLabel" class="view -edit -search"></div></td>
+							<td rel="v-s:hasClassifierSectionOfProjectDocumentation"><span property="v-s:shortLabel"></span></td>
+							<td rel="v-s:hasClassifierMarkOfWorkingDrawingsSet"><span property="v-s:shortLabel"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div><br>
+			<veda-control data-type="link" rel="gen:hasTechnicalDocument" class="-view edit search fulltext"></veda-control>
+			<div class="clearfix view -edit -search">
+        <button class="btn btn-success" id="add-LinkedTechnicalDocument">
+          <span class="glyphicon glyphicon-zoom-in"></span>
+          <span about="gen:hasTechnicalDocument" property="rdfs:label"></span>
+        </button>
+			</div>
+		</section>    
+
+    <hr>
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <!-- BUTTONS -->
+    <div class="actions view edit -search">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal journal-dms task"></span>
+    </div>
+  </div>
+  <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
+  <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
+</div>
+<script>
+
+  $("#add-LinkedTechnicalDocument", template).click(function () {
+    var _class = new veda.IndividualModel("gen:TechnicalDocument"),
+        TechnicalDocument = new veda.IndividualModel(),
+        tmpl = "gen:TechnicalDocumentTemplate";
+    TechnicalDocument["rdf:type"] = [_class];
+    TechnicalDocument["v-s:backwardTarget"] = [individual];
+    TechnicalDocument["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasTechnicalDocument")];
+    TechnicalDocument["v-s:canRead"] = [ true ];
+    TechnicalDocument["v-s:title"] = individual["v-s:title"] ;
+    TechnicalDocument["gen:technicalDocumentObject"] = individual["gen:technicalDocumentObject"] ;
+    TechnicalDocument["v-s:hasMaintainedObject"] = individual["v-s:hasMaintainedObject"] ;
+    TechnicalDocument["v-s:shortLabel"] = individual["v-s:shortLabel"] ;
+    TechnicalDocument["v-s:registrationDate"] = individual["v-s:registrationDate"] ;
+    TechnicalDocument["v-s:hasLifecycleStage"] = individual["v-s:hasLifecycleStage"] ;
+    TechnicalDocument["v-s:hasClassifierSectionOfProjectDocumentation"] = individual["v-s:hasClassifierSectionOfProjectDocumentation"] ;
+    TechnicalDocument["v-s:hasClassifierSectionOfProjectDocumentation"] = individual["v-s:hasClassifierMarkOfWorkingDrawingsSet"] ;
+    TechnicalDocument["v-s:hasProject"] = individual["v-s:hasProject"] ;
+    Promise.resolve().then(function() {
+      if ( individual.hasValue("v-s:developer") ) {
+        return individual["v-s:developer"][0].load().then(function(developer) {
+          return developer.clone();
+        });
+      }
+      return null;
+    }).then(function(clonedDeveloper) {
+      if (clonedDeveloper != null) {
+        TechnicalDocument["v-s:developer"]= [ clonedDeveloper ];
+      }
+      riot.route( ["#", TechnicalDocument.id, "#main", tmpl, "edit"].join("/") );
+    });
+  });
+  
+  function lifeCycleStage() {
+    if ( individual.hasValue("v-s:hasLifecycleStage", new veda.IndividualModel("d:a6uu8yexul97649zuczu37abf4f")) ) {
+      $('#EngineeringRequest', template).hide();
+      $('#LinkedTechnicalDocuments', template).hide();
+      $('#Project', template).hide();
+      $('#Section', template).hide();
+      $('#Mark', template).hide();
+    } else {
+      $('#EngineeringRequest', template).show();
+      $('#LinkedTechnicalDocuments', template).show();
+      $('#Project', template).show();
+      $('#Section', template).show();
+      $('#Mark', template).show();
+    }
+    individual.getPropertyChain("v-s:hasLifecycleStage", "v-s:hasParentLink").then(function(linkArr) {
+      if (linkArr.length > 0 && linkArr[0].id ==="d:a6uu8yexul97649zuczu37abf4f") {
+        $('#Section', template).hide();
+        $('#Mark', template).hide();
+      } else {
+        $('#Section', template).show();
+        $('#Mark', template).show();
+      }
+    })
+  };
+
+  function documentKindHandler() {
+    if (individual.hasValue('v-s:hasDocumentKind', new veda.IndividualModel('d:2fb47ad2cca5420686f5722cbadaee51') )) {
+      $('#Section', template).hide();
+      $('#Mark', template).hide();
+    } else {
+      $('#Section', template).show();
+      $('#Mark', template).show();
+    }
+  }
+  function addBackwardProperty() {
+    if (individual.hasValue('v-s:backwardTarget')) {
+      individual["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasTechnicalDocument")];
+    }
+  }
+  documentKindHandler();
+  individual.on('v-s:hasDocumentKind', documentKindHandler);
+  individual.on("v-s:hasLifecycleStage", lifeCycleStage);
+  individual.on("beforeSave", addBackwardProperty);
+  template.one("remove", function () {
+    individual.off("v-s:hasLifecycleStage", lifeCycleStage);
+    individual.off('v-s:hasDocumentKind', documentKindHandler);
+    individual.off('beforeSave', addBackwardProperty);
+  });
+  
+  
+//# sourceURL=gen:TechnicalDocumentTemplate_post
+</script>
+    """ ;
+.
+

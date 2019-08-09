@@ -1,0 +1,457 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-representativeCost-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Представительские расходы. Схема"@ru ;
+  rdfs:label "GEN ontology. Representative costs. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ КЛАССЫ --
+
+#-----------------------------------------------------Представительские расходы
+gen:RepresentativeCosts
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:Activity ;
+  rdfs:subClassOf v-s:Initiative ;
+  rdfs:subClassOf v-s:Labeled ;
+  v-s:labelPattern "{@.v-s:goal} - {@.v-s:dateFrom} - {@.v-s:dateTo}" ;
+  rdfs:label "Представительские расходы"@ru ;
+  rdfs:label "RepresentativeCosts"@en ;
+  v-ui:hasTemplate gen:RepresentativeCostsTemplate ;
+.
+mnd-s:TS_RepresentativeCosts
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:defaultTemplate mnd-s:RepresentativeCostsTemplate ;
+  v-s:loadPriority 10 ;
+.
+#-----Держатель бюджета
+#v-s:stakeholder
+mnd-s:PS_stakeholder_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:stakeholder ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  #d:mondi_position_70013758 Генеральный дир
+  #d:mondi_position_71017819 Директор по лесообеспечению
+  #d:mondi_position_71017804 Технический дир
+  #d:mondi_position_71020115 Нач УЗ
+  #d:mondi_position_71018870 Дир по производству
+  #d:mondi_position_71019086 Дир по персоналу
+  #d:mondi_position_71015289 Первый зам. ген.директора-финан.директор
+  #d:mondi_position_71024480 Начальник ССБ
+  #d:mondi_position_71017961 Помощник ген.директора-нач.сл.орг.обесп
+  #d:mondi_position_71014492 Начальник управления. Управление логистики и заказов
+  #d:mondi_position_71014055 Начальник управления. Правовое управление
+  #d:mondi_position_71021843 Начальник управления. Управление развития и реконструкции
+  #d:mondi_position_70006692 Главный бухгалтер
+  #d:mondi_position_71014042 Начальник производства. Руководство производства бумаги
+  #d:mondi_position_71014040 Начальник производства. Руководство производства целлюлозы
+  #d:mondi_position_71014260 Начальник производства. Энергетическое производство
+  #d:mondi_position_71024618 Начальник управления. Управление отчетности и контроллинга
+  #d:mondi_position_71017302 Дир. по корпоративным коммуникациям. Управление корпоративных коммуникаций
+  #d:mondi_position_71017956 Начальник управления. Управление промышленной безопасности
+  #d:mondi_position_71024626 Начальник отдела. Отдел сертификации и экологии СЛП 
+  #d:mondi_position_71022628 Зам.дир.поПроизв.-мен.по развит.энергоэф. Директор по производству
+  v-ui:queryPrefix "('@' === 'd:mondi_position_71022628' || '@' === 'd:mondi_position_71017819' || '@'==='d:mondi_position_70013758' || '@'==='d:mondi_position_71017804' || '@'==='d:mondi_position_71020115' || '@'==='d:mondi_position_71018870' || '@'==='d:mondi_position_71019086' || '@'==='d:mondi_position_71015289' || '@'==='d:mondi_position_71024480' || '@'==='d:mondi_position_71017961' || '@'==='d:mondi_position_71014492' || '@'==='d:mondi_position_71014055' || '@'==='d:mondi_position_71021843' || '@'==='d:mondi_position_70006692' || '@'==='d:mondi_position_71014042' || '@'==='d:mondi_position_71014040' || '@'==='d:mondi_position_71014260' || '@'==='d:mondi_position_71024618' || '@'==='d:mondi_position_71017302' || '@'==='d:mondi_position_71017956' || '@'==='d:mondi_position_71024626')"^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:stakeholder для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "v-s:stakeholder property specification for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----Цели
+#v-s:goal
+mnd-s:PS_goal_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:goal ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:goal для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "Property specification v-s:goal for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----Дата начала
+#v-s:dateFrom
+mnd-s:PS_dateFrom_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:dateFrom;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:dateFrom для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "Property specification v-s:dateFrom for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----Дата окончания
+#v-s:dateTo
+mnd-s:PS_dateTo_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:dateTo ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:dateTo для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "Property specification v-s:dateTo for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----Место 
+#v-s:placeDescription
+mnd-s:PS_placeDescription_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:placeDescription  ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:placeDescription для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "Property specification v-s:placeDescription for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----Количество участников
+#v-s:count
+mnd-s:PS_count_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:count ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:count для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "Property specification v-s:count for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----Участники СЛПК
+#v-s:participant
+mnd-s:PS_participant_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:participant ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment' && 'v-s:origin' == 'SAP HR'"^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:participant для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "v-s:participant property specification for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----Сторонние участники
+#v-s:hasThirdPartyParticipant
+mnd-s:PS_hasThirdPartyParticipant_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:hasThirdPartyParticipant ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства v-s:hasThirdPartyParticipant для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "v-s:hasThirdPartyParticipant property specification for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----План мероприятия
+mnd-s:hasRepresentativeCostsEvent
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "План мероприятия"@ru ;
+  rdfs:label "Representative costs event"@en ;
+  rdfs:range mnd-s:RepresentativeCostsEvent ;
+  rdfs:domain mnd-s:RepresentativeCosts ;
+.
+mnd-s:PS_hasRepresentativeCostsEvent_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty mnd-s:hasRepresentativeCostsEvent ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства mnd-s:hasRepresentativeCostsEvent для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "mnd-s:hasRepresentativeCostsEvent property specification for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----Расходы на мероприятие
+mnd-s:hasRepresentativeCostsForEvent
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Расходы на мероприятие"@ru ;
+  rdfs:label "Representative costs for event"@en ;
+  rdfs:range mnd-s:RepresentativeCostsForEvent ;
+  rdfs:domain mnd-s:RepresentativeCosts ;
+.
+mnd-s:PS_hasRepresentativeCostsForEvent_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty mnd-s:hasRepresentativeCostsForEvent ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства mnd-s:hasRepresentativeCostsForEvent для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "mnd-s:hasRepresentativeCostsForEvent property specification for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#v-s:hasPrice
+mnd-s:PS_hasPrice_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:hasPrice ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:hasPrice для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "v-s:hasPrice property specification for mnd-s:RepresentativeCosts class"@en ;
+.
+
+mnd-s:PS_hasPrice_RepresentativeCostsForEvent
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCostsForEvent;
+  v-ui:forProperty v-s:hasPrice;
+  v-ui:minCardinality 1;
+  v-ui:maxCardinality 1;
+.
+  #-----Валюта
+  #v-s:hasCurrency
+
+  #-----Сумма
+  #v-s:sum
+
+#-----Итого на одного человека
+#v-s:hasPricePerUnit
+mnd-s:PS_hasPricePerUnit_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:hasPricePerUnit ; 
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:hasPricePerUnit для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "v-s:hasPricePerUnit property specification for mnd-s:RepresentativeCosts class"@en ;
+.
+      #-----Валюта
+      #v-s:hasCurrency
+
+      #-----Сумма
+      #v-s:sum
+
+#-----Форма оплаты
+#v-s:hasPaymentForm
+mnd-s:PS_property_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty v-s:hasPaymentForm ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:hasPaymentForm для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "v-s:hasPaymentForm property specification for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----Комментарий к оплате
+#rdfs:comment
+
+#-----Необходима предоплата
+mnd-s:isPrepaymentRequired
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain mnd-s:Pass ;
+  rdfs:label "Необходима предоплата"@ru ;
+  rdfs:label "Prepayment required"@en ;
+  rdfs:range xsd:boolean ;
+.
+
+#-----Выдать аванс
+mnd-s:toWhomToGiveAnPrepayment
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Выдать аванс"@ru ;
+  rdfs:label "to whom to give an prepayment"@en ;
+  rdfs:range v-s:Appointment ;
+  rdfs:domain mnd-s:RepresentativeCosts ;
+.
+mnd-s:PS_toWhomToGiveAnPrepayment_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty mnd-s:toWhomToGiveAnPrepayment ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment' && 'v-s:origin' == 'SAP HR'"^^xsd:string ;
+  rdfs:label "Спецификация свойства mnd-s:toWhomToGiveAnPrepayment  для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "mnd-s:toWhomToGiveAnPrepayment  property specification for mnd-s:RepresentativeCosts class"@en ;
+.
+#-----
+mnd-s:hasPricePrepayment
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Сумма аванса"@ru ;
+  rdfs:label "Prepayment"@en ;
+  rdfs:range v-s:Price ;
+  rdfs:domain mnd-s:RepresentativeCosts ;
+.
+mnd-s:PS_hasPricePrepayment_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty mnd-s:hasPricePrepayment ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства mnd-s:hasPricePrepayment для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "Property specification mnd-s:hasPricePrepayment for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----Компенсировать расходы
+mnd-s:toWhomToCompensateRepresentativeCosts
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Компенсировать расходы"@ru ;
+  rdfs:label "to whom to compensate costs"@en ;
+  rdfs:range v-s:Appointment ;
+  rdfs:domain mnd-s:RepresentativeCosts ;
+.
+mnd-s:PS_toWhomToCompensate_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty mnd-s:toWhomToCompensateRepresentativeCosts ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment' && 'v-s:origin' == 'SAP HR'"^^xsd:string ;
+  rdfs:label "Спецификация свойства mnd-s:toWhomToCompensateRepresentativeCosts для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "mnd-s:toWhomToCompensateRepresentativeCosts property specification for mnd-s:RepresentativeCosts class"@en ;
+.
+#-----
+mnd-s:hasPriceCompensate
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Сумма компенсации"@ru ;
+  rdfs:label "Compensate"@en ;
+  rdfs:range v-s:Price ;
+  rdfs:domain mnd-s:RepresentativeCosts ;
+.
+
+#-----Отчет
+mnd-s:representativeCostsReport
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Отчет"@ru ;
+  rdfs:label "Report"@en ;
+  rdfs:range xsd:string ;
+  rdfs:domain mnd-s:RepresentativeCosts ;
+.
+mnd-s:PS_representativeCostsReport_RepresentativeCosts
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCosts ;
+  v-ui:forProperty mnd-s:representativeCostsReport ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства mnd-s:representativeCostsReport для класса mnd-s:RepresentativeCosts"@ru ;
+  rdfs:label "Property specification mnd-s:representativeCostsReport for mnd-s:RepresentativeCosts class"@en ;
+.
+
+#-----------------------------------------------------Сторонние участники
+
+# Класс нужно унаследовать и перенести в зону mnd-s:
+v-s:ThirdPartyParticipant
+  rdf:type owl:Class;
+  rdfs:label "Сторонние участники"@ru ;
+  rdfs:label "Third-party participant"@en ;
+  rdfs:subClassOf v-s:Correspondent;
+  v-ui:hasTemplate mnd-s:ThirdPartyParticipantTemplate ;
+.
+mnd-s:TS_ThirdPartyParticipant
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass mnd-s:ThirdPartyParticipant ;
+  v-ui:defaultTemplate mnd-s:ThirdPartyParticipantTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+#-----Организация
+#v-s:correspondentOrganization
+mnd-s:PS_correspondentOrganization_ThirdPartyParticipant
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass v-s:ThirdPartyParticipant ;
+  v-ui:forProperty v-s:correspondentOrganization ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:correspondentOrganization для класса v-s:ThirdPartyParticipant"@ru ;
+  rdfs:label "v-s:correspondentOrganization property specification for v-s:ThirdPartyParticipant class"@en ;
+.
+
+#-----Сотрудник
+#v-s:correspondentPersonDescription 
+mnd-s:PS_correspondentPersonDescription_ThirdPartyParticipant
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass v-s:ThirdPartyParticipant ;
+  v-ui:forProperty v-s:correspondentPersonDescription ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:correspondentPersonDescription для класса v-s:ThirdPartyParticipant"@ru ;
+  rdfs:label "v-s:correspondentPersonDescription property specification for v-s:ThirdPartyParticipant class"@en ;
+.
+
+#------------------------------------------------------План мероприятия
+mnd-s:RepresentativeCostsEvent
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:Action ;
+  rdfs:label "План мероприятия"@ru ;
+  rdfs:label "Representative costs event"@en ;
+.
+#-----Ответственный 
+#v-s:responsible
+mnd-s:PS_responsible_RepresentativeCostsEvent
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCostsEvent ;
+  v-ui:forProperty v-s:responsible ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 1 ;
+  v-ui:queryPrefix "(('rdf:type'=='v-s:Appointment' )&& ('v-s:origin'=='sap hr' || 'v-s:origin'=='Internal'|| 'v-s:origin'=='External' || 'v-s:origin'=='Group' )) || (('rdf:type'=='v-s:Position') && ( 'v-s:origin'=='Role'))"^^xsd:string ;
+  v-ui:tooltip "Необязательно к заполнению, единичное значение. Ссылка на объект класса Назначение."@ru ;
+  v-ui:tooltip "Non-required, simple value. Link to instance of Appointment class"@en ;
+  rdfs:label "Спецификация свойства v-s:responsible для класса mnd-s:RepresentativeCostsEvent"@ru ;
+  rdfs:label "v-s:responsible property specification for mnd-s:RepresentativeCostsEvent class"@en ;
+.
+
+#-----Дата окончания 
+#v-s:dateTo
+mnd-s:PS_dateTo_RepresentativeCostsEvent
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCostsEvent ;
+  v-ui:forProperty v-s:dateTo ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:dateTo для класса mnd-s:RepresentativeCostsEvent"@ru ;
+  rdfs:label "v-s:dateTo property specification for mnd-s:RepresentativeCostsEvent class"@en ;
+.
+
+#-----Мероприятие
+#v-s:description
+mnd-s:PS_description_RepresentativeCostsEvent
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass mnd-s:RepresentativeCostsEvent ;
+  v-ui:forProperty v-s:description ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:description для класса mnd-s:RepresentativeCostsEvent"@ru ;
+  rdfs:label "v-s:description property specification for mnd-s:RepresentativeCostsEvent class"@en ;
+.
+
+#---------------------------------------------------Расходы на мероприятие
+mnd-s:RepresentativeCostsForEvent
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:Financial ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:label "Расходы на мероприятие"@ru ;
+  rdfs:label "Representative costs Ffor event"@en ;
+.
+
+#-----Услуга
+mnd-s:hasRepresentativeCostsKind
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Услуга"@ru ;
+  rdfs:label "Service"@en ;
+  rdfs:range mnd-s:RepresentativeCostsKind ;
+  rdfs:domain mnd-s:RepresentativeCostsForEvent ;
+.
+mnd-s:PS_hasRepresentativeCostsKind_RepresentativeCostsForEvent
+  rdf:type v-ui:ObjectPropertySpecification  ;
+  v-ui:forClass mnd-s:RepresentativeCostsForEvent ;
+  v-ui:forProperty mnd-s:hasRepresentativeCostsKind;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "'rdf:type'=='mnd-s:RepresentativeCostsKind' && '@'!='d:0f8d646b838241bc9b3d21dbc90dbb10' && '@'!='d:28abaa9c0ba844e39a65fb805bea9dcd' && '@'!='d:02069ebf23be40eeb29319621238dd5c' && '@'!='d:q6fdo0rwa6ytldrcjbp53djlnh6w0l5e'"^^xsd:string ;
+  rdfs:label "Спецификация свойства mnd-s:hasRepresentativeCostsKind для класса mnd-s:RepresentativeCostsForEvent"@ru ;
+  rdfs:label "mnd-s:hasRepresentativeCostsKind property specification for mnd-s:RepresentativeCostsForEvent class"@en ;
+.
+#-----Цена
+#v-s:hasPrice
+    
+    #v-s:hasCurrency
+    #v-s:sum

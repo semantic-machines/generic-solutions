@@ -1,0 +1,72 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-technicalDocument-application>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Технический документ. Приложение"@ru ;
+  rdfs:label "GEN ontology. Technical document. Application"@en ;
+  v-s:loadPriority 20 ;
+.
+
+# ------------------------------------------------------------
+
+gen:TechnicalDocumentApplication
+  rdf:type v-s:Application ;
+  rdfs:label "Технические документы"@ru ;
+  rdfs:label "Technical documents"@en ;
+  rdfs:comment "Порядок в документах - порядок в работе."@ru ;
+  rdfs:comment "Documents in order - work in order."@en ;
+  v-s:shortLabel "Технические документы"@ru ;
+  v-s:shortLabel "Technical documents"@en ;
+  v-s:hasImage gen:TechnicalDocumentImage ;
+  v-s:hasIcon gen:TechnicalDocumentIcon ;
+  v-ui:hasTemplate v-s:ApplicationTemplate ;
+
+  v-s:hasCreate gen:TechnicalDocumentCreate ;
+#  v-s:hasCreate gen:BuildingCreate ;
+  
+#  v-s:hasRegistry gen:TechnicalDocumentSearch;
+#  v-s:hasRegistry gen:BuildingSearch;
+
+  v-s:description """
+Приложение предназначено для формирования архива технической документации предприятия.
+
+**Приложение обеспечивает возможность:**
+- Оформлять технические документы, создавать их версии, указывать актуальность версий, отслеживать историю изменений.
+- Формировать комплекты технической документации для упорядоченного хранения.
+- Формировать запросы в архив технической документации.
+  """@ru;
+  v-s:description """
+The application is designed to form an archive of technical documentation.
+
+**The application allows to:**
+- Register technical documents, their versions, indicate version relevance, track a history of changes.
+- Store sets of technical documentation in a structured manner.
+- Issue requests to the technical archive.
+  """@en;
+
+# v-s:attachment gen:OF_37_2_Tekhnicheskie_dokumenty_pdf ;
+.
+
+gen:TechnicalDocumentImage
+  a v-s:File ;
+  v-s:fileUri "technical-document.jpg"^^xsd:string ;
+  v-s:fileName "technical-document.jpg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.
+gen:TechnicalDocumentIcon
+  a v-s:File ;
+  v-s:fileUri "technical-document.svg"^^xsd:string ;
+  v-s:fileName "technical-document.svg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.

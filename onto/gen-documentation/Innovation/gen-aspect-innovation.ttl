@@ -1,0 +1,74 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix : <http://semantic-machines.com/veda/mondi-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix td: <http://semantic-machines.com/veda/test-data/> .
+@prefix s-wf: <http://semantic-machines.com/veda/simple-workflow-base/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+
+<http://semantic-machines.com/veda/gen-schema-Innovations-application>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Приложение. Инновации"@ru ;
+  rdfs:label "GEN ontology. Application. Innovations"@en ;
+  v-s:loadPriority 10 ;
+.
+
+# ------------------------------------------------------------ Приложение --
+
+gen:InnovationsManagementApplication
+  rdf:type v-s:Application ;
+  rdfs:label "Инновации"@ru ;
+  rdfs:label "Innovations"@en ;
+  rdfs:comment "Создаем новое. Каждый день."@ru ;
+  rdfs:comment "Innovative. Every day."@en ;
+  v-s:shortLabel "Инновации"@ru ;
+  v-s:shortLabel "Innovations"@en ;
+
+  v-s:hasCreate gen:InnovationCreate ;
+#  v-s:hasRegistry gen:IdeaSearch ;
+
+  v-s:hasImage gen:InnovationsManagementImage  ;
+  v-s:hasIcon gen:InnovationsManagementIcon  ;
+  v-ui:hasTemplate v-s:ApplicationTemplate ;
+
+  v-s:description """
+Приложение предназначено для совершенствования предприятия с использованием инновационного потенциала собственных сотрудников.
+
+**Приложение обеспечивает возможность:**
+- Структурировано оформить инновационные идеи для последующего анализа, учета экономических показателей и рисков.
+- Принимать решения о внедрении, отсрочке внедрения или отклонении идей.
+- Контролировать результаты внедрения и выплату вознаграждения.
+  """@ru;
+  v-s:description """
+The application is designed to improve the enterprise using the innovative potential of employees.
+
+**The application allows to:**
+- Submit innovative ideas to perform further analysis, account economy effects, identify risks.
+- Run a process to decide whether idea should be implemented, postponed or rejected.
+- Monitor results of implementation and reward payment.
+  """@en;
+
+#  v-s:attachment mnd-s:OF_03_Innovaczii_pdf ;
+.
+
+# ------------------------------------------------------------ ИЗОБРАЖЕНИЯ --
+gen:InnovationsManagementImage
+  a v-s:File ;
+  v-s:fileUri "innovations.jpg"^^xsd:string ;
+  v-s:fileName "innovations.jpg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.
+gen:InnovationsManagementIcon
+  a v-s:File ;
+  v-s:fileUri "innovations.svg"^^xsd:string ;
+  v-s:fileName "innovations.svg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.

@@ -1,0 +1,33 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/mondi-schema/>.
+@prefix d: <http://semantic-machines.com/veda/veda-data/>.
+
+<http://semantic-machines.com/veda/gen-individual-BusinessTripReasonDeviationOnExpenses>
+  rdf:type owl:Ontology ;
+  rdfs:label "Причина отклонения по расходам"@ru ;
+  rdfs:label "Reason deviation on expenses"@en ;
+  v-s:loadPriority 10 ;
+.
+
+gen:BusinessTripReasonDeviationOnExpenses
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:label "Причина отклонения по расходам"@ru ;
+  rdfs:label "Reason deviation on expenses"@en ;
+.
+
+#---------------------------------------------------------------------
+d:mzafmsd6da53vqfimut3v8ki9t
+  a gen:BusinessTripReasonDeviationOnExpenses;
+  rdfs:label "Превышение лимитов"@ru ;
+  rdfs:label "Превышение лимитов"@en ;
+.
+d:ycxpay8s3fr6l5c75u2g6fgt3q
+  a gen:BusinessTripReasonDeviationOnExpenses;
+  rdfs:label "Оплата штрафов, пени"@ru ;
+  rdfs:label "Оплата штрафов, пени"@en ;
+.

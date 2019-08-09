@@ -1,0 +1,67 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-representativeCost-application>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Представительские расходы. Приложение"@ru ;
+  rdfs:label "GEN ontology. Representative costs. Application"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------
+gen:RepresentativeCostsApplication
+  rdf:type v-s:Application ;
+  rdfs:label "Представительские расходы"@ru ;
+  rdfs:label "Representative costs"@en ;
+  rdfs:comment "Точность в расчётах. Без проблем."@ru ;
+  rdfs:comment "Accuracy in figures. Easy."@en ;
+  v-s:shortLabel "Представительские расходы"@ru ;
+  v-s:shortLabel "Representative costs"@en ;
+  v-s:hasImage gen:RepresentativeCostsApplicationImage ;
+  v-s:hasIcon gen:RepresentativeCostsApplicationIcon ;
+  v-ui:hasTemplate v-s:ApplicationTemplate ;
+
+  v-s:hasCreate gen:RepresentativeCostsCreate ;
+#  v-s:hasRegistry gen:RepresentativeCostsSearch ;
+
+  v-s:description """
+Приложение предназначено для ведения формализованного учета затрат на проведение различных мероприятий (представительские расходы).
+
+**Приложение обеспечивает возможность:**
+- Оформить план мероприятий с указанием держателей бюджета, ответственных за проведение, участников, в том числе сотрудников внешних организаций.
+- Рассчитать и учесть расходы на проведение, в том числе в пересчете на одного участника.
+- Отчитаться о фактических затратах.
+  """@ru;
+  v-s:description """
+The application is designed to account representative costs for various events.
+
+**The application allows to:**
+- Issue an event plan with indication of the budget holders, responsibles, participants, including employees of external organizations.
+- Calculate and account the costs of event (total and per participant).
+- Report actual costs.
+  """@en;
+
+#  v-s:attachment gen:OF_20_Predstavitelskie_raskhody_pdf ;
+.
+
+gen:RepresentativeCostsApplicationImage
+  a v-s:File ;
+  v-s:fileUri "representative-costs.jpg"^^xsd:string ;
+  v-s:fileName "representative-costs.jpg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.
+gen:RepresentativeCostsApplicationIcon
+  a v-s:File ;
+  v-s:fileUri "representative-costs.svg"^^xsd:string ;
+  v-s:fileName "representative-costs.svg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.
