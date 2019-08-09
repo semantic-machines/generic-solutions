@@ -112,7 +112,6 @@ gen:LayoutTemplate
           </li>
           <li about="v-cal:TasksCalendar" data-template="v-cal:FunctionCalendarIndicatorTemplate"></li>
           <li about="v-ft:Inbox" data-template="v-ft:FunctionTasksIndicatorTemplate"></li>
-          <li about="v-s:Drafts" data-template="v-ui:DraftsIndicatorTemplate"></li>
           <li id="user-info"></li>
           <li id="menu" class="dropdown" about="gen:MainMenu" data-template="v-s:MenuTemplate"></li>
           <li about="v-ui:AvailableLanguage" data-template="v-ui:LanguageSwitchTemplate"></li>
@@ -177,7 +176,6 @@ gen:MainMenu
   v-s:menuItem v-s:Completed ;
   v-s:menuItem v-s:Divider ;
   v-s:menuItem v-s:Administration ;
-  v-s:menuItem v-s:Clear ;
   v-s:menuItem v-s:Divider ;
   v-s:menuItem v-s:Exit ;
 .
