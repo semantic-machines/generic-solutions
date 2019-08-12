@@ -138,40 +138,27 @@ gen:InternalDocumentTemplate
       riot.route("#/" + InternalDocument.id, false);
     });
   });
-  function processHandler() {
-    if (individual.hasValue("v-wf:isProcess")
-      && individual["v-wf:isProcess"][0].hasValue("v-wf:instanceOf")
-      && individual["v-wf:isProcess"][0]["v-wf:instanceOf"][0].id === "s-wf:net_complex_route"
-    ) {
+
+  individual.canUpdate().then(function(canUpdate){
+    if (individual.hasValue("v-wf:isProcess")) {
       $('#send.action', template).remove();
-      // $('#save.action', template).remove();
-      // $('#edit.action', template).remove();
-      $('#delete.action', template).remove();
-    } else if (individual.isNew() || individual.rights['v-s:canUpdate'][0] === true) {
+      //$('#save.action', template).remove();
+    } else if (individual.isNew() || canUpdate) {
       $('#send.action', template).off("click");
       $('#send.action', template).on('click', function () {
-        veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:InternalDocument_ComplexRouteStartForm_Template');
+        veda.Util.send(individual, template, 'gen:InternalDocument_ComplexRouteStartForm_Template');
       });
     } else {
       $('#send.action', template).remove();
-      // $('#save.action', template).remove();
-      // $('#edit.action', template).remove();
-      $('#delete.action', template).remove();
+      $('#save.action', template).remove();
     }
-  }
-  individual.on("afterReset", processHandler);
-  template.one("remove", function () {
-    individual.off("afterReset", processHandler);
-  });
-  processHandler();
-  // Печатные бланки
+  })
+
+ // Печатные бланки
   $('#internalDocument_printBlank', template).on('click', function (e) {
     veda.Util.createReport('gen:InternalDocument_printBlank', individual);
   });
-  if (template.data("mode") == "view" && new Date (2018,10,27) > individual["v-s:created"][0]){
-    $('button#send').hide();
-    $('button#edit').hide();
-  }
+
 </script>
   """
 .
