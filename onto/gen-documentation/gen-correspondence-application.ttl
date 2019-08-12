@@ -32,12 +32,14 @@ gen:CorrespondenceApplication
   v-s:hasIcon gen:CorrespondenceApplicationIcon ;
   v-ui:hasTemplate v-s:ApplicationTemplate ;
 
-  v-s:hasCreate gen:LetterCreate ;
+  
+  v-s:hasCreate gen:IncomingLetterCreate;
+  v-s:hasCreate gen:OutgoingLetterCreate ;
   v-s:hasCreate gen:InternalDocumentCreate ;
   v-s:hasCreate gen:OrganizationCreate ;
 
-#  v-s:hasRegistry gen:IncomingLetterSearch ;
-#  v-s:hasRegistry gen:OutgoingLetterSearch ;
+  v-s:hasRegistry gen:IncomingLetterSearch ;
+  v-s:hasRegistry gen:OutgoingLetterSearch ;
   v-s:hasRegistry gen:InternalDocumentSearch ;
   v-s:hasRegistry gen:OrganizationSearch ;
 
