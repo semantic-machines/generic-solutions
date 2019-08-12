@@ -29,7 +29,7 @@ gen:DecreeSearchBlank
   rdfs:label "Распорядительный документ"@ru ;
   rdfs:label "Decree"@en ;
   v-fc:targetType gen:Decree ;
-  stg:hasDecreeRegistrationRecord gen:DecreeRegistrationRecordSearchBlank ;
+  gen:hasDecreeRegistrationRecord gen:DecreeRegistrationRecordSearchBlank ;
 .
 gen:DecreeRegistrationRecordSearchBlank
   rdf:type v-fc:Blank ;

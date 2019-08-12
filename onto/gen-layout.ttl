@@ -49,7 +49,6 @@ gen:LayoutTemplate
   rdf:type v-ui:ClassTemplate ;
   rdfs:label "Шаблон для класса Главная страница"@ru ;
   rdfs:label "Template for Main page class"@en ;
-  v-ui:forClass gen:MainPage ;
   v-ui:template """
 <script>
   // Markdown

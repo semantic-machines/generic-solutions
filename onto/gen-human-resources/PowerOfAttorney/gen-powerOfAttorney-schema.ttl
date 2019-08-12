@@ -180,7 +180,7 @@ gen:PowerOfAttorneyRegistrationRecord
   rdfs:subClassOf v-s:Labeled ;
   rdfs:label "Регистрационная запись"@ru ;
   rdfs:label "Registration record"@en ;
-  v-ui:hasTemplate mnd-s:PowerOfAttorneyRegistrationRecordTemplate ;
+  v-ui:hasTemplate gen:PowerOfAttorneyRegistrationRecordTemplate ;
   v-s:labelPattern "{@.v-s:registrationDate}";
 .
 
