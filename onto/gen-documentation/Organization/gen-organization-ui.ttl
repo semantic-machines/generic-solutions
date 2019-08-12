@@ -21,9 +21,9 @@
 
 gen:OrganizationTemplate
   rdf:type v-ui:ClassTemplate ;
-  v-ui:forClass gen:Organization ;
-  rdfs:label "Шаблон для класса gen:Organization"@ru ;
-  rdfs:label "Template for gen:Organization class"@en ;
+  v-ui:forClass v-s:Organization ;
+  rdfs:label "Шаблон для класса v-s:Organization"@ru ;
+  rdfs:label "Template for v-s:Organization class"@en ;
   v-ui:template """
 <script>
   var _class = new veda.IndividualModel("gen:Subsidiary");
@@ -275,7 +275,7 @@ gen:OrganizationTemplate
       modal.modal("hide").remove();
     });
     var cntr = $(".modal-body", modal),
-        _class = new veda.IndividualModel("gen:Subsidiary"),
+        _class = new veda.IndividualModel("v-s:Subsidiary"),
         subsidiary = new veda.IndividualModel(),
         tmpl = new veda.IndividualModel("gen:SubsidiaryTemplate");
     subsidiary["rdf:type"] = [_class];

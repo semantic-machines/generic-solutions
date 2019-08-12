@@ -17,15 +17,9 @@
 
 # ------------------------------------------------------------ БЛАНКИ --
 
-gen:OrganizationBlank
-  rdf:type v-fc:Blank ;
-  rdfs:label "Организация"@ru ;
-  rdfs:label "Organization"@en ;
-  v-fc:targetType gen:Organization ;
-. 
 gen:OrganizationSearchBlank
   rdf:type v-fc:Blank ;
   rdfs:label "Организация"@ru ;
   rdfs:label "Organization"@en ;
-  v-fc:targetType gen:Organization ;
-.  
+  v-fc:targetType v-s:Organization ;
+.

@@ -17,9 +17,12 @@
 
 # ------------------------------------------------------------ КЛАССЫ --
 
-gen:Organization
+v-s:Organization
   rdf:type owl:Class ;
-  rdfs:subClassOf v-s:Organization ;
+  rdfs:subClassOf v-s:OrganizationUnit ;
+  rdfs:subClassOf v-s:ClassifiedRus ;
+  rdfs:subClassOf v-s:Contractual ;
+  rdfs:subClassOf v-s:Journaling ;
   rdfs:label "Организация"@ru ;
   rdfs:label "Organization"@en ;
   v-ui:hasModel v-s:OrganizationUnitModel ;
@@ -27,9 +30,11 @@ gen:Organization
 .
 
 # ------------------------------------------------------------
-gen:Subsidiary
+v-s:Subsidiary
   rdf:type owl:Class ;
-  rdfs:subClassOf v-s:Subsidiary ;
+  rdfs:subClassOf v-s:Organization ;
+  rdfs:subClassOf v-s:Department ;
+  rdfs:subClassOf v-s:BackwardLink ;
   rdfs:label "Филиал"@ru ;
   rdfs:label "Subsidiary"@en ;
   v-ui:hasModel v-s:OrganizationUnitModel ;
