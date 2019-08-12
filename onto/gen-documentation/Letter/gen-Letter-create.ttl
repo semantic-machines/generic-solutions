@@ -17,11 +17,24 @@
   rdfs:label "GEN ontology. Letter. Create"@en ;
   v-s:loadPriority 20 ;
 .
-#---------------Create----------------------
-gen:LetterCreate
+# -------------------------------------------------------- CREATE --
+# ----------------------------------------------------Входящее письмо --
+gen:IncomingLetterCreate
   a v-fc:Create ;
-  rdfs:label "Письмо"@ru ;
-  rdfs:label "Letter"@en ;
-  v-fc:hasBlank gen:LetterBlank ;
-  v-s:recipient gen:RecipientCorrespondentBlank ;
+  rdfs:label "Входящее письмо"@ru ;
+  rdfs:label "Incoming Letter"@en ;
+  v-fc:hasBlank gen:IncomingLetterBlank ;
+  v-s:recipient gen:CorrespondentOrgBlank;
 .
+
+# ----------------------------------------------------Исходящее письмо --
+gen:OutgoingLetterCreate
+  a v-fc:Create ;
+  rdfs:label "Исходящее письмо"@ru ;
+  rdfs:label "Outgoing Letter"@en ;
+  v-fc:hasBlank gen:OutgoingLetterBlank ;
+  v-s:sender gen:CorrespondentOrgBlank ;
+.
+
+
+

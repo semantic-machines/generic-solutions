@@ -18,6 +18,7 @@
 .
 # ------------------------------------------------------------ КЛАССЫ --
 
+# ------------------------------------------------------------ Письмо --
 gen:Letter
   rdf:type owl:Class ;
   rdfs:subClassOf v-s:Letter ;
@@ -27,8 +28,32 @@ gen:Letter
   v-ui:hasTemplate gen:LetterTemplate ;
 .
 
+# ------------------------------------------------------ Входящее письмо --
+gen:IncomingLetter
+  rdf:type owl:Class ;
+  rdfs:subClassOf gen:Letter ;
+  v-s:labelPattern "{@.v-s:sender.v-s:correspondentOrganization.v-s:shortLabel} (№{@.v-s:hasLetterRegistrationRecordSender.v-s:registrationNumber}, {@.v-s:hasLetterRegistrationRecordSender.v-s:registrationDate}) -> {@.v-s:recipient.v-s:correspondentOrganization.v-s:shortLabel} (№{@.v-s:hasLetterRegistrationRecordRecipient.v-s:registrationNumber}, {@.v-s:hasLetterRegistrationRecordRecipient.v-s:registrationDate}) - {@.v-s:hasDocumentKind.v-s:shortLabel} - {@.v-s:description}" ;
+  rdfs:label "Входящее письмо"@ru ;
+  rdfs:label "Incoming Letter"@en ;
+  v-ui:hasTemplate gen:LetterTemplate ;
+.
 
-#--------------СПЕЦИФИКАЦИИ-----------------------
+# ------------------------------------------------------ Исходящее письмо --
+gen:OutgoingLetter
+  rdf:type owl:Class ;
+  rdfs:subClassOf gen:Letter ;
+  v-s:labelPattern "{@.v-s:sender.v-s:correspondentOrganization.v-s:shortLabel} (№{@.v-s:hasLetterRegistrationRecordSender.v-s:registrationNumber}, {@.v-s:hasLetterRegistrationRecordSender.v-s:registrationDate}) -> {@.v-s:recipient.v-s:correspondentOrganization.v-s:shortLabel} (№{@.v-s:hasLetterRegistrationRecordRecipient.v-s:registrationNumber}, {@.v-s:hasLetterRegistrationRecordRecipient.v-s:registrationDate}) - {@.v-s:hasDocumentKind.v-s:shortLabel} - {@.v-s:description}" ;
+  rdfs:label "Исходящее письмо"@ru ;
+  rdfs:label "Outgoing Letter"@en ;
+  v-ui:hasTemplate gen:LetterTemplate ;
+.
+
+
+
+
+
+
+# -------------------------------------------------------- СПЕЦИФИКАЦИИ --
 gen:PS_transportOrganization_Delivery
   rdf:type v-ui:PropertySpecification ;
   v-ui:forClass v-s:Delivery ;
@@ -39,7 +64,7 @@ gen:PS_transportOrganization_Delivery
   rdfs:label "Спецификация свойства v-s:transportOrganization для класса v-s:Delivery"@ru ;
   rdfs:label "v-s:transportOrganization property specification for v-s:Delivery class"@en ;
 .
-#--------------СПЕЦИФИКАЦИИ-----------------------
+
 gen:PS_DeliveryMethod_Delivery
   rdf:type v-ui:PropertySpecification ;
   v-ui:forClass v-s:Delivery ;
@@ -50,3 +75,4 @@ v-ui:queryPrefix " 'rdf:type' == 'v-s:DeliveryMethod' && 'v-s:transportOrganizat
   rdfs:label "Спецификация свойства v-s:DeliveryMethod для класса v-s:Delivery"@ru ;
   rdfs:label "v-s:DeliveryMethod property specification for v-s:Delivery class"@en ;
 .
+

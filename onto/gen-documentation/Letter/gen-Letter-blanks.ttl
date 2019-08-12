@@ -17,18 +17,46 @@
   rdfs:label "GEN ontology. Letter. Blanks"@en ;
   v-s:loadPriority 20 ;
 .
-#---------------Бланки----------------------
-gen:LetterBlank
+#--------------------------------------------------------БЛАНКИ----------------------
+#--------------------------------------------------Входящее письмо----------------------
+gen:IncomingLetterBlank
   a v-fc:Blank ;
-  rdfs:label "Письмо"@ru ;
-  rdfs:label "Letter"@en ;
-  v-fc:targetType gen:Letter ;
-  v-s:recipient gen:RecipientCorrespondentBlank ;
+  rdfs:label "Входящее письмо"@ru ;
+  rdfs:label "Incoming letter"@en ;
+  v-fc:targetType gen:IncomingLetter ;
+  v-s:recipient gen:CorrespondentOrgBlank ;
 .
-gen:RecipientCorrespondentBlank
+gen:IncomingLetterSearchBlank
   a v-fc:Blank ;
-  rdfs:label "Корреспондент получатель ОБЩ"@ru ;
-  rdfs:label "Correspondent Recipient GEN"@en ;
+  rdfs:label "Входящее письмо"@ru ;
+  rdfs:label "Incoming letter"@en ;
+  v-fc:targetType gen:IncomingLetter ;
+  v-s:recipient gen:CorrespondentOrgBlank ;
+.
+#--------------------------------------------------Исходящее письмо----------------------
+gen:OutgoingLetterBlank
+  a v-fc:Blank ;
+  rdfs:label "Исходящее письмо"@ru ;
+  rdfs:label "Outgoing letter"@en ;
+  v-fc:targetType gen:OutgoingLetter ;
+  v-s:sender gen:CorrespondentOrgBlank ;
+.
+gen:OutgoingLetterSearchBlank
+  a v-fc:Blank ;
+  rdfs:label "Исходящее письмо"@ru ;
+  rdfs:label "Outgoing letter"@en ;
+  v-fc:targetType gen:OutgoingLetter ;
+  v-s:sender gen:CorrespondentOrgBlank ;
+.
+#---------------------------------------------------Корреспондент----------------------
+gen:CorrespondentOrgBlank
+  a v-fc:Blank ;
+  rdfs:label "Корреспондент"@ru ;
+  rdfs:label "Correspondent"@en ;
   v-fc:targetType v-s:Correspondent ;
-  v-s:correspondentOrganization d:org_RU1121016110_1 ;
+  v-s:correspondentOrganization cfg:org_Veda ;
 .
+
+
+
+
