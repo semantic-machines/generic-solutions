@@ -1,0 +1,35 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix : <http://semantic-machines.com/veda/mondi-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix td: <http://semantic-machines.com/veda/test-data/> .
+@prefix s-wf: <http://semantic-machines.com/veda/simple-workflow-base/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+
+<http://semantic-machines.com/veda/gen-aspect-development-and-reconstruction>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Общие решения. Реконструкция и развитие. Аспект"@ru ;
+  rdfs:label "Gen ontology. Development and reconstruction aspect"@en ;
+  v-s:loadPriority 10 ;
+.
+
+gen:DevelopmentAndReconstructionAspect
+  rdf:type v-s:Aspect ;
+  rdfs:label "Развитие и реконструкция"@ru ;
+  rdfs:label "Development and reconstruction"@en ;
+  rdfs:comment "Создаем новое. Каждый день."@ru ;
+  rdfs:comment "Create. Every day."@en ;
+  v-s:shortLabel "Развитие и реконструкция"@ru ;
+  v-s:shortLabel "Development and reconstruction"@en ;
+  v-ui:hasTemplate v-s:AspectTemplate ;
+  v-s:hasApplication gen:InnovationsManagementApplication ;
+  v-s:hasApplication gen:TechnicalDocumentApplication ;
+.

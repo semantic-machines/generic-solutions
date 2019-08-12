@@ -32,9 +32,6 @@ gen:DocumentationManagementAspect
   v-s:hasApplication gen:CorrespondenceApplication;
   v-s:hasApplication gen:LocalRegulatoryDocumentApplication;
   v-s:hasApplication gen:BusinessTripApplication ;
-  v-s:hasApplication gen:PowerOfAttorneyApplication ;
-  v-s:hasApplication gen:InnovationsManagementApplication ;
-  v-s:hasApplication gen:TechnicalDocumentApplication ;
   v-s:hasApplication gen:RepresentativeCostsApplication ;	
 .
 

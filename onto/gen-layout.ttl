@@ -13,27 +13,43 @@
 
 <http://semantic-machines.com/veda/gen-layout>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология разметки Generic-solutions"@ru ;
-  rdfs:label "Generic-solutions layout ontology"@en ;
+  rdfs:label "Онтология разметки Общие решения"@ru ;
+  rdfs:label "Gen layout ontology"@en ;
   #owl:versionInfo "0.2" ;
   v-s:loadPriority 10 ;
 .
 
-# LAYOUT ------------------------------------------------------------
+gen:UpBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Вверх"@ru ;
+  rdfs:label "Up"@en ;
+.
+
+cfg:VedaSystemAccount
+  rdf:type v-s:Account ;
+  v-s:author cfg:VedaSystem ;
+  v-s:login "veda" ;
+  v-s:password "4d1af0e10dab5fe07ae8d23bad5650b46804fb110cfb92f119213bc86aa03d34" ;
+  v-s:owner cfg:VedaSystem ;
+  rdfs:label "VedaSystem. Учетная запись"@ru ;
+  rdfs:label "VedaSystem. Account"@en ;
+#  v-s:mailbox "DocFlow.Syktyvkar@mondigroup.com" ;
+.
+
+### MAIN PAGE ###
 
 gen:Layout
   rdf:type rdfs:Resource ;
-  rdfs:label "Макет общие решения Веды"@ru ;
-  rdfs:label "Generic solutions layout"@en ;
-  rdfs:comment "ОБЩИЕ РЕШЕНЯ"@ru ;
-  rdfs:comment "GEN"@en ;
+  rdfs:label "Главный макет"@ru ;
+  rdfs:label "Main layout"@en ;
   v-ui:hasTemplate gen:LayoutTemplate ;
 .
 
 gen:LayoutTemplate
   rdf:type v-ui:ClassTemplate ;
-  rdfs:label "Шаблон макета"@ru ;
-  rdfs:label "Layout template"@en ;
+  rdfs:label "Шаблон для класса Главная страница"@ru ;
+  rdfs:label "Template for Main page class"@en ;
+  v-ui:forClass gen:MainPage ;
   v-ui:template """
 <script>
   // Markdown
@@ -82,7 +98,7 @@ gen:LayoutTemplate
         <button type="button" class="btn btn-default navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
           <span class="glyphicon glyphicon-menu-hamburger"></span>
         </button>
-        <a class="navbar-brand" style="margin-top:0px;" href="#/gen:Welcome" about="gen:Logo" data-template="v-ui:ImageTemplate"></a>
+        <a class="navbar-brand" style="margin-top:-10px" href="#/gen:Main" about="gen:Logo" data-template="v-ui:ImageTemplate"></a>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -103,8 +119,8 @@ gen:LayoutTemplate
             <script>
               template.tooltip({
                 container: template,
-                placement: "bottom",
                 trigger: "hover",
+                placement: "bottom",
                 title: individual["rdfs:label"].join(" ")
               });
             </script>
@@ -113,7 +129,7 @@ gen:LayoutTemplate
           <li about="v-cal:TasksCalendar" data-template="v-cal:FunctionCalendarIndicatorTemplate"></li>
           <li about="v-ft:Inbox" data-template="v-ft:FunctionTasksIndicatorTemplate"></li>
           <li id="user-info"></li>
-          <li id="menu" class="dropdown" about="gen:MainMenu" data-template="v-s:MenuTemplate"></li>
+          <li id="menu" class="dropdown" about="mnd-s:MainMenu" data-template="v-s:MenuTemplate"></li>
           <li about="v-ui:AvailableLanguage" data-template="v-ui:LanguageSwitchTemplate"></li>
           <li style="padding-left:10px; margin-left:10px; border-left:1px solid #ddd;" about="@" data-template="v-ui:FullWidthSwitchTemplate"></li>
         </ul>
@@ -121,42 +137,252 @@ gen:LayoutTemplate
     </div>
   </nav>
 
+  <div class="go-up text-primary" id="to-top">&uarr; <span about="gen:UpBundle" property="rdfs:label"></span></div>
+
   <div id="main"></div>
 
-  <nav id="copyright" class="navbar-fixed-bottom container clearfix hidden-print">
+  <nav id="copyright" class="navbar-fixed-bottom container clearfix">
     <div class="pull-left">
       <span><span property="v-s:appBuildVersion"></span> <span property="v-s:appBuildDate"></span></span>&nbsp;
     </div>
-    <div class="pull-right text-muted" about="v-s:vedaInfo">
-      <div>
-        <span about="v-s:PoweredBy" property="rdfs:label"></span>
-        <a about="v-s:VedaPlatform" property="rdfs:label"></a>.
-        &copy; <a href="http://www.semantic-machines.com" about="v-s:SemanticMachines" property="rdfs:label"></a>.
-        <span about="v-s:License" property="rdfs:label"></span>
-        <a alt="GNU General Public License version 3 official text" href="http://www.gnu.org/licenses/gpl.html">GPLv3.</a>
-      </div>
+    <div class="pull-right text-muted">
+      <span about="v-s:PoweredBy" property="rdfs:label"></span>
+      <a about="v-s:VedaPlatform" property="rdfs:label" href="https://github.com/semantic-machines/veda"></a>.
+      &copy; <a href="https://semantic-machines.com" about="v-s:SemanticMachines" property="rdfs:label"></a>.
+      <span about="v-s:License" property="rdfs:label"></span>
+      <a alt="GNU General Public License version 3 official text" href="http://www.gnu.org/licenses/gpl.html">GPLv3.</a>
     </div>
   </nav>
 </div>
 <script>
-  document.title = new veda.IndividualModel("v-s:vedaInfo").toString();
-
+  var vedaInfo = new veda.IndividualModel("v-s:vedaInfo");
+  vedaInfo.load().then(function (vedaInfo) {
+    document.title = vedaInfo.toString();
+  });
   // Render user
   var userInfo = $("#user-info", template);
-  var userInfoTmpl = new veda.IndividualModel("v-ui:IconPersonTemplate");
+  var userInfoTmpl = "v-ui:IconPersonTemplate";
   userInfo.empty();
   veda.user.present(userInfo, userInfoTmpl);
+
+  if ($(window).scrollTop()>="250") $("#to-top", template).fadeIn("normal");
+  $(window).scroll(function() {
+    if ($(window).scrollTop()<="250") $("#to-top", template).fadeOut("normal");
+    else $("#to-top", template).fadeIn("normal");
+  });
+  $("#to-top", template).click(function(){$("html,body").animate({scrollTop:0},"normal");});
 
   template.on("click", ".table-sortable > thead > tr:last-child th", function (e) {
     $(this).closest("table").tableSortable(this);
   });
 
-  //# sourceURL=gen:LayoutTemplate
+//# sourceURL=mnd-s:MainTemplate_post
 </script>
   """ ;
 .
 
-# IMAGES ---------------------------------------------------------------
+### WELCOME ###
+
+gen:Main
+  rdf:type v-s:Aspect ;
+  rdfs:label "Главная страница"@ru ;
+  rdfs:label "Main page"@en ;
+  v-s:hasBusinessAspect gen:DocumentationManagementAspect ;
+  v-s:hasBusinessAspect gen:DevelopmentAndReconstructionAspect ;
+  v-s:hasBusinessAspect gen:HumanResourcesAspect ;
+  v-ui:hasTemplate gen:MainTemplate ;
+.
+
+gen:MainTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон аспекта gen:Main"@ru ;
+  rdfs:label "gen:Main aspect template"@en ;
+  v-ui:template """
+<div about="@" rel="v-s:hasBusinessAspect" data-limit="1" data-template="gen:AspectTemplate"></div>
+  """ ;
+.
+
+gen:AspectTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон аспекта"@ru ;
+  rdfs:label "Aspect template "@en ;
+  v-ui:template """
+<div>
+  <style>
+    .aspect-links {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .aspect-link-group {
+      flex-grow: 1;
+      border-bottom: 1px solid #555;
+    }
+    .aspect-link-group * {
+      flex-grow: 1;
+    }
+    .aspect-link-group .btn-link {
+      color: #555;
+      border-radius: 6px 6px 0 0!important;
+    }
+    .aspect-link-group .btn-link:hover {
+      color: #555;
+      text-decoration: underline;
+    }
+    .aspect-link-group .btn-link.active {
+      color: #fff;
+      background-color: #555;
+      border-color: #555;
+      pointer-events: none;
+      text-decoration: none;
+      text-shadow: 0px 1px 1px black;
+    }
+    .aspect-link-group .btn-link.active:hover {
+      color: #fff;
+      text-decoration: underline;
+      background-color: #555;
+      border-color: #555;
+    }
+  </style>
+  <div about="gen:Main" class="container aspect-links">
+    <div class="btn-group aspect-link-group">
+      <div class="btn-group" about="gen:SearchAppFunction" data-template="gen:SearchAppFunctionIconTemplate"></div>
+      <div class="aspect-links" about="@" rel="v-s:hasBusinessAspect">
+        <a href="#/@//gen:AspectTemplate" class="btn btn-sm btn-link aspect-link" about="@" property="v-s:shortLabel"></a>
+      </div>
+    </div>
+  </div>
+  <div about="@" data-template="v-s:AspectTemplate"></div>
+</div>
+<script>
+  $(".aspect-link[about='" + veda.Util.escape4$(individual.id) + "']", template).addClass("active");
+</script>
+  """ ;
+.
+
+### INDIVIDUALS ###
+
+gen:SearchAppFunction
+  rdf:type v-s:Function ;
+  rdfs:label "Функция поиска функций в приложениях" ;
+  v-ui:hasModel gen:SearchAppFunctionModel ;
+  v-ui:hasTemplate gen:SearchAppFunctionTemplate ;
+.
+
+gen:SearchAppFunctionModel
+  rdf:type v-ui:ClassModel ;
+  rdfs:label "Модель функции поиска функций в приложениях" ;
+  v-s:script """
+this.prefix = "('rdf:type'==='v-fc:Create' || 'rdf:type'==='v-fs:AttributiveSearch' || 'rdf:type'==='v-s:Report') && ('@'=='gen:*')";
+this.result = this.result || [];
+this.search = function () {
+  var self = this;
+  var input, queryString;
+  if ( this.hasValue("*") ) {
+    input = this.get("*")[0];
+    input = input.trim().replace(/[-* ]+/g, " ").split(" ");
+    input = input.map(function (word) { return "'*' == '" + word + "*'"; }).join(" && ");
+    queryString = "( " + this.prefix + " ) && ( " + input + " )";
+    return veda.Backend.query({
+      async: true,
+      ticket: veda.ticket,
+      query: queryString,
+      top: 10,
+      sortOrder: "'rdf:type.rdfs:label_ru', 'rdf:type.rdfs:label_en' asc"
+    }).then(function (result) {
+      self.result = result.result;
+      return self.result;
+    });
+  } else {
+    self.result = [];
+    return Promise.resolve(self.result);
+  }
+};
+//# sourceURL=gen:SearchAppFunctionModel
+  """
+.
+
+gen:SearchAppFunctionIconTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон функции поиска функций в приложениях - икона" ;
+  v-ui:template """
+<div class="btn-group">
+  <style>
+    .open > .dropdown-toggle {
+      background-color: #ddd;
+    }
+  </style>
+  <a class="btn btn-sm btn-link fn-search-toggle dropdown-toggle" href="#" data-toggle="dropdown">
+    <span class="fa fa-search"></span>
+    <span class="caret"></span>
+  </a>
+  <div style="padding:0;border:none;" class="dropdown-menu fn-search-container"></div>
+</div>
+<script>
+  $(".fn-search-toggle", template).click(function () {
+    var searchAppFnContainer = $(".fn-search-container", template);
+    if ( searchAppFnContainer.is(':empty') ) {
+      var searchAppFn = new veda.IndividualModel("gen:SearchAppFunction");
+      searchAppFn.present(searchAppFnContainer);
+    }
+    setTimeout(function () {
+      $("input", template).focus();
+    });
+  });
+//# sourceURL=gen:SearchAppFunctionIconTemplate
+</script>
+  """ ;
+.
+
+gen:SearchAppPlaceholder
+  rdf:type v-s:Bundle ;
+  rdfs:label "Найти функцию"@ru ;
+  rdfs:label "Find a function"@en ;
+.
+
+gen:SearchAppFunctionTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон функции поиска функций в приложениях" ;
+  v-ui:template """
+<script>
+  var resultsContainer = $(".fn-search-results", template);
+  var resultTemplate = resultsContainer.html();
+  resultsContainer.empty();
+  individual.on("*", triggerSearch);
+  template.one("remove", function () {
+    individual.off("*", triggerSearch);
+  });
+  if ( this.result.length ) {
+    renderResults(this.result);
+  }
+  function triggerSearch() {
+    this.search().then(renderResults);
+  }
+  function renderResults (fn_uris) {
+    resultsContainer.empty();
+    fn_uris.forEach(function (fn_uri) {
+      var fn = new veda.IndividualModel(fn_uri);
+      fn.present(resultsContainer, resultTemplate);
+    });
+  }
+//# sourceURL=gen:SearchAppFunctionTemplate_pre
+</script>
+<div>
+  <veda-control property="*" data-type="string"></veda-control>
+  <div class="fn-search-results list-group" style="margin:0;">
+    <a href="#/@" class="list-group-item" style="white-space: nowrap;">
+      <strong about="@" property="rdf:type"></strong>: <span about="@" property="rdfs:label"></span>
+    </a>
+  </div>
+</div>
+<script>
+  var placeholder = new veda.IndividualModel("gen:SearchAppPlaceholder");
+  placeholder.load().then(function (placeholder) {
+    $("input", template).prop("placeholder", placeholder).toString();
+  });
+  //# sourceURL=gen:SearchAppFunctionTemplate_post
+</script>
+  """ ;
+.
 
 gen:Logo
   a v-s:File;
@@ -164,9 +390,6 @@ gen:Logo
   v-s:fileName "veda-logo.png"^^xsd:string;
   v-s:filePath "/gen"^^xsd:string ;
 .
-
-# MAIN MENU ------------------------------------------------------------
-
 gen:MainMenu
   rdf:type v-s:Menu ;
   rdfs:label "Главное меню"@ru ;
