@@ -33,7 +33,7 @@ gen:InnovationsManagementApplication
   v-s:shortLabel "Innovations"@en ;
 
   v-s:hasCreate gen:InnovationCreate ;
-#  v-s:hasRegistry gen:IdeaSearch ;
+  v-s:hasRegistry gen:InnovationSearch ;
 
   v-s:hasImage gen:InnovationsManagementImage  ;
   v-s:hasIcon gen:InnovationsManagementIcon  ;
