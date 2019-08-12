@@ -35,9 +35,10 @@ gen:LocalRegulatoryDocumentApplication
   v-s:hasCreate gen:LocalRegulatoryDocumentCreate ;
   v-s:hasCreate gen:DecreeCreate ;
 
-#  v-s:hasRegistry gen:LocalRegulatoryDocumentSearch ;
-#  v-s:hasRegistry gen:DecreeSearch ;
+  v-s:hasRegistry gen:LocalRegulatoryDocumentSearch ;
 #  v-s:hasRegistry gen:VersionOfLocalRegulatoryDocumentSearch ;
+  v-s:hasRegistry gen:DecreeSearch ;
+
 
 #  v-s:hasReport v-s:CountOfUsersTasks_Report ;
 #  v-s:hasReport v-s:CompletedTasksCount_Report ;
