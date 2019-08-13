@@ -35,7 +35,7 @@ gen:TechnicalDocumentApplication
   v-s:hasCreate gen:TechnicalDocumentCreate ;
 #  v-s:hasCreate gen:BuildingCreate ;
   
-#  v-s:hasRegistry gen:TechnicalDocumentSearch;
+  v-s:hasRegistry gen:TechnicalDocumentSearch;
 #  v-s:hasRegistry gen:BuildingSearch;
 
   v-s:description """
