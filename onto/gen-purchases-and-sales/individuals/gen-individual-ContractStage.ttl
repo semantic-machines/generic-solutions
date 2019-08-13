@@ -1,0 +1,28 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/>.
+@prefix d: <http://semantic-machines.com/veda/veda-data/>.
+
+<http://semantic-machines.com/veda/gen-individual-ContractStage>
+  rdf:type owl:Ontology ;
+  v-s:loadPriority 10 ;
+.
+
+d:nq4w68sngp2q296unrdotup48f
+    a gen:ContractStage;
+    rdfs:label "Пролонгация"^^xsd:string;
+    v-s:updateCounter "1"^^xsd:integer.
+
+d:uolcp82wtvh9nhjvkwmjd8s1kj
+    a gen:ContractStage;
+    rdfs:label "Закрытие"^^xsd:string;
+    v-s:updateCounter "1"^^xsd:integer.
+
+d:a8one4lqfat24wuccfih99ovcb7
+    a gen:ContractStage;
+    rdfs:label "Открытие"^^xsd:string;
+    v-s:updateCounter "1"^^xsd:integer.
+

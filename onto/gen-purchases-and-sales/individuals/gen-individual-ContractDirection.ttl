@@ -1,0 +1,30 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/>.
+@prefix d: <http://semantic-machines.com/veda/veda-data/>.
+
+<http://semantic-machines.com/veda/gen-individual-ContractDirection>
+  rdf:type owl:Ontology ;
+  v-s:loadPriority 10 ;
+.
+
+#---------------------------------------------------------------
+d:87116c2092da45cba4300daa6de0b748
+    a gen:ContractDirection;
+    rdfs:label "Внутренний рынок"@ru;
+    rdfs:label "Domestic market"@en;
+    v-s:shortLabel "по стране"@ru;
+    v-s:shortLabel "domestic"@en;
+    v-s:updateCounter "1"^^xsd:integer.
+
+
+d:d4cf39d06aec4a9aafcd4663f7996125
+    a gen:ContractDirection;
+    rdfs:label "Внешний рынок (импорт экспорт)"@ru;
+    rdfs:label "Foreign market (import export)"@en;
+    v-s:shortLabel "загран"@ru;
+    v-s:shortLabel "foreign"@en;
+    v-s:updateCounter "1"^^xsd:integer.

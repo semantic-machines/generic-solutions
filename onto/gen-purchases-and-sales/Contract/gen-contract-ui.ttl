@@ -1,0 +1,662 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-function-search/> .
+
+<http://semantic-machines.com/veda/gen-contract-ui>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Общие решения. Контракт. UI"@ru ;
+  rdfs:label "Gen ontology. Contract. UI"@en ;
+  v-s:loadPriority 20 ;
+.
+
+# ------------------------------------------------------------ ШАБЛОНЫ --
+
+gen:ContractSubjectBundle
+   rdf:type v-s:Bundle ;
+   rdfs:label "Предмет контракта"@ru ;
+   rdfs:label "Contract subject"@en ;
+.
+gen:RegistrationNumberAddBundle
+   rdf:type v-s:Bundle ;
+   rdfs:label "Номер контракта"@ru ;
+   rdfs:label "Contract number"@en ;
+.
+gen:RegistrationDateBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Дата контракта"@ru ;
+  rdfs:label "Contract date"@en ;
+.
+gen:RegistrationNumberInBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Номерр контракта у контрагента"@ru ;
+  rdfs:label "Contractor number "@en ;
+.
+gen:initiatorForContractBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Подразделение-заказчик"@ru ;
+  rdfs:label "Customer Unit"@en ;
+.
+gen:DurationOfTheContractBundle
+    rdf:type v-s:Bundle;
+    rdfs:label "Срок действия контракта"@ru ;
+    rdfs:label "Duration of the contract"@en ;
+.
+gen:ContractStageChanging_prolongate_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Пролонгировать контракт"@ru ;
+  rdfs:label "To prolongate contract"@en ;
+.
+gen:ContractStageChanging_close_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Закрыть контракт"@ru ;
+  rdfs:label "To close contract"@en ;
+.
+gen:ContractStageChanging_reopen_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Открыть контаркт"@ru ;
+  rdfs:label "To prolongate contract"@en ;
+.
+
+
+gen:ContractTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:Contract ;
+  rdfs:label "Шаблон для класса gen:Contract"@ru ;
+  rdfs:label "Template for gen:Contract class"@en ;
+  v-ui:template """
+<script>
+</script>  
+<div>
+  <style>
+    .section-header {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+      margin-top: 1.5em;
+      margin-bottom: 1em;
+    }
+    veda-control .radio:first-child, veda-control .checkbox:first-child {
+      margin-top: 0;
+    }
+    veda-control .radio:last-child, veda-control .checkbox:last-child {
+      margin-bottom: 0;
+    }
+    .row-attribute {
+      margin-top: 1em;
+    }
+    .row-attribute > div:first-child {
+      text-align: right;
+      font-weigth: bold;
+    }
+  </style>
+  <div class="container sheet">
+    <h3 class="margin-sm">
+      <span about="gen:Contract" property="rdfs:label"></span>
+      <small about="@" property="rdfs:label"></small>
+    </h3>
+    <section id="MainProperties">
+      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasDocumentKind" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <veda-control rel="v-s:hasDocumentKind" data-type="radio"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:contractSubjectBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="view -edit -search bg-warning padding-md"><strong property="v-s:theme"></strong></div>
+          <veda-control data-type="multilingualText" property="v-s:theme" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:RegistrationNumberAddBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:registrationNumberAdd"></div>
+          <veda-control data-type="string" property="v-s:registrationNumberAdd" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:RegistrationDateBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:registrationDate"></div>
+          <veda-control data-type="date" property="v-s:registrationDate" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:RegistrationNumberInBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:registrationNumberIn"></div>
+          <veda-control data-type="string" property="v-s:registrationNumberIn" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:initiatorForContractBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:initiator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:rationale" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="view -edit -search" property="v-s:rationale"></div>
+          <veda-control data-type="multilingualText" property="v-s:rationale" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:DurationOfTheContractBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:dateFrom"></div>
+          <veda-control data-type="date" property="v-s:dateFrom" class="-view edit search"></veda-control>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:dateTo"></div>
+          <veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:dateFact"></div>
+          <veda-control data-type="date" property="v-s:dateFact" class="-view edit search"></veda-control>
+        </div>
+      </div>
+
+      <section id="ContractParticipantSupplier">
+        <h4 class="section-header" about="v-s:ContractParticipantSupplier" property="rdfs:label"></h4>
+        <table class="table no-margin">
+          <thead>
+            <tr>
+              <th about="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate"></th>
+              <th about="v-s:hasContractor" property="rdfs:label"></th>
+              <th about="v-s:hasOrganization" property="rdfs:label"></th>
+              <th about="rdfs:comment" property="rdfs:label"></th>
+            </tr>
+          </thead>
+          <tbody rel="v-s:hasContractParticipantSupplier" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
+        </table><br>
+        <veda-control rel="v-s:hasContractParticipantSupplier" data-type="link" class="-view edit search create"></veda-control>
+      </section>
+      <section id="ContractParticipantCustomer">
+        <h4 class="section-header" about="v-s:ContractParticipantCustomer" property="rdfs:label"></h4>
+        <table class="table no-margin">
+          <thead>
+            <tr>
+              <th about="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate"></th>
+              <th about="v-s:hasContractor" property="rdfs:label"></th>
+              <th about="v-s:hasOrganization" property="rdfs:label"></th>
+              <th about="rdfs:comment" property="rdfs:label"></th>
+            </tr>
+          </thead>
+          <tbody rel="v-s:hasContractParticipantCustomer" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
+        </table><br>
+        <veda-control rel="v-s:hasContractParticipantCustomer" data-type="link" class="-view edit search create"></veda-control>
+      </section>
+      <section id="ContractParticipantStakeholder">
+        <h4 class="section-header" about="v-s:ContractParticipantStakeholder" property="rdfs:label"></h4>
+        <table class="table no-margin">
+          <thead>
+            <tr>
+              <th about="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate"></th>
+              <th about="v-s:hasContractor" property="rdfs:label"></th>
+              <th about="v-s:hasOrganization" property="rdfs:label"></th>
+              <th about="rdfs:comment" property="rdfs:label"></th>
+            </tr>
+          </thead>
+          <tbody rel="v-s:hasContractParticipantStakeholder" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
+        </table><br>
+        <veda-control rel="v-s:hasContractParticipantStakeholder" data-type="link" class="-view edit search create"></veda-control>
+      </section>      
+
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:isAutoProlongateProvides" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <veda-control property="gen:isAutoProlongateProvides" data-type="boolean"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:isContractUnlimited" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <veda-control property="gen:isContractUnlimited" data-type="boolean"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:isContractClosed" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <veda-control property="gen:isContractClosed" data-type="boolean"></veda-control>
+        </div>
+      </div>      
+
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasObligationKind" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasObligationKind" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasObligationKind" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:hasContractDirection" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="gen:hasContractDirection" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="gen:hasContractDirection" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>            
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasBudgetCategory" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasBudgetCategory" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasBudgetCategory" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>            
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:supportSpecialistOfContract" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:supportSpecialistOfContract" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:supportSpecialistOfContract" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>            
+
+      <h4 class="section-header" about="gen:hasContractStageChanging" property="rdfs:label"></h4>
+      <table class="table no-margin">
+        <thead>
+          <tr>
+            <th width="1%"><span class="glyphicon glyphicon-search" ></th>
+            <th about="v-s:date" property="rdfs:label"></th>
+            <th about="gen:hasContractStage" property="rdfs:label"></th>
+            <th about="v-s:initiator" property="rdfs:label"></th>
+            <th about="rdfs:comment" property="rdfs:label"></th>
+          </tr>
+        </thead>
+        <tbody rel="gen:hasContractStageChanging" data-template="gen:ContractStageChangingEmbeddedTemplate" data-embedded="true"></tbody>
+      </table><br>
+      <veda-control rel="gen:hasContractStageChanging" data-type="link" class="-view edit search create"></veda-control>
+      <div class="view -edit -search clearfix">
+        <button class="btn btn-success pull-right" id="add-ContractStageChanging_prolongate" >
+          <span class="glyphicon glyphicon-zoom-in"></span>
+          <span  about="gen:ContractStageChanging_prolongate_Bundle" property="rdfs:label"> </span>
+        </button>
+      </div>
+      <br>
+      <div class="view -edit -search clearfix">
+        <button class="btn btn-success pull-right" id="add-ContractStageChanging_close" >
+          <span class="glyphicon glyphicon-zoom-in"></span>
+          <span  about="gen:ContractStageChanging_close_Bundle" property="rdfs:label"> </span>
+        </button>
+      </div>
+      <br>
+      <div class="view -edit -search clearfix">
+        <button class="btn btn-success pull-right" id="add-ContractStageChanging_reopen" >
+          <span class="glyphicon glyphicon-zoom-in"></span>
+          <span  about="gen:ContractStageChanging_reopen_Bundle" property="rdfs:label"> </span>
+        </button>
+      </div>
+    </section>
+
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <!-- BUTTONS -->
+    <div class="actions view edit -search">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal task"></span>
+    </div>
+  </div>
+  <div class="container sheet view edit -search margin-lg">
+    <h3 about="gen:RelatedDocumentsBundle" property="rdfs:label" class="margin-sm"></h3>
+    <hr class="margin-lg">
+
+    <section class="view -edit -search">
+      <!--h4 class="section-header" about="mnd-s:hasAdditionalAgreement" property="rdfs:label"></h4-->
+      <h4 class="section-header clearfix">
+        <span about="gen:hasAdditionalAgreement" property="rdfs:label"></span>
+        <button class="btn btn-xs btn-success pull-right" id="add-AdditionalAgreement">
+          <span class="glyphicon glyphicon-search"></span>
+          <span about="gen:AdditionalAgreement" property="rdfs:label"></span>
+        </button>
+      </h4>
+      <div class="table-responsive">
+        <table class="table no-margin">
+        </table>
+      </div>
+      <div class="text-right">
+        <p id="show-SumAgreements"></p>
+        <p id="show-PercentContract" ></p>
+      </div>
+    </section>
+
+  </div>
+
+  <div about="@" class="container sheet view edit -search margin-lg" data-template="v-s:LinksTemplate" data-embedded="true"></div>
+  <div about="@" class="container sheet view -edit -search margin-lg" data-template="v-s:CommentsTemplate"></div>
+</div>
+<script>
+
+  $("#add-ContractStageChanging_prolongate", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("gen:ContractStageChanging"),
+        ContractStageChanging = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("gen:ContractStageChangingTemplate");
+    ContractStageChanging["rdf:type"] = [_class];
+    ContractStageChanging["v-s:backwardTarget"] = [individual];
+    ContractStageChanging["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasContractStageChanging")];
+    ContractStageChanging["v-s:canRead"] = [ true ];
+    ContractStageChanging["gen:hasContractStage"] = [new veda.IndividualModel("d:nq4w68sngp2q296unrdotup48f")];
+    ContractStageChanging.present(cntr, tmpl, "edit");
+    ContractStageChanging.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    ContractStageChanging.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+
+  $("#add-ContractStageChanging_close", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("gen:ContractStageChanging"),
+        ContractStageChanging = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("gen:ContractStageChangingTemplate");
+    ContractStageChanging["rdf:type"] = [_class];
+    ContractStageChanging["v-s:backwardTarget"] = [individual];
+    ContractStageChanging["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasContractStageChanging")];
+    ContractStageChanging["v-s:canRead"] = [ true ];
+    ContractStageChanging["v-s:backwardReplace"] = [new veda.IndividualModel("gen:isContractClosed")];
+    ContractStageChanging["gen:hasContractStage"] = [new veda.IndividualModel("d:uolcp82wtvh9nhjvkwmjd8s1kj")];
+    ContractStageChanging.present(cntr, tmpl, "edit");
+    ContractStageChanging.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    ContractStageChanging.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+
+  $("#add-ContractStageChanging_reopen", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("gen:ContractStageChanging"),
+        ContractStageChanging = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("gen:ContractStageChangingTemplate");
+    ContractStageChanging["rdf:type"] = [_class];
+    ContractStageChanging["v-s:backwardTarget"] = [individual];
+    ContractStageChanging["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasContractStageChanging")];
+    ContractStageChanging["v-s:canRead"] = [ true ];
+    ContractStageChanging["v-s:backwardReplace"] = [new veda.IndividualModel("gen:isContractClosed")];
+    ContractStageChanging["gen:hasContractStage"] = [new veda.IndividualModel("d:a8one4lqfat24wuccfih99ovcb7")];
+    ContractStageChanging.present(cntr, tmpl, "edit");
+    ContractStageChanging.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    ContractStageChanging.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+  function prolongateHandler() {
+    if (individual.hasValue("gen:isAutoProlongateProvides", true)) {
+      $('#add-ContractStageChanging_prolongate', template).removeClass("hidden");
+    } else {
+      $('#add-ContractStageChanging_prolongate', template).addClass("hidden");
+    }
+    if (individual.hasValue("gen:isContractClosed", true)) {
+      $('#add-ContractStageChanging_close', template).addClass("hidden");
+      $('#add-ContractStageChanging_reopen', template).removeClass("hidden");
+      $("#add-AdditionalAgreement", template).prop("disabled", true);
+    } else {
+      $('#add-ContractStageChanging_close', template).removeClass("hidden");
+      $('#add-ContractStageChanging_reopen', template).addClass("hidden");
+      $("#add-AdditionalAgreement", template).prop("disabled", false);
+    }
+  }
+  individual.on("gen:isAutoProlongateProvides", prolongateHandler);
+  individual.on("gen:isContractClosed", prolongateHandler);
+  template.one("remove", function () {
+    individual.off("gen:isAutoProlongateProvides", prolongateHandler);
+    individual.off("gen:isContractClosed", prolongateHandler);
+  });
+  prolongateHandler();
+
+</script>
+    """ ;
+.
+
+
+gen:ContractStageChangingTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:ContractStageChanging;
+  rdfs:label "Вложенный шаблон для класса gen:ContractStageChanging"@ru ;
+  rdfs:label "Embedded template for gen:ContractStageChanging class"@en ;
+  v-ui:template """
+<div class="container sheet">
+  <h2>
+    <span about="gen:ContractStageChanging" property="rdfs:label"></span>
+    <small about="@" property="rdfs:label"></small>
+  </h2>
+  <span about="@" data-template="v-ui:RabbitHole"></span>
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <label about="v-s:initiator" property="rdfs:label"></label>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div class="view -edit -search" rel="v-s:initiator" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <label about="v-s:date" property="rdfs:label"></label>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div class="view -edit -search" property="v-s:date"></div>
+      <veda-control data-type="date" property="v-s:date" class="-view edit search"></veda-control>
+    </div>
+  </div>
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <label about="gen:hasContractStage" property="rdfs:label"></label>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div class="view -edit -search" rel="gen:hasContractStage" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="gen:hasContractStage" class="-view edit search fulltext dropdown"></veda-control>
+    </div>
+  </div>
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <label about="gen:isContractClosed" property="rdfs:label"></label>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <veda-control property="gen:isContractClosed" data-type="boolean" class="view edit search"></veda-control>
+    </div>
+  </div>
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <label about="rdfs:comment" property="rdfs:label"></label>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div class="view -edit -search" property="rdfs:comment"></div>
+      <veda-control data-type="text" property="rdfs:comment" class="-view edit search"></veda-control>
+    </div>
+  </div>  
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <br>
+  <div id="actions">
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete"></span>
+  </div>
+</div>
+<script>
+   if(!individual.hasValue("v-s:initiator")) {
+    individual["v-s:initiator"] = [ [veda.appointment][0] ];
+  }
+
+  function contractClose() {
+    if (individual.hasValue("gen:hasContractStage", new veda.IndividualModel("d:uolcp82wtvh9nhjvkwmjd8s1kj"))){
+        individual["gen:isContractClosed"] = veda.Util.newBool(true) ;
+    } else {
+        individual["gen:isContractClosed"] = veda.Util.newBool(false) ;
+    }
+  }
+  contractClose();
+  individual.on("gen:hasContractStage", contractClose);
+  template.one("remove", function () {
+    individual.off("gen:hasContractStage", contractClose);
+  });
+
+  if (mode == "edit" && individual.isNew()) {
+    var date = new Date();
+      date.setHours(0);
+      date.setMinutes(0);
+      date.setSeconds(0);
+    individual["v-s:date"] = [date] ;
+  }
+
+</script>
+"""
+.
+
+gen:ContractParticipantEmbeddedTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Вложенный шаблон для класса gen:Contract"@ru ;
+  rdfs:label "Embedded template for gen:Contract class"@en ;
+  v-ui:template """
+<tr>
+  <td>
+    <veda-control data-type="link" rel="v-s:hasRoleInContract" class="-view edit search dropdown fulltext"></veda-control>
+    <div rel="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate" class="view -edit search"></div>
+  </td>
+  <td>
+    <veda-control data-type="link" rel="v-s:hasContractor" class="-view edit search fulltext" data-template="{individual['rdfs:label'].join(' ') + ', ' + individual['v-s:registrationNumber'][0]}"></veda-control>
+    <div rel="v-s:hasContractor" class="view -edit search">
+      <a href="#/@">
+        <span about="@" property="rdfs:label"></span>,
+        <span about="@" property="v-s:registrationNumber"></span>
+      </a>
+    </div>
+  </td>
+  <td>
+    <veda-control data-type="link" rel="v-s:hasOrganization" class="-view edit search fulltext" data-template="{individual['v-s:shortLabel'].join(' ') + ', ' + individual['v-s:taxId'][0]}"></veda-control>
+    <div rel="v-s:hasOrganization" class="view -edit search">
+      <a href="#/@">
+        <span about="@" property="rdfs:label"></span>,
+        <span about="@" property="v-s:taxId"></span>
+      </a>
+    </div>
+  </td>
+  <td>
+    <veda-control property="rdfs:comment" data-type="string" class="-view edit search"></veda-control>
+    <div property="rdfs:comment" class="view -edit -search"></div>
+  </td>
+</tr>
+<script>
+
+  function getOwner(){
+    var hasContract;
+    if ( individual.hasValue("v-s:hasOrganization", new veda.IndividualModel("d:org_RU1121016110_1"))
+        || individual.hasValue("v-s:hasOrganization", new veda.IndividualModel("d:org_RU1121016110_2"))
+        || individual.hasValue("v-s:hasOrganization", new veda.IndividualModel("d:org_RU7726531163"))
+      ){
+      if (individual.hasValue("v-s:parent")){
+        individual["v-s:parent"][0]["v-s:owner"] = individual["v-s:hasOrganization"] ;
+      } else {
+        individual["v-s:backwardTarget"][0]["v-s:owner"] = individual["v-s:hasOrganization"] ;
+      }
+    }
+  }
+  function linkedOrganization() {
+    if (template.data("mode") == "edit") {
+      individual["v-s:hasOrganization"] = individual["v-s:hasContractor"][0]["v-s:linkedOrganization"] ;
+    }
+  }
+  individual.on("v-s:hasContractor", linkedOrganization);
+  individual.on("v-s:hasOrganization", getOwner);
+  template.one("remove", function () {
+    individual.off("v-s:hasContractor", linkedOrganization);
+    individual.off("v-s:hasOrganization", getOwner);
+  });
+  //#sourceURL=gen:ContractParticipantEmbeddedTemplate_post
+</script>
+"""
+.
+
+gen:ContractStageChangingEmbeddedTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Вложенный шаблон для класса gen:Contract"@ru ;
+  rdfs:label "Embedded template for gen:Contract class"@en ;
+  v-ui:template """
+<tr>
+  <td about="@" data-template="v-ui:IconModalTemplate"></td>
+  <td>
+    <div class="view -edit -search" property="v-s:date"></div>
+    <veda-control data-type="date" property="v-s:date" class="-view edit search"></veda-control>
+  </td>
+  <td>
+    <div class="view -edit -search" rel="gen:hasContractStage" data-template="v-ui:LabelTemplate"></div>
+    <veda-control data-type="link" rel="gen:hasContractStage" class="-view edit search fulltext dropdown"></veda-control>
+  </td>
+  <td>
+    <div class="view -edit -search" rel="v-s:initiator" data-template="v-ui:LabelTemplate"></div>
+    <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext"></veda-control>
+  </td>
+  <td>
+    <veda-control property="rdfs:comment" data-type="string" class="-view edit search"></veda-control>
+    <div property="rdfs:comment" class="view -edit -search"></div>
+  </td>
+</tr>
+"""
+.

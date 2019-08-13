@@ -1,0 +1,85 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix : <http://semantic-machines.com/veda/mondi-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix td: <http://semantic-machines.com/veda/test-data/> .
+@prefix s-wf: <http://semantic-machines.com/veda/simple-workflow-base/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+
+<http://semantic-machines.com/veda/gen-aspect-purchases-sales>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Общие решения. Закупки и продажи. Аспект"@ru ;
+  rdfs:label "Gen ontology. Purchases and Sales aspect"@en ;
+  v-s:loadPriority 10 ;
+.
+
+gen:PurchasesSalesAspect
+  rdf:type v-s:Aspect ;
+  rdfs:label "Закупки и продажи"@ru ;
+  rdfs:label "Sales and purchases"@en ;
+  v-s:shortLabel "Закупки и продажи"@ru ;
+  v-s:shortLabel "Sales and purchases"@en ;
+  v-ui:hasTemplate v-s:AspectTemplate ;
+
+  v-s:hasApplication gen:ContractsManagementApplication ;
+#  v-s:hasApplication gen:ContractorsManagementApplication ;
+#  v-s:hasApplication gen:AccountingDocApplication ;
+#  v-s:hasApplication gen:ClaimsManagementApplication ;
+.
+
+# -- печатные формы START --
+# -- печатные формы END --
+
+# -- отчеты START --
+# -- отчеты END --
+
+# -- ИНДИВИДЫ END --
+
+# -- ШАБЛОН АСПЕКТА УПРАВЛЕНИЯ ЗАКУПИ И ПРОДАЖИ --
+gen:PurchasesSalesAspectTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон для класса Аспекта Закупки и продажи"@ru ;
+  rdfs:label "Template for Purchases and Sales aspect class"@en ;
+  v-ui:forClass gen:PurchasesSalesAspect ;
+  v-ui:template """
+<div class="container sheet" style="position:relative;">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="container-fluid">
+        <h4 class="text-center" style="text-transform: uppercase"><i class="fa fa-file-text-o"></i> <span about="v-s:Blanks" property="rdfs:label"></span></h4>
+        <hr>
+        <div about="@" rel="v-s:hasBlank">
+          <a href="#/@" class="btn btn-success btn-lg btn-block margin-lg" about="@" property="rdfs:label" style="white-space: normal;"></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="container-fluid">
+        <h4 class="text-center" style="text-transform: uppercase"><i class="fa fa-table"></i> <span about="v-s:Registries" property="rdfs:label"></span></h4>
+        <hr>
+        <div about="@" rel="v-s:hasRegistry">
+          <a href="#/@" class="btn btn-info btn-lg btn-block margin-lg" about="@" property="rdfs:label" style="white-space: normal;"></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="container-fluid">
+        <h4 class="text-center" style="text-transform: uppercase"><i class="fa fa-bar-chart"></i> <span about="v-s:Reports" property="rdfs:label"></span></h4>
+        <hr>
+        <div about="@" rel="v-s:hasReport">
+          <a href="#/@" class="btn btn-warning btn-lg btn-block margin-lg" about="@" property="rdfs:label" style="white-space: normal;"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  """ ;
+.

@@ -1,0 +1,70 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-contract-application>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Общие решения. Контракт. Приложение"@ru ;
+  rdfs:label "Gen ontology. Contract. Application"@en ;
+  v-s:loadPriority 20 ;
+.
+#------------------------------------------
+gen:ContractsManagementApplication
+  rdf:type v-s:Application ;
+  rdfs:label "Контракты"@ru ;
+  rdfs:label "Contracts"@en ;
+  rdfs:comment "Лучшие условия. Всегда."@ru ;
+  rdfs:comment "Best conditions. Always."@en ;
+  v-s:shortLabel "Контракты"@ru ;
+  v-s:shortLabel "Contracts"@en ;
+  v-s:hasImage gen:ContractsManagementImage ;
+  v-s:hasIcon gen:ContractsManagementIcon ;
+  v-ui:hasTemplate v-s:ApplicationTemplate ;
+
+  v-s:hasCreate gen:ContractCreate;
+#  v-s:hasCreate gen:TenderProcedureCreate ;
+  v-s:hasRegistry gen:ContractSearch;
+  v-s:hasRegistry gen:AdditionalAgreementSearch;
+#  v-s:hasRegistry gen:TenderProcedureSearch ;
+
+  v-s:description """
+Приложение предназначено для обеспечения контроля договорных процессов, координации работ по контрактам и связанным документам.
+
+**Приложение обеспечивает возможность:**
+  - Провести предварительную работу по подготовке контракта (оформить заявку на контракт, провести процедуру выбора поставщика).
+  - Автоматизировать процесс оформления контракта и сопутствующих документов (Дополнительные соглашения, УНК, ...)
+  - Контролировать актуальность, сроки и суммы платежей по контракту.
+"""@ru ;
+  v-s:description """
+Application purpose is to control and coordinate contractual processes.
+
+**The application allows to:**
+  - Take preliminary actions (create & process a contract request, hold a tender).
+  - Automate contract review & signing process.
+  - Control contract state, terms and payment.
+"""@en ;
+
+  v-s:attachment gen:OF_07_Kontrakty_pdf ;
+.
+
+gen:ContractsManagementImage
+  a v-s:File ;
+  v-s:fileUri "contract.jpg"^^xsd:string ;
+  v-s:fileName "contract.jpg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.
+gen:ContractsManagementIcon
+  a v-s:File ;
+  v-s:fileUri "contract.svg"^^xsd:string ;
+  v-s:fileName "contract.svg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.

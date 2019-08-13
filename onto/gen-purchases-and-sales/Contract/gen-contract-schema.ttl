@@ -1,0 +1,341 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-contract-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Общие решения. Контракт. Схема"@ru ;
+  rdfs:label "Gen ontology. Contract. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+
+# ------------------------------------------------------------ КЛАССЫ --
+
+#------------------------------------------------------------ Контракт --
+gen:Contract
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:Enumerated ;
+  rdfs:subClassOf v-s:GroupAuthorized ;
+  rdfs:subClassOf v-s:Contract ;
+  rdfs:label "Contract"@en ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:subClassOf v-s:Labeled ;
+  v-s:labelPattern "{@.v-s:registrationNumberAdd} - {@.v-s:theme}" ;
+  rdfs:label "Контракт"@ru ;
+#  v-s:hasNumeration v-s:RegistrationNumberYearNumeration2_4 ;
+  v-ui:hasTemplate gen:ContractTemplate ;
+.
+
+#-----Вид документа
+#v-s:hasDocumentKind
+gen:PS_hasDocumentKind_Contract
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:hasDocumentKind ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:defaultValue d:cc87e0778a864272b1b8d366f591da88 ;
+  v-ui:optionValue d:cc87e0778a864272b1b8d366f591da88 ;
+  v-ui:optionValue d:fecef6b8058549cfb0203b55bd2425de ;
+  v-ui:optionValue d:074d6f4add1b4aebaf1cf7bc0332eb3d ;
+  rdfs:label "Спецификация свойства v-s:hasDocumentKind для класса gen:Contract"@ru ;
+  rdfs:label "v-s:hasDocumentKind property specification for gen:Contract class"@en ;
+.
+
+#-----Предмет контракта
+#v-s:theme
+gen:PS_theme_Contract
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:theme ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 2 ;
+  v-ui:tooltip "Пожалуйста, опишите предмет контракта"@ru ;
+  v-ui:tooltip "Please describe the contract subject"@en ;
+  rdfs:label "Спецификация свойства v-s:theme для класса gen:Contract"@ru ;
+  rdfs:label "v-s:theme property specification for gen:Contract classes"@en ;
+.
+
+#-----Регистрационный номер
+#v-s:registrationNumberAdd
+
+#-----Дата регистрации
+#v-s:registrationDate
+
+#-----Номер документа у контрагента
+#v-s:registrationNumberIn
+gen:PS_registrationNumberIn_Contract
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:registrationNumberIn ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:registrationNumberIn для класса gen:Contract"@ru ;
+  rdfs:label "v-s:registrationNumberIn property specification for gen:Contract classes"@en ;
+.
+
+#-----Подразделение заказчик
+#v-s:initiator
+gen:PS_initiator_Contract
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:initiator ;
+  v-ui:placeholder "Начните ввод и выберите подразделение"@ru ;
+  v-ui:placeholder "Start typing and select unit"@en ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type' === 'v-s:Department')"^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:initiator для класса gen:Contract"@ru ;
+  rdfs:label "v-s:initiator property specification for gen:Contract class"@en ;
+.
+
+#-----Обоснование - копировать из Заявке. Тут может быть совсем убрать
+#v-s:rationale
+gen:PS_rationale_Contract
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:rationale ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:rationale для класса gen:Contract"@ru ;
+  rdfs:label "v-s:rationale property specification for gen:Contract classes"@en ;
+.
+
+#-----Срок действия договора
+#v-s:dateFrom
+gen:PS_dateFrom_Contract
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:dateFrom ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:placeholder "Начало"@ru ;
+  v-ui:placeholder "Start"@en ;
+  rdfs:label "Спецификация свойства v-s:dateFrom для класса gen:Contract"@ru ;
+  rdfs:label "v-s:dateFrom property specification for gen:Contract class"@en ;
+.
+#v-s:dateTo
+gen:PS_dateTo_Contract
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:dateTo ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:placeholder "Окончание"@ru ;
+  v-ui:placeholder "Finish"@en ;
+  rdfs:label "Спецификация свойства v-s:dateTo для класса gen:Contract"@ru ;
+  rdfs:label "v-s:dateTo property specification for gen:Contract class"@en ;
+.
+#-----Окончание (согласно доп.согл.)
+#v-s:dateFact
+gen:PS_dateFact_Contract
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:dateFact ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:placeholder "Окончание (согласно доп. соглашениям)"@ru ;
+  v-ui:placeholder "Finish (according to additional agreements)"@en ;
+  rdfs:label "Спецификация свойства v-s:dateFact для класса gen:Contract"@ru ;
+  rdfs:label "v-s:dateFact property specification for gen:Contract class"@en ;
+.
+
+gen:PS_hasContractParticipantCustomer_Contract
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:hasContractParticipantCustomer ;
+  v-ui:forProperty  v-s:hasContractParticipantSupplier ;
+  v-ui:forProperty v-s:hasContractParticipantStakeholder ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства v-s:hasContractParticipantCustomer для класса gen:Contract"@ru ;
+  rdfs:label "v-s:hasContractParticipantCustomer property specification for gen:Contractclass"@en ;
+.
+
+#-----Автопролонгация
+gen:isAutoProlongateProvides
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Автопролонгация"@ru ;
+  rdfs:label "Auto prolongation"@en ;
+  rdfs:range xsd:boolean ;
+  rdfs:domain gen:Contract ;
+.
+gen:PS_isAutoProlongateProvides_Contractor
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty gen:isAutoProlongateProvides ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:defaultValue "false"^^xsd:boolean ;
+  rdfs:label "Спецификация свойства gen:isAutoProlongateProvides для класса gen:Contract"@ru ;
+  rdfs:label "gen:isAutoProlongateProvides property specification for gen:Contract class"@en ;
+.
+#-----Бессрочный контракт
+gen:isContractUnlimited
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Бессрочный контракт"@ru ;
+  rdfs:label "Termless contract"@en ;
+  rdfs:range xsd:boolean ;
+  rdfs:domain gen:Contract ;
+.
+gen:PS_isContractUnlimited_Contractor
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty gen:isContractUnlimited ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:defaultValue "false"^^xsd:boolean ;
+  rdfs:label "Спецификация свойства gen:isContractUnlimited для класса gen:Contract"@ru ;
+  rdfs:label "gen:isContractUnlimited property specification for gen:Contract class"@en ;
+.
+#-----Контракт закрыт
+gen:isContractClosed
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Контракт закрыт"@ru ;
+  rdfs:label "Contract сlosed"@en ;
+  rdfs:range xsd:boolean ;
+  rdfs:domain gen:Contract ;
+.
+gen:PS_isContractClosed_Contractor
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty gen:isContractClosed ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:defaultValue "false"^^xsd:boolean ;
+  rdfs:label "Спецификация свойства isContractClosed для класса gen:Contract"@ru ;
+  rdfs:label "isContractClosed property specification for gen:Contract class"@en ;
+.
+#-----История изменения статуса контракта
+gen:hasContractStageChanging
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "История изменения статуса контракта"@ru ;
+  rdfs:label "Contract status changing history"@en ;
+  rdfs:range gen:ContractStageChanging ;
+  rdfs:domain gen:Contract ;
+.
+#-----Вид обязательств
+#v-s:hasObligationKind
+gen:PS_hasObligationKind_Contract
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:hasObligationKind ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:Sector' && 'v-s:hasParentLink' == 'd:69988613d9a148d998d2e40311b0b58e')"^^xsd:string ;
+  rdfs:label "Спецификация класса gen:Contract свойства v-s:hasObligationKind"@ru ;
+  rdfs:label "v-s:hasObligationKind property specification for gen:Contract class"@en ;
+.
+#-----Направление контракта
+gen:hasContractDirection
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Направление контракта"@ru ;
+  rdfs:label "Contract direction"@en ;
+  rdfs:range gen:ContractDirection ;
+  rdfs:domain gen:Contract ;
+.
+gen:PS_hasContractDirection_Contract
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty gen:hasContractDirection ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства gen:hasContractDirection для gen:Contract"@ru ;
+  rdfs:label "gen:hasContractDirection property specification for gen:Contract"@en ;
+.
+#-----Категория бюджета
+#v-s:hasBudgetCategory
+gen:PS_hasBudgetCategory_Contract
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:hasBudgetCategory ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('@'===' d:add478ffd-4996-ca11-8d8c-51bf810357c7' || '@'==='d:a193b366b-aaeb-c1f2-b101-89c95b10a6c8')" ;
+  rdfs:label "Спецификация свойства v-s:hasBudgetCategory для gen:Contract"@ru ;
+  rdfs:label "v-s:hasBudgetCategory property specification for gen:Contract"@en ;
+.
+#-----Специалист по сопровождению
+#v-s:supportSpecialistOfContract
+gen:PS_supportSpecialistOfContract_Contract
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:supportSpecialistOfContract ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:Appointment')"^^xsd:string ;
+  rdfs:label "Спецификация свойства gen:supportSpecialistOfContractor для класса gen:Contract"@ru ;
+  rdfs:label "gen:supportSpecialistOfContractor property specification for gen:Contract class"@en ;
+.
+
+
+
+
+#--------------------------------------------------- История изменения статуса контракта --
+gen:ContractStageChanging
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:Labeled ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:label "Запись об изменении статуса контракта"@ru ;
+  rdfs:label "Record of contract status changing"@en ;
+  v-s:labelPattern "{@.v-s:initiator.rdfs:label} - {@.v-s:date} - {@.gen:hasContractStage.rdfs:label}"^^xsd:string ;
+  v-ui:hasTemplate gen:ContractStageChangingTemplate ;
+.
+#-----Инициатор
+#v-s:initiator
+gen:PS_initiator_ContractStageChanging
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:ContractStageChanging ;
+  v-ui:forProperty v-s:initiator ;
+  v-ui:queryPrefix "('rdf:type' === 'v-s:Appointment')"^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:initiator для класса gen:ContractStageChanging"@ru ;
+  rdfs:label "v-s:initiator property specification for gen:ContractStageChanging class"@en ;
+.
+#-----Дата
+#v-s:date
+#-----Стадия контракта
+gen:hasContractStage
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Стадия контракта"@ru ;
+  rdfs:label "Contract stage"@en ;
+  rdfs:range gen:ContractStage ;
+  rdfs:domain gen:ContractStageChanging ;
+.
+gen:PS_ContractStage_ContractStageChanging
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:ContractStageChanging ;
+  v-ui:forProperty gen:ContractStage ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства gen:ContractStage для класса gen:ContractStageChanging"@ru ;
+  rdfs:label "gen:ContractStage property specification for gen:ContractStageChanging class"@en ;
+.
+#-----Контракт закрыт
+#gen:isContractClosed (выше)
+#-----Комментарий
+#rdfs:comment
+
+
+#-------------------------Стадии контракта
+gen:ContractStage
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:label "Стадия контракта"@ru ;
+  rdfs:label "Contract stage"@en ;
+.
+
+#-------------------------Направление контракта
+gen:ContractDirection
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:label "Направление контракта"@ru ;
+  rdfs:label "Direction of contract"@en ;
+.
