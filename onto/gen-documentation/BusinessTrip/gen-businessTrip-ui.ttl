@@ -128,7 +128,7 @@ gen:BusinessTripTemplate
 		<section id="new-regEntry">
 			<h4 class="section-header clearfix">
 				<span about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></span>
-				<veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordTemplate" class="-view edit search create create-modal pull-right"></veda-control>
+				<veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordTemplate" class="-view edit -search create create-modal pull-right"></veda-control>
 			</h4>
 			<div class="table-responsive">
 				<table class="table no-margin">
@@ -164,7 +164,7 @@ gen:BusinessTripTemplate
     
     <section id="MainProperties">
       <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
-      <div class="row row-attribute">
+      <!--<div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></label>
         </div>
@@ -185,7 +185,7 @@ gen:BusinessTripTemplate
 						</div>
 					</div>
        </div>
-      </div>
+      </div>-->
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:businessTripEmployee" property="rdfs:label"></label>
@@ -298,11 +298,11 @@ gen:BusinessTripTemplate
           <label about="v-s:date" property="rdfs:label"></label>
         </div>
         <div class="col-sm-4 col-xs-7">
-					<div property="v-s:dateFrom" class="view -edit -search"></div>
+					<div property="v-s:dateFrom" class="view -edit search"></div>
 					<veda-control data-type="date" property="v-s:dateFrom" class="-view edit search"></veda-control>
         </div>
         <div class="col-sm-4 col-xs-7">
-					<div property="v-s:dateTo" class="view -edit -search"></div>
+					<div property="v-s:dateTo" class="view -edit search"></div>
 					<veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
         </div>
       </div>                 

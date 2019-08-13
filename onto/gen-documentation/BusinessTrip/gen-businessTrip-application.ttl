@@ -31,8 +31,8 @@ gen:BusinessTripApplication
   v-ui:hasTemplate v-s:ApplicationTemplate ;
 
   v-s:hasCreate gen:BusinessTripCreate ;
-#  v-s:hasRegistry mnd-s:BusinessTripSearch ;
-#  v-s:hasReport mnd-s:BusinessTrip_listReport ;
+  v-s:hasRegistry gen:BusinessTripSearch ;
+#  v-s:hasReport gen:BusinessTrip_listReport ;
 
   v-s:description """
 Приложение предназначено для оформления комплекта командировочных документов.
