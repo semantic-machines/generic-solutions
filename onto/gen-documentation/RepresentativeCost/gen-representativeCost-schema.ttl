@@ -115,7 +115,7 @@ gen:PS_participant_RepresentativeCosts
   v-ui:forProperty v-s:participant ;
   v-ui:minCardinality 0 ;
   v-ui:maxCardinality 100 ;
-  v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment' && 'v-s:origin' == 'SAP HR'"^^xsd:string ;
+  v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment'"^^xsd:string ;
   rdfs:label "Спецификация свойства v-s:participant для класса gen:RepresentativeCosts"@ru ;
   rdfs:label "v-s:participant property specification for gen:RepresentativeCosts class"@en ;
 .
@@ -247,7 +247,7 @@ gen:PS_toWhomToGiveAnPrepayment_RepresentativeCosts
   v-ui:forProperty gen:toWhomToGiveAnPrepayment ;
   v-ui:minCardinality 0 ;
   v-ui:maxCardinality 1 ;
-  v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment' && 'v-s:origin' == 'SAP HR'"^^xsd:string ;
+  v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment'"^^xsd:string ;
   rdfs:label "Спецификация свойства gen:toWhomToGiveAnPrepayment  для класса gen:RepresentativeCosts"@ru ;
   rdfs:label "gen:toWhomToGiveAnPrepayment  property specification for gen:RepresentativeCosts class"@en ;
 .
@@ -283,7 +283,7 @@ gen:PS_toWhomToCompensate_RepresentativeCosts
   v-ui:forProperty gen:toWhomToCompensateRepresentativeCosts ;
   v-ui:minCardinality 0 ;
   v-ui:maxCardinality 1 ;
-  v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment' && 'v-s:origin' == 'SAP HR'"^^xsd:string ;
+  v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment'"^^xsd:string ;
   rdfs:label "Спецификация свойства gen:toWhomToCompensateRepresentativeCosts для класса gen:RepresentativeCosts"@ru ;
   rdfs:label "gen:toWhomToCompensateRepresentativeCosts property specification for gen:RepresentativeCosts class"@en ;
 .
@@ -316,14 +316,14 @@ gen:PS_representativeCostsReport_RepresentativeCosts
 
 #-----------------------------------------------------Сторонние участники
 
-# Класс нужно унаследовать и перенести в зону gen:
-v-s:ThirdPartyParticipant
+gen:ThirdPartyParticipant
   rdf:type owl:Class;
   rdfs:label "Сторонние участники"@ru ;
   rdfs:label "Third-party participant"@en ;
-  rdfs:subClassOf v-s:Correspondent;
+  rdfs:subClassOf v-s:ThirdPartyParticipant;
   v-ui:hasTemplate gen:ThirdPartyParticipantTemplate ;
 .
+
 gen:TS_ThirdPartyParticipant
   rdf:type v-ui:TemplateSpecification ;
   v-ui:forClass gen:ThirdPartyParticipant ;
@@ -361,6 +361,7 @@ gen:RepresentativeCostsEvent
   rdfs:subClassOf v-s:Action ;
   rdfs:label "План мероприятия"@ru ;
   rdfs:label "Representative costs event"@en ;
+  v-ui:hasTemplate gen:RepresentativeCostsEventTemplate ;
 .
 #-----Ответственный 
 #v-s:responsible
@@ -370,7 +371,7 @@ gen:PS_responsible_RepresentativeCostsEvent
   v-ui:forProperty v-s:responsible ;
   v-ui:maxCardinality 1 ;
   v-ui:minCardinality 1 ;
-  v-ui:queryPrefix "(('rdf:type'=='v-s:Appointment' )&& ('v-s:origin'=='sap hr' || 'v-s:origin'=='Internal'|| 'v-s:origin'=='External' || 'v-s:origin'=='Group' )) || (('rdf:type'=='v-s:Position') && ( 'v-s:origin'=='Role'))"^^xsd:string ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:Appointment') || (('rdf:type'=='v-s:Position') && ( 'v-s:origin'=='Role'))"^^xsd:string ;
   v-ui:tooltip "Необязательно к заполнению, единичное значение. Ссылка на объект класса Назначение."@ru ;
   v-ui:tooltip "Non-required, simple value. Link to instance of Appointment class"@en ;
   rdfs:label "Спецификация свойства v-s:responsible для класса gen:RepresentativeCostsEvent"@ru ;
@@ -408,6 +409,7 @@ gen:RepresentativeCostsForEvent
   rdfs:subClassOf v-s:UserThing ;
   rdfs:label "Расходы на мероприятие"@ru ;
   rdfs:label "Representative costs Ffor event"@en ;
+  v-ui:hasTemplate gen:RepresentativeCostsForEventTemplate ;
 .
 
 #-----Услуга

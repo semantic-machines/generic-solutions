@@ -24,3 +24,9 @@ gen:RepresentativeCostsBlank
   rdfs:label "Representative costs"@en ;
   v-fc:targetType gen:RepresentativeCosts ;
 .
+gen:RepresentativeCostsSearchBlank
+  a v-fc:Blank;
+  rdfs:label "Представительские расходы"@ru ;
+  rdfs:label "Representative costs"@en ;
+  v-fc:targetType gen:RepresentativeCosts ;
+.

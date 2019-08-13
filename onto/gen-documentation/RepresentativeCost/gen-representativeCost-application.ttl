@@ -31,7 +31,7 @@ gen:RepresentativeCostsApplication
   v-ui:hasTemplate v-s:ApplicationTemplate ;
 
   v-s:hasCreate gen:RepresentativeCostsCreate ;
-#  v-s:hasRegistry gen:RepresentativeCostsSearch ;
+  v-s:hasRegistry gen:RepresentativeCostsSearch ;
 
   v-s:description """
 Приложение предназначено для ведения формализованного учета затрат на проведение различных мероприятий (представительские расходы).

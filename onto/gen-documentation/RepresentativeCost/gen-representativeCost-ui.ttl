@@ -1,0 +1,443 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-InternalDocument-ui>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Внутренний документ. UI"@ru ;
+  rdfs:label "GEN ontology. Internal document. UI"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ СОБЫТИЯ --
+
+# ------------------------------------------------------------ СТРОКИ --
+
+# ------------------------------------------------------------ ШАБЛОНЫ --
+gen:RepresentativeCostsTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:RepresentativeCosts ;
+  rdfs:label "Шаблон для класса gen:RepresentativeCosts (Представительские расходы)"@ru ;
+  rdfs:label "Template for gen:RepresentativeCosts class"@en ;
+  v-ui:template """
+<script>
+  /*if (mode == "edit" && individual.isNew()) {
+    if (!individual.hasValue("v-s:initiator")){
+     individual["v-s:initiator"] = [ veda.appointment["v-s:parentUnit"][0] ] ;
+    }
+  }*/
+</script>
+<div>
+  <div class="container sheet">
+    <h3 class="margin-sm">
+      <span about="@" property="rdf:type"></span>
+      <small about="@" property="rdfs:label" class="view edit -search"></small>
+    </h3>
+    <section id="MainProperties">
+      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:stakeholder" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:stakeholder" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:stakeholder" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:goal" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:goal" class="view -edit search"></div>
+          <veda-control data-type="string" property="v-s:goal" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:date" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-7">
+          <div property="v-s:dateFrom" class="view -edit search"></div>
+          <veda-control data-type="date" property="v-s:dateFrom" class="-view edit search"></veda-control>
+        </div>
+        <div class="col-sm-3 col-xs-7">
+          <div property="v-s:dateTo" class="view -edit search"></div>
+          <veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
+        </div>
+      </div> 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:placeDescription" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:placeDescription" class="view -edit search"></div>
+          <veda-control data-type="string" property="v-s:placeDescription" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:count" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:count" class="view -edit search"></div>
+          <veda-control data-type="integer" property="v-s:count" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:participant" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:participant" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:participant" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasThirdPartyParticipant" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasThirdPartyParticipant" class="view  edit search" data-template="gen:ThirdPartyParticipantEmbededTemplate" data-embedded="true"></div>
+          <veda-control data-type="link" rel="v-s:hasThirdPartyParticipant" class="-view edit -search create"></veda-control>
+             <veda-control data-type="link" rel="v-s:hasThirdPartyParticipant" class="-view -edit search create"></veda-control>
+        </div>
+      </div>
+    </section>
+
+    <section id="Plan">
+      <h4 class="section-header clearfix">
+        <span about="gen:hasRepresentativeCostsEvent" property="rdfs:label"></span>
+        <veda-control data-type="link" rel="gen:hasRepresentativeCostsEvent" data-template="gen:RepresentativeCostsEventTemplate" class="-view edit search create create-modal pull-right"></veda-control>
+      </h4>
+      <div class="table-responsive">
+        <table class="table no-margin">
+          <thead class="result-header">
+            <tr>
+              <th width="1"><span class="glyphicon glyphicon-search"></span></th>
+              <th about="v-s:responsible" property="rdfs:label"></th>
+              <th about="v-s:dateTo" property="rdfs:label"></th>
+              <th about="v-s:description" property="rdfs:label"></th>
+            </tr>
+          </thead>
+          <tbody rel="gen:hasRepresentativeCostsEvent" >
+            <tr>
+              <td>
+                <a href="#/@" class="glyphicon glyphicon-search"></a>
+              </td>
+              <td>
+                <div about="@" property="v-s:responsible"></div>
+              </td>
+              <td>
+                <div about="@" property="v-s:dateTo"></div>
+              </td>
+              <td>
+                <div about="@" property="v-s:description"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>   
+    <section id="Consumption">
+      <h4 class="section-header clearfix">
+        <span about="gen:hasRepresentativeCostsForEvent" property="rdfs:label"></span>
+        <veda-control data-type="link" rel="gen:hasRepresentativeCostsForEvent" data-template="gen:RepresentativeCostsForEventTemplate" class="-view edit -search create create-modal pull-right"></veda-control>
+      </h4>
+      <div class="table-responsive">
+        <table class="table no-margin">
+          <thead class="result-header">
+            <tr>
+              <th width="1"><span class="glyphicon glyphicon-search"></span></th>
+              <th about="gen:hasRepresentativeCostsKind" property="rdfs:label"></th>
+              <th about="v-s:hasCurrency" property="rdfs:label"></th>
+              <th about="v-s:sum" property="rdfs:label"></th>
+            </tr>
+          </thead>
+          <tbody rel="gen:hasRepresentativeCostsForEvent" >
+            <tr>
+              <td>
+                <a href="#/@" class="glyphicon glyphicon-search"></a>
+              </td>
+              <td>
+                <div about="@" property="gen:hasRepresentativeCostsKind"></div>
+              </td>
+              <td>
+                <div about="@" property="v-s:hasCurrency"></div>
+              </td>
+              <td>
+                <div about="@" property="v-s:sum"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section> 
+    <section id="Report">
+      <h4 class="section-header" about="v-s:hasPaymentForm" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasPaymentForm" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasPaymentForm" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasPaymentForm" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:isPrepaymentRequired" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <veda-control data-type="boolean" property="gen:isPrepaymentRequired" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="rdfs:comment" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="rdfs:comment" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="text" property="rdfs:comment" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:toWhomToGiveAnPrepayment" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="gen:toWhomToGiveAnPrepayment" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="gen:toWhomToGiveAnPrepayment" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div about="@" rel="gen:hasPricePrepayment" data-template="gen:PriceMicroTemplate" data-embedded="true"></div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:toWhomToCompensateRepresentativeCosts" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="gen:toWhomToCompensateRepresentativeCosts" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="gen:toWhomToCompensateRepresentativeCosts" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div about="@" rel="gen:hasPriceCompensate" data-template="gen:PriceMicroTemplate" data-embedded="true"></div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:representativeCostsReport" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="gen:representativeCostsReport" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="text" property="gen:representativeCostsReport" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:attachment" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true" class="view edit -search"></div>
+          <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <div class="actions view edit -search">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal journal-dms task"></span>
+      <button type="button" class="action btn btn-default view -edit -search" id="add-copy" about="gen:CopyBundleInternalDocument" property="rdfs:label" />
+      <button type="button" class="action btn btn-info view -edit -search" id="internalDocument_printBlank" about="gen:InternalDocument_printBlank" property="rdfs:label"/>
+    </div>
+  </div>
+  <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
+  <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
+</div>
+<script>
+  function prepayment(){
+    if (individual.hasValue("gen:toWhomToGiveAnPrepayment"))
+    {
+      var prepaymentPrice;
+      prepaymentPrice = new veda.IndividualModel();
+      prepaymentPrice['rdf:type'] = [new veda.IndividualModel('v-s:Price')];
+      prepaymentPrice['v-s:parent'] = [individual];
+      individual['gen:hasPricePrepayment'] = [prepaymentPrice];
+    }
+    else  individual['gen:hasPricePrepayment'] = [];
+  }
+  function compensate(){
+    if (individual.hasValue("gen:toWhomToCompensateRepresentativeCosts"))
+    {
+      var compensatePrice;
+      compensatePrice = new veda.IndividualModel();
+      compensatePrice['rdf:type'] = [new veda.IndividualModel('v-s:Price')];
+      compensatePrice['v-s:parent'] = [individual];
+      individual['gen:hasPriceCompensate'] = [compensatePrice];
+    }
+    else  individual['gen:hasPriceCompensate'] = [];
+  }
+  individual.on('gen:toWhomToGiveAnPrepayment', prepayment);
+  individual.on('gen:toWhomToCompensateRepresentativeCosts', compensate);
+  template.one("remove", function () {
+    individual.off('gen:toWhomToGiveAnPrepayment', prepayment);
+    individual.off('gen:toWhomToCompensateRepresentativeCosts', compensate);
+  });
+</script>
+
+  """
+.
+
+gen:ThirdPartyParticipantEmbededTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:ThirdPartyParticipant ;
+  rdfs:label "Шаблон для класса v-s:ThirdPartyParticipant"@ru ;
+  rdfs:label "Template for v-s:ThirdPartyParticipant class"@en ;
+  v-ui:template """
+<div class="well well-sm">
+  <em about="v-s:correspondentOrganization" property="rdfs:label"></em>
+  <div rel="v-s:correspondentOrganization" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+  <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view edit search fulltext"></veda-control>
+  <em about="v-s:correspondentPersonDescription" property="rdfs:label" ></em>
+  <div property="v-s:correspondentPersonDescription" class="view -edit search"></div>
+  <veda-control data-type="text"  property="v-s:correspondentPersonDescription" class="-view edit search"></veda-control>
+</div>
+  """ ;
+.
+
+gen:RepresentativeCostsEventTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:RepresentativeCostsEvent ;
+  rdfs:label "Шаблон для класса gen:ChangeOfBusinessTrip (Изменения командировки)."@ru ;
+  rdfs:label "Template gen:ChangeOfBusinessTrip class"@en ;
+  v-ui:template """
+<div class="container sheet">
+  <h2>
+    <span about="@" property="rdf:type"></span>
+    <small about="@" property="rdfs:label"></small>
+  </h2>
+  <span about="@" data-template="v-ui:RabbitHole"></span>
+  <hr>
+  <section id="RepresentativeCosts">
+    <h4 class="section-header" about="gen:RepresentativeCostsEvent" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <em about="v-s:responsible" property="rdfs:label"></em>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:responsible" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div> 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <em about="v-s:dateTo" property="rdfs:label"></em>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:dateTo" class="view -edit -search"></div>
+          <veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
+        </div>
+      </div> 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <em about="v-s:description" property="rdfs:label"></em>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:description" class="view -edit -search"></div>
+          <veda-control data-type="text" property="v-s:description" class="-view edit search"></veda-control>
+        </div>
+      </div> 
+  </section>
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <br>
+  <!-- BUTTONS -->
+  <div class="actions view edit -search">
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal journal-dms"></span>
+  </div>
+</div>
+"""
+.
+gen:RepresentativeCostsForEventTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:RepresentativeCostsForEvent;
+  rdfs:label "Шаблон для класса gen:RepresentativeCostsForEvent."@ru ;
+  rdfs:label "Template gen:RepresentativeCostsForEvent class"@en ;
+  v-ui:template """
+<div class="container sheet">
+  <h2>
+    <span about="@" property="rdf:type"></span>
+    <small about="@" property="rdfs:label"></small>
+  </h2>
+  <span about="@" data-template="v-ui:RabbitHole"></span>
+  <hr>
+  <section id="RepresentativeCosts">
+    <h4 class="section-header" about="gen:RepresentativeCostsForEvent" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <em about="gen:hasRepresentativeCostsKind" property="rdfs:label"></em>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="gen:hasRepresentativeCostsKind" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="gen:hasRepresentativeCostsKind" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div> 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <em about="v-s:hasCurrency" property="rdfs:label"></em>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasCurrency" class="view -edit -search"></div>
+          <veda-control data-type="link" rel="v-s:hasCurrency" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div> 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <em about="v-s:sum" property="rdfs:label"></em>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:sum" class="view -edit -search"></div>
+          <veda-control data-type="decimal" property="v-s:sum" class="-view edit search"></veda-control>
+        </div>
+      </div> 
+  </section>
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <br>
+  <!-- BUTTONS -->
+  <div class="actions view edit -search">
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal journal-dms"></span>
+  </div>
+</div>
+"""
+.
+
+gen:PriceMicroTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон для класса gen:Price"@ru ;
+  rdfs:label "Template for gen:Price  class"@en ;
+  v-ui:template """
+  <div>
+    <div class="col-sm-3 col-xs-5">
+      <em about="v-s:Price" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-3 col-xs-4">
+      <div property="v-s:sum" class="view -edit -search"></div>
+        <veda-control data-type="string" property="v-s:sum" class="-view edit search fulltext dropdown"></veda-control>
+    </div>
+    <div class="col-sm-3 col-xs-4">
+      <div rel="v-s:hasCurrency" class="view -edit -search"></div>
+      <veda-control data-type="link" rel="v-s:hasCurrency" class="-view edit search fulltext dropdown"></veda-control>
+    </div>
+  </div>
+  """ ;
+.
