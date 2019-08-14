@@ -65,8 +65,36 @@ gen:ContractStageChanging_reopen_Bundle
   rdfs:label "Открыть контаркт"@ru ;
   rdfs:label "To prolongate contract"@en ;
 .
-
-
+gen:addContractParticipantSupplier
+  rdf:type v-s:Bundle ;
+  rdfs:label "Добавить исполнителя"@ru ;
+  rdfs:label "Add supplier"@en ;
+.
+gen:addContractParticipantCustomer
+  rdf:type v-s:Bundle ;
+  rdfs:label "Добавить заказчика"@ru ;
+  rdfs:label "Add customer"@en ;
+.
+gen:addContractParticipantStakeholder
+  rdf:type v-s:Bundle ;
+  rdfs:label "Добавить другие заинтересованные стороны"@ru ;
+  rdfs:label "Add stakeholder"@en ;
+.
+gen:ContractParticipantsBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Участники"@ru ;
+  rdfs:label "Participants"@en ;
+.
+gen:AdditionalAgreementTitleBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Дополнителные соглашения"@ru ;
+  rdfs:label "AdditionalAgreement"@en ;
+.
+gen:AddAdditionalAgreementBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Добавить дополнителное соглашение"@ru ;
+  rdfs:label "Add AdditionalAgreement"@en ;
+.
 gen:ContractTemplate
   rdf:type v-ui:ClassTemplate ;
   v-ui:forClass gen:Contract ;
@@ -127,8 +155,8 @@ gen:ContractTemplate
           <label about="gen:RegistrationNumberAddBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-3 col-xs-3">
-          <div class="view -edit -search" property="v-s:registrationNumberAdd"></div>
-          <veda-control data-type="string" property="v-s:registrationNumberAdd" class="-view edit search"></veda-control>
+          <div class="view -edit -search" property="v-s:registrationNumber"></div>
+          <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -185,8 +213,8 @@ gen:ContractTemplate
         </div>
       </div>
 
-      <section id="ContractParticipantSupplier">
-        <h4 class="section-header" about="v-s:ContractParticipantSupplier" property="rdfs:label"></h4>
+      <section id="Participants">
+        <h4 class="section-header" about="gen:ContractParticipantsBundle" property="rdfs:label"></h4>
         <table class="table no-margin">
           <thead>
             <tr>
@@ -197,40 +225,42 @@ gen:ContractTemplate
             </tr>
           </thead>
           <tbody rel="v-s:hasContractParticipantSupplier" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
-        </table><br>
-        <veda-control rel="v-s:hasContractParticipantSupplier" data-type="link" class="-view edit search create"></veda-control>
-      </section>
-      <section id="ContractParticipantCustomer">
-        <h4 class="section-header" about="v-s:ContractParticipantCustomer" property="rdfs:label"></h4>
+        </table>
+        <div class="row row-attribute">
+          <div class="col-sm-1 col-xs-1">
+            <veda-control rel="v-s:hasContractParticipantSupplier" data-type="link" class="-view edit search create"></veda-control>
+          </div>
+          <div class="col-sm-11 col-xs-9">
+            <label about="gen:addContractParticipantSupplier" property="rdfs:label" class="-view edit -search"></label>
+          </div>
+        </div>
+        <br>
         <table class="table no-margin">
-          <thead>
-            <tr>
-              <th about="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate"></th>
-              <th about="v-s:hasContractor" property="rdfs:label"></th>
-              <th about="v-s:hasOrganization" property="rdfs:label"></th>
-              <th about="rdfs:comment" property="rdfs:label"></th>
-            </tr>
-          </thead>
           <tbody rel="v-s:hasContractParticipantCustomer" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
-        </table><br>
-        <veda-control rel="v-s:hasContractParticipantCustomer" data-type="link" class="-view edit search create"></veda-control>
-      </section>
-      <section id="ContractParticipantStakeholder">
-        <h4 class="section-header" about="v-s:ContractParticipantStakeholder" property="rdfs:label"></h4>
+        </table>
+        <div class="row row-attribute">
+          <div class="col-sm-1 col-xs-1">
+            <veda-control rel="v-s:hasContractParticipantCustomer" data-type="link" class="-view edit search create"></veda-control>
+          </div>
+          <div class="col-sm-11 col-xs-9">
+            <label about="gen:addContractParticipantCustomer" property="rdfs:label" class="-view edit -search"></label>
+          </div>
+        </div>
+        <br>
         <table class="table no-margin">
-          <thead>
-            <tr>
-              <th about="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate"></th>
-              <th about="v-s:hasContractor" property="rdfs:label"></th>
-              <th about="v-s:hasOrganization" property="rdfs:label"></th>
-              <th about="rdfs:comment" property="rdfs:label"></th>
-            </tr>
-          </thead>
           <tbody rel="v-s:hasContractParticipantStakeholder" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
-        </table><br>
-        <veda-control rel="v-s:hasContractParticipantStakeholder" data-type="link" class="-view edit search create"></veda-control>
+        </table>
+        <div class="row row-attribute">
+          <div class="col-sm-1 col-xs-1">
+            <veda-control rel="v-s:hasContractParticipantStakeholder" data-type="link" class="-view edit search create"></veda-control>
+          </div>
+          <div class="col-sm-11 col-xs-9">
+            <label about="gen:addContractParticipantStakeholder" property="rdfs:label" class="-view edit -search"></label>
+          </div>
+        </div>
       </section>      
 
+      <h4 class="section-header" ></h4>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="gen:isAutoProlongateProvides" property="rdfs:label"></label>
@@ -337,27 +367,30 @@ gen:ContractTemplate
     </div>
   </div>
   <div class="container sheet view edit -search margin-lg">
-    <h3 about="gen:RelatedDocumentsBundle" property="rdfs:label" class="margin-sm"></h3>
+    <h3 about="gen:AdditionalAgreementTitleBundle" property="rdfs:label" class="margin-sm"></h3>
     <hr class="margin-lg">
 
-    <section class="view -edit -search">
-      <!--h4 class="section-header" about="mnd-s:hasAdditionalAgreement" property="rdfs:label"></h4-->
-      <h4 class="section-header clearfix">
-        <span about="gen:hasAdditionalAgreement" property="rdfs:label"></span>
-        <button class="btn btn-xs btn-success pull-right" id="add-AdditionalAgreement">
-          <span class="glyphicon glyphicon-search"></span>
-          <span about="gen:AdditionalAgreement" property="rdfs:label"></span>
+      <table class="table no-margin">
+        <thead>
+          <tr>
+            <th width="1%"><span class="glyphicon glyphicon-search" ></th>
+            <th about="v-s:registrationNumber" property="rdfs:label"></th>
+            <th about="v-s:hasContractScope" property="rdfs:label"></th>
+            <th about="v-s:theme" property="rdfs:label"></th>
+            <th about="v-s:initiator" property="rdfs:label"></th>
+          </tr>
+        </thead>
+        <tbody rel="gen:hasAdditionalAgreement" data-template="gen:AdditionalAgreementEmbeddedTemplate" data-embedded="true"></tbody>
+      </table>
+      <br>
+      <div class="view -edit -search clearfix">
+        <button class="btn btn-success pull-right" id="add-AdditionalAgreement" >
+          <span class="glyphicon glyphicon-zoom-in"></span>
+          <span  about="gen:AddAdditionalAgreementBundle" property="rdfs:label"> </span>
         </button>
-      </h4>
-      <div class="table-responsive">
-        <table class="table no-margin">
-        </table>
-      </div>
-      <div class="text-right">
-        <p id="show-SumAgreements"></p>
-        <p id="show-PercentContract" ></p>
-      </div>
-    </section>
+      </div>      
+
+   </section>
 
   </div>
 
@@ -455,7 +488,7 @@ gen:ContractTemplate
       $('#add-ContractStageChanging_prolongate', template).addClass("hidden");
     }
     if (individual.hasValue("gen:isContractClosed", true)) {
-      $('#add-ContractStageChanging_close', template).addClass("hidden");
+      $('#add-ContractStageChanging_close', template).addClass("hidd  en");
       $('#add-ContractStageChanging_reopen', template).removeClass("hidden");
       $("#add-AdditionalAgreement", template).prop("disabled", true);
     } else {
@@ -472,6 +505,74 @@ gen:ContractTemplate
   });
   prolongateHandler();
 
+
+  $("#add-AdditionalAgreement", template).click(function () {
+    var _class = new veda.IndividualModel("gen:AdditionalAgreement"),
+        AdditionalAgreement = new veda.IndividualModel(),
+        tmpl = "gen:AdditionalAgreementTemplate";
+    AdditionalAgreement["rdf:type"] = [_class];
+   AdditionalAgreement["v-s:backwardTarget"] = [individual];
+    AdditionalAgreement["v-s:theme"]=individual["v-s:theme"];
+    AdditionalAgreement["v-s:initiator"]=individual["v-s:initiator"];
+    AdditionalAgreement["v-s:supportSpecialistOfContract"]=individual["v-s:supportSpecialistOfContract"];
+    AdditionalAgreement["v-s:hasObligationKind"]=individual["v-s:hasDeliveryConditions"];
+    AdditionalAgreement["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasAdditionalAgreement")];
+    AdditionalAgreement["v-s:canRead"] = [ true ];
+
+    Promise.resolve(1).then(function(){
+      if (individual.hasValue("gen:hasAdditionalAgreement")) {
+        var promiseArr = individual["gen:hasAdditionalAgreement"].map(function(agreement){
+          return agreement.load();
+        });
+        return Promise.all(promiseArr).then(function(agreements) {
+          var massivregnum = [];
+          agreements.forEach(function(agreement){
+            var object;
+            if (agreement.hasValue("v-s:registrationNumberAdd")) {
+              object = agreement["v-s:registrationNumberAdd"][0].toString();
+            } else {
+              object = "0";
+            };
+            var proverca = object.lastIndexOf(".");
+            var a;
+            if (proverca > 0){
+              a = parseInt(object.split('.')[0])
+            } else {
+              a = parseInt(object);
+            }
+            if ( isNaN(a) ) {
+              massivregnum.splice(i, 0, 0)
+            } else {
+              massivregnum.splice(i, 0, a)
+            }
+          })
+          return (getMaxValue(massivregnum)+1);
+        })
+      } else {
+        return (1).toString();
+      }
+    }).then(function(result) {
+      AdditionalAgreement["v-s:registrationNumberAdd"] = [result];
+      AdditionalAgreement["v-s:registrationNumber"] = [
+        [ individual["v-s:registrationNumber"][0],
+          AdditionalAgreement["v-s:registrationNumberAdd"][0]
+        ].join(".")
+      ];
+    })
+    // В случае если есть допы у контракта, скрипт вычисляет количество допов, скажем их 6
+    // и прибавляет один получаем цифру 7, пробегает по всем привязанным допам и проверяет не занят ли этот доп номер
+    function getMaxValue(array){
+      var max = array[0]; // берем первый элемент массива
+      for (var i = 0; i < array.length; i++) { // переберем весь массив
+        // если элемент больше, чем в переменной, то присваиваем его значение переменной
+        if (max < array[i]) max = array[i];
+      }
+      // возвращаем максимальное значение
+      return max;
+    }
+
+    riot.route( ["#", AdditionalAgreement.id, "#main", tmpl, "edit"].join("/") );
+  });
 </script>
     """ ;
 .
@@ -576,11 +677,11 @@ gen:ContractParticipantEmbeddedTemplate
   rdfs:label "Embedded template for gen:Contract class"@en ;
   v-ui:template """
 <tr>
-  <td>
+  <td width=15%>
     <veda-control data-type="link" rel="v-s:hasRoleInContract" class="-view edit search dropdown fulltext"></veda-control>
     <div rel="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate" class="view -edit search"></div>
   </td>
-  <td>
+  <td width=20%>
     <veda-control data-type="link" rel="v-s:hasContractor" class="-view edit search fulltext" data-template="{individual['rdfs:label'].join(' ') + ', ' + individual['v-s:registrationNumber'][0]}"></veda-control>
     <div rel="v-s:hasContractor" class="view -edit search">
       <a href="#/@">
@@ -589,7 +690,7 @@ gen:ContractParticipantEmbeddedTemplate
       </a>
     </div>
   </td>
-  <td>
+  <td width=50%>
     <veda-control data-type="link" rel="v-s:hasOrganization" class="-view edit search fulltext" data-template="{individual['v-s:shortLabel'].join(' ') + ', ' + individual['v-s:taxId'][0]}"></veda-control>
     <div rel="v-s:hasOrganization" class="view -edit search">
       <a href="#/@">
@@ -598,7 +699,7 @@ gen:ContractParticipantEmbeddedTemplate
       </a>
     </div>
   </td>
-  <td>
+  <td width=15%>
     <veda-control property="rdfs:comment" data-type="string" class="-view edit search"></veda-control>
     <div property="rdfs:comment" class="view -edit -search"></div>
   </td>
@@ -656,6 +757,33 @@ gen:ContractStageChangingEmbeddedTemplate
   <td>
     <veda-control property="rdfs:comment" data-type="string" class="-view edit search"></veda-control>
     <div property="rdfs:comment" class="view -edit -search"></div>
+  </td>
+</tr>
+"""
+.
+
+gen:AdditionalAgreementEmbeddedTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Вложенный шаблон для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "Embedded template for gen:AdditionalAgreement class"@en ;
+  v-ui:template """
+<tr>
+  <td about="@" data-template="v-ui:IconModalTemplate"></td>
+  <td>
+    <veda-control property="v-s:registrationNumber" data-type="string" class="-view edit search"></veda-control>
+    <div property="v-s:registrationNumber" class="view -edit -search"></div>
+  </td>
+  <td>
+    <div class="view -edit -search" rel="v-s:hasContractScope" data-template="v-ui:LabelTemplate"></div>
+    <veda-control data-type="link" rel="v-s:hasContractScope" class="-view edit search fulltext"></veda-control>
+  </td>
+  <td>
+    <veda-control property="v-s:theme" data-type="string" class="-view edit search"></veda-control>
+    <div property="v-s:theme" class="view -edit -search"></div>
+  </td>
+  <td>
+    <div class="view -edit -search" rel="v-s:initiator" data-template="v-ui:LabelTemplate"></div>
+    <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext"></veda-control>
   </td>
 </tr>
 """

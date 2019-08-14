@@ -65,7 +65,7 @@ gen:PS_theme_Contract
 .
 
 #-----Регистрационный номер
-#v-s:registrationNumberAdd
+#v-s:registrationNumber
 
 #-----Дата регистрации
 #v-s:registrationDate
@@ -274,6 +274,15 @@ gen:PS_supportSpecialistOfContract_Contract
   v-ui:queryPrefix "('rdf:type'=='v-s:Appointment')"^^xsd:string ;
   rdfs:label "Спецификация свойства gen:supportSpecialistOfContractor для класса gen:Contract"@ru ;
   rdfs:label "gen:supportSpecialistOfContractor property specification for gen:Contract class"@en ;
+.
+
+#-----Дополнительное соглашение
+gen:hasAdditionalAgreement
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Дополнительное соглашение"@ru ;
+  rdfs:label "Additional agreement"@en ;
+  rdfs:range gen:AdditionalAgreement ;
+  rdfs:domain gen:Contract ;
 .
 
 

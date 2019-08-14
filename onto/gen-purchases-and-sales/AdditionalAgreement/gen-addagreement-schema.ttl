@@ -1,0 +1,189 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-contract-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Общие решения. Доп соглашение. Схема"@ru ;
+  rdfs:label "Gen ontology. Additional agreement. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+
+# ------------------------------------------------------------ КЛАССЫ --
+
+#------------------------------------------------------------ Контракт --
+gen:AdditionalAgreement
+  rdf:type owl:Class ;
+  rdfs:subClassOf gen:Contract ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:subClassOf v-s:Labeled ;
+  rdfs:label "AdditionalAgreement"@en ;
+  rdfs:label "Дополнительное соглашение"@ru ;
+  v-s:labelPattern "{@.v-s:registrationNumberAdd} - {@.v-s:theme}" ;
+#  v-s:hasNumeration v-s:RegistrationNumberYearNumeration2_4 ;
+  v-ui:hasTemplate gen:AdditionalAgreementTemplate ;
+.
+
+#----------ссылка на Контракт
+#v-s:backwardTarget
+
+#-----Вид документа
+#v-s:hasDocumentKind
+gen:PS_hasDocumentKind_AdditionalAgreement
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty v-s:hasDocumentKind ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:defaultValue d:fbf562d8a6a04d72b1034f7f7e4d21de ;
+  v-ui:optionValue d:fbf562d8a6a04d72b1034f7f7e4d21de ;
+  v-ui:optionValue d:074d6f4add1b4aebaf1cf7bc0332eb3d ;
+  rdfs:label "Спецификация свойства v-s:hasDocumentKind для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "v-s:hasDocumentKind property specification for gen:AdditionalAgreement class"@en ;
+.
+#-----Рамки контракта
+#v-s:hasContractScope
+gen:PS_hasContractScope_AdditionalAgreement
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty v-s:hasContractScope ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства v-s:hasContractScope для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "v-s:hasContractScope property specification for gen:AdditionalAgreement class"@en ;
+.
+#-----Предмет контракта
+#v-s:theme
+gen:PS_theme_AdditionalAgreement
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty v-s:theme ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 2 ;
+  v-ui:tooltip "Пожалуйста, опишите предмет контракта"@ru ;
+  v-ui:tooltip "Please describe the contract subject"@en ;
+  rdfs:label "Спецификация свойства v-s:theme для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "v-s:theme property specification for gen:AdditionalAgreement classes"@en ;
+.
+#-----Описание изменений
+#v-s:description
+
+#-----Регистрационный номер
+#v-s:registrationNumber
+
+#-----Регистрационный номер дополнительный
+#v-s:registrationNumberAdd
+
+#-----Дата регистрации
+#v-s:registrationDate
+
+#-----Номер документа у контрагента
+#v-s:registrationNumberIn
+gen:PS_registrationNumberIn_AdditionalAgreement
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty v-s:registrationNumberIn ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:registrationNumberIn для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "v-s:registrationNumberIn property specification for gen:AdditionalAgreement classes"@en ;
+.
+
+#-----Подразделение заказчик
+#v-s:initiator
+gen:PS_initiator_AdditionalAgreement
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty v-s:initiator ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type' === 'v-s:Department')"^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:initiator для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "v-s:initiator property specification for gen:AdditionalAgreement class"@en ;
+.
+
+#-----Срок действия договора
+#v-s:dateFrom
+gen:PS_dateFrom_AdditionalAgreement
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty v-s:dateFrom ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:placeholder "Начало"@ru ;
+  v-ui:placeholder "Start"@en ;
+  rdfs:label "Спецификация свойства v-s:dateFrom для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "v-s:dateFrom property specification for gen:AdditionalAgreement class"@en ;
+.
+#v-s:dateTo
+gen:PS_dateTo_AdditionalAgreement
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty v-s:dateTo ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:placeholder "Окончание"@ru ;
+  v-ui:placeholder "Finish"@en ;
+  rdfs:label "Спецификация свойства v-s:dateTo для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "v-s:dateTo property specification for gen:AdditionalAgreement class"@en ;
+.
+
+#-----Контракт закрыт
+#gen:isContractClosed
+gen:PS_isContractClosed_AdditionalAgreement
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty gen:isContractClosed ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:defaultValue "false"^^xsd:boolean ;
+  rdfs:label "Спецификация свойства isContractClosed для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "isContractClosed property specification for gen:AdditionalAgreement class"@en ;
+.
+
+#-----Вид обязательств
+#v-s:hasObligationKind
+gen:PS_hasObligationKind_AdditionalAgreement
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty v-s:hasObligationKind ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:Sector' && 'v-s:hasParentLink' == 'd:69988613d9a148d998d2e40311b0b58e')"^^xsd:string ;
+  rdfs:label "Спецификация класса gen:AdditionalAgreement свойства v-s:hasObligationKind"@ru ;
+  rdfs:label "v-s:hasObligationKind property specification for gen:AdditionalAgreement class"@en ;
+.
+#-----Категория бюджета
+#v-s:hasBudgetCategory
+gen:PS_hasBudgetCategory_AdditionalAgreement
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty v-s:hasBudgetCategory ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('@'===' d:add478ffd-4996-ca11-8d8c-51bf810357c7' || '@'==='d:a193b366b-aaeb-c1f2-b101-89c95b10a6c8')" ;
+  rdfs:label "Спецификация свойства v-s:hasBudgetCategory для gen:AdditionalAgreement"@ru ;
+  rdfs:label "v-s:hasBudgetCategory property specification for gen:AdditionalAgreement"@en ;
+.
+#-----Специалист по сопровождению
+#v-s:supportSpecialistOfContract
+gen:PS_supportSpecialistOfContract_AdditionalAgreement
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  v-ui:forProperty v-s:supportSpecialistOfContract ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:Appointment')"^^xsd:string ;
+  rdfs:label "Спецификация свойства gen:supportSpecialistOfContractor для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "gen:supportSpecialistOfContractor property specification for gen:AdditionalAgreement class"@en ;
+.
+
+

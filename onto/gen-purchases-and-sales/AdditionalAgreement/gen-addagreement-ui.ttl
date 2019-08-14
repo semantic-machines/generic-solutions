@@ -1,0 +1,278 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-function-search/> .
+
+<http://semantic-machines.com/veda/gen-additional-agreement-ui>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Общие решения. Дополнительное соглашение. UI"@ru ;
+  rdfs:label "Gen ontology. AdditionalAgreement. UI"@en ;
+  v-s:loadPriority 20 ;
+.
+
+# ------------------------------------------------------------ ШАБЛОНЫ --
+
+#gen:ContractSubjectBundle
+#gen:RegistrationNumberAddBundle
+#gen:RegistrationDateBundle
+#gen:RegistrationNumberInBundle
+#gen:initiatorForContractBundle
+#gen:DurationOfTheContractBundle
+#gen:ContractStageChanging_prolongate_Bundle
+#gen:ContractStageChanging_close_Bundle
+#gen:ContractStageChanging_reopen_Bundle
+gen:DescriptionAddAgreementBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Описание изменений"@ru ;
+  rdfs:label "Desciption of changed"@en ;
+.
+
+gen:AdditionalAgreementTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  rdfs:label "Шаблон для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "Template for gen:AdditionalAgreement class"@en ;
+  v-ui:template """
+<script>
+</script>  
+<div>
+  <style>
+    .section-header {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+      margin-top: 1.5em;
+      margin-bottom: 1em;
+    }
+    veda-control .radio:first-child, veda-control .checkbox:first-child {
+      margin-top: 0;
+    }
+    veda-control .radio:last-child, veda-control .checkbox:last-child {
+      margin-bottom: 0;
+    }
+    .row-attribute {
+      margin-top: 1em;
+    }
+    .row-attribute > div:first-child {
+      text-align: right;
+      font-weigth: bold;
+    }
+  </style>
+  <div class="container sheet">
+    <h3 class="margin-sm">
+      <span about="gen:AdditionalAgreement" property="rdfs:label"></span>
+      <small about="@" property="rdfs:label"></small>
+    </h3>
+    <span about="@" data-template="v-ui:RabbitHole" class="view -edit -search"></span>
+    <hr>
+    <section id="MainProperties">
+      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasDocumentKind" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <veda-control rel="v-s:hasDocumentKind" data-type="radio"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasContractScope" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <veda-control rel="v-s:hasContractScope" data-type="checkbox"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:contractSubjectBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="view -edit -search bg-warning padding-md"><strong property="v-s:theme"></strong></div>
+          <veda-control data-type="multilingualText" property="v-s:theme" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:DescriptionAddAgreementBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="view -edit -search" property="v-s:description"></div>
+          <veda-control data-type="multilingualText" property="v-s:description" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:RegistrationNumberAddBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:registrationNumber"></div>
+          <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:registrationNumberAdd"></div>
+          <veda-control data-type="string" property="v-s:registrationNumberAdd" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:RegistrationDateBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:registrationDate"></div>
+          <veda-control data-type="date" property="v-s:registrationDate" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:RegistrationNumberInBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:registrationNumberIn"></div>
+          <veda-control data-type="string" property="v-s:registrationNumberIn" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:initiatorForContractBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:initiator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:DurationOfTheContractBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:dateFrom"></div>
+          <veda-control data-type="date" property="v-s:dateFrom" class="-view edit search"></veda-control>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div class="view -edit -search" property="v-s:dateTo"></div>
+          <veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <section id="Participants">
+        <h4 class="section-header" about="gen:ContractParticipantsBundle" property="rdfs:label"></h4>
+        <div about="@" rel="v-s:backwardTarget" class="view edit search" data-template="gen:ParticipantsInAddgreementTemplate"></div>
+      </section>
+
+      <h4 class="section-header" ></h4>
+        
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:isContractClosed" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <veda-control property="gen:isContractClosed" data-type="boolean"></veda-control>
+        </div>
+      </div>      
+
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasObligationKind" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasObligationKind" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasObligationKind" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>      
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasBudgetCategory" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasBudgetCategory" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasBudgetCategory" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>            
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:supportSpecialistOfContract" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:supportSpecialistOfContract" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:supportSpecialistOfContract" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>            
+    </section>
+
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <!-- BUTTONS -->
+    <div class="actions view edit -search">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal task"></span>
+    </div>
+  </div>
+
+  <div about="@" class="container sheet view edit -search margin-lg" data-template="v-s:LinksTemplate" data-embedded="true"></div>
+  <div about="@" class="container sheet view -edit -search margin-lg" data-template="v-s:CommentsTemplate"></div>
+</div>
+<script>
+
+</script>
+    """ ;
+.
+
+
+gen:ParticipantsInAddgreementTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:AdditionalAgreement ;
+  rdfs:label "Шаблон для класса gen:AdditionalAgreement"@ru ;
+  rdfs:label "Template for gen:AdditionalAgreement class"@en ;
+  v-ui:template """
+<table class="table no-margin">
+  <thead>
+    <tr>
+      <th about="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate"></th>
+      <th about="v-s:hasContractor" property="rdfs:label"></th>
+      <th about="v-s:hasOrganization" property="rdfs:label"></th>
+      <th about="rdfs:comment" property="rdfs:label"></th>
+    </tr>
+  </thead>
+  <tbody rel="v-s:hasContractParticipantSupplier" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
+</table>
+<div class="row row-attribute">
+  <div class="col-sm-1 col-xs-1">
+    <veda-control rel="v-s:hasContractParticipantSupplier" data-type="link" class="-view edit search create"></veda-control>
+  </div>
+  <div class="col-sm-11 col-xs-9">
+    <label about="gen:addContractParticipantSupplier" property="rdfs:label" class="-view edit -search"></label>
+  </div>
+</div>
+<br>
+<table class="table no-margin">
+  <tbody rel="v-s:hasContractParticipantCustomer" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
+</table>
+<div class="row row-attribute">
+  <div class="col-sm-1 col-xs-1">
+    <veda-control rel="v-s:hasContractParticipantCustomer" data-type="link" class="-view edit search create"></veda-control>
+  </div>
+  <div class="col-sm-11 col-xs-9">
+    <label about="gen:addContractParticipantCustomer" property="rdfs:label" class="-view edit -search"></label>
+  </div>
+</div>
+<br>
+<table class="table no-margin">
+  <tbody rel="v-s:hasContractParticipantStakeholder" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
+</table>
+<div class="row row-attribute">
+  <div class="col-sm-1 col-xs-1">
+    <veda-control rel="v-s:hasContractParticipantStakeholder" data-type="link" class="-view edit search create"></veda-control>
+  </div>
+  <div class="col-sm-11 col-xs-9">
+    <label about="gen:addContractParticipantStakeholder" property="rdfs:label" class="-view edit -search"></label>
+  </div>
+</div>
+    """ ;
+.
