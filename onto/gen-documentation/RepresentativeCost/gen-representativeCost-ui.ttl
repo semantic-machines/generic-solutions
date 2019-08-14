@@ -255,10 +255,8 @@ gen:RepresentativeCostsTemplate
     <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
     <br>
     <div class="actions view edit -search">
-      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal journal-dms task"></span>
-      <button type="button" class="action btn btn-default view -edit -search" id="add-copy" about="gen:CopyBundleInternalDocument" property="rdfs:label" />
-      <button type="button" class="action btn btn-info view -edit -search" id="internalDocument_printBlank" about="gen:InternalDocument_printBlank" property="rdfs:label"/>
-    </div>
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal task"></span>
+   </div>
   </div>
   <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
   <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
@@ -292,6 +290,23 @@ gen:RepresentativeCostsTemplate
     individual.off('gen:toWhomToGiveAnPrepayment', prepayment);
     individual.off('gen:toWhomToCompensateRepresentativeCosts', compensate);
   });
+
+  individual.canUpdate().then(function(canUpdate){
+    if (individual.hasValue("v-wf:isProcess")) {
+      $('#send.action', template).remove();
+      //$('#save.action', template).remove();
+    } else if (individual.isNew() || canUpdate) {
+      $('#send.action', template).off("click");
+      $('#send.action', template).on('click', function () {
+        veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:RepresentativeCost_ComplexRouteStartForm_Template');
+
+      });
+    } else {
+      $('#send.action', template).remove();
+      $('#save.action', template).remove();
+    }
+  })
+    
 </script>
 
   """
@@ -362,7 +377,7 @@ gen:RepresentativeCostsEventTemplate
   <br>
   <!-- BUTTONS -->
   <div class="actions view edit -search">
-    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal journal-dms"></span>
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal "></span>
   </div>
 </div>
 """
@@ -415,7 +430,7 @@ gen:RepresentativeCostsForEventTemplate
   <br>
   <!-- BUTTONS -->
   <div class="actions view edit -search">
-    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal journal-dms"></span>
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal "></span>
   </div>
 </div>
 """

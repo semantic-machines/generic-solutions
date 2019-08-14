@@ -373,7 +373,7 @@ gen:BusinessTripTemplate
     <br>
     <!-- BUTTONS -->
     <div class="actions view edit -search">
-      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal journal-dms task"></span>
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal task"></span>
       <span class=" view -edit -search">
         <button type="button" class="action btn btn-warning view -edit -search" id="notify" about="gen:NotifyBundle" property="rdfs:label"/>
       </span>
@@ -771,7 +771,7 @@ gen:ChangeOfBusinessTripTemplate
   <br>
   <!-- BUTTONS -->
   <div class="actions view edit -search">
-    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal journal-dms"></span>
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal"></span>
   </div>
 </div>
 """

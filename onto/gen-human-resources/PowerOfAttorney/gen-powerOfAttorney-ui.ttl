@@ -221,7 +221,7 @@ gen:PowerOfAttorneyTemplate
     <br>
     <!-- BUTTONS -->
     <div class="actions view edit -search">
-      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal journal-dms task"></span>
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal task"></span>
       <button type="button" class="action btn btn-default view -edit -search" id="add-copy" about="gen:PowerOfAttorney_copy_Bundle" property="rdfs:label" />
       <button type="button" class="action btn btn-default view -edit -search" id="add-linkedCopy" about="gen:PowerOfAttorney_linkedCopy_Bundle" property="rdfs:label" />
     </div>

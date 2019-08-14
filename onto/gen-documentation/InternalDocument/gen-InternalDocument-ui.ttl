@@ -106,7 +106,7 @@ gen:InternalDocumentTemplate
     <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
     <br>
     <div class="actions view edit -search">
-      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal journal-dms task"></span>
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal task"></span>
       <button type="button" class="action btn btn-default view -edit -search" id="add-copy" about="gen:CopyBundleInternalDocument" property="rdfs:label" />
       <button type="button" class="action btn btn-info view -edit -search" id="internalDocument_printBlank" about="gen:InternalDocument_printBlank" property="rdfs:label"/>
     </div>
