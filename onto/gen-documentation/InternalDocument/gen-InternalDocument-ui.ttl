@@ -146,7 +146,8 @@ gen:InternalDocumentTemplate
     } else if (individual.isNew() || canUpdate) {
       $('#send.action', template).off("click");
       $('#send.action', template).on('click', function () {
-        veda.Util.send(individual, template, 'gen:InternalDocument_ComplexRouteStartForm_Template');
+        veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:InternalDocument_ComplexRouteStartForm_Template');
+
       });
     } else {
       $('#send.action', template).remove();

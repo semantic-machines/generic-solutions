@@ -180,7 +180,7 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
               <th about="v-s:attachment" property="rdfs:label"></th>
             </tr>
           </thead>
-          <tbody rel="v-s:hasDelivery" >
+          <tbody rel="v-s:hasDelivery" data-embedded="true">
             <tr>
               <td>
                 <a href="#/@" class="glyphicon glyphicon-search"></a>
@@ -189,7 +189,7 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
                 <div about="@" property="v-s:date"></div>
               </td>
               <td>
-                <div about="@" property="v-s:deliverBy"></div>
+                <div about="@" rel="v-s:deliverBy" data-template="v-ui:LabelTemplate"></div>
               </td>
               <td>
                 <div about="@" property="rdfs:comment"></div>
@@ -498,11 +498,12 @@ gen:DeliveryTemplate
   rdfs:label "Шаблон доставки"@ru ;
   rdfs:label "Delivery template"@en ;
   v-ui:template """
-<div>
+<div class="container sheet">
   <h3 class="margin-sm">
     <span about="@" property="rdf:type"></span>
     <small about="@" property="rdfs:label" class="view edit -search"></small>
   </h3>
+  <span about="@" data-template="v-ui:RabbitHole"></span>
   <section id="MainProperties">
     <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
     <div class="row row-attribute">
