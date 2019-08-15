@@ -9,12 +9,11 @@
 @prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
 @prefix cfg: <http://semantic-machines.com/veda/config/> .
 @prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
-@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
 
 <http://semantic-machines.com/veda/gen-Letter-rights>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Письма. Права"@ru ;
-  rdfs:label "GEN ontology. Letter. Rights"@en ;
+  rdfs:label "Онтология Монди. Письма. Права"@ru ;
+  rdfs:label "Mondi ontology. Letter. Rights"@en ;
   v-s:loadPriority 20 ;
 .
 # -------------------------------------- УПРАВЛЕНИЕ ПРАВАМИ --
@@ -22,27 +21,18 @@ gen:IncomingLetter_BaseUser
   rdf:type v-s:Group ;
   rdfs:label "Основные пользователи IncomingLetter" ;
 .
-gen:IncomingLetterAll_ReadUser
+gen:IncomingLetter_All_ReadUser
   rdf:type v-s:Group ;
-  rdfs:label "Пользователи с правами просмотра всех IncomingLetter" ;
-.
-gen:IncomingLetter_Admin
-  rdf:type v-s:Group ;
-  rdfs:label "Администраторы IncomingLetter" ;
+  rdfs:label "Просмотр всех документов IncomingLetter" ;
 .
 gen:OutgoingLetter_BaseUser
   rdf:type v-s:Group ;
   rdfs:label "Основные пользователи OutgoingLetter" ;
 .
-gen:OutgoingLetterAll_ReadUser
+gen:OutgoingLetter_All_ReadUser
   rdf:type v-s:Group ;
-  rdfs:label "Пользователи с правами просмотра всех OutgoingLetter" ;
+  rdfs:label "Просмотр всех документов OutgoingLetter" ;
 .
-gen:OutgoingLetter_Admin
-  rdf:type v-s:Group ;
-  rdfs:label "Администраторы OutgoingLetter" ;
-.
-
 # ------------------------------------------------------------
 gen:IncomingLetter_Environment
   rdf:type v-s:Group ;
@@ -56,114 +46,74 @@ gen:OutgoingLetter_Environment
 gen:IncomingLetter_Environment_membership
   rdf:type v-s:Membership ;
   v-s:memberOf gen:IncomingLetter_Environment ;
-  v-s:resource v-s:IncomingLetter ;
-  v-s:resource v-s:IncomingLetter_group ;
-  v-s:resource v-s:OutgoingLetter ;
-  v-s:resource v-s:OutgoingLetter_group ;
-  v-s:resource v-s:Enumerated ;
-  v-s:resource v-s:Delivery ;
-  v-s:resource v-s:Delivery_group ;
-  v-s:resource v-s:Correspondent ;
-  v-s:resource v-s:Correspondent_group ;  
-  v-s:resource v-s:LetterRegistrationRecordSender ;
-  v-s:resource v-s:LetterRegistrationRecordSender_group ;
-  v-s:resource v-s:LetterRegistrationRecordRecipient ;
-  v-s:resource v-s:LetterRegistrationRecordRecipient_group ;  
+  v-s:resource gen:IncomingLetter ;
+  v-s:resource gen:IncomingLetter_group ;
   rdfs:label "Члены группы Окружение IncomingLetter - схема и индивиды" ;
 .
-
 gen:OutgoingLetter_Environment_membership
   rdf:type v-s:Membership ;
-  v-s:memberOf gen:OutgoinLetter_Environment ;
-  v-s:resource v-s:OutgoingLetter ;
-  v-s:resource v-s:OutgoingLetter_group ;
-  v-s:resource v-s:Enumerated ;
-  v-s:resource v-s:Delivery ;
-  v-s:resource v-s:Delivery_group ;
-  v-s:resource v-s:Correspondent ;
-  v-s:resource v-s:Correspondent_group ;  
-  v-s:resource v-s:LetterRegistrationRecordSender ;
-  v-s:resource v-s:LetterRegistrationRecordSender_group ;
-  v-s:resource v-s:LetterRegistrationRecordRecipient ;
-  v-s:resource v-s:LetterRegistrationRecordRecipient_group ;  
-  rdfs:label "Члены группы Окружение OutgoinLetter - схема и индивиды" ;
+  v-s:memberOf gen:OutgoingLetter_Environment ;
+  v-s:resource gen:OutgoingLetter ;
+  v-s:resource gen:OutgoingLetter_group ;
+  rdfs:label "Члены группы Окружение OutgoingLetter - схема и индивиды" ;
 .
-
-# --------------------------------------------------------------------------
-gen:Letter_permission1
+# ------------------------------------------------------------
+gen:IncomingLetter_permission1
   rdf:type v-s:PermissionStatement ;
   v-s:permissionObject gen:IncomingLetter_Environment ;
   v-s:permissionSubject gen:IncomingLetter_BaseUser ;
   v-s:canCreate "true"^^xsd:boolean ;
-  rdfs:label "C. Основные пользователи IncomingLetter. Окружение IncomingLetter" ;
-.
-gen:Letter_permission2
-  rdf:type v-s:PermissionStatement ;
-  v-s:permissionObject gen:IncomingLetter_Environment ;
-  v-s:permissionSubject gen:IncomingLetterAll_ReadUser ;
-  v-s:canRead "true"^^xsd:boolean ;
-  rdfs:label "R. Пользователи с правами просмотра всех IncomingLetter. Окружение IncomingLetter" ;
-.
-gen:Letter_permission3
-  rdf:type v-s:PermissionStatement ;
-  v-s:permissionObject gen:IncomingLetter_Environment ;
-  v-s:permissionSubject gen:IncomingLetter_Admin ;
-  v-s:canCreate "true"^^xsd:boolean ;
   v-s:canRead "true"^^xsd:boolean ;
   v-s:canUpdate "true"^^xsd:boolean ;
   v-s:canDelete "true"^^xsd:boolean ;
-  rdfs:label "CRUD. Администраторы IncomingLetter. Окружение IncomingLetter" ;
+  rdfs:label "CRUD. Основные пользователи IncomingLetter. Окружение IncomingLetter" ;
 .
-gen:Letter_permission4
+gen:IncomingLetter_permission2
+  rdf:type v-s:PermissionStatement ;
+  v-s:permissionObject gen:IncomingLetter_Environment ;
+  v-s:permissionSubject gen:IncomingLetter_All_ReadUser ;
+  v-s:canRead "true"^^xsd:boolean ;
+  rdfs:label "R. Пользователи просмотр всех индивидов IncomingLetter. Окружение IncomingLetter" ;
+.
+gen:OutgoingLetter_permission3
   rdf:type v-s:PermissionStatement ;
   v-s:permissionObject gen:OutgoingLetter_Environment ;
   v-s:permissionSubject gen:OutgoingLetter_BaseUser ;
   v-s:canCreate "true"^^xsd:boolean ;
-  rdfs:label "C. Основные пользователи OutgoingLetter. Окружение OutgoingLetter" ;
-.
-gen:Letter_permission5
-  rdf:type v-s:PermissionStatement ;
-  v-s:permissionObject gen:OutgoingLetter_Environment ;
-  v-s:permissionSubject gen:OutgoingLetterAll_ReadUser ;
-  v-s:canRead "true"^^xsd:boolean ;
-  rdfs:label "R. Пользователи с правами просмотра всех OutgoingLetter. Окружение OutgoingLetter" ;
-.
-gen:Letter_permission6
-  rdf:type v-s:PermissionStatement ;
-  v-s:permissionObject gen:OutgoingLetter_Environment ;
-  v-s:permissionSubject gen:OutgoingLetter_Admin ;
-  v-s:canCreate "true"^^xsd:boolean ;
   v-s:canRead "true"^^xsd:boolean ;
   v-s:canUpdate "true"^^xsd:boolean ;
   v-s:canDelete "true"^^xsd:boolean ;
-  rdfs:label "CRUD. Администраторы OutgoingLetter. Окружение OutgoingLetter" ;
+  rdfs:label "CRUD. Основные пользователи OutgoingLetter. Окружение OutgoingLetter" ;
 .
-# ------------------------------------------------------------ Частные случаи выдачи прав и включения в группы для конкретноой организации --
-gen:IncomingLetter_BaseUser_membership
+gen:OutgoingLetter_permission4
+  rdf:type v-s:PermissionStatement ;
+  v-s:permissionObject gen:OutgoingLetter_Environment ;
+  v-s:permissionSubject gen:OutgoingLetter_All_ReadUser ;
+  v-s:canRead "true"^^xsd:boolean ;
+  rdfs:label "R. Пользователи просмотр всех индивидов OutgoingLetter. Окружение OutgoingLetter" ;
+.
+# ------------------------------------------------------------Частные случаи выдачи прав и включения в группы для конкретноой организации --
+gen:AllDemo_IncomingLetter_BaseUser_membership
   rdf:type v-s:Membership ;
   v-s:memberOf gen:IncomingLetter_BaseUser ;
-  v-s:memberOf gen:LetterRegRecordAll_ReadUser ;
-#  v-s:resource  ;
+  v-s:resource d:org_RU1100220011 ;
   rdfs:label "Все пользователи входят в группы создания IncomingLetter" ;
 .
-gen:IncomingLetter_Admin_membership
+gen:IncomingLetter_All_ReadUser_membership
   rdf:type v-s:Membership ;
-  v-s:memberOf gen:IncomingLetter_Admin ;
-  v-s:memberOf gen:LetterRegRecord_Admin ;
-# v-s:resource  ;
-  rdfs:label "Пользователи входят в группу админов IncomingLetter" ;
+  v-s:memberOf gen:IncomingLetter_All_ReadUser ;
+  v-s:resource d:org_RU1100220011 ;
+  rdfs:label "Пользователи - просмотр всех IncomingLetter" ;
 .
-
-gen:OutgoingLetter_BaseUser_membership
+gen:AllDemo_OutgoingLetter_BaseUser_membership
   rdf:type v-s:Membership ;
   v-s:memberOf gen:OutgoingLetter_BaseUser ;
-# v-s:resource  ;
+  v-s:resource d:org_RU1100220011 ;
   rdfs:label "Все пользователи входят в группы создания OutgoingLetter" ;
 .
-
-gen:OutgoingLetter_Admin_membership
+gen:OutgoingLetter_All_ReadUser_membership
   rdf:type v-s:Membership ;
-  v-s:memberOf gen:OutgoingLetter_Admin ;
-# v-s:resource  ;
-  rdfs:label "Пользователи входят в группу админов IncomingLetter" ;
+  v-s:memberOf gen:OutgoingLetter_All_ReadUser ;
+  v-s:resource d:org_RU1100220011 ;
+  rdfs:label "Пользователи - просмотр всех OutgoingLetter" ;
 .

@@ -1,0 +1,74 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-localRegulatoryDocument-rights>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Монди. ЛНД. Права"@ru ;
+  rdfs:label "Mondi ontology. LND. Rights"@en ;
+  v-s:loadPriority 20 ;
+.
+# -------------------------------------- УПРАВЛЕНИЕ ПРАВАМИ --
+gen:LocalRegulatoryDocument_BaseUser
+  rdf:type v-s:Group ;
+  rdfs:label "Основные пользователи LocalRegulatoryDocument" ;
+.
+gen:LocalRegulatoryDocument_All_ReadUser
+  rdf:type v-s:Group ;
+  rdfs:label "Пользователи просмотр всех индивдидов LocalRegulatoryDocument" ;
+.
+# ------------------------------------------------------------
+gen:LocalRegulatoryDocument_Environment
+  rdf:type v-s:Group ;
+  rdfs:label "Окружение LocalRegulatoryDocument - схема и индивиды" ;
+.
+# ------------------------------------------------------------
+gen:LocalRegulatoryDocument_Environment_membership
+  rdf:type v-s:Membership ;
+  v-s:memberOf gen:LocalRegulatoryDocument_Environment ;
+  v-s:resource gen:LocalRegulatoryDocument ;
+  v-s:resource gen:LocalRegulatoryDocument_group ;
+  v-s:resource gen:VersionOfLocalRegulatoryDocument ;
+  v-s:resource gen:VersionOfLocalRegulatoryDocument_group ;
+  v-s:resource gen:DescriptionOfChange_group ;
+  rdfs:label "Члены группы Окружение LocalRegulatoryDocument - схема и индивиды" ;
+.
+# ------------------------------------------------------------
+gen:LocalRegulatoryDocument_permission1
+  rdf:type v-s:PermissionStatement ;
+  v-s:permissionObject gen:LocalRegulatoryDocument_Environment ;
+  v-s:permissionSubject gen:LocalRegulatoryDocument_BaseUser ;
+  v-s:canCreate "true"^^xsd:boolean ;
+  v-s:canRead "true"^^xsd:boolean ;
+  v-s:canUpdate "true"^^xsd:boolean ;
+  v-s:canDelete "true"^^xsd:boolean ;
+  rdfs:label "CRUD. Основные пользователи LocalRegulatoryDocument. Окружение LocalRegulatoryDocument" ;
+.
+gen:LocalRegulatoryDocument_permission2
+  rdf:type v-s:PermissionStatement ;
+  v-s:permissionObject gen:LocalRegulatoryDocument_Environment ;
+  v-s:permissionSubject gen:LocalRegulatoryDocument_All_ReadUser ;
+  v-s:canRead "true"^^xsd:boolean ;
+  rdfs:label "R. Пользователи просмотр всех индивидов LocalRegulatoryDocument. Окружение LocalRegulatoryDocument" ;
+.
+# ------------------------------------------------------------Частные случаи выдачи прав и включения в группы для конкретноой организации --
+gen:AllDemo_LocalRegulatoryDocument_BaseUser_membership
+  rdf:type v-s:Membership ;
+  v-s:memberOf gen:LocalRegulatoryDocument_BaseUser ;
+  v-s:resource d:org_RU1100220011 ;
+  rdfs:label "Все пользователи входят в группы создания LocalRegulatoryDocument" ;
+.
+gen:LocalRegulatoryDocument_All_ReadUser_membership
+  rdf:type v-s:Membership ;
+  v-s:memberOf gen:LocalRegulatoryDocument_All_ReadUser ;
+  v-s:resource d:org_RU1100220011 ;
+  rdfs:label "Пользователи - просмотр всех LocalRegulatoryDocument" ;
+.
