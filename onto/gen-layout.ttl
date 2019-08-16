@@ -97,7 +97,7 @@ gen:LayoutTemplate
         <button type="button" class="btn btn-default navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
           <span class="glyphicon glyphicon-menu-hamburger"></span>
         </button>
-        <a class="navbar-brand" style="margin-top:-10px" href="#/gen:Main" about="gen:Logo" data-template="v-ui:ImageTemplate"></a>
+        <a class="navbar-brand" href="#/gen:Main" about="gen:Logo" data-template="v-ui:ImageTemplate"></a>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -128,7 +128,7 @@ gen:LayoutTemplate
           <li about="v-cal:TasksCalendar" data-template="v-cal:FunctionCalendarIndicatorTemplate"></li>
           <li about="v-ft:Inbox" data-template="v-ft:FunctionTasksIndicatorTemplate"></li>
           <li id="user-info"></li>
-          <li id="menu" class="dropdown" about="mnd-s:MainMenu" data-template="v-s:MenuTemplate"></li>
+          <li id="menu" class="dropdown" about="v-s:MainMenu" data-template="v-s:MenuTemplate"></li>
           <li about="v-ui:AvailableLanguage" data-template="v-ui:LanguageSwitchTemplate"></li>
           <li style="padding-left:10px; margin-left:10px; border-left:1px solid #ddd;" about="@" data-template="v-ui:FullWidthSwitchTemplate"></li>
         </ul>
@@ -175,7 +175,7 @@ gen:LayoutTemplate
     $(this).closest("table").tableSortable(this);
   });
 
-//# sourceURL=mnd-s:MainTemplate_post
+//# sourceURL=gen:LayoutTemplate_post
 </script>
   """ ;
 .

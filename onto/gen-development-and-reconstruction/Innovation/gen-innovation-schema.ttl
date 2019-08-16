@@ -73,7 +73,7 @@ gen:PS_title_Innovation
 	v-ui:minCardinality 1 ;
 	rdfs:label "Спецификация v-s:title для gen:Innovation"@ru ;
 	rdfs:label "v-s:title property specification for gen:Innovation class"@en ;
-
+.
 
 #-----Описание актуального состояния
 # v-s:actualState

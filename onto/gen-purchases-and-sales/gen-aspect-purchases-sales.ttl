@@ -16,7 +16,7 @@
 
 <http://semantic-machines.com/veda/gen-aspect-purchases-sales>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Общие решения. Закупки и продажи. Аспект"@ru ;
+  rdfs:label "Онтология Общие решения. Закупки и продажи. Аспект."@ru ;
   rdfs:label "Gen ontology. Purchases and Sales aspect"@en ;
   v-s:loadPriority 10 ;
 .

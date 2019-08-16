@@ -17,10 +17,10 @@
   rdfs:label "GEN ontology. Internal document. Blanks"@en ;
   v-s:loadPriority 20 ;
 .
-#---------------Бланки----------------------
+#---------------Бланки-----------------------
 gen:InternalDocumentBlank
   a v-fc:Blank;
-  rdfs:label "Внутренний документ"@ru ;
+  rdfs:label "Внутренний документ."@ru ;
   rdfs:label "Internal document"@en ;
   v-fc:targetType gen:InternalDocument ;
 .

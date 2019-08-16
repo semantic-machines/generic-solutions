@@ -79,7 +79,7 @@ gen:PS_businessTripGoal_BusinessTrip
   rdfs:label "v-s:businessTripGoal property specification for gen:BusinessTrip class"@en ;
 .
 
-#-----Организация назначения(mnd-s:DestinationOrganizationBundle)
+#-----Организация назначения
 #v-s:supplier
 gen:PS_supplier_BusinessTrip
   rdf:type v-ui:PropertySpecification ;
@@ -236,8 +236,8 @@ gen:PS_hasChangeOfBusinessTrip_BusinessTrip
   v-ui:forProperty gen:hasChangeOfBusinessTrip ;
   v-ui:minCardinality 0 ;
   v-ui:maxCardinality 100 ;
-  rdfs:label "Спецификация свойства gen:hasChangeOfBusinessTrip для класса mnd-s:BusinessTrip"@ru ;
-  rdfs:label "gen:hasChangeOfBusinessTrip property specification for mnd-s:BusinessTrip class"@en ;
+  rdfs:label "Спецификация свойства gen:hasChangeOfBusinessTrip для класса gen:BusinessTrip"@ru ;
+  rdfs:label "gen:hasChangeOfBusinessTrip property specification for gen:BusinessTrip class"@en ;
 .
 
 #-------Обмен
@@ -247,8 +247,8 @@ gen:PS_isTicketExchange_BusinessTrip
   v-ui:forClass gen:BusinessTrip ;
   v-ui:trueLabel "Обменный" ;
   v-ui:falseLabel "Необменный" ;
-  rdfs:label "Спецификация к свойству mnd-s:isTicketExchange для класса gen:BusinessTrip"@ru ;
-  rdfs:label "Spec for property mnd-s:isTicketExchange for class gen:BusinessTrip"@en ;
+  rdfs:label "Спецификация к свойству gen:isTicketExchange для класса gen:BusinessTrip"@ru ;
+  rdfs:label "Spec for property gen:isTicketExchange for class gen:BusinessTrip"@en ;
 .
 gen:isTicketExchange
   rdf:type owl:DatatypeProperty ;
@@ -265,8 +265,8 @@ gen:PS_isTicketRefund_BusinessTrip
   v-ui:forClass gen:BusinessTrip ;
   v-ui:trueLabel "Возвратный" ;
   v-ui:falseLabel "Невозвратный" ;
-  rdfs:label "Спецификация к свойству mnd-s:isTicketRefund для класса gen:BusinessTrip"@ru ;
-  rdfs:label "Spec for property mnd-s:isTicketRefund for class gen:BusinessTrip"@en ;
+  rdfs:label "Спецификация к свойству gen:isTicketRefund для класса gen:BusinessTrip"@ru ;
+  rdfs:label "Spec for property gen:isTicketRefund for class gen:BusinessTrip"@en ;
 .
 gen:isTicketRefund
   rdf:type owl:DatatypeProperty ;
