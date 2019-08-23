@@ -53,7 +53,8 @@ Application purpose is to control and coordinate contractual processes.
   - Control contract state, terms and payment.
 """@en ;
 
-  v-s:attachment gen:OF_07_Kontrakty_pdf ;
+#  v-s:attachment gen:OF_07_Kontrakty_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:ContractsManagementImage

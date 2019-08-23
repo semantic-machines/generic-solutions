@@ -56,6 +56,7 @@ The application is designed for registration and processing of business trip doc
   """@en ;
 
 #  v-s:attachment mnd-s:OF_17_Komandirovki_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:BusinessTripApplicationImage

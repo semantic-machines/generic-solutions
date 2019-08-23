@@ -55,7 +55,8 @@ The application is designed for substitution of an absent employee in the system
 - Assign employees to "roles" in the system to perform tasks in business processes.
   """@en;
 
-  v-s:attachment gen:OF_14_Zayavki_na_delegirovanie_pdf ;
+#  v-s:attachment gen:OF_14_Zayavki_na_delegirovanie_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:DelegationApplicationImage

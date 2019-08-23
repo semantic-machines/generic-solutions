@@ -53,6 +53,7 @@ The application is intended for registration of powers of attorney.
   """@en ;
 
 #  v-s:attachment mnd-s:OF_23_Doverennosti_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:PowerOfAttorneyApplicationImage

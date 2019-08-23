@@ -57,6 +57,7 @@ The application is designed to improve the enterprise using the innovative poten
   """@en;
 
 #  v-s:attachment mnd-s:OF_03_Innovaczii_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 # ------------------------------------------------------------ ИЗОБРАЖЕНИЯ --

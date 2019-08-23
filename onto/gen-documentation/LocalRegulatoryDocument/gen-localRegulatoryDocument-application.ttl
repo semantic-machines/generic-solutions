@@ -60,6 +60,7 @@ The application is designed to support administrative activities of the organiza
 
 #  v-s:attachment gen:VEDA_SM_09_NormativeDocs_pdf ;
 #  v-s:attachment gen:VEDA_SM_10_Decree_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:LocalRegulatoryDocumentApplicationIcon

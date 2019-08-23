@@ -34,7 +34,7 @@ gen:TechnicalDocumentApplication
 
   v-s:hasCreate gen:TechnicalDocumentCreate ;
 #  v-s:hasCreate gen:BuildingCreate ;
-  
+
   v-s:hasRegistry gen:TechnicalDocumentSearch;
 #  v-s:hasRegistry gen:BuildingSearch;
 
@@ -56,6 +56,7 @@ The application is designed to form an archive of technical documentation.
   """@en;
 
 # v-s:attachment gen:OF_37_2_Tekhnicheskie_dokumenty_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:TechnicalDocumentImage

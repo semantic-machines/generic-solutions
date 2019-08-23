@@ -51,6 +51,7 @@ The application is designed to account representative costs for various events.
   """@en;
 
 #  v-s:attachment gen:OF_20_Predstavitelskie_raskhody_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:RepresentativeCostsApplicationImage

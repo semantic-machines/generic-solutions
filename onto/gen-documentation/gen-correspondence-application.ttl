@@ -32,7 +32,7 @@ gen:CorrespondenceApplication
   v-s:hasIcon gen:CorrespondenceApplicationIcon ;
   v-ui:hasTemplate v-s:ApplicationTemplate ;
 
-  
+
   v-s:hasCreate gen:IncomingLetterCreate;
   v-s:hasCreate gen:OutgoingLetterCreate ;
   v-s:hasCreate gen:InternalDocumentCreate ;
@@ -64,8 +64,9 @@ The application is designed to automate record-keeping processes of the organiza
 - Monitor the execution of documents.
   """@en;
 
-  v-s:attachment gen:VEDA_SM_02_Correspondence_pdf ;
-  v-s:attachment gen:VEDA_SM_03_Internal_Document_pdf ;
+#  v-s:attachment gen:VEDA_SM_02_Correspondence_pdf ;
+#  v-s:attachment gen:VEDA_SM_03_Internal_Document_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:CorrespondenceApplicationIcon
