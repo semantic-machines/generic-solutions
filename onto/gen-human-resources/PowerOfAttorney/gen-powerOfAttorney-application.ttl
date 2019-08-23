@@ -31,7 +31,7 @@ gen:PowerOfAttorneyApplication
   v-ui:hasTemplate v-s:ApplicationTemplate ;
 
   v-s:hasCreate gen:PowerOfAttorneyCreate ;
-#  v-s:hasRegistry gen:PowerOfAttorneySearch ;
+  v-s:hasRegistry gen:PowerOfAttorneySearch ;
 
   v-s:description """
 Приложение предназначено для оформления и регистрации доверенностей.

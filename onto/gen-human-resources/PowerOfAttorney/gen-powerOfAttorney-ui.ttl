@@ -192,8 +192,8 @@ gen:PowerOfAttorneyTemplate
           <label about="v-s:grantor" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-					<div id="sender" rel="v-s:grantor" class="view edit search" data-template="gen:CorrespondentTemplate" data-embedded="true"></div>
-					<veda-control id="sender-create" data-type="link" rel="v-s:grantor" class="-view edit search create"></veda-control>
+					<div rel="v-s:grantor" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
+					<veda-control data-type="link" rel="v-s:grantor" class="-view edit search create"></veda-control>
         </div>
       </div>     
       <div class="row row-attribute">
@@ -201,8 +201,8 @@ gen:PowerOfAttorneyTemplate
           <label about="v-s:grantee" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-					<div id="recipient" rel="v-s:grantee" class="view edit search" data-template="gen:CorrespondentTemplate" data-embedded="true"></div>
-					<veda-control id="recipient-create" data-type="link" rel="v-s:grantee" class="-view edit search create"></veda-control>
+					<div rel="v-s:grantee" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
+					<veda-control  data-type="link" rel="v-s:grantee" class="-view edit search create"></veda-control>
         </div>
       </div>     
       <div class="row row-attribute">

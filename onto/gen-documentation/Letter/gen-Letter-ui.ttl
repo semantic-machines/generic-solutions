@@ -300,10 +300,10 @@ gen:CorrespondentTemplate
   rdfs:label "Template for v-s:Letter class"@en ;
   v-ui:template """
 <div>
-  <div class="container sheet"><br>
+  <div><br>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
-        <label about="v-s:correspondentOrganization" property="rdfs:label"></label>
+        <em about="v-s:correspondentOrganization" property="rdfs:label"></em>
       </div>
       <div class="col-sm-9 col-xs-7">
         <div rel="v-s:correspondentOrganization" class="view -edit search">
@@ -318,7 +318,7 @@ gen:CorrespondentTemplate
     </div>
     <div class="row row-attribute user-organization">
       <div class="col-sm-3 col-xs-5">
-        <label about="v-s:correspondentDepartment" property="rdfs:label"></label>
+        <em about="v-s:correspondentDepartment" property="rdfs:label"></em>
       </div>
       <div class="col-sm-9 col-xs-7">
         <span rel="v-s:correspondentDepartment" class="view edit search" data-template="v-ui:LabelTemplate"></span>
@@ -327,7 +327,7 @@ gen:CorrespondentTemplate
     </div>
     <div class="row row-attribute user-organization">
       <div class="col-sm-3 col-xs-5">
-        <label about="v-s:correspondentPerson" property="rdfs:label"></label>
+        <em about="v-s:correspondentPerson" property="rdfs:label"></em>
       </div>
       <div class="col-sm-9 col-xs-7">
         <span rel="v-s:correspondentPerson" class="view edit search" data-template="v-ui:LabelTemplate"></span>
@@ -336,7 +336,7 @@ gen:CorrespondentTemplate
     </div>
     <div class="row row-attribute other-organization">
       <div class="col-sm-3 col-xs-5">
-        <label about="v-s:correspondentDepartmentDescription" property="rdfs:label"></label>
+        <em about="v-s:correspondentDepartmentDescription" property="rdfs:label"></em>
       </div>
       <div class="col-sm-9 col-xs-7">
         <span property="v-s:correspondentDepartmentDescription" class="view -edit -search"></span>
@@ -345,7 +345,7 @@ gen:CorrespondentTemplate
     </div>
     <div class="row row-attribute other-organization">
       <div class="col-sm-3 col-xs-5">
-        <label about="v-s:correspondentPersonDescription" property="rdfs:label"></label>
+        <em about="v-s:correspondentPersonDescription" property="rdfs:label"></em>
       </div>
       <div class="col-sm-9 col-xs-7">
         <span property="v-s:correspondentPersonDescription" class="view -edit -search"></span>

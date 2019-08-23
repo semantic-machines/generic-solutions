@@ -227,7 +227,7 @@ gen:TechnicalDocumentTemplate
 					<span about="v-s:developer" property="rdfs:label"></span>
 				</div>
 				<div class="col-sm-9 col-xs-7">
-					<div id="sender" rel="v-s:developer" class="view edit search" data-template="gen:CorrespondentTemplate" data-embedded="true"></div>
+					<div id="sender" rel="v-s:developer" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
 					<veda-control id="sender-create" data-type="link" rel="v-s:developer" class="-view edit search create"></veda-control>
 				</div>
 			</div>        

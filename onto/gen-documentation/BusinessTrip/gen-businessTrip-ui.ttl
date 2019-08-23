@@ -129,8 +129,9 @@ gen:BusinessTripTemplate
 			<h4 class="section-header clearfix">
 				<span about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></span>
 				<veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordTemplate" class="-view edit -search create create-modal pull-right"></veda-control>
+        <veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" class="-view -edit search create pull-right"></veda-control>
 			</h4>
-			<div class="table-responsive">
+			<div class="table-responsive view edit -search">
 				<table class="table no-margin">
 					<thead class="result-header">
 						<tr>
@@ -152,40 +153,11 @@ gen:BusinessTripTemplate
 					</tbody>
 				</table>
 			</div>
-			<br>
-			<veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" class="-view -edit search create"></veda-control>
-			<div class="clearfix view -edit -search">
-				<button id="add-regEntry" class="btn btn-success pull-right">
-					<span class="glyphicon glyphicon-zoom-in"></span>
-					<span about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></span>
-				</button>
-			</div>
+       <div rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordEmbeddedTemplate" data-embedded="true" class="-view -edit search create"></div>
 		</section>    
     
     <section id="MainProperties">
       <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
-      <!--<div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <label about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></label>
-        </div>
-        <div class="col-sm-9 col-xs-7">
-					<div class="panel panel-default view -edit -search hidden" id="add-regEntry">
-						<div class="panel-body bg-default">
-							<button class="btn btn-success pull-right" about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></button>
-						</div>
-					</div>
-					<div id="new-regEntry"></div>
-					<div about="@" rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordTemplate" class="view edit -search create"></div>
-					<div class="panel panel-default -view -edit search">
-						<div class="panel-body bg-default">
-							<em about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label" class="-view -edit search"></em>
-							<hr class="-view -edit search">
-							<div rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordTemplate" data-embedded="true" class="-view -edit search create"></div>
-							<veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" class="-view -edit search create"></veda-control>
-						</div>
-					</div>
-       </div>
-      </div>-->
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:businessTripEmployee" property="rdfs:label"></label>
@@ -319,9 +291,10 @@ gen:BusinessTripTemplate
 		<section id="hasChangeOfBusinessTrip">
 			<h4 class="section-header clearfix">
 				<span about="gen:hasChangeOfBusinessTrip" property="rdfs:label"></span>
-				<veda-control data-type="link" rel="gen:hasChangeOfBusinessTrip" data-template="gen:ChangeOfBusinessTripTemplate" class="-view edit search create create-modal pull-right"></veda-control>
+				<veda-control data-type="link" rel="gen:hasChangeOfBusinessTrip" data-template="gen:ChangeOfBusinessTripTemplate" class="-view edit -search create create-modal pull-right"></veda-control>
+        <veda-control data-type="link" rel="gen:hasChangeOfBusinessTrip" class="-view -edit search create pull-right"></veda-control>
 			</h4>
-			<div class="table-responsive">
+			<div class="table-responsive view edit -search">
 				<table class="table no-margin">
 					<thead class="result-header">
 						<tr>
@@ -358,14 +331,7 @@ gen:BusinessTripTemplate
 					</tbody>
 				</table>
 			</div>
-			<br>
-			<veda-control data-type="link" rel="gen:hasChangeOfBusinessTrip" class="-view -edit search create"></veda-control>
-			<div class="clearfix view -edit -search">
-				<button id="add-ChangeOfBusinessTrip" class="btn btn-success pull-right">
-					<span class="glyphicon glyphicon-zoom-in"></span>
-					<span about="gen:hasChangeOfBusinessTrip" property="rdfs:label"></span>
-				</button>
-			</div>
+			<div rel="gen:hasChangeOfBusinessTrip" data-template="gen:ChangeOfBusinessTripEmbeddedTemplate" data-embedded="true" class="-view -edit search create"></div>
 		</section>    
 					
     <hr>
@@ -651,31 +617,78 @@ gen:BusinessTripTemplate
 .
 
 
+
 gen:BusinessTripRegistrationRecordTemplate
   rdf:type v-ui:ClassTemplate ;
-  v-ui:forClass v-s:BusinessTripRegistrationRecord ;
+  v-ui:forClass v-s:BusinessTripRegistrationRecord;
   rdfs:label "Шаблон для класса v-s:BusinessTripRegistrationRecord (Регистрационная запись командировки)"@ru ;
   rdfs:label "Template for v-s:BusinessTripRegistrationRecord class"@en ;
   v-ui:template """
-<div class="panel panel-default">
-		<div class="row">
-      <div class="col-md-6">
-        <em about="gen:RegNumBusinessTripBundle" property="rdfs:label"></em>
+<div class="container sheet">
+  <h2>
+    <span about="@" property="rdf:type"></span>
+    <small about="@" property="rdfs:label"></small>
+  </h2>
+  <span about="@" data-template="v-ui:RabbitHole"></span>
+  <hr>
+  <section id="gen:RegNumBusinessTripBundle">
+    <h4 class="section-header" about="v-s:BusinessTripRegistrationRecord" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <em about="gen:RegNumBusinessTripBundle" property="rdfs:label"></em>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <em about="gen:RegNumBusinessTripBundle" property="rdfs:label"></em>
         <div about="@" property="v-s:registrationNumber" class="view  -edit search"></div>
         <veda-control data-type="text" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+        </div>
+      </div> 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <em about="v-s:registrationDate" property="rdfs:label" ></em>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:registrationDate" class="view -edit search"></div>
+        <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
+        </div>
+      </div> 
+  </section>
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <br>
+  <!-- BUTTONS -->
+  <div class="actions view edit -search">
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal "></span>
+  </div>
+</div>
+"""
+.
+gen:BusinessTripRegistrationRecordEmbeddedTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass v-s:BusinessTripRegistrationRecord;
+  rdfs:label "Шаблон для класса v-s:BusinessTripRegistrationRecord (Регистрационная запись командировки)"@ru ;
+  rdfs:label "Template for v-s:BusinessTripRegistrationRecord class"@en ;
+  v-ui:template """
+  <section id="gen:RegNumBusinessTripBundle">
+    <div class="row row-attribute">
+      <div class="col-sm-3 col-xs-5">
+        <em about="gen:RegNumBusinessTripBundle" property="rdfs:label"></em>
       </div>
-      <div class="col-md-6">
-        <em about="v-s:registrationDate" property="rdfs:label" ></em>
+      <div class="col-sm-9 col-xs-7">
+        <div about="@" property="v-s:registrationNumber" class="view  -edit search"></div>
+        <veda-control data-type="text" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+        </div>
+      </div> 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <em about="v-s:registrationDate" property="rdfs:label" ></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
         <div property="v-s:registrationDate" class="view -edit search"></div>
         <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
       </div>
-    </div>
-    <br>
-    <div class="actions">
-      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete"></span>
-    </div>
-  </div>
-</div>
+    </div> 
+  </section>
 """
 .
 
@@ -776,6 +789,91 @@ gen:ChangeOfBusinessTripTemplate
 </div>
 """
 .
+gen:ChangeOfBusinessTripEmbeddedTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass gen:ChangeOfBusinessTrip ;
+  rdfs:label "Шаблон для класса gen:ChangeOfBusinessTrip (Изменения командировки)."@ru ;
+  rdfs:label "Template gen:ChangeOfBusinessTrip class"@en ;
+  v-ui:template """
+<section id="changeOfTerms">
+    <h4 class="section-header" about="gen:ChangeOfTermsBundle" property="rdfs:label"></h4>
+    <div class="row row-attribute">
+      <div class="col-sm-3 col-xs-5">
+        <em about="gen:datesChangesBundle" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-3 col-xs-3">
+        <div property="v-s:dateFrom" class="view -edit search"></div>
+        <veda-control property="v-s:dateFrom" data-type="date" class="-view edit search"></veda-control>
+      </div>
+      <div class="col-sm-3 col-xs-3">
+        <div property="v-s:dateTo" class="view -edit search"></div>
+        <veda-control property="v-s:dateTo" data-type="date" class="-view edit search"></veda-control>
+      </div>
+    </div>  
+    <div class="row row-attribute">
+      <div class="col-sm-3 col-xs-5">
+        <em about="v-s:duration" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-3 col-xs-3">
+        <div property="v-s:duration" class="view -edit search"></div>
+        <veda-control data-type="decimal" property="v-s:duration" class="-view edit search"></veda-control>
+      </div>
+    </div>  
+    <div class="row row-attribute">
+      <div class="col-sm-3 col-xs-5">
+        <em about="v-s:hasStatus" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
+        <div rel="v-s:hasStatus" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+        <veda-control data-type="link" rel="v-s:hasStatus" class="-view edit search fulltext dropdown"></veda-control>
+      </div>
+    </div>  
+    <div class="row row-attribute">
+      <div class="col-sm-3 col-xs-5">
+        <em about="rdfs:comment" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
+        <div property="rdfs:comment" class="view -edit search"></div>
+        <veda-control data-type="text" property="rdfs:comment" class="-view edit search"></veda-control>
+      </div>
+    </div>  
+  </section>
+  <section id="deviationOnExpensesBundle">
+    <h4 class="section-header" about="gen:DeviationOnExpensesBundle" property="rdfs:label"></h4>
+    <div class="row row-attribute">
+      <div class="col-sm-3 col-xs-5">
+        <em about="gen:hasBusinessTripReasonDeviationOnExpenses" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
+        <div rel="gen:hasBusinessTripReasonDeviationOnExpenses" data-template="v-ui:LabelTemplate" class="view -edit search"></div>
+        <veda-control data-type="link" rel="gen:hasBusinessTripReasonDeviationOnExpenses" class="-view edit search fulltext dropdown"></veda-control>
+      </div>
+    </div>  
+    <div class="row row-attribute">
+      <div class="col-sm-3 col-xs-5">
+        <em about="v-s:description" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
+        <div property="v-s:description" class="view -edit search"></div>
+        <veda-control data-type="text" property="v-s:description" class="-view edit search"></veda-control>
+      </div>
+    </div>  
+    <div class="row row-attribute">
+      <div class="col-sm-3 col-xs-5">
+        <em about="v-s:attachment" property="rdfs:label" class="view edit search"></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
+        <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
+        <veda-control data-type="file"  rel="v-s:attachment" class="-view edit search"></veda-control>
+      </div>
+    </div>  
+  </section>
+"""
+.
+
+
+
+
 
 gen:BusinessTrip_listReportParametersTemplate
   rdf:type v-ui:ClassTemplate ;
