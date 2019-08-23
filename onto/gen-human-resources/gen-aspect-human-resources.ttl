@@ -32,6 +32,6 @@ gen:HumanResourcesAspect
   v-s:shortLabel "Human resources"@en ;
   v-ui:hasTemplate v-s:AspectTemplate ;
 
-  v-s:hasApplication gen:PowerOfAttorneyApplication ;
+#  v-s:hasApplication gen:PowerOfAttorneyApplication ;
   v-s:hasApplication gen:DelegationApplication ;
 .

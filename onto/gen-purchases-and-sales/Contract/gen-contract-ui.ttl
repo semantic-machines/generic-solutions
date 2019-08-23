@@ -37,13 +37,13 @@ gen:RegistrationDateBundle
 .
 gen:RegistrationNumberInBundle
   rdf:type v-s:Bundle ;
-  rdfs:label "Номерр контракта у контрагента"@ru ;
-  rdfs:label "Contractor number "@en ;
+  rdfs:label "Номер контракта у контрагента"@ru ;
+  rdfs:label "Contractor's number"@en ;
 .
 gen:initiatorForContractBundle
   rdf:type v-s:Bundle ;
   rdfs:label "Подразделение-заказчик"@ru ;
-  rdfs:label "Customer Unit"@en ;
+  rdfs:label "Customer unit"@en ;
 .
 gen:DurationOfTheContractBundle
     rdf:type v-s:Bundle;
@@ -87,12 +87,12 @@ gen:ContractParticipantsBundle
 .
 gen:AdditionalAgreementTitleBundle
   rdf:type v-s:Bundle ;
-  rdfs:label "Дополнителные соглашения"@ru ;
+  rdfs:label "Дополнительные соглашения"@ru ;
   rdfs:label "AdditionalAgreement"@en ;
 .
 gen:AddAdditionalAgreementBundle
   rdf:type v-s:Bundle ;
-  rdfs:label "Добавить дополнителное соглашение"@ru ;
+  rdfs:label "Добавить дополнительное соглашение"@ru ;
   rdfs:label "Add AdditionalAgreement"@en ;
 .
 gen:ContractTemplate
@@ -102,7 +102,7 @@ gen:ContractTemplate
   rdfs:label "Template for gen:Contract class"@en ;
   v-ui:template """
 <script>
-</script>  
+</script>
 <div>
   <style>
     .section-header {
@@ -143,7 +143,7 @@ gen:ContractTemplate
       </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <label about="gen:contractSubjectBundle" property="rdfs:label"></label>
+          <label about="gen:ContractSubjectBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
           <div class="view -edit -search bg-warning padding-md"><strong property="v-s:theme"></strong></div>
@@ -213,54 +213,6 @@ gen:ContractTemplate
         </div>
       </div>
 
-      <section id="Participants">
-        <h4 class="section-header" about="gen:ContractParticipantsBundle" property="rdfs:label"></h4>
-        <table class="table no-margin">
-          <thead>
-            <tr>
-              <th about="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate"></th>
-              <th about="v-s:hasContractor" property="rdfs:label"></th>
-              <th about="v-s:hasOrganization" property="rdfs:label"></th>
-              <th about="rdfs:comment" property="rdfs:label"></th>
-            </tr>
-          </thead>
-          <tbody rel="v-s:hasContractParticipantSupplier" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
-        </table>
-        <div class="row row-attribute">
-          <div class="col-sm-1 col-xs-1">
-            <veda-control rel="v-s:hasContractParticipantSupplier" data-type="link" class="-view edit search create"></veda-control>
-          </div>
-          <div class="col-sm-11 col-xs-9">
-            <label about="gen:addContractParticipantSupplier" property="rdfs:label" class="-view edit -search"></label>
-          </div>
-        </div>
-        <br>
-        <table class="table no-margin">
-          <tbody rel="v-s:hasContractParticipantCustomer" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
-        </table>
-        <div class="row row-attribute">
-          <div class="col-sm-1 col-xs-1">
-            <veda-control rel="v-s:hasContractParticipantCustomer" data-type="link" class="-view edit search create"></veda-control>
-          </div>
-          <div class="col-sm-11 col-xs-9">
-            <label about="gen:addContractParticipantCustomer" property="rdfs:label" class="-view edit -search"></label>
-          </div>
-        </div>
-        <br>
-        <table class="table no-margin">
-          <tbody rel="v-s:hasContractParticipantStakeholder" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
-        </table>
-        <div class="row row-attribute">
-          <div class="col-sm-1 col-xs-1">
-            <veda-control rel="v-s:hasContractParticipantStakeholder" data-type="link" class="-view edit search create"></veda-control>
-          </div>
-          <div class="col-sm-11 col-xs-9">
-            <label about="gen:addContractParticipantStakeholder" property="rdfs:label" class="-view edit -search"></label>
-          </div>
-        </div>
-      </section>      
-
-      <h4 class="section-header" ></h4>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="gen:isAutoProlongateProvides" property="rdfs:label"></label>
@@ -284,7 +236,7 @@ gen:ContractTemplate
         <div class="col-sm-9 col-xs-7">
           <veda-control property="gen:isContractClosed" data-type="boolean"></veda-control>
         </div>
-      </div>      
+      </div>
 
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
@@ -294,7 +246,7 @@ gen:ContractTemplate
           <div rel="v-s:hasObligationKind" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:hasObligationKind" class="-view edit search fulltext dropdown"></veda-control>
         </div>
-      </div>      
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="gen:hasContractDirection" property="rdfs:label"></label>
@@ -303,7 +255,7 @@ gen:ContractTemplate
           <div rel="gen:hasContractDirection" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="gen:hasContractDirection" class="-view edit search fulltext dropdown"></veda-control>
         </div>
-      </div>            
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasBudgetCategory" property="rdfs:label"></label>
@@ -312,7 +264,7 @@ gen:ContractTemplate
           <div rel="v-s:hasBudgetCategory" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:hasBudgetCategory" class="-view edit search fulltext dropdown"></veda-control>
         </div>
-      </div>            
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:supportSpecialistOfContract" property="rdfs:label"></label>
@@ -321,8 +273,56 @@ gen:ContractTemplate
           <div rel="v-s:supportSpecialistOfContract" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:supportSpecialistOfContract" class="-view edit search fulltext"></veda-control>
         </div>
-      </div>            
+      </div>
+    </section>
+    <section id="Participants">
+      <h4 class="section-header" about="gen:ContractParticipantsBundle" property="rdfs:label"></h4>
+      <table class="table no-margin">
+        <thead>
+          <tr>
+            <th about="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate"></th>
+            <th about="v-s:hasContractor" property="rdfs:label"></th>
+            <th about="v-s:hasOrganization" property="rdfs:label"></th>
+            <th about="rdfs:comment" property="rdfs:label"></th>
+          </tr>
+        </thead>
+        <tbody rel="v-s:hasContractParticipantSupplier" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
+      </table>
+      <div class="row row-attribute">
+        <div class="col-sm-1 col-xs-1">
+          <veda-control rel="v-s:hasContractParticipantSupplier" data-type="link" class="-view edit search create"></veda-control>
+        </div>
+        <div class="col-sm-11 col-xs-9">
+          <label about="gen:addContractParticipantSupplier" property="rdfs:label" class="-view edit -search"></label>
+        </div>
+      </div>
+      <br>
+      <table class="table no-margin">
+        <tbody rel="v-s:hasContractParticipantCustomer" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
+      </table>
+      <div class="row row-attribute">
+        <div class="col-sm-1 col-xs-1">
+          <veda-control rel="v-s:hasContractParticipantCustomer" data-type="link" class="-view edit search create"></veda-control>
+        </div>
+        <div class="col-sm-11 col-xs-9">
+          <label about="gen:addContractParticipantCustomer" property="rdfs:label" class="-view edit -search"></label>
+        </div>
+      </div>
+      <br>
+      <table class="table no-margin">
+        <tbody rel="v-s:hasContractParticipantStakeholder" data-template="gen:ContractParticipantEmbeddedTemplate" data-embedded="true"></tbody>
+      </table>
+      <div class="row row-attribute">
+        <div class="col-sm-1 col-xs-1">
+          <veda-control rel="v-s:hasContractParticipantStakeholder" data-type="link" class="-view edit search create"></veda-control>
+        </div>
+        <div class="col-sm-11 col-xs-9">
+          <label about="gen:addContractParticipantStakeholder" property="rdfs:label" class="-view edit -search"></label>
+        </div>
+      </div>
+    </section>
 
+    <section>
       <h4 class="section-header" about="gen:hasContractStageChanging" property="rdfs:label"></h4>
       <table class="table no-margin">
         <thead>
@@ -369,31 +369,26 @@ gen:ContractTemplate
   <div class="container sheet view edit -search margin-lg">
     <h3 about="gen:AdditionalAgreementTitleBundle" property="rdfs:label" class="margin-sm"></h3>
     <hr class="margin-lg">
-
-      <table class="table no-margin">
-        <thead>
-          <tr>
-            <th width="1%"><span class="glyphicon glyphicon-search" ></th>
-            <th about="v-s:registrationNumber" property="rdfs:label"></th>
-            <th about="v-s:hasContractScope" property="rdfs:label"></th>
-            <th about="v-s:theme" property="rdfs:label"></th>
-            <th about="v-s:initiator" property="rdfs:label"></th>
-          </tr>
-        </thead>
-        <tbody rel="gen:hasAdditionalAgreement" data-template="gen:AdditionalAgreementEmbeddedTemplate" data-embedded="true"></tbody>
-      </table>
-      <br>
-      <div class="view -edit -search clearfix">
-        <button class="btn btn-success pull-right" id="add-AdditionalAgreement" >
-          <span class="glyphicon glyphicon-zoom-in"></span>
-          <span  about="gen:AddAdditionalAgreementBundle" property="rdfs:label"> </span>
-        </button>
-      </div>      
-
-   </section>
-
+    <table class="table no-margin">
+      <thead>
+        <tr>
+          <th width="1%"><span class="glyphicon glyphicon-search" ></th>
+          <th about="v-s:registrationNumber" property="rdfs:label"></th>
+          <th about="v-s:hasContractScope" property="rdfs:label"></th>
+          <th about="v-s:theme" property="rdfs:label"></th>
+          <th about="v-s:initiator" property="rdfs:label"></th>
+        </tr>
+      </thead>
+      <tbody rel="gen:hasAdditionalAgreement" data-template="gen:AdditionalAgreementEmbeddedTemplate" data-embedded="true"></tbody>
+    </table>
+    <br>
+    <div class="view -edit -search clearfix">
+      <button class="btn btn-success pull-right" id="add-AdditionalAgreement" >
+        <span class="glyphicon glyphicon-zoom-in"></span>
+        <span  about="gen:AddAdditionalAgreementBundle" property="rdfs:label"> </span>
+      </button>
+    </div>
   </div>
-
   <div about="@" class="container sheet view edit -search margin-lg" data-template="v-s:LinksTemplate" data-embedded="true"></div>
   <div about="@" class="container sheet view -edit -search margin-lg" data-template="v-s:CommentsTemplate"></div>
 </div>
@@ -633,7 +628,7 @@ gen:ContractStageChangingTemplate
       <div class="view -edit -search" property="rdfs:comment"></div>
       <veda-control data-type="text" property="rdfs:comment" class="-view edit search"></veda-control>
     </div>
-  </div>  
+  </div>
   <hr>
   <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
   <br>

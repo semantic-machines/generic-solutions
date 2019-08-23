@@ -187,7 +187,7 @@ gen:Main
   rdfs:label "Главная страница"@ru ;
   rdfs:label "Main page"@en ;
   v-s:hasBusinessAspect gen:DocumentationManagementAspect ;
-  v-s:hasBusinessAspect gen:PurchasesSalesAspect ;
+#  v-s:hasBusinessAspect gen:PurchasesSalesAspect ;
   v-s:hasBusinessAspect gen:DevelopmentAndReconstructionAspect ;
   v-s:hasBusinessAspect gen:HumanResourcesAspect ;
   v-ui:hasTemplate gen:MainTemplate ;

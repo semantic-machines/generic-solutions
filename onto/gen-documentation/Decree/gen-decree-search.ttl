@@ -1,0 +1,74 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-function-search/> .
+@prefix vdi: <http://semantic-machines.com/veda/veda-index/> .
+
+<http://semantic-machines.com/veda/mondi-decree-registries>
+  rdf:type owl:Ontology ;
+  rdfs:label "Распорядительный документ. Поиск"@ru ;
+  rdfs:label "Decree. Search"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------- Search ---------------
+gen:DecreeSearch
+  a v-fs:AttributiveSearch;
+  rdfs:label "Распорядительные документы"@ru ;
+  rdfs:label "Decrees"@en ;
+  v-fs:searchBlank gen:DecreeSearchBlank ;
+  v-fs:searchBlankTemplate gen:DecreeTemplate ;
+  v-fs:searchResultTemplate gen:DecreeResultTemplate ;
+.
+
+gen:DecreeResultTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Распорядительный документ"@ru ;
+  rdfs:label "Decree"@en ;
+  v-ui:template """
+<table class="table table-bordered">
+  <thead class="result-header">
+    <tr>
+      <th colspan="3" about="gen:Decree" property="rdfs:label"></th>
+      <th colspan="4" about="gen:DecreeRegistrationRecord" property="rdfs:label"></th>
+      <th colspan="12" about="gen:Decree" property="rdfs:label"></th>
+    </tr>
+    <tr class="active">
+      <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
+      <th class="orderby" data-orderby="gen:hasDecreeRegistrationRecord.v-s:registrationNumber"><span about="v-s:registrationNumber" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="gen:hasDecreeRegistrationRecord.v-s:registrationDate"><span about="v-s:registrationDate" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="gen:hasDecreeRegistrationRecord.rdfs:comment"><span about="rdfs:comment" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="gen:hasDecreeRegistrationRecord.v-s:attachment"><span about="v-s:attachment" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="gen:hasDecreeKind"><span about="gen:hasDecreeKind" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:initiator"><span about="v-s:initiator" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:signedBy"><span about="v-s:signedBy" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:responsible"><span about="v-s:responsible" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:title"><span about="gen:titleBundleDecree" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:description"><span about="gen:descriptionBundleDecree" property="rdfs:label"></span></th>
+    </tr>
+  </thead>
+  <tbody class="result-container">
+    <tr>
+      <td><a href="#/@" class="glyphicon glyphicon-search"></a></td>
+      <td rel="gen:hasDecreeRegistrationRecord"><span property="v-s:registrationNumber"></span></td>
+      <td rel="gen:hasDecreeRegistrationRecord"><span property="v-s:registrationDate"></span></td>
+      <td rel="gen:hasDecreeRegistrationRecord"><span property="rdfs:comment"></span></td>
+      <td rel="gen:hasDecreeRegistrationRecord"><span rel="v-s:attachment" data-template="v-ui:FileMinTemplate"></span></td>
+      <td rel="gen:hasDecreeKind" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:initiator" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:signedBy" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:responsible" data-template="v-ui:LabelTemplate"></td>
+      <td property="v-s:title"></td>
+      <td property="v-s:description"></td>
+    </tr>
+  </tbody>
+</table>
+  """ ;
+.
