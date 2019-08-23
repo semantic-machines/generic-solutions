@@ -81,13 +81,13 @@ gen:DecreeTemplate
       <small about="@" property="rdfs:label" class="view edit -search"></small>
     </h3>
     <div rel="gen:hasDecreeRegistrationRecord" class="view edit -search" data-template="gen:DecreeRegistrationRecordEmbededSectionTemplate"></div>
-    <div rel="gen:hasDecreeRegistrationRecord" class="-view -edit search" data-template="gen:DecreeRegistrationRecordEmbededSectionTemplateForSearch"></div>
+    <div rel="gen:hasDecreeRegistrationRecord" data-template="gen:DecreeRegistrationRecordEmbededSectionTemplateForSearch" data-embedded="true" class="-view -edit search create"></div>
     <section id="buttonReg">
       <h4 class="section-header clearfix">
         <span about="gen:DecreeRegistrationRecord" property="rdfs:label"></span>
         <button class="btn btn-xs btn-success pull-right view -edit -search" id="add-RegRecord" about="v-s:Create" property="rdfs:label"></button>
+        <veda-control data-type="link" rel="gen:hasDecreeRegistrationRecord" class="-view -edit search create pull-right"></veda-control>
       </h4>
-      <veda-control data-type="link" rel="gen:hasDecreeRegistrationRecord" class="-view -edit search create"></veda-control>
     </section>
     <section id="MainProperties">
       <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
