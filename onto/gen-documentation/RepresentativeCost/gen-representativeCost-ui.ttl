@@ -72,7 +72,7 @@ gen:RepresentativeCostsTemplate
           <div property="v-s:dateTo" class="view -edit search"></div>
           <veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
         </div>
-      </div> 
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:placeDescription" property="rdfs:label"></label>
@@ -181,7 +181,7 @@ gen:RepresentativeCostsTemplate
           </tbody>
         </table>
       </div>
-    </section> 
+    </section>
     <section id="Report">
       <h4 class="section-header" about="v-s:hasPaymentForm" property="rdfs:label"></h4>
       <div class="row row-attribute">
@@ -308,7 +308,7 @@ gen:RepresentativeCostsTemplate
       $('#save.action', template).remove();
     }
   })
-    
+
 </script>
 
   """
@@ -321,10 +321,10 @@ gen:ThirdPartyParticipantEmbededTemplate
   rdfs:label "Template for v-s:ThirdPartyParticipant class"@en ;
   v-ui:template """
 <div class="well well-sm">
-  <em about="v-s:correspondentOrganization" property="rdfs:label"></em>
+  <strong about="v-s:correspondentOrganization" property="rdfs:label"></strong>
   <div rel="v-s:correspondentOrganization" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
   <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view edit search fulltext"></veda-control>
-  <em about="v-s:correspondentPersonDescription" property="rdfs:label" ></em>
+  <strong about="v-s:correspondentPersonDescription" property="rdfs:label" ></strong>
   <div property="v-s:correspondentPersonDescription" class="view -edit search"></div>
   <veda-control data-type="text"  property="v-s:correspondentPersonDescription" class="-view edit search"></veda-control>
 </div>
@@ -348,31 +348,31 @@ gen:RepresentativeCostsEventTemplate
     <h4 class="section-header" about="gen:RepresentativeCostsEvent" property="rdfs:label"></h4>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <em about="v-s:responsible" property="rdfs:label"></em>
+          <strong about="v-s:responsible" property="rdfs:label"></strong>
         </div>
         <div class="col-sm-9 col-xs-7">
           <div rel="v-s:responsible" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext"></veda-control>
         </div>
-      </div> 
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <em about="v-s:dateTo" property="rdfs:label"></em>
+          <strong about="v-s:dateTo" property="rdfs:label"></strong>
         </div>
         <div class="col-sm-9 col-xs-7">
           <div property="v-s:dateTo" class="view -edit -search"></div>
           <veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
         </div>
-      </div> 
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <em about="v-s:description" property="rdfs:label"></em>
+          <strong about="v-s:description" property="rdfs:label"></strong>
         </div>
         <div class="col-sm-9 col-xs-7">
           <div property="v-s:description" class="view -edit -search"></div>
           <veda-control data-type="text" property="v-s:description" class="-view edit search"></veda-control>
         </div>
-      </div> 
+      </div>
   </section>
   <hr>
   <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
@@ -440,31 +440,31 @@ gen:RepresentativeCostsForEventTemplate
     <h4 class="section-header" about="gen:RepresentativeCostsForEvent" property="rdfs:label"></h4>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <em about="gen:hasRepresentativeCostsKind" property="rdfs:label"></em>
+          <strong about="gen:hasRepresentativeCostsKind" property="rdfs:label"></strong>
         </div>
         <div class="col-sm-9 col-xs-7">
           <div rel="gen:hasRepresentativeCostsKind" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="gen:hasRepresentativeCostsKind" class="-view edit search fulltext dropdown"></veda-control>
         </div>
-      </div> 
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <em about="v-s:hasCurrency" property="rdfs:label"></em>
+          <strong about="v-s:hasCurrency" property="rdfs:label"></strong>
         </div>
         <div class="col-sm-9 col-xs-7">
           <div rel="v-s:hasCurrency" class="view -edit -search"></div>
           <veda-control data-type="link" rel="v-s:hasCurrency" class="-view edit search fulltext dropdown"></veda-control>
         </div>
-      </div> 
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <em about="v-s:sum" property="rdfs:label"></em>
+          <strong about="v-s:sum" property="rdfs:label"></strong>
         </div>
         <div class="col-sm-9 col-xs-7">
           <div property="v-s:sum" class="view -edit -search"></div>
           <veda-control data-type="decimal" property="v-s:sum" class="-view edit search"></veda-control>
         </div>
-      </div> 
+      </div>
   </section>
   <hr>
   <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
@@ -484,7 +484,7 @@ gen:PriceMicroTemplate
   v-ui:template """
   <div>
     <div class="col-sm-3 col-xs-5">
-      <em about="v-s:Price" property="rdfs:label"></em>
+      <strong about="v-s:Price" property="rdfs:label"></strong>
     </div>
     <div class="col-sm-3 col-xs-4">
       <div property="v-s:sum" class="view -edit -search"></div>

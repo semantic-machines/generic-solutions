@@ -120,7 +120,7 @@ gen:OrganizationTemplate
           <label about="v-s:shortLabel" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="v-s:shortLabel" class="view -edit -search"></div>
+          <div property="v-s:shortLabel" class="view -edit -search"></div>
           <veda-control data-type="string" property="v-s:shortLabel" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -141,13 +141,13 @@ gen:OrganizationTemplate
           <div rel="v-s:hasClassifierLegalForm" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:hasClassifierLegalForm" class="-view edit search fulltext dropdown"></veda-control>
         </div>
-      </div>     
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:taxId" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="v-s:taxId" class="view -edit -search"></div>
+      <div property="v-s:taxId" class="view -edit -search"></div>
           <veda-control data-type="string" property="v-s:taxId" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -156,7 +156,7 @@ gen:OrganizationTemplate
           <label about="v-s:taxRegistrationCause" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
+      <div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
           <veda-control data-type="string" property="v-s:taxRegistrationCause" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -165,7 +165,7 @@ gen:OrganizationTemplate
           <label about="v-s:legalAddress" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="v-s:legalAddress" class="view -edit -search"></div>
+      <div property="v-s:legalAddress" class="view -edit -search"></div>
           <veda-control data-type="text" rows="3" property="v-s:legalAddress" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -174,7 +174,7 @@ gen:OrganizationTemplate
           <label about="v-s:postalAddress" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="v-s:postalAddress" class="view -edit -search"></div>
+      <div property="v-s:postalAddress" class="view -edit -search"></div>
           <veda-control data-type="text" rows="3" property="v-s:postalAddress" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -183,56 +183,56 @@ gen:OrganizationTemplate
           <label about="v-s:LegalEntityExistencePeriodBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-3 col-xs-3">
-		  <div property="v-s:dateFromFact" class="view -edit search"></div>
+      <div property="v-s:dateFromFact" class="view -edit search"></div>
           <veda-control data-type="date" property="v-s:dateFromFact" class="-view edit search"></veda-control>
         </div>
         <div class="col-sm-3 col-xs-3">
-		  <div property="v-s:dateToFact" class="view -edit search"></div>
+      <div property="v-s:dateToFact" class="view -edit search"></div>
           <veda-control data-type="date" property="v-s:dateToFact" class="-view edit search"></veda-control>
         </div>
-      </div>  
+      </div>
 
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-			<em about="v-s:hasSubsidiary" property="rdfs:label"></em>
+          <strong about="v-s:hasSubsidiary" property="rdfs:label"></strong>
         </div>
         <div class="col-sm-9 col-xs-7">
-			<table class="table table-condensed table-bordered">
-			  <thead>
-				<tr class="view -edit -search active">
-				  <th width="1%"><span class="glyphicon glyphicon-search"></th>
-				  <th about="v-s:shortLabel" property="rdfs:label"></th>
-				  <th about="v-s:taxRegistrationCause" property="rdfs:label"></th>
-				  <th about="v-s:postalAddress" property="rdfs:label"></th>
-				</tr>
-			  </thead>
-			  <tbody rel="v-s:hasSubsidiary" data-embedded="true">
-				<tr>
-				  <td about="@" data-template="v-ui:IconModalTemplate"></td>
-				  <td>
-					<div property="v-s:shortLabel" class="view -edit -search"></div>
-					<veda-control property="v-s:shortLabel" data-type="string" class="-view edit search"></div>
-				  </td>
-				  <td>
-					<div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
-					<veda-control property="v-s:taxRegistrationCause" data-type="string" class="-view edit search"></div>
-				  </td>
-				  <td>
-					<div property="v-s:postalAddress" class="view -edit -search"></div>
-					<veda-control property="v-s:postalAddress" data-type="string" class="-view edit search"></div>
-				  </td>
-				</tr>
-			  </tbody>
-			</table>
-			<div class="view -edit -search">
-			  <button class="btn btn-success" id="add-subsidiary">
-				<span class="glyphicon glyphicon-zoom-in"></span>
-				<span about="v-s:AddSubsidiary" property="rdfs:label"></span>
-			  </button>
-			</div>      
+      <table class="table table-condensed table-bordered">
+        <thead>
+        <tr class="view -edit -search active">
+          <th width="1%"><span class="glyphicon glyphicon-search"></th>
+          <th about="v-s:shortLabel" property="rdfs:label"></th>
+          <th about="v-s:taxRegistrationCause" property="rdfs:label"></th>
+          <th about="v-s:postalAddress" property="rdfs:label"></th>
+        </tr>
+        </thead>
+        <tbody rel="v-s:hasSubsidiary" data-embedded="true">
+        <tr>
+          <td about="@" data-template="v-ui:IconModalTemplate"></td>
+          <td>
+          <div property="v-s:shortLabel" class="view -edit -search"></div>
+          <veda-control property="v-s:shortLabel" data-type="string" class="-view edit search"></div>
+          </td>
+          <td>
+          <div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
+          <veda-control property="v-s:taxRegistrationCause" data-type="string" class="-view edit search"></div>
+          </td>
+          <td>
+          <div property="v-s:postalAddress" class="view -edit -search"></div>
+          <veda-control property="v-s:postalAddress" data-type="string" class="-view edit search"></div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="view -edit -search">
+        <button class="btn btn-success" id="add-subsidiary">
+        <span class="glyphicon glyphicon-zoom-in"></span>
+        <span about="v-s:AddSubsidiary" property="rdfs:label"></span>
+        </button>
+      </div>
         </div>
-      </div> 			
-                
+      </div>
+
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:HeadOrganization" property="rdfs:label"></label>
@@ -241,7 +241,7 @@ gen:OrganizationTemplate
           <div rel="v-s:parentUnit" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:parentUnit" class="-view edit search fulltext"></veda-control>
         </div>
-      </div>          
+      </div>
     </section>
     <hr>
     <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
@@ -303,8 +303,8 @@ gen:SubsidiaryTemplate
   v-ui:template """
 <div>
   <div class="container sheet">
-	<span about="@" data-template="v-ui:RabbitHole"></span>
-	<hr>
+  <span about="@" data-template="v-ui:RabbitHole"></span>
+  <hr>
     <h3 class="margin-sm">
       <span about="@" property="rdf:type"></span>
       <small about="@" property="rdfs:label" class="view edit -search"></small>
@@ -319,7 +319,7 @@ gen:SubsidiaryTemplate
           <span about="@" rel="v-s:backwardTarget" class="view -edit search" data-template="v-ui:LabelLinkTemplate"></span>
         </div>
       </div>
-      
+
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:parentUnit" property="rdfs:label"></label>
@@ -328,13 +328,13 @@ gen:SubsidiaryTemplate
           <div rel="v-s:parentUnit" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:parentUnit" class="-view edit search fulltext"></veda-control>
         </div>
-      </div>          
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="rdfs:label" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="rdfs:label" class="view -edit -search"></div>
+      <div property="rdfs:label" class="view -edit -search"></div>
           <veda-control data-type="string" property="rdfs:label" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -343,7 +343,7 @@ gen:SubsidiaryTemplate
           <label about="v-s:shortLabel" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="v-s:shortLabel" class="view -edit -search"></div>
+      <div property="v-s:shortLabel" class="view -edit -search"></div>
           <veda-control data-type="string" property="v-s:shortLabel" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -352,7 +352,7 @@ gen:SubsidiaryTemplate
           <label about="v-s:taxRegistrationCause" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
+      <div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
           <veda-control data-type="string" property="v-s:taxRegistrationCause" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -361,7 +361,7 @@ gen:SubsidiaryTemplate
           <label about="v-s:postalAddress" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="v-s:postalAddress" class="view -edit -search"></div>
+      <div property="v-s:postalAddress" class="view -edit -search"></div>
           <veda-control data-type="text" rows="3" property="v-s:postalAddress" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -370,7 +370,7 @@ gen:SubsidiaryTemplate
           <label about="rdfs:comment" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="rdfs:comment" class="view -edit -search"></div>
+      <div property="rdfs:comment" class="view -edit -search"></div>
           <veda-control data-type="string" property="rdfs:comment" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -382,6 +382,6 @@ gen:SubsidiaryTemplate
       <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete"></span>
     </div>
   </div>
-</div>  
+</div>
   """ ;
 .
