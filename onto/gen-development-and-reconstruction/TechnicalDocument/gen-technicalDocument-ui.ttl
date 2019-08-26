@@ -129,7 +129,6 @@ gen:TechnicalDocumentTemplate
         </div>
         <div class="col-sm-3 col-xs-4">
           <div property="v-s:registrationNumber" class="view -edit search"></div>
-          <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
         </div>
       </div>      
       <div class="row row-attribute">
@@ -277,13 +276,18 @@ gen:TechnicalDocumentTemplate
     <!-- BUTTONS -->
     <div class="actions view edit -search">
       <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal task"></span>
+      <button type="button" class="action btn btn-default view -edit -search" id="add-copy" about="v-s:Clone" property="rdfs:label" />
     </div>
   </div>
   <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
   <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
 </div>
 <script>
-
+  // Проверка разрешения на создание тех документов
+  var This_class = individual["rdf:type"][0];
+  This_class.canCreate().then(function(canCreate) {
+    if (!canCreate) $("#add-LinkedTechnicalDocument", template).remove();
+  });
   $("#add-LinkedTechnicalDocument", template).click(function () {
     var _class = new veda.IndividualModel("gen:TechnicalDocument"),
         TechnicalDocument = new veda.IndividualModel(),
@@ -293,8 +297,6 @@ gen:TechnicalDocumentTemplate
     TechnicalDocument["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasTechnicalDocument")];
     TechnicalDocument["v-s:canRead"] = [ true ];
     TechnicalDocument["v-s:title"] = individual["v-s:title"] ;
-    TechnicalDocument["gen:technicalDocumentObject"] = individual["gen:technicalDocumentObject"] ;
-    TechnicalDocument["v-s:hasMaintainedObject"] = individual["v-s:hasMaintainedObject"] ;
     TechnicalDocument["v-s:shortLabel"] = individual["v-s:shortLabel"] ;
     TechnicalDocument["v-s:registrationDate"] = individual["v-s:registrationDate"] ;
     TechnicalDocument["v-s:hasLifecycleStage"] = individual["v-s:hasLifecycleStage"] ;
@@ -315,6 +317,44 @@ gen:TechnicalDocumentTemplate
       riot.route( ["#", TechnicalDocument.id, "#main", tmpl, "edit"].join("/") );
     });
   });
+
+  // Проверка разрешения на создание копии
+  var This_class = individual["rdf:type"][0];
+  This_class.canCreate().then(function(canCreate) {
+    if (!canCreate) $("#add-copy", template).remove();
+  });
+    
+  $("#add-copy", template).click(function () {
+    var _class = new veda.IndividualModel("gen:TechnicalDocument"),
+        TechnicalDocument = new veda.IndividualModel(),
+        tmpl = "gen:TechnicalDocumentTemplate" ;
+    TechnicalDocument["rdf:type"] = [_class] ;
+    TechnicalDocument["v-s:title"]=individual["v-s:title"] ;
+    TechnicalDocument["v-s:hasLifecycleStage"]=individual["v-s:hasLifecycleStage"] ;
+    TechnicalDocument["v-s:hasDocumentKind"]=individual["v-s:hasDocumentKind"] ;
+    TechnicalDocument["v-s:hasSector"]=individual["v-s:hasSector"] ;
+    TechnicalDocument["v-s:hasBudgetCategory"]=individual["v-s:hasBudgetCategory"] ;
+    TechnicalDocument["v-s:shortLabel"]=individual["v-s:shortLabel"] ;
+    TechnicalDocument["v-s:owner"]=individual["v-s:owner"] ;
+    TechnicalDocument["v-s:hasClassifierSectionOfProjectDocumentation"]=individual["v-s:hasClassifierSectionOfProjectDocumentation"] ;
+    TechnicalDocument["v-s:hasClassifierMarkOfWorkingDrawingsSet"]=individual["v-s:hasClassifierMarkOfWorkingDrawingsSet"] ;
+    TechnicalDocument.one("afterSave", function () {
+      riot.route("#/" + TechnicalDocument.id, false);
+    });
+    Promise.resolve().then(function() {
+      if ( individual.hasValue("v-s:developer") ) {
+        return individual["v-s:developer"][0].load().then(function(developer) {
+          return developer.clone();
+        });
+      }
+      return null;
+    }).then(function(clonedDeveloper) {
+      if (clonedDeveloper != null) {
+        TechnicalDocument["v-s:developer"]= [ clonedDeveloper ];
+      }
+      riot.route( ["#", TechnicalDocument.id, "#main", tmpl, "edit"].join("/") ) ;
+    });
+  });  
   
   function lifeCycleStage() {
     if ( individual.hasValue("v-s:hasLifecycleStage", new veda.IndividualModel("d:a6uu8yexul97649zuczu37abf4f")) ) {

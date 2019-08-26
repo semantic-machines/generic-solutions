@@ -144,7 +144,7 @@ gen:PS_hasRepresentativeCostsEvent_RepresentativeCosts
   rdf:type v-ui:PropertySpecification ;
   v-ui:forClass gen:RepresentativeCosts ;
   v-ui:forProperty gen:hasRepresentativeCostsEvent ;
-  v-ui:minCardinality 1 ;
+  v-ui:minCardinality 0 ;
   v-ui:maxCardinality 100 ;
   rdfs:label "Спецификация свойства gen:hasRepresentativeCostsEvent для класса gen:RepresentativeCosts"@ru ;
   rdfs:label "gen:hasRepresentativeCostsEvent property specification for gen:RepresentativeCosts class"@en ;
