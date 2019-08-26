@@ -167,7 +167,7 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
     <section id="Delivery">
       <h4 class="section-header clearfix">
         <span about="v-s:hasDelivery" property="rdfs:label"></span>
-        <veda-control data-type="link" rel="v-s:hasDelivery" data-template="gen:DeliveryTemplate" class="-view edit -search create create-modal pull-right"></veda-control>
+        <veda-control data-type="link" rel="v-s:hasDelivery" class="-view edit -search create create-modal pull-right"></veda-control>
         <veda-control data-type="link" rel="v-s:hasDelivery" class="-view -edit search create pull-right"></veda-control>
       </h4>
       <div class="table-responsive view edit -search">
@@ -245,6 +245,7 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
       <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send save edit cancel delete journal task"></span>
       <button type="button" class="action btn btn-success view -edit -search" id="add-OutgoingLetter" about="v-s:OutgoingLetter" property="rdfs:label"></button>
       <button type="button" class="action btn btn-success view -edit -search" id="add-IncomingLetter" about="v-s:IncomingLetter" property="rdfs:label"></button>
+      <button type="button" class="action btn btn-default view -edit -search" id="add-Letter" about="v-s:Clone" property="rdfs:label"></button>
       <button type="button" class="action btn btn-info view -edit -search" id="incoming-print-blank" about="v-s:IncomingLetterPrintBlank" property="rdfs:label"/>
       <div class="btn-group dropup" id="outgoing-print-blank">
         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -262,36 +263,227 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
   <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
 </div>
 <script>
-  // Процессная часть
-  function processHandler() {
-    if (individual.hasValue("v-wf:isProcess")
-      && individual["v-wf:isProcess"][0].hasValue("v-wf:instanceOf")
-      && individual["v-wf:isProcess"][0]["v-wf:instanceOf"][0].id === "s-wf:net_complex_route"
-    ) {
-      $('#delete.action', template).remove();
-    } else if (individual.isNew() || individual.rights['v-s:canUpdate'][0] === true) {
-      var complexTemplateUri;
-      if (individual['rdf:type'][0].id === "v-s:IncomingLetter"){
-        complexTemplateUri = 'v-s:IncomingLetter_ComplexRouteStartForm_Template';
-      }
-      if (individual['rdf:type'][0].id === "v-s:OutgoingLetter"){
-        complexTemplateUri = 'v-s:OutgoingLetter_ComplexRouteStartForm_Template';
-      }
-      $('#send.action', template).off("click");
-      $('#send.action', template).on('click', function () {
-        veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, complexTemplateUri);
-      });
-    } else {
-      $('#delete.action', template).remove();
+  // Проверка разрешения на кнопку исходящее письмо
+  var OutgoingLetter_class = new veda.IndividualModel("gen:OutgoingLetter");
+  OutgoingLetter_class.canCreate().then(function(canCreate) {
+    if (individual.hasValue("rdf:type", "gen:OutgoingLetter") || !canCreate) {
+      $("#add-OutgoingLetter").remove();
     }
+  })
+
+  // Исходящий документ
+  $("#add-OutgoingLetter", template).click(function () {
+
+    var newSender = new veda.IndividualModel();
+    newSender["rdf:type"] = [ new veda.IndividualModel("v-s:Correspondent") ];
+    var senderPromise = individual.getPropertyChain("v-s:sender").then(function(senderArr) {
+      return senderArr.length > 0? senderArr[0].load() : null;
+    }).then(function(sender) {
+      if (sender != null) {
+        newSender["v-s:correspondentOrganization"] =  sender["v-s:correspondentOrganization"];
+        newSender["v-s:correspondentDepartmentDescription"] =  sender["v-s:correspondentDepartmentDescription"];
+        newSender["v-s:correspondentPersonDescription"] =  sender["v-s:correspondentPersonDescription"];
+      }
+      return newSender;
+    })
+
+    var newRecipient = new veda.IndividualModel();
+    newRecipient["rdf:type"] = [ new veda.IndividualModel("v-s:Correspondent") ];
+    var recipientPromise = individual.getPropertyChain("v-s:recipient").then(function(recipientArr) {
+      return recipientArr.length > 0? recipientArr[0].load() : null;
+    }).then(function(recipient) {
+      if (recipient != null) {
+        newRecipient["v-s:correspondentOrganization"] = recipient["v-s:correspondentOrganization"];
+        newRecipient["v-s:correspondentDepartment"] = recipient["v-s:correspondentDepartment"];
+        newRecipient["v-s:correspondentPerson"] = recipient["v-s:correspondentPerson"];
+      }
+      return newRecipient;
+    })
+
+    Promise.all([senderPromise, recipientPromise]).then(function(result) {
+      var _class = new veda.IndividualModel("gen:OutgoingLetter"),
+        OutcomingLetter = new veda.IndividualModel(),
+        tmpl = "gen:LetterTemplate";
+        OutcomingLetter["rdf:type"] = [_class];
+
+      OutcomingLetter["v-s:recipient"]= [ result[0] ];
+      OutcomingLetter["v-s:sender"]= [ result[1] ];
+      OutcomingLetter["v-s:description"] = individual ["v-s:description"];
+
+      var Link = new veda.IndividualModel();
+      Link["rdf:type"] = [ new veda.IndividualModel("v-s:Link") ];
+      Link["v-s:from"] = [ OutcomingLetter ];
+      Link["v-s:to"] = [ individual ];
+      OutcomingLetter["v-s:hasLink"]= [ Link ];
+
+      riot.route( ["#", OutcomingLetter.id, "#main", tmpl, "edit"].join("/") );
+    })
+  });
+
+  // Проверка разрешения на кнопку и на входящее письмо
+  var incomingLetter_class = new veda.IndividualModel("gen:IncomingLetter");
+  incomingLetter_class.canCreate().then(function(canCreate) {
+    if ( individual.hasValue("rdf:type", "gen:IncomingLetter") || !canCreate ) {
+    $("#add-IncomingLetter").remove();
+  }
+  })
+
+  //Входящий документ
+  $("#add-IncomingLetter", template).click(function () {
+    var newSender = new veda.IndividualModel();
+    newSender["rdf:type"] = [ new veda.IndividualModel("v-s:Correspondent") ];
+    var senderPromise = individual.getPropertyChain('v-s:sender').then(function(senderArr) {
+      return senderArr.length > 0? senderArr[0].load() : null;
+    }).then(function(sender) {
+      if (sender != null){
+        newSender["v-s:correspondentOrganization"] = sender["v-s:correspondentOrganization"];
+        newSender["v-s:correspondentDepartmentDescription"] = sender["v-s:correspondentDepartmentDescription"];
+        newSender["v-s:correspondentPersonDescription"] = sender["v-s:correspondentPersonDescription"];
+      }
+      return newSender;
+    })
+
+    var newRecipient = new veda.IndividualModel();
+    newRecipient["rdf:type"] = [ new veda.IndividualModel("v-s:Correspondent") ];
+    var recipientPromise = individual.getPropertyChain("v-s:recipient").then(function(recipientArr) {
+      return recipientArr.length > 0? recipientArr[0].load() : null;
+    }).then(function(recipient) {
+      if (recipient != null) {
+        newRecipient["v-s:correspondentOrganization"] = recipient["v-s:correspondentOrganization"];
+        newRecipient["v-s:correspondentDepartment"] = recipient["v-s:correspondentDepartment"];
+        newRecipient["v-s:correspondentPerson"] = recipient["v-s:correspondentPerson"];
+      }
+      return newRecipient;
+    })
+
+    Promise.all([senderPromise, recipientPromise]).then(function(result) {
+      var _class = new veda.IndividualModel("gen:IncomingLetter"),
+          IncomingLetter = new veda.IndividualModel(),
+          tmpl = "gen:LetterTemplate";
+      IncomingLetter["rdf:type"] = [_class];
+      IncomingLetter["v-s:recipient"]= [ result[0] ];
+      IncomingLetter["v-s:sender"]= [ result[1] ];
+
+      var Link = new veda.IndividualModel();
+      Link["rdf:type"] = [ new veda.IndividualModel("v-s:Link") ];
+      Link["v-s:from"] = [ IncomingLetter ];
+      Link["v-s:to"] = [ individual ];
+      IncomingLetter["v-s:hasLink"]= [ Link ];
+
+      IncomingLetter["v-s:description"] = individual ["v-s:description"];
+      riot.route( ["#", IncomingLetter.id, "#main", tmpl, "edit"].join("/") );
+    })
+  });
+
+  // Проверка разрешения на создание копии
+  var This_class = individual["rdf:type"][0];
+  This_class.canCreate().then(function(canCreate) {
+    if (!canCreate) $("#add-Letter", template).remove();
+  });
+
+  $("#add-Letter", template).click(function () {
+    var _class = individual["rdf:type"][0],
+        Letter = new veda.IndividualModel(),
+        tmpl = "gen:LetterTemplate";
+
+    Letter["rdf:type"] = [_class];
+    Letter["v-s:description"] = individual["v-s:description"];
+    Letter["v-s:hasDocumentKind"] = individual["v-s:hasDocumentKind"];
+
+    //Отправитель
+    var newSender = new veda.IndividualModel();
+    newSender["rdf:type"] = [ new veda.IndividualModel("v-s:Correspondent") ];
+    var senderPromise = individual.getPropertyChain("v-s:sender").then(function(senderArr) {
+      return senderArr.length > 0? senderArr[0].load() : null;
+    }).then(function(sender) {
+      if (sender != null) {
+        newSender["v-s:correspondentOrganization"] = sender["v-s:correspondentOrganization"];
+        if (individual["rdf:type"][0].id === "gen:IncomingLetter") {
+          newSender["v-s:correspondentDepartmentDescription"] = sender["v-s:correspondentDepartmentDescription"];
+          newSender["v-s:correspondentPersonDescription"] = sender["v-s:correspondentPersonDescription"];
+        } else if (individual["rdf:type"][0].id === "gen:OutgoingLetter") {
+          newSender["v-s:correspondentDepartment"] = sender["v-s:correspondentDepartment"];
+          newSender["v-s:correspondentPerson"] = sender["v-s:correspondentPerson"];
+        }
+      }
+      return newSender;
+    })
+
+    //Получатель
+    var newRecipient = new veda.IndividualModel();
+    newRecipient["rdf:type"] = [ new veda.IndividualModel("v-s:Correspondent") ];
+    var recipientPromise = individual.getPropertyChain("v-s:recipient").then(function(recipientArr) {
+      return recipientArr.length > 0? recipientArr[0].load() : null;
+    }).then(function(recipient) {
+      if (recipient != null) {
+        newRecipient["v-s:correspondentOrganization"] = recipient["v-s:correspondentOrganization"];
+        if (individual["rdf:type"][0].id === "gen:OutgoingLetter") {
+          newRecipient["v-s:correspondentDepartmentDescription"] = recipient["v-s:correspondentDepartmentDescription"];
+          newRecipient["v-s:correspondentPersonDescription"] = recipient["v-s:correspondentPersonDescription"];
+        } else if (individual["rdf:type"][0].id === "gen:IncomingLetter") {
+          newRecipient["v-s:correspondentDepartment"] = recipient["v-s:correspondentDepartment"];
+          newRecipient["v-s:correspondentPerson"] = recipient["v-s:correspondentPerson"];
+        }
+      }
+      return newRecipient;
+    })
+    Promise.all([senderPromise, recipientPromise]).then(function (result){
+      Letter["v-s:sender"] = [ result[0] ];
+      Letter["v-s:recipient"] = [ result[1] ];
+      riot.route( ["#", Letter.id, "#main", tmpl, "edit"].join("/") );
+    })
+  });  
+
+  //Процессная часть
+  function processHandler() {
+    individual.canUpdate().then(function (canUpdate) {
+      if (individual.hasValue("v-wf:isProcess")) {
+        $('#send.action', template).remove();
+        $('#delete.action', template).remove();
+      } else if (individual.isNew() || canUpdate) {
+        var complexTemplateUri;
+        if (individual['rdf:type'][0].id === "gen:IncomingLetter"){
+          complexTemplateUri = 'v-s:IncomingLetter_ComplexRouteStartForm_Template';
+        }
+        if (individual['rdf:type'][0].id === "gen:OutgoingLetter"){
+          complexTemplateUri = 'v-s:OutgoingLetter_ComplexRouteStartForm_Template';
+        }
+        $('#send.action', template).off("click");
+        $('#send.action', template).on('click', function () {
+          veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, complexTemplateUri);
+        });
+      } else {
+        $('#send.action', template).remove();
+        $('#delete.action', template).remove();
+      }
+    });
   }
   individual.on("afterUpdate", processHandler);
   processHandler();
   template.one("remove", function () {
     individual.off("afterUpdate", processHandler);
   });
-  
-  //# sourceURL=gen:LetterTemplate_post
+
+  if( this.hasValue("rdf:type", "gen:IncomingLetter") ) {
+    $("#outgoing-print-blank", template).remove();
+    $('#incoming-print-blank', template).on('click', function (e) {
+    e.preventDefault();
+    veda.Util.createReport('gen:IncomingLetterPrintBlank', individual);
+    });
+  } else {
+    $("#incoming-print-blank", template).remove();
+    $('#createReport', template).off('click');
+    $('#createReport', template).on('click', function (e) {
+      e.preventDefault();
+      veda.Util.createReport('gen:OutgoingLetterPrintBlank_pdf', individual);
+    });
+    $('#createReport1', template).off('click');
+    $('#createReport1', template).on('click', function (e) {
+      e.preventDefault();
+      veda.Util.createReport('gen:OutgoingLetterPrintBlank_rtf', individual);
+    });
+  }
+  //# sourceURL=gen:LetterTemplate_post  
 </script>
   """ ;
 .
@@ -425,6 +617,7 @@ gen:CorrespondentTemplate
       individual["v-s:correspondentOrganization"] = [ Organization ];
     });
   });
+  
   //# sourceURL=gen:CorrespondentTemplate_post
 </script>
   """ ;

@@ -26,7 +26,7 @@ gen:OrganizationTemplate
   rdfs:label "Template for v-s:Organization class"@en ;
   v-ui:template """
 <script>
-  var _class = new veda.IndividualModel("gen:Subsidiary");
+  var _class = new veda.IndividualModel("v-s:Subsidiary");
 
   Promise.all([_class.rights, individual.rights]).then(function (rights) {
     var class_rights = rights[0],
@@ -115,6 +115,15 @@ gen:OrganizationTemplate
     <section id="MainProperties">
       <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
 
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="rdfs:label" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+		  <div property="rdfs:label" class="view -edit -search"></div>
+          <veda-control data-type="string" property="rdfs:label" class="-view edit search"></veda-control>
+        </div>
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:shortLabel" property="rdfs:label"></label>
@@ -297,7 +306,7 @@ gen:OrganizationTemplate
 
 gen:SubsidiaryTemplate
   rdf:type v-ui:ClassTemplate ;
-  v-ui:forClass gen:Subsidiary ;
+  v-ui:forClass v-s:Subsidiary ;
   rdfs:label "Шаблон для класса gen:Subsidiary"@ru ;
   rdfs:label "Template for gen:Subsidiary class"@en ;
   v-ui:template """
@@ -316,7 +325,7 @@ gen:SubsidiaryTemplate
           <label about="v-s:parentOrganization" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <span about="@" rel="v-s:backwardTarget" class="view -edit search" data-template="v-ui:LabelLinkTemplate"></span>
+          <span about="@" rel="v-s:backwardTarget" class="view edit search" data-template="v-ui:LabelLinkTemplate"></span>
         </div>
       </div>
 

@@ -128,13 +128,13 @@ gen:RepresentativeCostsTemplate
               <th about="v-s:description" property="rdfs:label"></th>
             </tr>
           </thead>
-          <tbody rel="gen:hasRepresentativeCostsEvent" >
+          <tbody rel="gen:hasRepresentativeCostsEvent" data-embedded="true">
             <tr>
               <td>
                 <a href="#/@" class="glyphicon glyphicon-search"></a>
               </td>
               <td>
-                <div about="@" property="v-s:responsible"></div>
+                <div about="@" rel="v-s:responsible" data-template="v-ui:LabelTemplate"></div>
               </td>
               <td>
                 <div about="@" property="v-s:dateTo"></div>
@@ -146,7 +146,7 @@ gen:RepresentativeCostsTemplate
           </tbody>
         </table>
       </div>
-      <div rel="gen:hasRepresentativeCostsEvent" data-template="gen:RepresentativeCostsEventEmbeddedTemplate" data-embedded="true" class="-view -edit search create"></div>
+      <div rel="gen:hasRepresentativeCostsEvent" data-template="gen:RepresentativeCostsEventEmbeddedTemplate" class="-view -edit search create"></div>
     </section>   
     <section id="Consumption">
       <h4 class="section-header clearfix">
@@ -163,16 +163,16 @@ gen:RepresentativeCostsTemplate
               <th about="v-s:sum" property="rdfs:label"></th>
             </tr>
           </thead>
-          <tbody rel="gen:hasRepresentativeCostsForEvent" >
+          <tbody rel="gen:hasRepresentativeCostsForEvent" data-embedded="true">
             <tr>
               <td>
                 <a href="#/@" class="glyphicon glyphicon-search"></a>
               </td>
               <td>
-                <div about="@" property="gen:hasRepresentativeCostsKind"></div>
+                <div about="@" rel="gen:hasRepresentativeCostsKind" data-template="v-ui:LabelTemplate"></div>
               </td>
               <td>
-                <div about="@" property="v-s:hasCurrency"></div>
+                <div about="@" rel="v-s:hasCurrency" data-template="v-ui:LabelTemplate"></div>
               </td>
               <td>
                 <div about="@" property="v-s:sum"></div>
@@ -190,7 +190,7 @@ gen:RepresentativeCostsTemplate
         </div>
         <div class="col-sm-9 col-xs-7">
           <div rel="v-s:hasPaymentForm" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:hasPaymentForm" class="-view edit search fulltext"></veda-control>
+          <veda-control data-type="link" rel="v-s:hasPaymentForm" class="-view edit search fulltext dropdown"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -198,7 +198,7 @@ gen:RepresentativeCostsTemplate
           <label about="gen:isPrepaymentRequired" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <veda-control data-type="boolean" property="gen:isPrepaymentRequired" class="-view edit search fulltext"></veda-control>
+          <veda-control data-type="boolean" property="gen:isPrepaymentRequired" class="view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -258,6 +258,7 @@ gen:RepresentativeCostsTemplate
     <br>
     <div class="actions view edit -search">
       <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal task"></span>
+      <button type="button" class="action btn btn-default view -edit -search" id="add-RepresentativeCost" about="v-s:Clone" property="rdfs:label"></button>
    </div>
   </div>
   <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
@@ -309,6 +310,69 @@ gen:RepresentativeCostsTemplate
     }
   })
 
+  // Проверка разрешения на создание копии
+  var This_class = individual["rdf:type"][0];
+  This_class.canCreate().then(function(canCreate) {
+    if (!canCreate) $("#add-RepresentativeCost", template).remove();
+  });
+
+  $("#add-RepresentativeCost", template).click(function () {
+    var _class = new veda.IndividualModel("gen:RepresentativeCosts"),
+        RepresentativeCost = new veda.IndividualModel(),
+        tmpl = "gen:RepresentativeCostsTemplate" ;
+    RepresentativeCost["rdf:type"] = [_class] ;
+    RepresentativeCost["v-s:stakeholder"]=individual["v-s:stakeholder"] ;
+    RepresentativeCost["v-s:goal"]=individual["v-s:goal"] ;
+    RepresentativeCost["v-s:dateFrom"]=individual["v-s:dateFrom"] ;    
+    RepresentativeCost["v-s:dateTo"]=individual["v-s:dateTo"] ;    
+    RepresentativeCost["v-s:placeDescription"]=individual["v-s:placeDescription"] ;    
+    RepresentativeCost["v-s:count"]=individual["v-s:count"] ;    
+    RepresentativeCost["v-s:participant"]=individual["v-s:participant"] ;    
+    RepresentativeCost["v-s:hasPaymentForm"]=individual["v-s:hasPaymentForm"] ;    
+    RepresentativeCost["rdfs:comment"]=individual["rdfs:comment"] ;    
+    RepresentativeCost["gen:isPrepaymentRequired"]=individual["gen:isPrepaymentRequired"] ;    
+    RepresentativeCost["gen:toWhomToGiveAnPrepayment"]=individual["gen:toWhomToGiveAnPrepayment"] ;
+    RepresentativeCost["v-s:hasThirdPartyParticipant"]=individual["v-s:hasThirdPartyParticipant"] ;    
+    RepresentativeCost["gen:toWhomToCompensateRepresentativeCosts"]=individual["gen:toWhomToCompensateRepresentativeCosts"] ;       
+
+    //Мероприятия
+    var newRepresentativeCostsEvent = new veda.IndividualModel();
+    newRepresentativeCostsEvent["rdf:type"] = [ new veda.IndividualModel("gen:RepresentativeCostsEvent") ];
+    var RepresentativeCostsEventPromise = individual.getPropertyChain("gen:hasRepresentativeCostsEvent").then(function(RepresentativeCostsEventArr) {
+      return RepresentativeCostsEventArr.length > 0? RepresentativeCostsEventArr[0].load() : null;
+    }).then(function(costsEvent) {
+      if (costsEvent != null) {
+        newRepresentativeCostsEvent["v-s:description"] = costsEvent["v-s:description"];
+        newRepresentativeCostsEvent["v-s:responsible"] = costsEvent["v-s:responsible"];
+        newRepresentativeCostsEvent["v-s:dateTo"] = costsEvent["v-s:dateTo"];
+      }
+      return newRepresentativeCostsEvent;
+    })
+
+    //Расходы для Мероприятия
+    var newRepresentativeCostsForEvent = new veda.IndividualModel();
+    newRepresentativeCostsForEvent["rdf:type"] = [ new veda.IndividualModel("gen:RepresentativeCostsForEvent") ];
+    var RepresentativeCostsForEventPromise = individual.getPropertyChain("gen:hasRepresentativeCostsForEvent").then(function(RepresentativeCostsForEventArr) {
+      return RepresentativeCostsForEventArr.length > 0? RepresentativeCostsForEventArr[0].load() : null;
+    }).then(function(costsForEvent) {
+      if (costsForEvent != null) {
+        newRepresentativeCostsForEvent["gen:hasRepresentativeCostsKind"] = costsForEvent["gen:hasRepresentativeCostsKind"];
+      }
+      return newRepresentativeCostsForEvent;
+    })
+
+    Promise.all([RepresentativeCostsEventPromise, RepresentativeCostsForEventPromise]).then(function (result){
+      RepresentativeCost["gen:hasRepresentativeCostsEvent"] = [ result[0] ];
+      RepresentativeCost["gen:hasRepresentativeCostsForEvent"] = [ result[1] ];
+    })
+
+    riot.route( ["#", RepresentativeCost.id, "#main", tmpl, "edit"].join("/") ) ;
+    RepresentativeCost.one("afterSave", function () {
+      riot.route("#/" + RepresentativeCost.id, false);
+    });    
+    
+  });
+    
 </script>
 
   """
@@ -334,8 +398,8 @@ gen:ThirdPartyParticipantEmbededTemplate
 gen:RepresentativeCostsEventTemplate
   rdf:type v-ui:ClassTemplate ;
   v-ui:forClass gen:RepresentativeCostsEvent ;
-  rdfs:label "Шаблон для класса gen:ChangeOfBusinessTrip (Изменения командировки)."@ru ;
-  rdfs:label "Template gen:ChangeOfBusinessTrip class"@en ;
+  rdfs:label "Шаблон для класса gen:RepresentativeCostsEvent"@ru ;
+  rdfs:label "Template gen:RepresentativeCostsEvent class"@en ;
   v-ui:template """
 <div class="container sheet">
   <h2>
@@ -452,7 +516,7 @@ gen:RepresentativeCostsForEventTemplate
           <strong about="v-s:hasCurrency" property="rdfs:label"></strong>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:hasCurrency" class="view -edit -search"></div>
+          <div rel="v-s:hasCurrency" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:hasCurrency" class="-view edit search fulltext dropdown"></veda-control>
         </div>
       </div>
@@ -491,7 +555,7 @@ gen:PriceMicroTemplate
         <veda-control data-type="string" property="v-s:sum" class="-view edit search fulltext dropdown"></veda-control>
     </div>
     <div class="col-sm-3 col-xs-4">
-      <div rel="v-s:hasCurrency" class="view -edit -search"></div>
+      <div rel="v-s:hasCurrency" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
       <veda-control data-type="link" rel="v-s:hasCurrency" class="-view edit search fulltext dropdown"></veda-control>
     </div>
   </div>

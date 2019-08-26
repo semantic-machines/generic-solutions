@@ -48,9 +48,21 @@ gen:OutgoingLetter
   v-ui:hasTemplate gen:LetterTemplate ;
 .
 
-
-
-
+#---------------------Доставка (переопределение шаблона)
+v-s:Delivery
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:subClassOf v-s:Temporal ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:subClassOf v-s:Deliverable2 ;
+  rdfs:subClassOf v-s:Embedded ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:subClassOf v-s:AutomaticallyVersioned ;
+  rdfs:subClassOf v-s:Journaling ;
+  rdfs:label "Доставка"@ru ;
+  rdfs:label "Delivery"@en ;
+  v-ui:hasTemplate gen:DeliveryTemplate;
+.
 
 
 # -------------------------------------------------------- СПЕЦИФИКАЦИИ --
@@ -71,8 +83,18 @@ gen:PS_DeliveryMethod_Delivery
   v-ui:forProperty v-s:deliverBy ;
   v-ui:minCardinality 1 ;
   v-ui:maxCardinality 1 ;
-v-ui:queryPrefix " 'rdf:type' == 'v-s:DeliveryMethod' && 'v-s:transportOrganization' == '{ individual[\"v-s:transportOrganization\"][0].id }' ";
+  v-ui:queryPrefix " 'rdf:type' == 'v-s:DeliveryMethod' ";
   rdfs:label "Спецификация свойства v-s:DeliveryMethod для класса v-s:Delivery"@ru ;
   rdfs:label "v-s:DeliveryMethod property specification for v-s:Delivery class"@en ;
+.
+
+gen:PS_hasDocumentKind_Letter
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Letter ;
+  v-ui:forProperty v-s:hasDocumentKind ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:hasDocumentKind для класса v-s:Delivery"@ru ;
+  rdfs:label "v-s:hasDocumentKind property specification for v-s:Delivery class"@en ;
 .
 

@@ -112,9 +112,28 @@ gen:PS_owner_LocalRegulatoryDocument
   rdf:type v-ui:PropertySpecification ;
   v-ui:forClass gen:LocalRegulatoryDocument ;
   v-ui:forProperty v-s:owner ;
-  v-ui:queryPrefix "('@'=='d:org_RU1121016110_1' || '@'=='d:org_RU1121016110_2') "^^xsd:string ;
+  v-ui:queryPrefix "('@'=='d:org_RU111111111111') "^^xsd:string ;
   v-ui:minCardinality 1 ;
   v-ui:maxCardinality 1 ;
   rdfs:label "Спецификация свойства v-s:owner для класса gen:LocalRegulatoryDocument"@ru ;
   rdfs:label "v-s:owner property specification for gen:LocalRegulatoryDocument class"@en ;
+.
+gen:PS_valid_LocalRegulatoryDocument
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:LocalRegulatoryDocument ;
+  v-ui:forProperty v-s:valid ;
+  v-ui:defaultValue "true"^^xsd:boolean;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:valid для класса gen:LocalRegulatoryDocument"@ru ;
+  rdfs:label "v-s:valid property specification for gen:LocalRegulatoryDocument class"@en ;
+.
+gen:PS_isFixedTerm_LocalRegulatoryDocument
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:LocalRegulatoryDocument ;
+  v-ui:forProperty v-s:isFixedTerm ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:isFixedTerm для класса gen:LocalRegulatoryDocument"@ru ;
+  rdfs:label "v-s:isFixedTerm property specification for gen:LocalRegulatoryDocument class"@en ;
 .

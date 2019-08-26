@@ -446,7 +446,7 @@ gen:VersionOfLocalRegulatoryDocumentTemplate
     <br>
     <div class="actions view edit -search">
       <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal task"></span>
-      <button type="button" class="action btn btn-info view -edit -search" id="lnd_printBlank" about="stg:LND_PrintBlank_dolgn" property="rdfs:label"/>
+      <button type="button" class="action btn btn-info view -edit -search" id="lnd_printBlank" about="v-s:PrintBlank" property="rdfs:label"/>
     </div>
   </div>
   <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
@@ -457,6 +457,7 @@ gen:VersionOfLocalRegulatoryDocumentTemplate
   $('#lnd_printBlank', template).on('click', function (e) {
     veda.Util.createReport('gen:LND_PrintBlank_dolgn', individual);
   });
+  
   function regNumberAddHandler(){
     var prefix = individual["v-s:registrationNumber"][0].split(".")[0];
     var postfix = individual.hasValue("v-s:registrationNumberAdd")? individual["v-s:registrationNumberAdd"][0] : "";

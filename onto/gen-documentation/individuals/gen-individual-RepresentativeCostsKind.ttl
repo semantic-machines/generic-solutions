@@ -1,0 +1,121 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix d: <http://semantic-machines.com/veda/veda-data/>.
+
+<http://semantic-machines.com/veda/veda-individual-RepresentativeCostsKind>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Veda. Записи справочника RepresentativeCostsKind"@ru ;
+  rdfs:label "Veda ontology. individual - RepresentativeCostsKind"@en ;
+  v-s:loadPriority 10 ;
+.
+
+gen:RepresentativeCostsKind
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  rdfs:label "Услуга"@ru ;
+  rdfs:label "Service"@en ;
+.
+
+# --- В связи с вводом класса возникает предикат gen:hasRepresentativeCostsKind. Он описан в классе gen:RepresentativeCostsForEvent
+
+#------------------------------------------------------------------
+#------
+d:02069ebf23be40eeb29319621238dd5c
+  a gen:RepresentativeCostsKind;
+  rdfs:label "Буфетное обслуживание"@ru ;
+  rdfs:label "Буфетное обслуживание"@en ;
+.
+  d:9d35ea497c544220a644c7159d120342
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Приобретение продуктов"@ru ;
+    rdfs:label "Приобретение продуктов"@en ;
+    v-s:hasParentLink d:02069ebf23be40eeb29319621238dd5c;
+  .
+  d:c001f0c0213f47e9b1244878633e33bf
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Приобретение цветов"@ru ;
+    rdfs:label "Приобретение цветов"@en ;
+    v-s:hasParentLink d:02069ebf23be40eeb29319621238dd5c;
+  .
+  d:b1104ef79a2b43dbae837ac09cf4e600
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Приобретение посуды"@ru ;
+    rdfs:label "Приобретение посуды"@en ;
+    v-s:hasParentLink d:02069ebf23be40eeb29319621238dd5c;
+  .
+  d:b65dee1062954065bc6111d21dc61321
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Ресторанное обслуживание"@ru ;
+    rdfs:label "Ресторанное обслуживание"@en ;
+    v-s:hasParentLink d:02069ebf23be40eeb29319621238dd5c;
+  .
+  d:h8innxxyncn1ygqm7dht8n4mvvd0neav
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Прочее. Буфетное обслуживание"@ru ;
+    rdfs:label "Прочее. Буфетное обслуживани"@en ;
+    v-s:hasParentLink d:02069ebf23be40eeb29319621238dd5c;
+  .
+#------
+d:28abaa9c0ba844e39a65fb805bea9dcd
+  a gen:RepresentativeCostsKind;
+  rdfs:label "Транспортное обслуживание"@ru ;
+  rdfs:label "Транспортное обслуживание"@en ;
+.
+  d:d24dc3f3314144e294d77d6787852af3
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Заказ автомашины для участников встречи"@ru ;
+    rdfs:label "Заказ автомашины для участников встречи"@en ;
+    v-s:hasParentLink d:28abaa9c0ba844e39a65fb805bea9dcd;
+  .
+  d:7d14438ada494cdcb6ff37915714cf98
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Заказ микроавтобуса для организации культурно-зрелищных мероприятий"@ru ;
+    rdfs:label "Заказ микроавтобуса для организации культурно-зрелищных мероприятий"@en ;
+    v-s:hasParentLink d:28abaa9c0ba844e39a65fb805bea9dcd;
+  .
+  d:6764rew554f94707b639c8b7912f56df
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Прочее. Транспортное обслуживание"@ru ;
+    rdfs:label "Прочее. Транспортное обслуживание"@en ;
+    v-s:hasParentLink d:28abaa9c0ba844e39a65fb805bea9dcd;
+  .
+#------
+d:0f8d646b838241bc9b3d21dbc90dbb10
+  a gen:RepresentativeCostsKind;
+  rdfs:label "Культурно-зрелищные мероприятия"@ru ;
+  rdfs:label "Культурно-зрелищные мероприятия"@en ;
+.
+  d:e05f4c37f0a743099da0700585c069f5
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Приобретение билетов в театр"@ru ;
+    rdfs:label "Приобретение билетов в театр"@en ;
+    v-s:hasParentLink d:0f8d646b838241bc9b3d21dbc90dbb10;
+  .
+  d:3116791b22d2463d8e54028718be5d6c
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Приобретение сувениров"@ru ;
+    rdfs:label "Приобретение сувениров"@en ;
+    v-s:hasParentLink d:0f8d646b838241bc9b3d21dbc90dbb10;
+  .
+  d:6a21aae554f94707b639c8b7912c33ac
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Прочее. Культурно-зрелищные мероприятия"@ru ;
+    rdfs:label "Прочее. Культурно-зрелищные мероприятия"@en ;
+    v-s:hasParentLink d:0f8d646b838241bc9b3d21dbc90dbb10;
+  .
+#------
+d:q6fdo0rwa6ytldrcjbp53djlnh6w0l5e
+  a gen:RepresentativeCostsKind;
+  rdfs:label "Прочее"@ru ;
+  rdfs:label "Прочее"@en ;
+.
+  d:628a9debfedd4e04b09fc4363f95576f
+    a gen:RepresentativeCostsKind;
+    rdfs:label "Услуги внештатных переводчиков"@ru ;
+    rdfs:label "Услуги внештатных переводчиков"@en ;
+    v-s:hasParentLink d:q6fdo0rwa6ytldrcjbp53djlnh6w0l5e;
+  .

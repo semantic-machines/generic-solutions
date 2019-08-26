@@ -342,6 +342,8 @@ gen:BusinessTripTemplate
       <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal task"></span>
       <span class=" view -edit -search">
         <button type="button" class="action btn btn-warning view -edit -search" id="notify" about="gen:NotifyBundle" property="rdfs:label"/>
+        <button type="button" class="action btn btn-default view -edit -search" id="add-copy" about="v-s:Clone" property="rdfs:label" />
+        <button type="button" class="action btn btn-info view -edit -search" id="createReport1" about="v-s:PrintBlank" property="rdfs:label"/>
       </span>
     </div>
   </div>
@@ -416,51 +418,6 @@ gen:BusinessTripTemplate
     });
   });
 
-  function DeviationsHandler(){
-    if (template.data("mode") !== "search") {
-    var isLimitDeviation = false;
-    var isPenaltyDeviation = false;
-    if (individual.hasValue('gen:hasDeviationOnExpenses')) {
-      var deviationPromises = [];
-      individual['gen:hasDeviationOnExpenses'].forEach(function(deviation){
-        deviationPromises.push(deviation.load());
-      });
-      Promise.all(deviationPromises).then(function(deviations) {
-        deviations.forEach( function(deviation){
-          if (deviation.hasValue('gen:hasBusinessTripReasonDeviationOnExpenses', 'd:mzafmsd6da53vqfimut3v8ki9t')) {
-            isLimitDeviation = true;
-          }
-          if (deviation.hasValue('gen:hasBusinessTripReasonDeviationOnExpenses', 'd:ycxpay8s3fr6l5c75u2g6fgt3q')) {
-            isPenaltyDeviation = true;
-          }
-        });
-        if (isLimitDeviation) {
-          $('#send-CoordLimit', template).off("click");
-          $('#send-CoordLimit', template).removeClass("hidden");
-          $('#send-CoordLimit', template).on('click', function () {
-            veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:BusinessTrip_CoordLimitStartForm_Template');
-          });
-        } else {
-          $('#send-CoordLimit', template).addClass("hidden");
-        }
-        if (isPenaltyDeviation) {
-          $('#send-CoordPenalty', template).off("click");
-          $('#send-CoordPenalty', template).removeClass("hidden");
-          $('#send-CoordPenalty', template).on('click', function () {
-            veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:BusinessTrip_CoordPenaltyStartForm_Template');
-          });
-        } else {
-          $('#send-CoordPenalty', template).addClass("hidden");
-        }
-      });
-    } else {
-      $('#send-CoordLimit', template).addClass("hidden");
-      $('#send-CoordPenalty', template).addClass("hidden");
-    }
-    }
-  }
-  DeviationsHandler();
-
   function ModifiedHandlerSupplier() {
     if (template.data("mode") === "edit" && individual.hasValue("v-s:supplier")){
       if (!individual.hasValue("gen:businessTripOrganization")) {
@@ -503,19 +460,17 @@ gen:BusinessTripTemplate
 
   individual.on("v-s:supplier", ModifiedHandlerSupplier);
   individual.on("v-s:businessTripEmployee", getDepartment);
-  individual.on('gen:hasDeviationOnExpenses', DeviationsHandler);
   individual.on('v-s:hasClassifierCountry', directionBT);
   template.one("remove", function () {
     individual.off("v-s:supplier", ModifiedHandlerSupplier);
     individual.off("v-s:businessTripEmployee", getDepartment);
-    individual.off('gen:hasDeviationOnExpenses', DeviationsHandler);
     individual.off('v-s:hasClassifierCountry', directionBT);
   });
 
   //Процессная часть
   function processHandler() {
     individual.canUpdate().then(function (canUpdate) {
-      var userId = "d:mondi_employee_00051114"//Римерт О.
+      var userId = "cfg:Administrator"//Администратор
       if ( veda.user.id !==  userId && individual.hasValue("v-wf:isProcess") ) {
         $('#send.action', template).remove();
         $('#save.action', template).remove();
@@ -541,7 +496,7 @@ gen:BusinessTripTemplate
 
   function notifyHandler() {
     if ( template.data("mode") != "search" ) {
-      if ( individual.hasValue("gen:hasChangeOfTerms") ) {
+      if ( individual.hasValue("gen:hasChangeOfBusinessTrip") ) {
         $('#notify.action', template).removeClass("hidden");
         $('#notify.action', template).off("click");
         $('#notify.action', template).on('click', function () {
@@ -577,13 +532,8 @@ gen:BusinessTripTemplate
     veda.Util.createReport('gen:businessTrip_printBlank', individual);
   });
 
-  $('#createReport2', template).on('click', function (e) {
-    veda.Util.createReport('gen:businessTrip_ServiceTask_printBlank', individual);
-  });
-
   if ( template.data("mode") === "edit" &&
-    veda.user.id !== "d:mondi_employee_00051114" // Римерт О.
-    && (
+    (
       individual.hasValue("v-wf:hasStatusWorkflow", "v-wf:Completed")
       || individual.hasValue("v-wf:isProcess")
     )
