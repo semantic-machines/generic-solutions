@@ -30,9 +30,9 @@ gen:PurchasesSalesAspect
   v-ui:hasTemplate v-s:AspectTemplate ;
 
   v-s:hasApplication gen:ContractsManagementApplication ;
-#  v-s:hasApplication gen:ContractorsManagementApplication ;
-#  v-s:hasApplication gen:AccountingDocApplication ;
-#  v-s:hasApplication gen:ClaimsManagementApplication ;
+  v-s:hasApplication gen:ContractorsManagementApplication ;
+  v-s:hasApplication gen:AccountingDocApplication ;
+  v-s:hasApplication gen:ClaimsManagementApplication ;
 .
 
 # -- печатные формы START --

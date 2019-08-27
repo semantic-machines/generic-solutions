@@ -31,10 +31,10 @@ gen:ContractsManagementApplication
   v-ui:hasTemplate v-s:ApplicationTemplate ;
 
   v-s:hasCreate gen:ContractCreate;
-#  v-s:hasCreate gen:TenderProcedureCreate ;
+  v-s:hasCreate gen:TenderProcedureCreate ;
   v-s:hasRegistry gen:ContractSearch;
   v-s:hasRegistry gen:AdditionalAgreementSearch;
-#  v-s:hasRegistry gen:TenderProcedureSearch ;
+  v-s:hasRegistry gen:TenderProcedureSearch ;
 
   v-s:description """
 Приложение предназначено для обеспечения контроля договорных процессов, координации работ по контрактам и связанным документам.

@@ -32,7 +32,7 @@ gen:BusinessTripApplication
 
   v-s:hasCreate gen:BusinessTripCreate ;
   v-s:hasRegistry gen:BusinessTripSearch ;
-#  v-s:hasReport gen:BusinessTrip_listReport ;
+  v-s:hasReport gen:BusinessTrip_listReport ;
 
   v-s:description """
 Приложение предназначено для оформления комплекта командировочных документов.
