@@ -24,14 +24,14 @@ gen:IncomingLetterBlank
   rdfs:label "Входящее письмо"@ru ;
   rdfs:label "Incoming letter"@en ;
   v-fc:targetType gen:IncomingLetter ;
-  v-s:recipient gen:CorrespondentOrgBlank ;
+  #v-s:recipient gen:CorrespondentOrgBlank ;
 .
 gen:IncomingLetterSearchBlank
   a v-fc:Blank ;
   rdfs:label "Входящее письмо"@ru ;
   rdfs:label "Incoming letter"@en ;
   v-fc:targetType gen:IncomingLetter ;
-  v-s:recipient gen:CorrespondentOrgBlank ;
+  #v-s:recipient gen:CorrespondentOrgBlank ;
 .
 #--------------------------------------------------Исходящее письмо----------------------
 gen:OutgoingLetterBlank
@@ -39,14 +39,14 @@ gen:OutgoingLetterBlank
   rdfs:label "Исходящее письмо"@ru ;
   rdfs:label "Outgoing letter"@en ;
   v-fc:targetType gen:OutgoingLetter ;
-  v-s:sender gen:CorrespondentOrgBlank ;
+  #v-s:sender gen:CorrespondentOrgBlank ;
 .
 gen:OutgoingLetterSearchBlank
   a v-fc:Blank ;
   rdfs:label "Исходящее письмо"@ru ;
   rdfs:label "Outgoing letter"@en ;
   v-fc:targetType gen:OutgoingLetter ;
-  v-s:sender gen:CorrespondentOrgBlank ;
+  #v-s:sender gen:CorrespondentOrgBlank ;
 .
 #---------------------------------------------------Корреспондент----------------------
 gen:CorrespondentOrgBlank
