@@ -128,12 +128,3 @@ gen:PS_valid_LocalRegulatoryDocument
   rdfs:label "Спецификация свойства v-s:valid для класса gen:LocalRegulatoryDocument"@ru ;
   rdfs:label "v-s:valid property specification for gen:LocalRegulatoryDocument class"@en ;
 .
-gen:PS_isFixedTerm_LocalRegulatoryDocument
-  rdf:type v-ui:PropertySpecification ;
-  v-ui:forClass gen:LocalRegulatoryDocument ;
-  v-ui:forProperty v-s:isFixedTerm ;
-  v-ui:minCardinality 1 ;
-  v-ui:maxCardinality 1 ;
-  rdfs:label "Спецификация свойства v-s:isFixedTerm для класса gen:LocalRegulatoryDocument"@ru ;
-  rdfs:label "v-s:isFixedTerm property specification for gen:LocalRegulatoryDocument class"@en ;
-.
