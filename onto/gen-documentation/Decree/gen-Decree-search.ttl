@@ -1,0 +1,85 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+
+<http://semantic-machines.com/veda/gen-Decree-search>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Распорядительный документ. Поиск"@ru ;
+  rdfs:label "GEN ontology. Decree. Search"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ Registry --
+
+gen:DecreeSearch
+  a v-fs:AttributiveSearch;
+  rdfs:label "Распорядительный документ"@ru ;
+  rdfs:label "Decree"@en ;
+  v-fs:searchBlank gen:DecreeSearchBlank ;
+  v-fs:searchBlankTemplate gen:DecreeTemplate ;
+  v-fs:searchResultTemplate gen:DecreeSearchResultTemplate ;
+.
+
+# ---------------------------------------------------- Registry result template--
+
+gen:DecreeSearchResultTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон результатов реестра Распорядительный документ"@ru ;
+  rdfs:label "Decree registry result template"@en ;
+  v-ui:template """
+<table class="table table-bordered">
+  <thead class="result-header">
+    <tr>
+      <th colspan="14" about="gen:Decree" property="rdfs:label"></th>
+    </tr>
+    <tr class="active">
+      <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
+      <th class="orderby" data-orderby="gen:hasDecreeRegistrationRecord.v-s:registrationNumber">№</th>
+      <th><span about="v-s:creator" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="gen:hasDecreeRegistrationRecord.v-s:registrationDate"><span about="v-s:registrationDate" property="rdfs:label"></span></th>
+      <th><span about="v-s:owner" property="rdfs:label"></span></th>
+      <th><span about="v-s:hasDocumentKind" property="rdfs:label"></span></th>
+      <th><span about="v-s:initiator" property="rdfs:label"></span></th>
+      <th><span about="v-s:signedBy" property="rdfs:label"></span></th>
+      <th><span about="v-s:responsible" property="rdfs:label"></span></th>
+      <th><span about="v-s:isFixedTerm" property="rdfs:label"></span></th>
+      <th><span about="v-s:title" property="rdfs:label"></span></th>
+      <th><span about="v-s:description" property="rdfs:label"></span></th>
+      <th><span about="rdfs:comment" property="rdfs:label"></span></th>
+      <th><span about="v-s:attachment" property="rdfs:label"></span></th>
+    </tr>
+  </thead>
+  <tbody class="result-container">
+    <tr>
+      <td><a href="#/@" class="glyphicon glyphicon-search"></a></td>
+      <td rel="gen:hasDecreeRegistrationRecord">
+        <span property="v-s:registrationNumber"></span>
+      </td>
+      <td rel="v-s:creator" data-template="v-ui:LabelTemplate"></td>
+      <td rel="gen:hasDecreeRegistrationRecord">
+        <span property="v-s:registrationDate"></span>
+      </td>
+      <td rel="v-s:owner" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:hasDocumentKind" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:initiator" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:signedBy" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:responsible" data-template="v-ui:LabelTemplate"></td>
+      <td property="v-s:isFixedTerm"></td>
+      <td property="v-s:title"></td>
+      <td property="v-s:description"></td>
+      <td property="rdfs:comment"></td>
+      <td rel="v-s:attachment" data-template="v-ui:FileMinTemplate"></td>
+    </tr>
+  </tbody>
+</table>
+  """ ;
+.
+

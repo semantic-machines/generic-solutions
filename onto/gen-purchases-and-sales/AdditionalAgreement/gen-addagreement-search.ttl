@@ -1,0 +1,106 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+
+<http://semantic-machines.com/veda/gen-addagreement-search>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Дополнительное соглашение. Поиск"@ru ;
+  rdfs:label "GEN ontology. Additional Agreement. Search"@en ;
+  v-s:loadPriority 20 ;
+.
+
+# ------------------------------------------------------------ Registry --
+
+gen:AdditionalAgreementSearch
+  a v-fs:AttributiveSearch;
+  rdfs:label "Дополнительное соглашение"@ru ;
+  rdfs:label "Additional Agreement"@en ;
+  v-fs:searchBlank gen:AdditionalAgreementSearchBlank ;
+  v-fs:searchBlankTemplate gen:AdditionalAgreementTemplate ;
+  v-fs:searchResultTemplate gen:AdditionalAgreementSearchResultTemplate ;
+.
+
+# ---------------------------------------------------- Registry result template--
+
+gen:AdditionalAgreementSearchResultTemplate 
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон результатов реестра Дополнительное соглашение"@ru ;
+  rdfs:label "Additional agreement registry result template"@en ;
+  v-ui:template """
+<table class="table table-bordered">
+  <thead class="result-header">
+    <tr>
+      <th colspan="7" about="gen:Contract" property="rdfs:label"></th>
+      <th colspan="2" about="v-s:supplier" property="rdfs:label"></th>
+      <th colspan="2" about="v-s:customer" property="rdfs:label"></th>
+      <th colspan="2" about="v-s:hasContractParticipantStakeholder" property="rdfs:label"></th>
+      <th colspan="5"></th>
+    </tr>
+    <tr class="active">
+      <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
+      <th><span about="v-s:hasDocumentKind" property="rdfs:label"></th>
+      <th><span about="gen:ContractSubjectBundle" property="rdfs:label"></th>
+      <th class="orderby" data-orderby="v-s:registrationNumber">№</th>
+      <th class="orderby" data-orderby="v-s:registrationDate"><span about="v-s:registrationDate" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:registrationNumberIn"><span about="v-s:registrationNumberIn" property="rdfs:label"></th>
+      <th><span about="gen:initiatorForContractBundle" property="rdfs:label"></th>
+      <th><span about="v-s:hasContractor" property="rdfs:label"></th>
+      <th><span about="v-s:hasOrganization" property="rdfs:label"></th>
+      <th><span about="v-s:hasContractor" property="rdfs:label"></th>
+      <th><span about="v-s:hasOrganization" property="rdfs:label"></th>      
+      <th><span about="v-s:hasContractor" property="rdfs:label"></th>
+      <th><span about="v-s:hasOrganization" property="rdfs:label"></th>
+      <th><span about="gen:isAutoProlongateProvides" property="rdfs:label"></th>
+      <th><span about="gen:isContractUnlimited" property="rdfs:label"></th>
+      <th><span about="gen:isContractClosed" property="rdfs:label"></th>
+      <th><span about="v-s:hasBudgetCategory" property="rdfs:label"></th>
+      <th><span about="v-s:supportSpecialistOfContract" property="rdfs:label"></th>
+    </tr>
+  </thead>
+  <tbody class="result-container">
+    <tr>
+      <td><a href="#/@" class="glyphicon glyphicon-search"></a></td>
+      <td rel="v-s:hasDocumentKind" data-template="v-ui:LabelTemplate"></td>
+      <td property="v-s:theme"></td>
+      <td property="v-s:registrationNumber"></td>
+      <td property="v-s:registrationDate"></td>
+      <td property="v-s:registrationNumerIn"></td>
+      <td rel="v-s:initiator" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:hasContractParticipantSupplier">
+        <span rel="v-s:hasContractor" data-template="v-ui:LabelTemplate"></span>
+      </td>
+      <td rel="v-s:hasContractParticipantSupplier">
+        <span rel="v-s:hasOrganization" data-template="v-ui:LabelTemplate"></span>
+      </td>
+      <td rel="v-s:hasContractParticipantCustomer">
+        <span rel="v-s:hasContractor" data-template="v-ui:LabelTemplate"></span>
+      </td>
+      <td rel="v-s:hasContractParticipantCustomer">
+        <span rel="v-s:hasOrganization" data-template="v-ui:LabelTemplate"></span>
+      </td>
+      <td rel="v-s:hasContractParticipantStakeholder">
+        <span rel="v-s:hasContractor" data-template="v-ui:LabelTemplate"></span>
+      </td>
+      <td rel="v-s:hasContractParticipantStakeholder">
+        <span rel="v-s:hasOrganization" data-template="v-ui:LabelTemplate"></span>
+      </td>
+      <td property="gen:isAutoProlongateProvides"></td>
+      <td property="gen:isContractUnlimited"></td>
+      <td property="gen:isContractClosed"></td>
+      <td rel="v-s:hasBudgetCategory" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:supportSpecialistOfContract" data-template="v-ui:LabelTemplate"></td>
+     </tr>
+  </tbody>
+</table>
+  """ ;
+.
+
