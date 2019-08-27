@@ -286,7 +286,17 @@ gen:ticketComment
 .
 
 #-----------------------------------------------------------Регистрационная запись
-#v-s:BusinessTripRegistrationRecord
+v-s:BusinessTripRegistrationRecord
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:Embedded ;
+  rdfs:subClassOf v-s:RegistrationRecord ;
+  rdfs:subClassOf v-s:BackwardLink ;
+  rdfs:subClassOf v-s:Enumerated ;
+  v-s:hasNumeration v-s:RegistrationNumberSimpleNumerationYear ;
+  rdfs:label "Регистрационная запись командировки"@ru ;
+  rdfs:label "Business trip registration record"@en ;
+  v-ui:hasTemplate gen:BusinessTripRegistrationRecordTemplate ;  
+.
 
 gen:TS_BusinessTripRegistrationRecord
   rdf:type v-ui:TemplateSpecification ;
