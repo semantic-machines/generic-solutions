@@ -112,7 +112,7 @@ gen:PS_owner_LocalRegulatoryDocument
   rdf:type v-ui:PropertySpecification ;
   v-ui:forClass gen:LocalRegulatoryDocument ;
   v-ui:forProperty v-s:owner ;
-  v-ui:queryPrefix "('@'=='d:org_RU111111111111') "^^xsd:string ;
+  v-ui:queryPrefix "('@'=='d:demo_department_1' || '@'=='d:demo_department_2' || '@'=='d:demo_department_3' || '@'=='d:demo_department_4' || '@'=='d:demo_department_5' || '@'=='d:demo_department_6' || '@'=='d:demo_department_7') "^^xsd:string ;
   v-ui:minCardinality 1 ;
   v-ui:maxCardinality 1 ;
   rdfs:label "Спецификация свойства v-s:owner для класса gen:LocalRegulatoryDocument"@ru ;
