@@ -87,18 +87,6 @@ gen:LocalRegulatoryDocumentTemplate
       </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <label about="v-s:isFixedTerm" property="rdfs:label"></label>
-        </div>
-        <div class="col-sm-9 col-xs-7">
-          <div class="checkbox no-margin">
-            <label>
-              <veda-control property="v-s:isFixedTerm" data-type="boolean"></veda-control>
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
           <label about="v-s:title" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
