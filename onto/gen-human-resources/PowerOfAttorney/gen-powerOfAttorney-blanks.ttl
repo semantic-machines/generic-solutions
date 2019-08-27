@@ -23,14 +23,14 @@ gen:PowerOfAttorneyBlank
   rdfs:label "Доверенность"@ru ;
   rdfs:label "Power of attorney"@en ;
   v-fc:targetType gen:PowerOfAttorney ;
-  v-s:grantor gen:GrantorBlank ;
+  #v-s:grantor gen:GrantorBlank ;
 .
 gen:PowerOfAttorneySearchBlank
   a v-fc:Blank ;
   rdfs:label "Доверенность"@ru ;
   rdfs:label "Power of attorney"@en ;
   v-fc:targetType gen:PowerOfAttorney ;
-  v-s:grantee gen:GranteeSearchBlank ;
+  #v-s:grantee gen:GranteeSearchBlank ;
 .
 gen:GrantorBlank
   a v-fc:Blank ;
@@ -39,6 +39,7 @@ gen:GrantorBlank
   v-fc:targetType gen:Correspondent ;
   v-s:correspondentOrganization d:org_RU1121003135 ;
   v-s:correspondentPerson d:mondi_appointment_00063551_70013758 ;
+  v-s:deleted "true"^^xsd:boolean;
 .
 gen:GranteeSearchBlank
   a v-fc:Blank ;
@@ -46,4 +47,5 @@ gen:GranteeSearchBlank
   rdfs:label "Grantee"@en ;
   v-fc:targetType gen:Correspondent ;
   v-s:correspondentOrganization d:org_RU1121003135 ;
+  v-s:deleted "true"^^xsd:boolean;
 .
