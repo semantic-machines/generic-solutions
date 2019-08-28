@@ -59,9 +59,9 @@ var securityOk  = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategor
     legalOk     = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionLegal", "v-s:isContractorOkLegalDepSummary"),
     isOk = securityOk && financialOk && legalOk;
 
-var securityDate  = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionSecurity", "v-s:edited"),
-    financialDate = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionFinancial", "v-s:edited"),
-    legalDate     = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionLegal", "v-s:edited");
+var securityDate  = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionSecurity", "v-s:created"),
+    financialDate = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionFinancial", "v-s:created"),
+    legalDate     = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionLegal", "v-s:created");
 
 var dates = [securityDate, financialDate, legalDate].sort(function(a, b) { return  b - a; }),
     maxDate = dates[0];
