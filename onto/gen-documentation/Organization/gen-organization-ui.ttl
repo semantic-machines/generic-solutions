@@ -26,6 +26,23 @@ gen:OrganizationTemplate
   rdfs:label "Template for v-s:Organization class"@en ;
   v-ui:template """
 <script>
+  var _ContractorProfile = new veda.IndividualModel("v-s:ContractorProfile");
+  var canCreateProfile = _ContractorProfile.canCreate();
+  var canUpdatePromise = individual.canUpdate();
+
+  function handler() {
+    Promise.all([canCreateProfile, canUpdatePromise]).then(function(results) {
+      if (template.data("mode") === "edit" || individual.hasValue("v-s:hasContractorProfile") || !(results[0] && results[1])) {
+        $("#add-profile", template).remove();
+      }
+    })
+  }
+  individual.on("v-s:hasContractorProfile", handler);
+  template.one("remove", function () {
+    individual.off("v-s:hasContractorProfile", handler);
+  });
+  handler();
+
   var _class = new veda.IndividualModel("v-s:Subsidiary");
 
   Promise.all([_class.rights, individual.rights]).then(function (rights) {
@@ -206,39 +223,39 @@ gen:OrganizationTemplate
           <strong about="v-s:hasSubsidiary" property="rdfs:label"></strong>
         </div>
         <div class="col-sm-9 col-xs-7">
-      <table class="table table-condensed table-bordered">
-        <thead>
-        <tr class="view -edit -search active">
-          <th width="1%"><span class="glyphicon glyphicon-search"></th>
-          <th about="v-s:shortLabel" property="rdfs:label"></th>
-          <th about="v-s:taxRegistrationCause" property="rdfs:label"></th>
-          <th about="v-s:postalAddress" property="rdfs:label"></th>
-        </tr>
-        </thead>
-        <tbody rel="v-s:hasSubsidiary" data-embedded="true">
-        <tr>
-          <td about="@" data-template="v-ui:IconModalTemplate"></td>
-          <td>
-          <div property="v-s:shortLabel" class="view -edit -search"></div>
-          <veda-control property="v-s:shortLabel" data-type="string" class="-view edit search"></div>
-          </td>
-          <td>
-          <div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
-          <veda-control property="v-s:taxRegistrationCause" data-type="string" class="-view edit search"></div>
-          </td>
-          <td>
-          <div property="v-s:postalAddress" class="view -edit -search"></div>
-          <veda-control property="v-s:postalAddress" data-type="string" class="-view edit search"></div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <div class="view -edit -search">
-        <button class="btn btn-success" id="add-subsidiary">
-        <span class="glyphicon glyphicon-zoom-in"></span>
-        <span about="v-s:AddSubsidiary" property="rdfs:label"></span>
-        </button>
-      </div>
+          <table class="table table-condensed table-bordered">
+            <thead>
+              <tr class="view -edit -search active">
+                <th width="1%"><span class="glyphicon glyphicon-search"></th>
+                <th about="v-s:shortLabel" property="rdfs:label"></th>
+                <th about="v-s:taxRegistrationCause" property="rdfs:label"></th>
+                <th about="v-s:postalAddress" property="rdfs:label"></th>
+              </tr>
+            </thead>
+            <tbody rel="v-s:hasSubsidiary" data-embedded="true">
+              <tr>
+                <td about="@" data-template="v-ui:IconModalTemplate"></td>
+                <td>
+                <div property="v-s:shortLabel" class="view -edit -search"></div>
+                <veda-control property="v-s:shortLabel" data-type="string" class="-view edit search"></div>
+                </td>
+                <td>
+                <div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
+                <veda-control property="v-s:taxRegistrationCause" data-type="string" class="-view edit search"></div>
+                </td>
+                <td>
+                <div property="v-s:postalAddress" class="view -edit -search"></div>
+                <veda-control property="v-s:postalAddress" data-type="string" class="-view edit search"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="view -edit -search">
+            <button class="btn btn-xs btn-success" id="add-subsidiary">
+              <span class="glyphicon glyphicon-zoom-in"></span>
+              <span about="v-s:hasSubsidiary" property="rdfs:label"> </span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -251,6 +268,20 @@ gen:OrganizationTemplate
           <veda-control data-type="link" rel="v-s:parentUnit" class="-view edit search fulltext"></veda-control>
         </div>
       </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:hasContractorProfile" property="rdfs:label" class="view edit -search"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasContractorProfile" class="view edit -search" data-template="v-ui:ClassNameLabelLinkTemplate"></div>
+          <div class="view -edit -search">
+            <button class="btn btn-xs btn-success" id="add-profile">
+              <span class="glyphicon glyphicon-zoom-in"></span>
+              <span about="v-s:hasContractorProfile" property="rdfs:label"> </span>
+            </button>
+          </div>
+        </div>
+      </div>     
     </section>
     <hr>
     <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
@@ -299,6 +330,32 @@ gen:OrganizationTemplate
       modal.modal("hide").remove();
     });
   });
+  
+  $("#add-profile", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("v-s:ContractorProfile"),
+        profile = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("v-s:ContractorProfileTemplate");
+    profile["rdf:type"] = [_class];
+    profile["v-s:backwardTarget"] = [individual];
+    profile["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasContractorProfile")];
+    profile["rdfs:label"] = individual["v-s:shortLabel"] ;
+    profile.present(cntr, tmpl, "edit");
+    profile.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    profile.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });  
   //# sourceURL=gen:OrganizationTemplate_post
 </script>
   """ ;

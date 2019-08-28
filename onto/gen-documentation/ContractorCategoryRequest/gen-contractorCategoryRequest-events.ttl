@@ -1,0 +1,118 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/stg-ContractorProfile-events>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология СТГ. Досье контрагента. События"@ru ;
+  rdfs:label "STG ontology. Contractor profile. Events"@en ;
+  v-s:loadPriority 20 ;
+.
+
+# ------------------------------------------------------------ Серверные скрипты --
+
+# BB #564: Скрипт вычисления Итогового решения по Контрагенту (semantic_machines/dmsc)
+# Создать серверный скрипт, обрабатывающий сохранение индивидов класса v-s:ContractorCategoryDecision. Аналогичный скрипту из файла veda-ContractorProfile-ui.ttl
+#
+# Заполнить поле v-s:isOrganizationOk, если
+# 4.1. Если заполнены все три галочки в Резолюциях, то v-s:isOrganizationOk = их произведение (логическое И).
+# Т.е.
+# 1) Итоговое решение не определено, если хотя бы одно не определено.
+# 2) Итоговое решение положительно, если все положительны.
+# 3) Итоговое решение отрицательно, если хотя бы одно отрицательно.
+# Обрабатываемые галочки это поля
+# v-s:isContractorOkSecurityDepSummary из поля v-s:hasContractorCategoryDecisionSecurity
+# v-s:isContractorOkLegalDepSummary из поля v-s:hasContractorCategoryDecisionLegal
+# v-s:isContractorOkFinancialDepSummary из поля v-s:hasContractorCategoryDecisionFinancial
+
+gen:Event_ContractCategoryRequestDecision
+  rdf:type v-s:Event ;
+  v-s:author cfg:VedaSystem ;
+  rdfs:label "Скрипт обработки v-s:ContractorCategoryDecision" ;
+  rdfs:comment "Скрипт обработки v-s:ContractorCategoryDecision" ;
+  v-s:triggerByType v-s:ContractorCategoryDecision ;
+  v-s:preventByType v-s:Version ;
+  v-s:script """
+/* Available variables:
+ * ticket = superuser ticket
+ * document = captured document
+ * user_uri = user whose actions triggered event
+ * prev_state = previous state of the captured document
+ * _event_id = id of the event to prevent cycles in triggers. Must be passed to every function that modifies DB.
+ * parent_script_id = id of the parent script that triggered this event.
+ * parent_document_id = id of the document that triggered this event.
+ * super_classes = super classes of the document.
+ */
+
+var decision = get_individual(veda.ticket, document["@"]);
+
+var securityOk  = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionSecurity", "v-s:isContractorOkSecurityDepSummary"),
+    financialOk = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionFinancial", "v-s:isContractorOkFinancialDepSummary"),
+    legalOk     = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionLegal", "v-s:isContractorOkLegalDepSummary"),
+    isOk = securityOk && financialOk && legalOk;
+
+var securityDate  = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionSecurity", "v-s:edited"),
+    financialDate = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionFinancial", "v-s:edited"),
+    legalDate     = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionLegal", "v-s:edited");
+
+var dates = [securityDate, financialDate, legalDate].sort(function(a, b) { return  b - a; }),
+    maxDate = dates[0];
+
+var updateDate = !veda.Util.hasValue(decision, "v-s:isOrganizationOk", {type: "Datetime", data: maxDate}),
+    updateOk = !veda.Util.hasValue(decision, "v-s:isOrganizationOk", {type: "Boolean", data: isOk});
+
+if (updateDate || updateOk) {
+  if (maxDate !== undefined) {
+    decision["v-s:date"] = veda.Util.newDate(maxDate);
+  } else {
+    delete decision["v-s:date"];
+  }
+  if (isOk !== undefined) {
+    decision["v-s:isOrganizationOk"] = veda.Util.newBool(isOk);
+  } else {
+    delete decision["v-s:isOrganizationOk"];
+  }
+  put_individual(ticket, decision);
+}
+  """ ;
+.
+
+gen:Event_ContractCategoryRequestDecision_Department
+  rdf:type v-s:Event ;
+  v-s:author cfg:VedaSystem ;
+  rdfs:label "Скрипт обновляет v-s:ContractorCategoryDecision при сохранении отдельного решения департамента" ;
+  rdfs:comment "Скрипт обновляет v-s:ContractorCategoryDecision при сохранении отдельного решения департамента" ;
+  v-s:triggerByType v-s:ContractorCategoryDecisionSecurity ;
+  v-s:triggerByType v-s:ContractorCategoryDecisionFinancial ;
+  v-s:triggerByType v-s:ContractorCategoryDecisionLegal ;
+  v-s:preventByType v-s:Version ;
+  v-s:script """
+/* Available variables:
+ * ticket = superuser ticket
+ * document = captured document
+ * user_uri = user whose actions triggered event
+ * prev_state = previous state of the captured document
+ * _event_id = id of the event to prevent cycles in triggers. Must be passed to every function that modifies DB.
+ * parent_script_id = id of the parent script that triggered this event.
+ * parent_document_id = id of the document that triggered this event.
+ * super_classes = super classes of the document.
+ */
+//print("************************** START **************************");
+var decision_uri = veda.Util.getUri(document["v-s:backwardTarget"]),
+    decision = decision_uri ? get_individual(ticket, decision_uri) : undefined;
+if (!decision) { return; }
+if ( veda.Util.hasValue(document, "v-s:created") ) {
+  decision["v-s:date"] = document["v-s:created"];
+}
+put_individual(ticket, decision, _event_id);
+//print("*************************** END ***************************");
+  """ ;
+.
