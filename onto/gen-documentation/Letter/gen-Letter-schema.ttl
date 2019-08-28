@@ -98,3 +98,13 @@ gen:PS_hasDocumentKind_Letter
   rdfs:label "v-s:hasDocumentKind property specification for v-s:Delivery class"@en ;
 .
 
+gen:PS_hasRelatedLetter_Letter
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Letter ;
+  v-ui:forProperty v-s:hasRelatedLetter ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix " 'rdf:type' == 'gen:IncomingLetter' ||  'rdf:type' == 'gen:OutgoingLetter'";
+  rdfs:label "Спецификация свойства v-s:hasRelatedLetter для класса gen:Letter"@ru ;
+  rdfs:label "v-s:hasRelatedLetter property specification for gen:Letter class"@en ;
+.
