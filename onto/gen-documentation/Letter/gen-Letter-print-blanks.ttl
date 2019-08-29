@@ -1,0 +1,59 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-Letter-print-blanks>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Монди. Письмо. Печатные бланки"@ru ;
+  rdfs:label "Mondi ontology. Letter. Print blanks"@en ;
+  v-s:loadPriority 20 ;
+.
+#----------------------------------- Печатные формы ----
+gen:OutgoingLetterPrintBlank_pdf
+  rdf:type v-s:ReportsForClass ;
+  v-ui:forClass gen:OutgoingLetter ;
+  v-s:reportPath "/reports/Documents/OutgoingLetter_PrintBlank" ;
+  v-s:reportFormat "pdf";
+  rdfs:label "Исходящее письмо (pdf)"@ru ;
+  rdfs:label "Outgoing letter (pdf)"@en ;
+.
+gen:OutgoingLetterPrintBlank_rtf
+  rdf:type v-s:ReportsForClass ;
+  v-ui:forClass gen:OutgoingLetter ;
+  v-s:reportPath "/reports/Documents/OutgoingLetter_PrintBlank" ;
+  v-s:reportFormat "rtf";
+  rdfs:label "Исходящее письмо (rtf)"@ru ;
+  rdfs:label "Outgoing letter (rtf)"@en ;
+.
+gen:IncomingLetterPrintBlank
+  rdf:type v-s:ReportsForClass ;
+  v-ui:forClass gen:IncomingLetter ;
+  v-s:reportPath "/reports/Documents/IncomingLetter_PrintBlank" ;
+  v-s:reportFormat "pdf";
+  rdfs:label "Входящее письмо"@ru ;
+  rdfs:label "Incoming letter"@en ;
+.
+gen:OutgoingLetterPrintBlank_withdates
+  rdf:type v-s:ReportsForClass ;
+  v-ui:forClass gen:OutgoingLetter ;
+  v-s:reportPath "/reports/Documents/Coordination_PrintBlank_withdates" ;
+  v-s:reportFormat "docx";
+  rdfs:label "Лист согласования с датами"@ru ;
+  rdfs:label "Coordination list with dates"@en ;
+.
+gen:OutgoingLetterPrintBlank_withoutdates
+  rdf:type v-s:ReportsForClass ;
+  v-ui:forClass gen:OutgoingLetter ;
+  v-s:reportPath "/reports/Documents/Coordination_PrintBlank_withoutdates" ;
+  v-s:reportFormat "docx";
+  rdfs:label "Лист согласования без дат"@ru ;
+  rdfs:label "Coordination list without dates"@en ;
+.
