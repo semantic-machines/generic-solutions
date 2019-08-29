@@ -10,10 +10,10 @@
 @prefix cfg: <http://semantic-machines.com/veda/config/> .
 @prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
 
-<http://semantic-machines.com/veda/stg-ContractorProfile-events>
+<http://semantic-machines.com/veda/gen-сontractCategoryRequest-events>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология СТГ. Досье контрагента. События"@ru ;
-  rdfs:label "STG ontology. Contractor profile. Events"@en ;
+  rdfs:label "Онтология DEMO. Запрос на согласование контрагента. События"@ru ;
+  rdfs:label "DEMO ontology. ContractCategoryRequest. Events"@en ;
   v-s:loadPriority 20 ;
 .
 
@@ -57,18 +57,25 @@ var decision = get_individual(veda.ticket, document["@"]);
 var securityOk  = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionSecurity", "v-s:isContractorOkSecurityDepSummary"),
     financialOk = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionFinancial", "v-s:isContractorOkFinancialDepSummary"),
     legalOk     = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionLegal", "v-s:isContractorOkLegalDepSummary"),
+    managementOk     = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionManagement", "v-s:isContractorOkManagementSummary"),
     isOk = securityOk && financialOk && legalOk;
 
 var securityDate  = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionSecurity", "v-s:created"),
     financialDate = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionFinancial", "v-s:created"),
-    legalDate     = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionLegal", "v-s:created");
+    legalDate     = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionLegal", "v-s:created"),
+    managementDate     = veda.Util.getPropertyChain(decision, "v-s:hasContractorCategoryDecisionManagement", "v-s:created");
 
-var dates = [securityDate, financialDate, legalDate].sort(function(a, b) { return  b - a; }),
+var dates = [securityDate, financialDate, legalDate, managementDate].sort(function(a, b) { return  b - a; }),
     maxDate = dates[0];
 
 var updateDate = !veda.Util.hasValue(decision, "v-s:isOrganizationOk", {type: "Datetime", data: maxDate}),
     updateOk = !veda.Util.hasValue(decision, "v-s:isOrganizationOk", {type: "Boolean", data: isOk});
 
+if (managementOk !== undefined) {
+    isOk = managementOk
+  } else {
+    isOk = securityOk && financialOk && legalOk;
+  }
 if (updateDate || updateOk) {
   if (maxDate !== undefined) {
     decision["v-s:date"] = veda.Util.newDate(maxDate);
@@ -93,6 +100,7 @@ gen:Event_ContractCategoryRequestDecision_Department
   v-s:triggerByType v-s:ContractorCategoryDecisionSecurity ;
   v-s:triggerByType v-s:ContractorCategoryDecisionFinancial ;
   v-s:triggerByType v-s:ContractorCategoryDecisionLegal ;
+  v-s:triggerByType v-s:ContractorCategoryDecisionManagement ;
   v-s:preventByType v-s:Version ;
   v-s:script """
 /* Available variables:

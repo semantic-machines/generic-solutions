@@ -19,7 +19,6 @@
 .
 
 # ------------------------------------------------------------ Registry --
-
 gen:OrganizationSearch
   a v-fs:AttributiveSearch;
   rdfs:label "Организация"@ru ;

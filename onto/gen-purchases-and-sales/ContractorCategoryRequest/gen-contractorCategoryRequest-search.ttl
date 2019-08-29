@@ -9,11 +9,15 @@
 @prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
 @prefix cfg: <http://semantic-machines.com/veda/config/> .
 @prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
 
-<http://semantic-machines.com/veda/gen-contractorProfile-blanks>
+<http://semantic-machines.com/veda/gen-ContractorCategoryRequest-search>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Досье организации. Бланки"@ru ;
-  rdfs:label "GEN ontology. ContractorProfile. Blanks"@en ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Запрос на согласование контрагента. Поиск"@ru ;
+  rdfs:label "GEN ontology. ContractorCategoryRequest. Search"@en ;
   v-s:loadPriority 20 ;
 .
-#---------------Бланки----------------------
+# ------------------------------------------------------------ Registry --
+
+# ---------------------------------------------------- Registry result template--
+

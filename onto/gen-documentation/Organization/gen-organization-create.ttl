@@ -22,5 +22,5 @@ gen:OrganizationCreate
   rdf:type v-fc:Create ;
   rdfs:label "Организация"@ru ;
   rdfs:label "Organization"@en ;
-  v-fc:hasBlank v-s:OrganizationBlank ;
+  v-fc:hasBlank gen:OrganizationBlank ;
 .

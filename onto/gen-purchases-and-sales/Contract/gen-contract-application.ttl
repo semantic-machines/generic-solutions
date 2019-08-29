@@ -69,3 +69,68 @@ gen:ContractsManagementIcon
   v-s:fileName "contract.svg"^^xsd:string ;
   v-s:filePath "/gen"^^xsd:string ;
 .
+
+#-------------------------------------------
+gen:ContractorsManagementApplication
+  rdf:type v-s:Application ;
+  rdfs:label "Контрагенты"@ru ;
+  rdfs:label "Contractors"@en ;
+  rdfs:comment "Наши партнеры - самые лучшие! Мы тщательно их выбираем."@ru ;
+  rdfs:comment "Our partners are the best! We choose them carefully."@en ;
+  v-s:shortLabel "Контрагенты"@ru ;
+  v-s:shortLabel "Contractors"@en ;
+  v-s:hasImage gen:ContractorsManagementImage ;
+  v-s:hasIcon gen:ContractorsManagementIcon ;
+  v-ui:hasTemplate v-s:ApplicationTemplate ;
+
+  v-s:hasCreate gen:OrganizationCreate ;
+# v-s:hasBlank mnd-s:blankContractorCreateChangeRequest;
+# v-s:hasBlank mnd-s:blankCreateContractorCategoryRequest ;
+
+  v-s:hasRegistry gen:OrganizationSearch ;
+  v-s:hasRegistry gen:ContractorProfileSearch;
+  v-s:hasRegistry gen:ContractorCategoryRequestSearch;
+  
+  v-s:description """
+Приложение предназначено для формирования актуальной базы данных контрагентов и проведения процедуры проверки контрагентов.
+
+**Приложение обеспечивает возможность:**
+  - Формировать досье контрагента содержащее учредительные документы, лицензии и прочие требуемые документы.
+  - Осуществить проверку заявленных контрагентом видов деятельности.
+  - Заключать договоры с контрагентом только по согласованным видам деятельности.
+"""@ru ;
+  v-s:description """
+Application is designed to form actual contractors data base and to implement contractor's verification procedure.
+
+**The application allows to:**
+  - Form contractor's profile containg founding documents, licenses and other required documents.
+  - Verify services declared by the contractor.
+  - Make agreements with contractor for the verified services only.
+"""@en ;
+
+.
+
+gen:ContractorsManagementImage_RU
+  a v-s:File ;
+  v-s:fileUri "contractor-ru.svg"^^xsd:string ;
+  v-s:fileName "contractor-ru.svg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.
+gen:ContractorsManagementImage_EN
+  a v-s:File ;
+  v-s:fileUri "contractor-en.svg"^^xsd:string ;
+  v-s:fileName "contractor-en.svg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.
+gen:ContractorsManagementImage
+  a v-s:File ;
+  v-s:fileUri "contractor.jpg"^^xsd:string ;
+  v-s:fileName "contractor.jpg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.
+gen:ContractorsManagementIcon
+  a v-s:File ;
+  v-s:fileUri "contractor.svg"^^xsd:string ;
+  v-s:fileName "contractor.svg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.

@@ -1,0 +1,632 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-contractorCategoryRequest-ui>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Demo. Запроса на согласование контрагента. UI"@ru ;
+  rdfs:label "Demo ontology. Contractor category request. UI"@en ;
+  v-s:loadPriority 20 ;
+.
+#--------------------------Template specifications--------------------
+gen:TS_ContractorCategoryRequest
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:ContractorCategoryRequest ;
+  v-ui:defaultTemplate gen:ContractorCategoryRequestTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+gen:TS_ContractorCategoryDecision
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:ContractorCategoryDecision ;
+  v-ui:defaultTemplate gen:ContractorCategoryDecisionTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+gen:TS_ContractorCategoryDecisionSecurity
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:ContractorCategoryDecisionSecurity ;
+  v-ui:defaultTemplate gen:ContractorCategoryDepartmentDecisionTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+gen:TS_ContractorCategoryDecisionLegal
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:ContractorCategoryDecisionLegal ;
+  v-ui:defaultTemplate gen:ContractorCategoryDepartmentDecisionTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+gen:TS_ContractorCategoryDecisionFinancial
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:ContractorCategoryDecisionFinancial ;
+  v-ui:defaultTemplate gen:ContractorCategoryDepartmentDecisionTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+gen:TS_ContractorCategoryDecisionManagement
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:ContractorCategoryDecisionManagement ;
+  v-ui:defaultTemplate gen:ContractorCategoryDepartmentDecisionTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+#-------------строки
+gen:ContractorCategoryRequest_InitialEvaluationBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Первичная оценка"@ru ;
+  rdfs:label "Initial evaluation"@en ;
+.
+gen:ContractorCategoryRequest_RisksEvaluationBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Оценка рисков"@ru ;
+  rdfs:label "Risks evaluation"@en ;
+.
+#-----------------
+gen:ContractorCategoryRequestTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass v-s:ContractorCategoryRequest ;
+  rdfs:label "Шаблон для класса v-s:ContractorCategoryRequest"@ru ;
+  rdfs:label "Template for v-s:ContractorCategoryRequest class"@en ;
+  v-ui:template """
+<script>
+  //кнопка активна если итоговая оценка отрицательная
+  individual.getPropertyChain("v-s:hasContractorCategoryDecision", "v-s:isOrganizationOk").then(function(isOkArr) {
+    if (isOkArr.length > 0 && isOkArr[0] === false) {
+      $(".action#save_and_start_process2", template).removeAttr("disabled");
+    } else {
+      $(".action#save_and_start_process2", template).attr("disabled", "disabled");
+    }
+  })
+//# sourceURL=v-s:ContractorCategoryRequestTemplate_pre
+</script>
+<div>
+  <div class="container sheet">
+    <div class="row">
+      <div class ="col-md-9 col-sm-7">
+        <h2>
+          <span about="v-s:ContractorCategoryRequest" property="rdfs:label"></span><br>
+          <small about="@" property="rdfs:label"></small>
+        </h2>
+      <span about="@" data-template="v-ui:RabbitHole"></span>
+      </div>
+    </div>
+    <hr class="margin-sm">
+    <div class="row">
+      <div class="col-md-9 col-sm-7">
+        <em about="rdfs:comment" property="rdfs:label"></em>
+        <div property="rdfs:comment" class="view -edit -search"></div>
+        <veda-control data-type="text" rows="2"  property="rdfs:comment" class="-view edit search"></veda-control>
+      </div>
+      <div class="col-md-3 col-sm-5">
+        <br>
+        <div rel="v-s:hasContractorCategoryDecision"  data-template="gen:ContractorCategoryDecisionEmbeddedTemplate"></div>
+        <div id="new-ContractorCategoryDecision" class="view -edit -search clearfix">
+          <button class="btn btn-success pull-right" id="add-ContractorCategoryDecision">
+            <span class="glyphicon glyphicon-zoom-in"></span>
+            <span about="v-s:ContractorCategoryDecision" property="rdfs:label"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div about="@" rel="v-s:backwardTarget" data-embedded="true" data-template="gen:ContractorProfileEmbeddedTemplate"></div>
+    <hr>
+    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <br>
+    <!-- BUTTONS -->
+    <div class="actions">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal task"></span>
+      <button type="button" class="action btn btn-warning view -edit -search" id="save_and_start_process1" about="gen:ContractorCategoryRequest_InitialEvaluationBundle" property="rdfs:label"/>
+      <button type="button" class="action btn btn-warning view -edit -search" id="save_and_start_process2" about="gen:ContractorCategoryRequest_RisksEvaluationBundle" property="rdfs:label"/>
+    </div>
+  </div>
+  <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
+  <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
+</div>
+<script>
+  $("#add-ContractorCategoryDecision", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("v-s:ContractorCategoryDecision"),
+        decision = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("v-s:ContractorCategoryDecisionTemplate");
+    decision["rdf:type"] = [_class];
+    decision["v-s:backwardTarget"] = [ individual ];
+    decision["v-s:backwardProperty"] = [ new veda.IndividualModel("v-s:hasContractorCategoryDecision") ];
+    decision["v-s:canRead"] = [ true ];
+    decision.present(cntr, tmpl, "edit");
+    decision.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    decision.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+
+  var _class = new veda.IndividualModel("v-s:ContractorCategoryDecision");
+  _class.rights.then(function (rights) {
+    if ( !rights.hasValue("v-s:canCreate", true) ) {
+      $("#add-ContractorCategoryDecision", template).prop("disabled", true);
+    }
+  });
+
+  function handler() {
+    if ( individual.hasValue("v-s:hasContractorCategoryDecision") ) {
+      $("#add-ContractorCategoryDecision", template).hide();
+    } else {
+      $("#add-ContractorCategoryDecision", template).show();
+    }
+  }
+  handler();
+  individual.on("v-s:hasContractorCategoryDecision", handler);
+  template.one("remove", function () {
+    individual.off("v-s:hasContractorCategoryDecision", handler);
+  });
+
+  function processHandler() {
+    individual.canUpdate().then(function(canUpdate) {
+      if (individual.hasValue("v-wf:isProcess")) {
+        $('#save_and_start_process1.action', template).remove();
+        $('#save_and_start_process2.action', template).remove();
+        $('#delete.action', template).remove();
+      } else if (individual.isNew() || canUpdate) {
+        $('#save_and_start_process1.action', template).off("click");
+        $('#save_and_start_process1.action', template).on('click', function () {
+          veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:ContractorCategoryRequest_Initial_ComplexRouteStartForm_Template');
+        });
+        $('#save_and_start_process2.action', template).off("click");
+        $('#save_and_start_process2.action', template).on('click', function () {
+          veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:ContractorCategoryRequest_Risks_ComplexRouteStartForm_Template');
+        });
+      } else {
+        $('#save.action', template).remove();
+        $('#edit.action', template).remove();
+        $('#delete.action', template).remove();
+      }
+    })
+  }
+
+  individual.on("afterReset", processHandler);
+  processHandler();
+  template.one("remove", function () {
+     individual.off("afterReset", processHandler);
+  });  
+  //# sourceURL=v-s:ContractorCategoryRequestTemplate
+</script>
+    """ ;
+.
+
+gen:ContractorCategoryDecisionTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass v-s:ContractorCategoryDecision ;
+  rdfs:label "Шаблон для класса v-s:ContractorCategoryDecision"@ru ;
+  rdfs:label "Template for v-s:ContractorCategoryDecision class"@en ;
+  v-ui:template """
+<script>
+  var decisionContractorCategoryState = $("#decisionContractorCategoryState", template);
+
+  individual.on("v-s:isOrganizationOk", handler);
+  template.one("remove", function () {
+    individual.off("v-s:isOrganizationOk", handler);
+  });
+  function handler(values) {
+    if (values[0] === true) {
+      decisionContractorCategoryState.removeClass("alert-danger alert-warning").addClass("alert-success");
+    } else if (values[0] === false) {
+      decisionContractorCategoryState.removeClass("alert-success alert-warning").addClass("alert-danger");
+    } else {
+      decisionContractorCategoryState.removeClass("alert-success alert-danger").addClass("alert-warning");
+    }
+  }
+  handler(individual["v-s:isOrganizationOk"]);
+
+  //# sourceURL=v-s:ContractorCategoryDecisionTemplate_pre
+</script>
+<div class="container sheet">
+  <h2>
+    <span about="v-s:ContractorCategoryDecision" property="rdfs:label"></span><br>
+    <small about="@" property="rdfs:label"></small>
+  </h2>
+  <span about="@" data-template="v-ui:RabbitHole"></span>
+  <hr>
+  <br>
+  <div id="decisionContractorCategoryState" class="alert">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="checkbox">
+          <label>
+            <veda-control property="v-s:isOrganizationOk" data-type="boolean"></veda-control>
+            <span><strong about="v-s:isOrganizationOk" property="rdfs:label"></strong> <span property="v-s:date" class="view -edit search"></span></span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <veda-control property="v-s:date" data-type="dateTime" class="-view edit search"></veda-control>
+      </div>
+    </div>
+  </div>
+  <div rel="v-s:hasContractorCategoryDecisionSecurity" class="view edit -search" data-template="gen:ContractorCategoryDepartmentDecisionEmbeddedTemplate"></div>
+  <div rel="v-s:hasContractorCategoryDecisionLegal" class="view edit -search" data-template="gen:ContractorCategoryDepartmentDecisionEmbeddedTemplate"></div>
+  <div rel="v-s:hasContractorCategoryDecisionFinancial" class="view edit -search" data-template="gen:ContractorCategoryDepartmentDecisionEmbeddedTemplate"></div>
+  <div rel="v-s:hasContractorCategoryDecisionManagement" class="view edit -search" data-template="gen:ContractorCategoryDepartmentDecisionEmbeddedTemplate"></div>
+  <div class="row">
+    <div class="clearfix view -edit -search col-md-3 col-md-offset-9" >
+      <button id="add-ContractorCategoryDecisionSecurity" class="btn btn-success btn-block" about="v-s:hasContractorCategoryDecisionSecurity" property="rdfs:label"></button>
+      <button id="add-ContractorCategoryDecisionLegal" class="btn btn-success btn-block" about="v-s:hasContractorCategoryDecisionLegal" property="rdfs:label"></button>
+      <button id="add-ContractorCategoryDecisionFinancial" class="btn btn-success btn-block" about="v-s:hasContractorCategoryDecisionFinancial" property="rdfs:label"></button>
+      <button id="add-ContractorCategoryDecisionManagement" class="btn btn-success btn-block" about="v-s:hasContractorCategoryDecisionManagement" property="rdfs:label"></button>
+    </div>
+  </div>
+
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <br>
+  <!-- BUTTONS -->
+  <div class="actions">
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete"></span>
+  </div>
+</div>
+<script>
+
+  $("#add-ContractorCategoryDecisionSecurity", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("v-s:ContractorCategoryDecisionSecurity"),
+        ContractorCategoryDecisionSecurity = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("gen:ContractorCategoryDepartmentDecisionTemplate");
+    ContractorCategoryDecisionSecurity["rdf:type"] = [_class];
+    ContractorCategoryDecisionSecurity["v-s:backwardTarget"] = [individual];
+    ContractorCategoryDecisionSecurity["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasContractorCategoryDecisionSecurity")];
+    ContractorCategoryDecisionSecurity.present(cntr, tmpl, "edit");
+    ContractorCategoryDecisionSecurity.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    ContractorCategoryDecisionSecurity.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+    template.one("remove", function () {
+      modal.modal("hide");
+    });
+  });
+
+  $("#add-ContractorCategoryDecisionLegal", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("v-s:ContractorCategoryDecisionLegal"),
+        ContractorCategoryDecisionLegal = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("gen:ContractorCategoryDepartmentDecisionTemplate");
+    ContractorCategoryDecisionLegal["rdf:type"] = [_class];
+    ContractorCategoryDecisionLegal["v-s:backwardTarget"] = [individual];
+    ContractorCategoryDecisionLegal["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasContractorCategoryDecisionLegal")];
+    ContractorCategoryDecisionLegal.present(cntr, tmpl, "edit");
+    ContractorCategoryDecisionLegal.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    ContractorCategoryDecisionLegal.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+
+  $("#add-ContractorCategoryDecisionFinancial", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("v-s:ContractorCategoryDecisionFinancial"),
+        ContractorCategoryDecisionFinancial = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("gen:ContractorCategoryDepartmentDecisionTemplate");
+    ContractorCategoryDecisionFinancial["rdf:type"] = [_class];
+    ContractorCategoryDecisionFinancial["v-s:backwardTarget"] = [individual];
+    ContractorCategoryDecisionFinancial["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasContractorCategoryDecisionFinancial")];
+    ContractorCategoryDecisionFinancial.present(cntr, tmpl, "edit");
+    ContractorCategoryDecisionFinancial.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    ContractorCategoryDecisionFinancial.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+
+  $("#add-ContractorCategoryDecisionManagement", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("v-s:ContractorCategoryDecisionManagement"),
+        ContractorCategoryDecisionFinancial = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("gen:ContractorCategoryDepartmentDecisionTemplate");
+    ContractorCategoryDecisionFinancial["rdf:type"] = [_class];
+    ContractorCategoryDecisionFinancial["v-s:backwardTarget"] = [individual];
+    ContractorCategoryDecisionFinancial["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasContractorCategoryDecisionManagement")];
+    ContractorCategoryDecisionFinancial.present(cntr, tmpl, "edit");
+    ContractorCategoryDecisionFinancial.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    ContractorCategoryDecisionFinancial.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
+  
+  var _classSecurity = new veda.IndividualModel('v-s:ContractorCategoryDecisionSecurity');
+  var _classLegal = new veda.IndividualModel('v-s:ContractorCategoryDecisionLegal');
+  var _classFinancial = new veda.IndividualModel('v-s:ContractorCategoryDecisionFinancial');
+  var _classManagement = new veda.IndividualModel('v-s:ContractorCategoryDecisionManagement');
+  Promise.all([_classSecurity.canCreate(), _classLegal.canCreate(), _classFinancial.canCreate(), _classManagement.canCreate(), individual.canUpdate()]).then(function (rights) {
+    var canCreateSecurity = rights[0],
+        canCreateLegal = rights[1],
+        canCreateFinancial = rights[2],
+        canCreateManagement = rights[3],
+        canUpdateIndividual = rights[4],
+        hasRightsSecurity = canCreateSecurity && canUpdateIndividual,
+        hasRightsLegal = canCreateLegal && canUpdateIndividual,
+        hasRightsFinancial = canCreateFinancial && canUpdateIndividual,
+        hasRightsManagement = canCreateManagement && canUpdateIndividual;
+        individual.on("v-s:hasContractorCategoryDecisionSecurity", handlerSecurity);
+    template.one("remove", function () {
+      individual.off("v-s:hasContractorCategoryDecisionSecurity", handlerSecurity);
+    });
+    function handlerSecurity(values) {
+      if (values.length || !hasRightsSecurity) {
+        $("#add-ContractorCategoryDecisionSecurity", template).remove();
+      }
+    }
+    handlerSecurity(individual["v-s:hasContractorCategoryDecisionSecurity"]);
+
+    individual.on("v-s:hasContractorCategoryDecisionLegal", handlerLegal);
+    template.one("remove", function () {
+      individual.off("v-s:hasContractorCategoryDecisionLegal", handlerLegal);
+    });
+    function handlerLegal(values) {
+      if (values.length || !hasRightsLegal) {
+        $("#add-ContractorCategoryDecisionLegal", template).remove();
+      }
+    }
+    handlerLegal(individual["v-s:hasContractorCategoryDecisionLegal"]);
+
+    individual.on("v-s:hasContractorCategoryDecisionFinancial", handlerFinancial);
+    template.one("remove", function () {
+      individual.off("v-s:hasContractorCategoryDecisionFinancial", handlerFinancial);
+    });
+    function handlerFinancial(values) {
+      if (values.length || !hasRightsFinancial) {
+        $("#add-ContractorCategoryDecisionFinancial", template).remove();
+      }
+    }
+    handlerFinancial(individual["v-s:hasContractorCategoryDecisionFinancial"]);
+
+    individual.on("v-s:hasContractorCategoryDecisionManagement", handlerManagement);
+    template.one("remove", function () {
+      individual.off("v-s:hasContractorCategoryDecisionManagement", handlerManagement);
+    });
+    function handlerManagement(values) {
+      if (values.length || !hasRightsManagement) {
+        $("#add-ContractorCategoryDecisionManagement", template).remove();
+      }
+    }
+    handlerManagement(individual["v-s:hasContractorCategoryDecisionManagement"]);
+
+  });
+  //# sourceURL=v-s:ContractorCategoryDecisionTemplate_post
+</script>
+   """ ;
+.
+
+gen:ContractorCategoryDecisionEmbeddedTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон для класса v-s:ContractorCategoryDecision"@ru ;
+  rdfs:label "Template for v-s:ContractorCategoryDecision class"@en ;
+  v-ui:template """
+<script>
+  var _class = new veda.IndividualModel("v-s:ContractorCategoryDecision");
+  _class.canCreate().then(function (canCreate) {
+    if (!canCreate) {
+      $("#AddResolution", template).remove();
+    }
+  });
+
+  var decisionContractorCategoryEmbeddedState = $("#decisionContractorCategoryEmbeddedState", template);
+  individual.on("v-s:isOrganizationOk", handler);
+  template.one("remove", function () {
+    individual.off("v-s:isOrganizationOk", handler);
+  });
+  function handler() {
+    if (individual.hasValue('v-s:isOrganizationOk', true)) {
+      decisionContractorCategoryEmbeddedState.removeClass("panel-danger panel-warning").addClass("panel-success");
+    } else if (individual.hasValue('v-s:isOrganizationOk', false)) {
+      decisionContractorCategoryEmbeddedState.removeClass("panel-success panel-warning").addClass("panel-danger");
+    } else {
+      decisionContractorCategoryEmbeddedState.removeClass("panel-success panel-danger").addClass("panel-warning");
+    }
+  }
+  handler();
+</script>
+<div>
+  <div id="decisionContractorCategoryEmbeddedState" class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <span><a href="#/@" class="glyphicon glyphicon-search"></a></span>
+        <span about="v-s:ContractorCategoryDecision" property="rdfs:label" class="panel-title"> </span>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="checkbox">
+        <label>
+          <veda-control property="v-s:isOrganizationOk" data-type="boolean"></veda-control>
+          <strong about="v-s:isOrganizationOk" property="rdfs:label"></strong>
+          <span property="v-s:date" class="view -edit search"></span>
+        </label>
+      </div>
+      <div class="checkbox" rel="v-s:hasContractorCategoryDecisionSecurity">
+        <label>
+          <veda-control property="v-s:isContractorOkSecurityDepSummary" data-type="boolean"></veda-control>
+          <span><strong about="v-s:isContractorOkSecurityDepSummary" property="rdfs:label"></strong> </span>
+        </label>
+      </div>
+      <div class="checkbox" rel="v-s:hasContractorCategoryDecisionLegal">
+        <label>
+          <veda-control property="v-s:isContractorOkLegalDepSummary" data-type="boolean"></veda-control>
+          <span><strong about="v-s:isContractorOkLegalDepSummary" property="rdfs:label"></strong> </span>
+        </label>
+      </div>
+      <div class="checkbox" rel="v-s:hasContractorCategoryDecisionFinancial">
+        <label>
+          <veda-control property="v-s:isContractorOkFinancialDepSummary" data-type="boolean"></veda-control>
+          <span><strong about="v-s:isContractorOkFinancialDepSummary" property="rdfs:label"></strong> </span>
+        </label>
+      </div>
+      <div class="checkbox" rel="v-s:hasContractorCategoryDecisionManagement">
+        <label>
+          <veda-control property="v-s:isContractorOkManagementSummary" data-type="boolean"></veda-control>
+          <span><strong about="v-s:isContractorOkManagementSummary" property="rdfs:label"></strong> </span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+  """ ;
+.
+
+gen:ContractorCategoryDepartmentDecisionTemplate
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass v-s:ContractorCategoryDecisionSecurity ;
+  rdfs:label "Шаблон для класса v-s:ContractorCategoryDecisionSecurity"@ru ;
+  rdfs:label "Template for v-s:ContractorCategoryDecisionSecurity class"@en ;
+  v-ui:template """
+<div class="container sheet">
+  <h2>
+    <span about="v-s:ContractorCategoryDecisionSecurity" property="rdfs:label"></span><br>
+    <small about="@" property="rdfs:label"></small>
+  </h2>
+  <span about="@" data-template="v-ui:RabbitHole"></span>
+  <hr>  
+  <em about="@" rel="rdf:type" class="view edit search" data-template="v-ui:LabelTemplate"></em>
+  <div about="@"  class="view edit -search" data-template="gen:ContractorCategoryDepartmentDecisionEmbeddedTemplate" data-embedded="true"></div>
+
+  <em about="v-s:attachment" property="rdfs:label"></em>
+  <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
+  <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
+
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <br>
+  <!-- BUTTONS -->
+  <div class="actions">
+    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete"></span>
+  </div>
+</div>
+<script>
+  $("#descriptionClose", template).remove();
+</script>
+ """ ;
+.
+
+gen:ContractorCategoryDepartmentDecisionEmbeddedTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон для класса v-s:ContractorCategoryDecision"@ru ;
+  rdfs:label "Template for v-s:ContractorCategoryDecision class"@en ;
+  v-ui:template """
+<script>
+  try {
+    var types = {
+      "v-s:ContractorCategoryDecisionSecurity": {
+        ok: "v-s:isContractorOkSecurityDepSummary",
+        summary: "v-s:contractorSecurityDepSummary"
+      },
+      "v-s:ContractorCategoryDecisionLegal": {
+        ok: "v-s:isContractorOkLegalDepSummary",
+        summary: "v-s:contractorLegalDepSummary"
+      },
+      "v-s:ContractorCategoryDecisionFinancial": {
+        ok: "v-s:isContractorOkFinancialDepSummary",
+        summary: "v-s:contractorFinancialDepSummary"
+      },
+      "v-s:ContractorCategoryDecisionManagement": {
+        ok: "v-s:isContractorOkManagementSummary",
+        summary: "v-s:contractorManagementSummary"
+      }      
+    };
+
+    var type = individual["rdf:type"][0].id;
+    var ok = types[type].ok;
+    var summary = types[type].summary;
+
+    function checkHandler(property_uri) {
+      if (property_uri === ok) {
+        if ( individual.hasValue(ok, true) ) {
+          template.addClass("panel-success").removeClass("panel-warning").removeClass("panel-danger");
+        } else if ( individual.hasValue(ok, false) ) {
+          template.removeClass("panel-success").removeClass("panel-warning").addClass("panel-danger");
+        } else {
+          template.removeClass("panel-success").addClass("panel-warning").removeClass("panel-danger");
+        }
+      }
+    }
+    individual.on("propertyModified", checkHandler);
+    template.one("remove", function () {
+      individual.off("propertyModified", checkHandler);
+    });
+    checkHandler(ok);
+
+    $(".ok-property", template).attr("property", ok);
+    $(".summary-about", template).attr("about", summary);
+    $(".summary-property", template).attr("property", summary);
+  } catch (error) {
+    console.log(error);
+  }
+//# sourceURL=v-s:ContractorCategoryDepartmentDecisionEmbeddedTemplate_pre
+</script>
+<div class="panel panel-horizontal">
+  <div class="panel-heading">
+    <veda-control class="ok-property" data-type="boolean"></veda-control>
+  </div>
+  <div class="panel-body">
+    <h4 id="descriptionClose" class="margin-sm">
+      <span about="@" data-template="v-ui:IconModalTemplate"></span>
+      <span class="summary-about" property="rdfs:label"></span>
+    </h4>
+    <div class="view -edit summary-property"></div>
+    <veda-control data-type="text" rows="4" class="-view edit summary-property"></veda-control>
+  </div>
+</div>
+   """ ;
+.
