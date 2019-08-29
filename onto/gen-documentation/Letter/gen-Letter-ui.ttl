@@ -263,9 +263,9 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
   <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
 </div>
 <script>
-  if (individual.is("gen:IncomingLetter")) {
+  if (individual.hasValue("rdf:type", "gen:IncomingLetter")) {
     individual["v-s:recipient"][0]["v-s:correspondentOrganization"] = veda.appointment["v-s:parentOrganization"];
-  } else if (individual.is("gen:OutgoingLetter")) {
+  } else if (individual.hasValue("rdf:type", "gen:OutgoingLetter")) {
     individual["v-s:sender"][0]["v-s:correspondentOrganization"] = veda.appointment["v-s:parentOrganization"];
   }
   // Проверка разрешения на кнопку исходящее письмо
