@@ -96,7 +96,7 @@ gen:RepresentativeCostsTemplate
           <label about="v-s:participant" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:participant" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div rel="v-s:participant" class="view edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:participant" class="-view edit search fulltext"></veda-control>
         </div>
       </div>
@@ -451,8 +451,8 @@ gen:RepresentativeCostsEventTemplate
 gen:RepresentativeCostsEventEmbeddedTemplate
   rdf:type v-ui:ClassTemplate ;
   v-ui:forClass gen:RepresentativeCostsEvent ;
-  rdfs:label "Шаблон для класса gen:ChangeOfBusinessTrip (Изменения командировки)."@ru ;
-  rdfs:label "Template gen:ChangeOfBusinessTrip class"@en ;
+  rdfs:label "Шаблон для класса gen:RepresentativeCosts (Представительские расходы)."@ru ;
+  rdfs:label "Template gen:RepresentativeCosts class"@en ;
   v-ui:template """
     <section id="RepresentativeCosts2">
       <div class="row row-attribute">
