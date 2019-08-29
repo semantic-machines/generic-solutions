@@ -31,12 +31,3 @@ gen:InternalDocumentSearchBlank
   v-fc:targetType gen:InternalDocument ;
 .
 
-#----------------------------------- Печатные формы ----
-gen:InternalDocument_printBlank
-  rdf:type v-s:ReportsForClass ;
-  v-ui:forClass gen:InternalDocument ;
-  v-s:reportPath "/reports/Documents/InternalDocument_PrintBlank" ;
-  v-s:reportFormat "pdf";
-  rdfs:label "Печатная форма"@ru ;
-  rdfs:label "Print blank"@en ;
-.
