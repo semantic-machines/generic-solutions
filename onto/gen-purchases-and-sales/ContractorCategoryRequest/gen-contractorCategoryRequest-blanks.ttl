@@ -22,4 +22,18 @@ gen:ContractorCategoryRequestSearchBlank
   rdfs:label "Запрос на согласование контрагента"@ru ;
   rdfs:label "contractor category request"@en ;
   v-fc:targetType v-s:ContractorCategoryRequest ;
+  v-s:backwardTarget gen:ContractorCategoryRequestSearchBlank_ParentContractorProfile;
+.
+gen:ContractorCategoryRequestSearchBlank_ParentContractorProfile
+  rdf:type v-fc:Blank ;
+  rdfs:label "Бланк родительского досье искомого запроса на согласование контрагента"@ru ;
+  rdfs:label "Parent contractor category request blank for contractor profile registry"@en ;
+  v-fc:targetType v-s:ContractorProfile;
+  v-s:backwardTarget gen:ContractorCategoryRequestSearchBlank_ParentOrganization;
+.
+gen:ContractorCategoryRequestSearchBlank_ParentOrganization
+  rdf:type v-fc:Blank ;
+  rdfs:label "Бланк родительской организации искомого запроса на согласование контрагента"@ru ;
+  rdfs:label "Parent contractor category request blank for organization registry"@en ;
+  v-fc:targetType v-s:Organization;
 .
