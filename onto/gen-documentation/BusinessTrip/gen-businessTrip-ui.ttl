@@ -373,9 +373,8 @@ gen:BusinessTripTemplate
       </div>
       <div rel="gen:hasDeviationOnExpenses" data-template="gen:DeviationOnExpensesEmbeddedTemplate" data-embedded="true" class="-view -edit search create"></div>
     </section>      
-					
-    <hr>
-    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+	  <hr>
+    <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
     <br>
     <!-- BUTTONS -->
     <div class="actions view edit -search">
@@ -697,7 +696,7 @@ gen:BusinessTripRegistrationRecordTemplate
       </div> 
   </section>
   <hr>
-  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
   <br>
   <!-- BUTTONS -->
   <div class="actions view edit -search">
@@ -792,7 +791,7 @@ gen:ChangeOfTermsTemplate
     </div>
   </section>
   <hr>
-  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
   <br>
   <!-- BUTTONS -->
   <div class="actions view edit -search">
@@ -898,7 +897,7 @@ gen:DeviationOnExpensesTemplate
   </section>
 
   <hr>
-  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
   <br>
   <!-- BUTTONS -->
   <div class="actions view edit -search">
@@ -944,8 +943,6 @@ gen:DeviationOnExpensesEmbeddedTemplate
   </section>
 """
 .
-
-
 
 
 gen:BusinessTrip_listReportParametersTemplate

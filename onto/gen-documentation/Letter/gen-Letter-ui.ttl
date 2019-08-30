@@ -239,7 +239,7 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
       </div><br>
       <veda-control data-type="link" rel="v-s:hasRelatedLetter" class="-view edit search fulltext"></veda-control>
     </section><br>
-    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
     <br>
     <div class="actions view edit -search">
       <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send save edit cancel delete journal task"></span>
@@ -753,7 +753,7 @@ gen:DeliveryTemplate
     </div>    
   </section>
   <hr>
-  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
   <br>
   <div class="actions view edit -search">
     <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal"></span>

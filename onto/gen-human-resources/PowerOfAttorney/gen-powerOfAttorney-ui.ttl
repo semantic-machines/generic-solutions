@@ -218,7 +218,7 @@ gen:PowerOfAttorneyTemplate
     </section>
     
     <hr>
-    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
     <br>
     <!-- BUTTONS -->
     <div class="actions view edit -search">
@@ -402,7 +402,7 @@ gen:PowerOfAttorneyRegistrationRecordTemplate
       </div>  
   </section>
   <hr>
-  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
   <br>
   <!-- BUTTONS -->
   <div class="actions view edit -search">

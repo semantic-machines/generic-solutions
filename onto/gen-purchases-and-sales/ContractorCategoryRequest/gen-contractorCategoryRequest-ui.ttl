@@ -120,7 +120,7 @@ gen:ContractorCategoryRequestTemplate
     <hr>
     <div about="@" rel="v-s:backwardTarget" data-embedded="true" data-template="gen:ContractorProfileEmbeddedTemplate"></div>
     <hr>
-    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
     <br>
     <!-- BUTTONS -->
     <div class="actions">
@@ -275,7 +275,7 @@ gen:ContractorCategoryDecisionTemplate
   </div>
 
   <hr>
-  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
   <br>
   <!-- BUTTONS -->
   <div class="actions">
@@ -547,7 +547,7 @@ gen:ContractorCategoryDepartmentDecisionTemplate
   <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
 
   <hr>
-  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
   <br>
   <!-- BUTTONS -->
   <div class="actions">

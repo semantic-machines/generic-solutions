@@ -103,7 +103,7 @@ gen:InternalDocumentTemplate
       </div>
     </section>
     <hr>
-    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
     <br>
     <div class="actions view edit -search">
       <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="send edit save cancel delete journal task"></span>

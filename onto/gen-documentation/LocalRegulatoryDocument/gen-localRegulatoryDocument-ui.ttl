@@ -174,7 +174,7 @@ gen:LocalRegulatoryDocumentTemplate
       </div>
     </section>
     <hr>
-    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
     <br>
     <!-- BUTTONS -->
     <div class="actions view edit -search">
@@ -417,7 +417,7 @@ gen:VersionOfLocalRegulatoryDocumentTemplate
       </div>    
     </section>
     <hr>
-    <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+    <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
     <br>
     <br>
     <div class="actions view edit -search">

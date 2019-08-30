@@ -47,7 +47,7 @@ gen:ContractorProfileSearchBlankTemplate
   <veda-control data-type="link" rel="v-s:hasClassifierOKVED" class="-view edit search fulltext" data-template="{individual['v-s:registrationNumber'][0] + ' - ' + individual['rdfs:label'][0]}"></veda-control>
 
   <hr>
-  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+  <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
 </div>
 
   """ ;
