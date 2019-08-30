@@ -259,7 +259,7 @@ gen:PS_hasBudgetCategory_Contract
   v-ui:forProperty v-s:hasBudgetCategory ;
   v-ui:minCardinality 0 ;
   v-ui:maxCardinality 1 ;
-  v-ui:queryPrefix "('@'===' d:add478ffd-4996-ca11-8d8c-51bf810357c7' || '@'==='d:a193b366b-aaeb-c1f2-b101-89c95b10a6c8')" ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:BudgetCategory && ('@'=='d:a193b366b-aaeb-c1f2-b101-89c95b10a6c8' || '@'=='d:add478ffd-4996-ca11-8d8c-51bf810357c7'))" ;
   rdfs:label "Спецификация свойства v-s:hasBudgetCategory для gen:Contract"@ru ;
   rdfs:label "v-s:hasBudgetCategory property specification for gen:Contract"@en ;
 .

@@ -337,24 +337,24 @@ gen:ContractTemplate
         <tbody rel="gen:hasContractStageChanging" data-template="gen:ContractStageChangingEmbeddedTemplate" data-embedded="true"></tbody>
       </table><br>
       <veda-control rel="gen:hasContractStageChanging" data-type="link" class="-view edit search create"></veda-control>
-      <div class="view -edit -search clearfix">
-        <button class="btn btn-success pull-right" id="add-ContractStageChanging_prolongate" >
+      <div class="view -edit -search pull-right">
+        <button class="btn btn-xs btn-success" id="add-ContractStageChanging_prolongate">
           <span class="glyphicon glyphicon-zoom-in"></span>
-          <span  about="gen:ContractStageChanging_prolongate_Bundle" property="rdfs:label"> </span>
+          <span about="gen:ContractStageChanging_prolongate_Bundle" property="rdfs:label"></span>
         </button>
       </div>
       <br>
-      <div class="view -edit -search clearfix">
-        <button class="btn btn-success pull-right" id="add-ContractStageChanging_close" >
+      <div class="view -edit -search pull-right">
+        <button class="btn btn-xs btn-success" id="add-ContractStageChanging_close">
           <span class="glyphicon glyphicon-zoom-in"></span>
-          <span  about="gen:ContractStageChanging_close_Bundle" property="rdfs:label"> </span>
+          <span about="gen:ContractStageChanging_close_Bundle" property="rdfs:label"></span>
         </button>
       </div>
       <br>
-      <div class="view -edit -search clearfix">
-        <button class="btn btn-success pull-right" id="add-ContractStageChanging_reopen" >
+      <div class="view -edit -search pull-right">
+        <button class="btn btn-xs btn-success" id="add-ContractStageChanging_reopen">
           <span class="glyphicon glyphicon-zoom-in"></span>
-          <span  about="gen:ContractStageChanging_reopen_Bundle" property="rdfs:label"> </span>
+          <span about="gen:ContractStageChanging_reopen_Bundle" property="rdfs:label"></span>
         </button>
       </div>
     </section>
@@ -382,12 +382,12 @@ gen:ContractTemplate
       <tbody rel="gen:hasAdditionalAgreement" data-template="gen:AdditionalAgreementEmbeddedTemplate" data-embedded="true"></tbody>
     </table>
     <br>
-    <div class="view -edit -search clearfix">
-      <button class="btn btn-success pull-right" id="add-AdditionalAgreement" >
-        <span class="glyphicon glyphicon-zoom-in"></span>
-        <span  about="gen:AddAdditionalAgreementBundle" property="rdfs:label"> </span>
-      </button>
-    </div>
+    <div class="view -edit -search pull-right">
+        <button class="btn btn-xs btn-success" id="add-AdditionalAgreement">
+          <span class="glyphicon glyphicon-zoom-in"></span>
+          <span about="gen:AddAdditionalAgreementBundle" property="rdfs:label"></span>
+        </button>
+      </div>
   </div>
   <div about="@" class="container sheet view edit -search margin-lg" data-template="v-s:LinksTemplate" data-embedded="true"></div>
   <div about="@" class="container sheet view -edit -search margin-lg" data-template="v-s:CommentsTemplate"></div>
