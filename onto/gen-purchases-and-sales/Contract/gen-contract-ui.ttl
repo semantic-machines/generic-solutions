@@ -343,14 +343,14 @@ gen:ContractTemplate
           <span about="gen:ContractStageChanging_prolongate_Bundle" property="rdfs:label"></span>
         </button>
       </div>
-      <br>
+      <br><br>
       <div class="view -edit -search pull-right">
         <button class="btn btn-xs btn-success" id="add-ContractStageChanging_close">
           <span class="glyphicon glyphicon-zoom-in"></span>
           <span about="gen:ContractStageChanging_close_Bundle" property="rdfs:label"></span>
         </button>
       </div>
-      <br>
+      <br><br>
       <div class="view -edit -search pull-right">
         <button class="btn btn-xs btn-success" id="add-ContractStageChanging_reopen">
           <span class="glyphicon glyphicon-zoom-in"></span>
