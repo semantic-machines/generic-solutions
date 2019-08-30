@@ -38,8 +38,10 @@ gen:BusinessTrip_Environment_membership
   v-s:resource gen:BusinessTrip_group ;
   v-s:resource gen:BusinessTripRegistrationRecord ;
   v-s:resource gen:BusinessTripRegistrationRecord_group ;
-  v-s:resource gen:ChangeOfBusinessTrip_group ;  
-  v-s:resource gen:ChangeOfBusinessTrip ;
+  v-s:resource gen:ChangeOfTerms_group ;  
+  v-s:resource gen:ChangeOfTerms ;
+  v-s:resource gen:DeviationOnExpenses_group ;  
+  v-s:resource gen:DeviationOnExpenses ;
   rdfs:label "Члены группы Окружение BusinessTrip - схема и индивиды" ;
 .
 # ------------------------------------------------------------
