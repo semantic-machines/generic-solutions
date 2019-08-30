@@ -163,12 +163,12 @@ gen:LocalRegulatoryDocumentTemplate
 								</tr>
 							</tbody>
 						</table><br>
-						<div class="view -edit -search">
-							<button class="btn btn-success" id="add-RegulatoryDocument">
-								<span class="glyphicon glyphicon-zoom-in"></span>
-								<span about="v-s:hasVersionOfLocalRegulatoryDocument" property="rdfs:label"></span>
-							</button>
-						</div>
+				    <div class="view -edit -search">
+              <button class="btn btn-xs btn-success" id="add-RegulatoryDocument">
+                <span class="glyphicon glyphicon-zoom-in"></span>
+                <span about="v-s:hasVersionOfLocalRegulatoryDocument" property="rdfs:label"></span>
+              </button>
+            </div>
 					</div>
         </div>
       </div>

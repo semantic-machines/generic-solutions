@@ -90,14 +90,14 @@ gen:BusinessTripTemplate
     changeOfTermsCanCreate.then(function(result) {
       if(!result){
         $("#notify.action", template).remove();
-      } else if( result && !individual.hasValue("gen:hasChangeOfBusinessTrip") ) {
+      } else if( result && !individual.hasValue("gen:hasChangeOfTerms") ) {
         $("#notify.action", template).hide();
       } else {
         $("#notify.action", template).show();
       }
     });
   }
-  handler("gen:hasChangeOfBusinessTrip", individual["gen:hasChangeOfBusinessTrip"]);
+  handler("gen:hasChangeOfTerms", individual["gen:hasChangeOfTerms"]);
   individual.on("propertyModified", handler);
   template.one("remove", function () {
     individual.off("propertyModified", handler);
@@ -316,7 +316,7 @@ gen:BusinessTripTemplate
               <th about="rdfs:comment" property="rdfs:label"></th>
             </tr>
           </thead>
-          <tbody rel="gen:hasChangeOfBusinessTrip" >
+          <tbody rel="gen:hasChangeOfTerms" >
             <tr>
               <td about="@" data-template="v-ui:IconModalTemplate"></td>
               <td>
@@ -335,13 +335,13 @@ gen:BusinessTripTemplate
           </tbody>
         </table>
       </div>
-      <div rel="gen:hasChangeOfTerms" data-template="gen:ChangeOfTermsEmbeddedTemplate" data-embedded="true" class="view -edit search create"></div>
+      <div rel="gen:hasChangeOfTerms" data-template="gen:ChangeOfTermsEmbeddedTemplate" data-embedded="true" class="-view -edit search create"></div>
     </section>
     <section id="DeviationOnExpenses">
       <h4 class="section-header clearfix">
         <span about="gen:hasDeviationOnExpenses" property="rdfs:label"></span>
         <!--<veda-control data-type="link" rel="gen:hasDeviationOnExpenses" data-template="gen:DeviationOnExpensesTemplate" class="-view edit -search create create-modal pull-right"></veda-control>-->
-        <veda-control data-type="link" rel="gen:hasDeviationOnExpenses" class="view -edit search create pull-right"></veda-control>
+        <veda-control data-type="link" rel="gen:hasDeviationOnExpenses" class="-view -edit search create pull-right"></veda-control>
         <div class="view -edit -search pull-right">
           <button class="btn btn-xs btn-success" id="add-DeviationOnExpenses">
             <span class="glyphicon glyphicon-zoom-in"></span>
@@ -467,7 +467,7 @@ $("#add-RegRecord", template).click(function () {
       tmpl = new veda.IndividualModel("gen:ChangeOfTermsTemplate");
     ChangeOfTerms["rdf:type"] = [_class];
     ChangeOfTerms["v-s:backwardTarget"] = [individual];
-    ChangeOfTerms["v-s:backwardProperty"] = [new veda.IndividualModel("gen:ChangeOfTerms")];
+    ChangeOfTerms["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasChangeOfTerms")];
     ChangeOfTerms["v-s:canRead"] = [ true ];
     ChangeOfTerms.present(cntr, tmpl, "edit");
     ChangeOfTerms.one("beforeReset", function () {
@@ -493,7 +493,7 @@ $("#add-RegRecord", template).click(function () {
       tmpl = new veda.IndividualModel("gen:DeviationOnExpensesTemplate");
     DeviationOnExpenses["rdf:type"] = [_class];
     DeviationOnExpenses["v-s:backwardTarget"] = [individual];
-    DeviationOnExpenses["v-s:backwardProperty"] = [new veda.IndividualModel("gen:DeviationOnExpenses")];
+    DeviationOnExpenses["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasDeviationOnExpenses")];
     DeviationOnExpenses["v-s:canRead"] = [ true ];
     DeviationOnExpenses.present(cntr, tmpl, "edit");
     DeviationOnExpenses.one("beforeReset", function () {
@@ -589,7 +589,7 @@ $("#add-RegRecord", template).click(function () {
 
   function notifyHandler() {
     if ( template.data("mode") != "search" ) {
-      if ( individual.hasValue("gen:hasChangeOfBusinessTrip") ) {
+      if ( individual.hasValue("gen:hasChangeOfTerms") ) {
         $('#notify.action', template).removeClass("hidden");
         $('#notify.action', template).off("click");
         $('#notify.action', template).on('click', function () {

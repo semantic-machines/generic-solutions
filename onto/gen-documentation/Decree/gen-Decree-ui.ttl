@@ -85,8 +85,13 @@ gen:DecreeTemplate
     <section id="buttonReg">
       <h4 class="section-header clearfix">
         <span about="gen:DecreeRegistrationRecord" property="rdfs:label"></span>
-        <button class="action btn btn-success pull-right view -edit -search" id="add-RegRecord" about="v-s:Create" property="rdfs:label"></button>
         <veda-control data-type="link" rel="gen:hasDecreeRegistrationRecord" class="-view -edit search create pull-right"></veda-control>
+        <div class="view -edit -search pull-right">
+          <button class="btn btn-xs btn-success" id="add-RegRecord">
+            <span class="glyphicon glyphicon-zoom-in"></span>
+            <span about="gen:hasDecreeRegistrationRecord" property="rdfs:label"></span>
+          </button>
+        </div>
       </h4>
     </section>
     <section id="MainProperties">

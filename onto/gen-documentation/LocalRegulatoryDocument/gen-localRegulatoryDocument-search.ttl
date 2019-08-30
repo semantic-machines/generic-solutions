@@ -39,7 +39,7 @@ gen:LocalRegulatoryDocumentSearchResultTemplate
 <table class="table table-bordered">
   <thead class="result-header">
     <tr>
-      <th colspan="10" about="gen:LocalRegulatoryDocument" property="rdfs:label"></th>
+      <th colspan="9" about="gen:LocalRegulatoryDocument" property="rdfs:label"></th>
     </tr>
     <tr class="active">
       <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
@@ -47,7 +47,6 @@ gen:LocalRegulatoryDocumentSearchResultTemplate
       <th><span about="v-s:creator" property="rdfs:label"></span></th>
       <th class="orderby" data-orderby="v-s:registrationDate"><span about="v-s:registrationDate" property="rdfs:label"></span></th>
       <th class="orderby" data-orderby="v-s:valid"><span about="v-s:valid" property="rdfs:label"></span></th>
-      <th class="orderby" data-orderby="v-s:isFixedTerm"><span about="v-s:isFixedTerm" property="rdfs:label"></span></th>
       <th><span about="v-s:title" property="rdfs:label"></span></th>
       <th><span about="rdfs:comment" property="rdfs:label"></span></th>
       <th><span about="v-s:owner" property="rdfs:label"></span></th>
@@ -61,7 +60,6 @@ gen:LocalRegulatoryDocumentSearchResultTemplate
       <td rel="v-s:creator" data-template="v-ui:LabelTemplate"></td>
       <td property="v-s:registrationDate"></td>
       <td property="v-s:valid"></td>
-      <td property="v-s:isFixedTerm"></td>
       <td property="v-s:title"></td>
       <td property="rdfs:comment"></td>
       <td rel="v-s:owner" data-template="v-ui:LabelTemplate"></td>
