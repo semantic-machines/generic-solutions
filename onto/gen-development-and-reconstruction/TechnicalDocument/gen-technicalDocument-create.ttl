@@ -23,6 +23,5 @@ gen:TechnicalDocumentCreate
   rdfs:label "Технический документ"@ru ;
   rdfs:label "Technical document"@en ;
   v-fc:hasBlank gen:TechnicalDocumentBlank ;
-  v-s:developer gen:CorrespondentMondiBlank ;
   rdfs:comment "проект эскиз чертеж схема спецификация"@ru ;
 .

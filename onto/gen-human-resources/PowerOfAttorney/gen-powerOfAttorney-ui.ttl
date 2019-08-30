@@ -90,21 +90,41 @@ gen:PowerOfAttorneyTemplate
      <small about="@" property="rdfs:label"></small>
     </h2>
     <hr>
-    
-   <section id="buttonReg">
+    <section>
       <h4 class="section-header clearfix">
         <span about="gen:PowerOfAttorneyRegistrationRecord" property="rdfs:label"></span>
-        
-        
-        <button type="button" class="action btn btn-success pull-right view -edit -search" id="add-RegRecord" about="gen:PowerOfAttorneyRegistrationRecord" property="rdfs:label"></button>
-        <veda-control data-type="link" rel="gen:hasPowerOfAttorneyRegistrationRecord" class="view edit search create pull-right"></veda-control>-
-        <!--<veda-control data-type="link" rel="gen:PowerOfAttorneyRegistrationRecord" data-template="gen:PowerOfAttorneyRegistrationRecordTemplate" class="-view edit -search create create-modal pull-right"></veda-control>-->
+        <veda-control data-type="link" rel="gen:hasPowerOfAttorneyRegistrationRecord" class="-view -edit search create pull-right"></veda-control>
+        <div class="view -edit -search pull-right">
+          <button class="btn btn-xs btn-success" id="add-RegRecord">
+            <span class="glyphicon glyphicon-zoom-in"></span>
+            <span about="gen:hasPowerOfAttorneyRegistrationRecord" property="rdfs:label"></span>
+          </button>
+        </div>
       </h4>
-      <div rel="gen:hasPowerOfAttorneyRegistrationRecord" class="-view edit -search" data-template="gen:PowerOfAttorneyRegistrationRecordTemplate"></div>
-        <div rel="gen:hasPowerOfAttorneyRegistrationRecord" data-template="gen:PowerOfAttorneyRegistrationRecordEmbeddedTemplate" data-embedded="true" class="view -edit search create"></div>
-    </section>
-
-     
+      <div class="table-responsive -view edit -search">
+        <table class="table no-margin">
+          <thead class="result-header">
+            <tr>
+              <th width="1"><span class="glyphicon glyphicon-search"></span></th>
+              <th about="gen:PowerOfAttorney_date_Bundle" property="rdfs:label"></th>
+              <th about="rdfs:comment" property="rdfs:label"></th>
+            </tr>
+          </thead>
+          <tbody rel="gen:hasPowerOfAttorneyRegistrationRecord" >
+            <tr>
+              <td about="@" data-template="v-ui:IconModalTemplate"></td>
+              <td>
+                <div about="@" property="gen:PowerOfAttorney_date_Bundle"></div>
+              </td>
+              <td>
+                <div about="@" property="rdfs:comment"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+       <div rel="gen:hasPowerOfAttorneyRegistrationRecord" data-template="gen:PowerOfAttorneyRegistrationRecordEmbeddedTemplate" data-embedded="true" class="view -edit search create"></div>
+    </section> 
     <section id="MainProperties">
       <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
       <div class="row row-attribute">

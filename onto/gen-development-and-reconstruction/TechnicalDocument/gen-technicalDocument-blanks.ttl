@@ -23,7 +23,6 @@ gen:TechnicalDocumentBlank
   rdfs:label "Технический документ"@ru ;
   rdfs:label "Technical document"@en ;
   v-fc:targetType gen:TechnicalDocument ;
-  v-s:developer gen:CorrespondentMondiBlank ;
 .
 gen:TechnicalDocumentSearchBlank
   rdf:type v-fc:Blank ;

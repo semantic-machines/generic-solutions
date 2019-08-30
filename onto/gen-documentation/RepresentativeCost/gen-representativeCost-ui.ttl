@@ -183,14 +183,14 @@ gen:RepresentativeCostsTemplate
       </div>
     </section>
     <section id="Report">
-      <h4 class="section-header" about="v-s:hasPaymentForm" property="rdfs:label"></h4>
+      <h4 class="section-header" about="v-s:hasSourceOfFinancing" property="rdfs:label"></h4>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <label about="v-s:hasPaymentForm" property="rdfs:label"></label>
+          <label about="v-s:hasSourceOfFinancing" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:hasPaymentForm" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:hasPaymentForm" class="-view edit search fulltext dropdown"></veda-control>
+          <div rel="v-s:hasSourceOfFinancing" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasSourceOfFinancing" class="-view edit search fulltext dropdown"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">

@@ -210,15 +210,16 @@ gen:PS_hasPricePerUnit_RepresentativeCosts
       #v-s:sum
 
 #-----Форма оплаты
-#v-s:hasPaymentForm
+#v-s:hasSourceOfFinancing
 gen:PS_property_RepresentativeCosts
   rdf:type v-ui:PropertySpecification ;
   v-ui:forClass gen:RepresentativeCosts ;
-  v-ui:forProperty v-s:hasPaymentForm ;
+  v-ui:forProperty v-s:hasSourceOfFinancing ;
   v-ui:minCardinality 0 ;
   v-ui:maxCardinality 1 ;
-  rdfs:label "Спецификация свойства v-s:hasPaymentForm для класса gen:RepresentativeCosts"@ru ;
-  rdfs:label "v-s:hasPaymentForm property specification for gen:RepresentativeCosts class"@en ;
+  #v-ui:queryPrefix "'rdf:type' == 'v-s:Appointment'"^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:hasSourceOfFinancing для класса gen:RepresentativeCosts"@ru ;
+  rdfs:label "v-s:hasSourceOfFinancing property specification for gen:RepresentativeCosts class"@en ;
 .
 
 #-----Комментарий к оплате

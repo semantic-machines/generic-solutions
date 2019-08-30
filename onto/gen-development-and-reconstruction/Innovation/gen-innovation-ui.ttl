@@ -50,7 +50,7 @@ gen:InnovationTemplate
           <label about="v-s:hasStatus" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:hasStatus" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div rel="v-s:hasStatus" class="view edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:hasStatus" class="-view edit search fulltext dropdown"></veda-control>
         </div>
       </div>  
@@ -86,7 +86,7 @@ gen:InnovationTemplate
           <label about="v-s:hasSector" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:hasSector" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div rel="v-s:hasSector" class="view edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:hasSector" class="-view edit search fulltext dropdown"></veda-control>
         </div>
       </div>  
@@ -136,7 +136,7 @@ gen:InnovationTemplate
 							<veda-control property="gen:financialEffectAvailability" data-type="boolean"></veda-control>
 						</label>
 					</div>
-					<div property="gen:financialEffectAvailability" class="view edit search"></div>
+					<!--<div property="gen:financialEffectAvailability" class="view -edit -search"></div>-->
         </div>
       </div>  
       <div class="row row-attribute">

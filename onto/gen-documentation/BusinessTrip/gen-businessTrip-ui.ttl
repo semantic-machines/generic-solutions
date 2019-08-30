@@ -125,7 +125,7 @@ gen:BusinessTripTemplate
       <small about="@" property="rdfs:label"></small>
     </h2>
     <hr>
-		<section id="new-regEntry">
+		<section>
 			<h4 class="section-header clearfix">
 				<span about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></span>
 				<!--<veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordTemplate" class="-view edit -search create create-modal pull-right"></veda-control>-->

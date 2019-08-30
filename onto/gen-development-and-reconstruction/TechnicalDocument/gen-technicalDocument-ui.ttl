@@ -283,6 +283,10 @@ gen:TechnicalDocumentTemplate
   <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
 </div>
 <script>
+  if (individual.isNew() ) {
+    individual["v-s:developer"][0]["v-s:correspondentOrganization"] = veda.appointment["v-s:parentOrganization"];
+  } 
+
   // Проверка разрешения на создание тех документов
   var This_class = individual["rdf:type"][0];
   This_class.canCreate().then(function(canCreate) {
@@ -355,6 +359,11 @@ gen:TechnicalDocumentTemplate
       riot.route( ["#", TechnicalDocument.id, "#main", tmpl, "edit"].join("/") ) ;
     });
   });  
+
+
+
+
+
   
   function lifeCycleStage() {
     if ( individual.hasValue("v-s:hasLifecycleStage", new veda.IndividualModel("d:a6uu8yexul97649zuczu37abf4f")) ) {
