@@ -1,0 +1,137 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+
+
+<http://semantic-machines.com/veda/gen-meeting-schema/>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Встреча. Схема."@ru ;
+  rdfs:label "GEN ontology. Meeting. Schema."@en ;
+  v-s:loadPriority 11 ;
+.
+
+#---------------------------------------------------------
+#v-s:Meeting - класс
+
+gen:TS_Meeting
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:Meeting ;
+  v-ui:defaultTemplate gen:MeetingTemplate ;
+.
+
+# v-s:theme - Тема
+gen:PS_theme_Meeting
+  rdf:type v-ui:PropertySpecification ;
+  rdfs:label "Спецификация к свойству v-s:theme для класса v-s:Meeting"@ru ;
+  rdfs:label "Spec for property v-s:theme for class v-s:Meeting"@en ;
+  v-ui:minCardinality "1"^^xsd:integer ;
+  v-ui:maxCardinality "1"^^xsd:integer ;
+  v-ui:forProperty v-s:theme ;
+  v-ui:forClass v-s:Meeting ;
+.
+
+#-----Регистрационный номер
+#v-s:registrationNumber
+
+#-----Дата
+#v-s:dateFrom
+gen:PS_dateFrom_Meeting
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:Meeting ;
+  v-ui:forProperty v-s:dateFrom ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация к свойству v-s:dateFrom  для класса v-s:Meeting"@ru ;
+  rdfs:label "Spec for property v-s:dateFrom for class v-s:Meeting"@en ;
+.
+
+#-----Подразделение
+#v-s:initiator
+gen:PS_initiator_Meeting
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:Meeting ;
+  v-ui:forProperty v-s:initiator ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "'rdf:type'==='v-s:Organization' || 'rdf:type'==='v-s:Department'" ;
+  v-ui:placeholder "Начните ввод и выберите значение"@ru ;
+  v-ui:placeholder "Start typing and select"@en ;
+  rdfs:label "Спецификация к свойству v-s:initiator для класса v-s:Meeting"@ru ;
+  rdfs:label "Spec for property v-s:initiator for class v-s:Meeting"@en ;
+.
+
+#-----Участник
+#v-s:member
+gen:PS_member_Meeting
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:Meeting ;
+  v-ui:forProperty v-s:member ;
+  v-ui:treeRoot d:org_RU1100220011 ;
+  v-ui:treeInProperty v-s:parentUnit ;
+  #v-ui:treeAllowedClass v-s:Department ;
+  #v-ui:treeAllowedClass v-s:Appointment ;
+  #v-ui:treeSelectableClass v-s:Appointment ;
+  v-ui:treeDisplayedProperty rdfs:label ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства v-s:member для класса v-s:Meeting"@ru ;
+  rdfs:label "v-s:member property specification for v-s:Meeting class"@en ;
+.
+
+#-----Сторонние участники
+#v-s:hasThirdPartyParticipant
+gen:PS_hasThirdPartyParticipant_Meeting
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass v-s:Meeting ;
+  v-ui:forProperty v-s:hasThirdPartyParticipant ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  rdfs:label "Спецификация свойства v-s:hasThirdPartyParticipant для класса v-s:Meeting"@ru ;
+  rdfs:label "v-s:hasThirdPartyParticipant property specification for v-s:Meeting class"@en ;
+.
+
+#-----Повестка
+#v-s:agenda
+gen:PS_agenda_Meeting
+  rdf:type v-ui:PropertySpecification ;
+  rdfs:label "Спецификация к свойству v-s:agenda для класса v-s:Meeting"@ru ;
+  rdfs:label "Spec for property v-s:agenda for class v-s:Meeting"@en ;
+  v-ui:minCardinality "1"^^xsd:integer ;
+  v-ui:maxCardinality "2"^^xsd:integer ;
+  v-ui:forProperty v-s:agenda ;
+  v-ui:forClass v-s:Meeting ;
+.
+
+#-----Решение
+#v-s:meetingDecision
+gen:PS_meetingDecision_Meeting
+  rdf:type v-ui:PropertySpecification ;
+  rdfs:label "Спецификация к свойству v-s:meetingDecision для класса v-s:Meeting"@ru ;
+  rdfs:label "Spec for property v-s:meetingDecision for class v-s:Meeting"@en ;
+  v-ui:minCardinality "0"^^xsd:integer ;
+  v-ui:maxCardinality "2"^^xsd:integer ;
+  v-ui:forProperty v-s:meetingDecision ;
+  v-ui:forClass v-s:Meeting ;
+.
+
+#-----Вложение
+#v-s:attachment
+#v-ui:PSAttachmentThing
+
+
+#-----План мероприятий
+#v-s:hasAction
+gen:PS_hasAction_Meeting
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:Meeting ;
+  v-ui:forProperty v-s:hasAction ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  v-ui:rangeRestriction v-s:MeetingAction ;
+.
+
