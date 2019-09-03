@@ -155,7 +155,7 @@ gen:ClaimTemplate
           <veda-control data-type="link" rel="v-s:hasClaimEvent" class="-view edit search fulltext"></veda-control>
         </div>
       </div> 
-      <div rel="v-s:hasClaimEvent" class="view edit search" data-template="gen:ClaimEventEmbeddedTemplate" data-embedded="true"></div>
+      <div rel="v-s:hasClaimEvent" class="view edit -search" data-template="gen:ClaimEventEmbeddedTemplate" data-embedded="true"></div>
     </section>
 
     <section id="MainProperties">
