@@ -1,0 +1,68 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-schema-accountingDoc-application>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Приложение. Первичный документ."@ru ;
+  rdfs:label "Gen ontology. Application. Accounting document."@en ;
+  v-s:loadPriority 20 ;
+.
+gen:AccountingDocApplication
+  rdf:type v-s:Application ;
+  rdfs:label "Первичные документы"@ru ;
+  rdfs:label "Accounting documents"@en ;
+  rdfs:comment "Важное. Под рукой."@ru ;
+  rdfs:comment "Important. At hand."@en ;
+  v-s:shortLabel "Первичные документы"@ru ;
+  v-s:shortLabel "Accounting documents"@en ;
+  v-s:hasImage gen:AccountingDocImage ;
+  v-s:hasIcon gen:AccountingDocIcon ;
+  v-ui:hasTemplate v-s:ApplicationTemplate ;
+
+  v-s:hasCreate gen:AccountingDocBuyCreate;
+  v-s:hasCreate gen:AccountingDocSellCreate;
+  v-s:hasRegistry gen:AccountingDocPurchaseSearch;
+  v-s:hasRegistry gen:AccountingDocSaleSearch;
+
+  v-s:description """
+Приложение предназначено для обеспечения оперативной обработки и хранения первичной бухгалтерской документации.
+
+**Приложение обеспечивает возможность:**
+  - Вести учет и маршрутизацию первичной документации по контрактам.
+  - Подготовить пакет первичных документов для обмена с контрагентами и для проведения налоговой или аудиторской проверки.
+  - Сформировать архив первичных документов для долгосрочного хранения.
+  """@ru ;
+  v-s:description """
+Application purpose is to provide operational processing and storage of primary accounting documentation.
+
+**The application allows to:**
+  - Record and process primary accounting documents.
+  - Prepare a package of primary documents for tax audit or exchange with contractor.
+  - Form an archive of primary documents for long-term storage.
+  """@en ;
+
+  v-s:attachment gen:OF_09_Pervichnye_dokumenty_pdf ;
+.
+
+gen:AccountingDocImage
+  a v-s:File ;
+  v-s:fileUri "accounting-doc.jpg"^^xsd:string ;
+  v-s:fileName "accounting-doc.jpg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.
+gen:AccountingDocIcon
+  a v-s:File ;
+  v-s:fileUri "accounting-doc.svg"^^xsd:string ;
+  v-s:fileName "accounting-doc.svg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.

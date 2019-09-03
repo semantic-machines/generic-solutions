@@ -284,7 +284,17 @@ gen:hasAdditionalAgreement
   rdfs:range gen:AdditionalAgreement ;
   rdfs:domain gen:Contract ;
 .
-
+#-----Стоимость 
+#v-s:hasPrice
+gen:PS_hasPrice_Contract
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass gen:Contract ;
+  v-ui:forProperty v-s:hasPrice ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:hasPrice для класса gen:Contract"@ru ;
+  rdfs:label "v-s:hasPrice property specification for gen:Contract class"@en ;
+.
 
 
 
