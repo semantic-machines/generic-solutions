@@ -70,45 +70,43 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
       <span about="@" property="rdf:type"></span>
       <small about="@" property="rdfs:label" class="view edit -search"></small>
     </h3>
-    <section id="MainProperties">
-      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <label about="v-s:sender" property="rdfs:label"></label>
-        </div>
-        <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:sender" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
-          <veda-control data-type="link" rel="v-s:sender" class="-view edit search create pull-left"></veda-control><label class="margin-sm margin-sm-h" about="gen:addSenderBundle" property="rdfs:label"></label>
-        </div>
-      </div>
+    <section id="Sender">
+      <h4 class="section-header clearfix">
+        <span about="v-s:sender" property="rdfs:label"></span>
+        <veda-control data-type="link" rel="v-s:sender" class="-view edit search create pull-right"></veda-control>
+      </h4>
+
+      <div rel="v-s:sender" class="view edit search" data-template="gen:CorrespondentTemplateNew" data-embedded="true"></div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasLetterRegistrationRecordSender" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:hasLetterRegistrationRecordSender" class="view edit search" data-template="v-s:LetterRegistrationRecordTemplate" data-embedded="true"></div>
+          <div rel="v-s:hasLetterRegistrationRecordSender" class="view edit search" data-template="gen:LetterRegistrationRecordTemplateNew" data-embedded="true"></div>
           <veda-control data-type="link" rel="v-s:hasLetterRegistrationRecordSender" class="-view edit search create"></veda-control>
         </div>
       </div>
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <label about="v-s:recipient" property="rdfs:label"></label>
-        </div>
-        <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:recipient" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
-          <veda-control data-type="link" rel="v-s:recipient" class="-view edit search create pull-left"></veda-control><label class="margin-sm margin-sm-h" about="gen:addRecipientBundle" property="rdfs:label"></label>
-        </div>
-      </div>
+    </section>    
+
+    <section id="Recipient">
+      <h4 class="section-header clearfix">
+        <span about="v-s:recipient" property="rdfs:label"></span>
+        <veda-control data-type="link" rel="v-s:recipient" class="-view edit search create pull-right"></veda-control>
+      </h4>
+
+      <div rel="v-s:recipient" class="view edit search" data-template="gen:CorrespondentTemplateNew" data-embedded="true"></div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasLetterRegistrationRecordRecipient" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:hasLetterRegistrationRecordRecipient" class="view edit search" data-template="v-s:LetterRegistrationRecordTemplate" data-embedded="true"></div>
+          <div rel="v-s:hasLetterRegistrationRecordRecipient" class="view edit search" data-template="gen:LetterRegistrationRecordTemplateNew" data-embedded="true"></div>
           <veda-control data-type="link" rel="v-s:hasLetterRegistrationRecordRecipient" class="-view edit search create"></veda-control>
         </div>
       </div>
-
+    </section>       
+    <section id="MainProperties">
+      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasDocumentKind" property="rdfs:label"></label>

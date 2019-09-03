@@ -24,7 +24,6 @@ gen:IncomingLetterCreate
   rdfs:label "Входящее письмо"@ru ;
   rdfs:label "Incoming Letter"@en ;
   v-fc:hasBlank gen:IncomingLetterBlank ;
-  v-s:recipient gen:CorrespondentOrgBlank;
 .
 
 # ----------------------------------------------------Исходящее письмо --
@@ -33,7 +32,6 @@ gen:OutgoingLetterCreate
   rdfs:label "Исходящее письмо"@ru ;
   rdfs:label "Outgoing Letter"@en ;
   v-fc:hasBlank gen:OutgoingLetterBlank ;
-  v-s:sender gen:CorrespondentOrgBlank ;
 .
 
 

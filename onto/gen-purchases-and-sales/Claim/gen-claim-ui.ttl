@@ -196,6 +196,15 @@ gen:ClaimTemplate
           <veda-control data-type="text" property="v-s:reportDescription" class="-view edit search"></veda-control>
         </div>
       </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:attachment" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-7">
+          <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
+          <veda-control data-type="file" rel="v-s:attachment" class="-view edit search"></veda-control>
+        </div>
+      </div>      
     </section>
    
     <br>
@@ -441,6 +450,7 @@ gen:CorrespondentTemplateNew
         <veda-control data-type="text" property="v-s:correspondentPersonDescription" class="-view edit search"></veda-control>
       </div>
     </div>
+    <hr>
   </div>
 </div>
 <script>
