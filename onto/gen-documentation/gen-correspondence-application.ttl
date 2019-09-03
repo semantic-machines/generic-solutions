@@ -45,7 +45,6 @@ gen:CorrespondenceApplication
 
   v-s:hasReport v-s:CountOfUsersTasks_Report ;
   v-s:hasReport v-s:CompletedTasksCount_Report ;
-  v-s:hasReport gen:IncomingLetter_byDate_Report ;
 
   v-s:description """
 Приложение предназначено для автоматизации делопроизводственных процессов организации.

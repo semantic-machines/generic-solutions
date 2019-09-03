@@ -40,9 +40,6 @@ gen:LocalRegulatoryDocumentApplication
   v-s:hasRegistry gen:DecreeSearch ;
 
 
-  v-s:hasReport v-s:CountOfUsersTasks_Report ;
-  v-s:hasReport v-s:CompletedTasksCount_Report ;
-
   v-s:description """
 Приложение предназначено для поддержки организационно-распорядительной деятельности организации.
 
