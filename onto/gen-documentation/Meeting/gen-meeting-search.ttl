@@ -1,0 +1,299 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-function-search/> .
+@prefix vdi: <http://semantic-machines.com/veda/veda-index/> .
+
+<http://semantic-machines.com/veda/gen-meeting-registries>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Встречи. Реестры"@ru ;
+  rdfs:label "GEN ontology. Meetings. Registries"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------- Meeting Search ---------------
+gen:MeetingSearch
+  rdf:type v-fs:AttributiveSearch ;
+  rdfs:label "Встречи"@ru ;
+  rdfs:label "Meetings"@en ;
+  v-fs:searchBlank gen:MeetingSearchBlank ;
+  v-fs:searchBlankTemplate gen:MeetingSearchBlankTemplate ;
+  v-fs:searchResultTemplate gen:MeetingSearchResultTemplate ;
+.
+# ------------- Meeting actions registry ---------------
+gen:MeetingActionSearch
+  rdf:type v-fs:AttributiveSearch ;
+  rdfs:label "Мероприятия по встречам"@ru ;
+  rdfs:label "Meeting actions"@en ;
+  v-fs:searchBlank gen:MeetingActionSearchBlank ;
+  v-fs:searchBlankTemplate gen:MeetingActionSearchBlankTemplate ;
+  v-fs:searchResultTemplate gen:MeetingActionSearchResultTemplate ;
+.
+# ------------- Meeting actions registry templates ---------------
+gen:MeetingActionSearchBlankTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон бланка реестра мероприятий встреч"@ru ;
+  rdfs:label "Meeting action registry blank template"@en ;
+  v-ui:template """
+<div>
+  <h2 about="v-s:Action" property="rdfs:label"></h2>
+  <hr>
+
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <em about="v-s:description" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div property="v-s:description" class="view -edit search"></div>
+      <veda-control data-type="text" property="v-s:description" class="-view edit search"></veda-control>
+    </div>
+  </div>      
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <em about="v-s:responsible" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div rel="v-s:responsible" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>  
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <em about="gen:contributorMeetingBundle" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div rel="v-s:contributor" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="v-s:contributor" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>  
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <em about="v-s:controller" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div rel="v-s:controller" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="v-s:controller" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>  
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <em about="v-s:dateToPlan" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-3 col-xs-3">
+      <div property="v-s:dateToPlan" class="view -edit search"></div>
+      <veda-control data-type="date" property="v-s:dateToPlan" class="-view edit search"></veda-control>
+    </div>
+  </div>  
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <em about="v-s:hasStatus" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div rel="v-s:hasStatus" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="v-s:hasStatus" class="-view edit search fulltext dropdown"></veda-control>
+    </div>
+  </div>  
+  <br>
+  <br>
+  <em about="v-s:Meeting" property="rdfs:label"></em>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div rel="v-s:parent" data-embedded="true" data-template="gen:MeetingSearchEmbeddedBlankTemplate"></div>
+      <veda-control rel="v-s:parent" data-type="link" class="-view -edit search create"></veda-control>
+    </div>
+  </div>
+</div>
+  """ ;
+.
+
+gen:MeetingActionSearchResultTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон отображения результатов реестра мероприятий встреч"@ru ;
+  rdfs:label "Meeting actions registry result template "@en ;
+  v-ui:template """
+<table class="table table-bordered">
+  <thead class="result-header">
+    <tr>
+      <th colspan="7" about="v-s:Action" property="rdfs:label"></th>
+      <th colspan="3" about="v-s:Meeting" property="rdfs:label"></th>
+    </tr>
+    <tr class="active">
+      <th class="orderby" data-orderby="v-s:registrationNumber" width="1%">#</th>
+      <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
+      <th class="orderby" data-orderby="v-s:responsible"><span about="v-s:responsible" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="rdfs:label"><span about="v-s:description" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:dateToPlan"><span about="v-s:dateToPlan" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:dateFact"><span about="v-s:dateFact" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:hasStatus"><span about="v-s:hasStatus" property="rdfs:label"></span></th>
+
+      <th class="orderby" data-orderby="v-s:parent.v-s:theme"><span about="v-s:theme" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:parent.v-s:registrationNumber"><span about="v-s:registrationNumber" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:parent.v-s:dateFrom"><span about="v-s:dateFrom" property="rdfs:label"></span></th>
+    </tr>
+  </thead>
+  <tbody class="result-container">
+    <tr>
+      <td property="v-s:registrationNumber"></td>
+      <td><a href="#/@" class="glyphicon glyphicon-search"></a></td>
+      <td rel="v-s:responsible" data-template="v-ui:LabelTemplate"></td>
+      <td property="rdfs:label"></td>
+      <td property="v-s:dateToPlan"></td>
+      <td property="v-s:dateFact"></td>
+      <td rel="v-s:hasStatus" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:parent"><span property="v-s:theme"></span></td>
+      <td rel="v-s:parent"><span property="v-s:registrationNumber"></span></td>
+      <td rel="v-s:parent"><span property="v-s:dateFrom"></span></td>
+    </tr>
+  </tbody>
+</table>
+  """ ;
+.
+
+gen:MeetingSearchEmbeddedBlankTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон бланка реестра встреч"@ru ;
+  rdfs:label "Meeting registry blank template"@en ;
+  v-ui:template """
+<div>
+  <h2 about="v-s:Meeting" property="rdfs:label"></h2>
+  <hr>
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <em about="v-s:registrationNumber" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div property="v-s:registrationNumber" class="view -edit search"></div>
+      <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+    </div>
+  </div>     
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <em about="v-s:theme" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div property="v-s:theme" class="view -edit search"></div>
+      <veda-control data-type="text" property="v-s:theme" class="-view edit search"></veda-control>
+    </div>
+  </div>     
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <label about="v-s:Department" property="rdfs:label"></label>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div rel="v-s:initiator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <label about="v-s:creator" property="rdfs:label"></label>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div rel="v-s:creator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="v-s:creator" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>
+
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+</div>
+  """ ;
+.
+
+
+gen:MeetingSearchBlankTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон бланка реестра встреч"@ru ;
+  rdfs:label "Meeting registry blank template"@en ;
+  v-ui:template """
+<div>
+  <h2 about="v-s:Meeting" property="rdfs:label"></h2>
+  <hr>
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <em about="v-s:registrationNumber" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div property="v-s:registrationNumber" class="view -edit search"></div>
+      <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+    </div>
+  </div>     
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <em about="v-s:theme" property="rdfs:label"></em>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div property="v-s:theme" class="view -edit search"></div>
+      <veda-control data-type="text" property="v-s:theme" class="-view edit search"></veda-control>
+    </div>
+  </div>     
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <label about="v-s:Department" property="rdfs:label"></label>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div rel="v-s:initiator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>
+  <div class="row row-attribute">
+    <div class="col-sm-3 col-xs-5">
+      <label about="v-s:creator" property="rdfs:label"></label>
+    </div>
+    <div class="col-sm-9 col-xs-7">
+      <div rel="v-s:creator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+      <veda-control data-type="link" rel="v-s:creator" class="-view edit search fulltext"></veda-control>
+    </div>
+  </div>
+  <hr>
+  <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
+</div>
+  """ ;
+.
+
+gen:MeetingSearchResultTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон отображения результатов реестра мероприятий встреч"@ru ;
+  rdfs:label "Meeting actions registry result template "@en ;
+  v-ui:template """
+<table class="table table-bordered">
+  <thead class="result-header">
+    <tr>
+      <th colspan="10" about="v-s:Meeting" property="rdfs:label"></th>
+    </tr>
+    <tr class="active">
+      <th class="orderby" data-orderby="v-s:registrationNumber" width="1%">#</th>
+      <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
+      <th class="orderby" data-orderby="v-s:theme"><span about="v-s:theme" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:initiator"><span about="v-s:Department" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:member"><span about="v-s:member" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:moderator"><span about="v-s:moderator" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:creator"><span about="v-s:creator" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:created"><span about="v-s:created" property="rdfs:label"></span></th>
+      <th><span about="v-s:attachment" property="rdfs:label"></span></th>
+    </tr>
+  </thead>
+  <tbody class="result-container">
+    <tr>
+      <td property="v-s:registrationNumber"></td>
+      <td><a href="#/@" class="glyphicon glyphicon-search"></a></td>
+      <td property="v-s:theme"></td>
+      <td rel="v-s:initiator" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:member" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:moderator" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:creator" data-template="v-ui:LabelTemplate"></td>
+      <td property="v-s:created"></td>
+      <td rel="v-s:attachment" data-template="v-ui:FileMinTemplate"></td>
+    </tr>
+  </tbody>
+</table>
+  """ ;
+.
+
