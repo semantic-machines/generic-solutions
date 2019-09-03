@@ -1,0 +1,62 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix : <http://semantic-machines.com/veda/mondi-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix td: <http://semantic-machines.com/veda/test-data/> .
+@prefix s-wf: <http://semantic-machines.com/veda/simple-workflow-base/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+
+<http://semantic-machines.com/veda/gen-claimEvent-net>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Gen. Претензионное событие. Сеть"@ru ;
+  rdfs:label "Gen ontology. ClaimEvent. Net"@en ;
+  v-s:loadPriority 10 ;
+.
+
+gen:ClaimEvent_ComplexRouteStartForm_Template
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон стартовых данных комплексного маршрута Претензионное событие"@ru ;
+  rdfs:label "Claim Event complex route start form template"@en ;
+  v-ui:template """
+<script>
+  var stages = ["coordination1", "review"];
+  var complex = "s-wf:ComplexRouteStartForm_";
+  var simple = "s-wf:SimpleRouteStartForm_";
+  if (mode!=="edit") return;
+
+  var doc = individual['v-wf:processedDocument'][0];
+  if (!doc) { return; }
+
+  individual.addSimpleStartForm(stages, complex);
+
+    var reviewParticipants = [];
+    reviewParticipants.push(doc["v-s:creator"][0].getChief());
+    Promise.all(reviewParticipants).then(function(result) {
+    individual[complex+'coordination1'][0][simple+'participant'] = result;})
+
+  //Согласование
+  individual[complex+'coordination1'][0][simple+'visible'] = [true];
+  individual[complex+'coordination1'][0][simple+'editable'] = [true];
+
+  //Рассмотрение
+  individual[complex+'review'][0][simple+'visible'] = [true];
+  individual[complex+'review'][0][simple+'editable'] = [true];
+  
+  //# sourceURL=mnd-s:ClaimEvent_ComplexRouteStartForm_Template_pre
+</script>
+<div about="@" data-embedded="true" data-template="s-wf:ComplexRouteStartForm_Common_Template" class="view edit"></div>
+""" ;
+.
+
+
+
+
+

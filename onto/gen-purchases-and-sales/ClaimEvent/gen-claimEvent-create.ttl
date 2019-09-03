@@ -1,0 +1,26 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+
+
+<http://semantic-machines.com/veda/gen-claimEvent-blanks>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Претензионное событие. Бланки."@ru ;
+  rdfs:label "GEN ontology. ClaimEvent. Blanks."@en ;
+#  owl:versionInfo "1.3" ;
+  v-s:loadPriority 6 ;
+.
+
+# ------------------------------------------------------------ БЛАНКИ --
+
+gen:ClaimEventCreate
+  rdf:type v-fc:Create ;
+  rdfs:label "Претензионное событие"@ru ;
+  rdfs:label "Claim event"@en ;
+  v-fc:hasBlank gen:ClaimEventBlank ;
+.

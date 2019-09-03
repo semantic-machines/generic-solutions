@@ -1,0 +1,61 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix : <http://semantic-machines.com/veda/mondi-schema/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix td: <http://semantic-machines.com/veda/test-data/> .
+@prefix s-wf: <http://semantic-machines.com/veda/simple-workflow-base/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+
+<http://semantic-machines.com/veda/gen-claim-net>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология Gen. Претензии. Сеть"@ru ;
+  rdfs:label "Gen ontology. Claim. Net"@en ;
+  v-s:loadPriority 10 ;
+.
+#-------------Претензия
+gen:Claim_ComplexRouteStartForm_Template
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон стартовых данных комплексного маршрута Претензия"@ru ;
+  rdfs:label "Claim complex route start form template"@en ;
+  v-ui:template """
+<script>
+  var stages = ["introduction", "coordination1", "coordination2", "coordination3", "sign", "approval", "review"];
+  var complex = "s-wf:ComplexRouteStartForm_";
+  var simple = "s-wf:SimpleRouteStartForm_";
+  if (mode!=="edit") return;
+
+  var doc = individual['v-wf:processedDocument'][0];
+  if (!doc) { return; }
+
+  individual.addSimpleStartForm(stages, complex);
+
+  individual[complex+'introduction'][0][simple+'visible'] = [true];
+  individual[complex+'introduction'][0][simple+'editable'] = [true];
+  individual[complex+'coordination1'][0][simple+'visible'] = [true];
+  individual[complex+'coordination1'][0][simple+'editable'] = [true];
+  individual[complex+'coordination2'][0][simple+'visible'] = [true];
+  individual[complex+'coordination2'][0][simple+'editable'] = [true];
+  individual[complex+'coordination3'][0][simple+'visible'] = [true];
+  individual[complex+'coordination3'][0][simple+'editable'] = [true];
+  individual[complex+'sign'][0][simple+'visible'] = [true];
+  individual[complex+'sign'][0][simple+'editable'] = [true];
+  individual[complex+'sign'][0][simple+'deadlineDays'] = [5];
+  individual[complex+'approval'][0][simple+'visible'] = [true];
+  individual[complex+'approval'][0][simple+'editable'] = [true];
+  individual[complex+'approval'][0][simple+'deadlineDays'] = [5];
+  individual[complex+'review'][0][simple+'visible'] = [true];
+  individual[complex+'review'][0][simple+'editable'] = [true];
+  individual[complex+'review'][0][simple+'deadlineDays'] = [3];
+  //# sourceURL=gen:Claim_ComplexRouteStartForm_Template_pre
+</script>
+<div about="@" data-embedded="true" data-template="s-wf:ComplexRouteStartForm_Common_Template" class="view edit"></div>
+""" ;
+.

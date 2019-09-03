@@ -48,7 +48,13 @@ gen:OutgoingLetterSearchBlank
   v-fc:targetType gen:OutgoingLetter ;
   #v-s:sender gen:CorrespondentOrgBlank ;
 .
-
+gen:CorrespondentOrgBlank
+  a v-fc:Blank ;
+  rdfs:label "Корреспондент Demo"@ru ;
+  rdfs:label "Correspondent Demo"@en ;
+  v-fc:targetType v-s:Correspondent ;
+  v-s:correspondentOrganization d:org_RU1100220011 ;
+.
 
 
 

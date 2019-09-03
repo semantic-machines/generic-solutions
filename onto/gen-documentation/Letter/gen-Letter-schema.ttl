@@ -49,21 +49,12 @@ gen:OutgoingLetter
 .
 
 #---------------------Доставка (переопределение шаблона)
-v-s:Delivery
-  rdf:type owl:Class ;
-  rdfs:subClassOf v-s:UserThing ;
-  rdfs:subClassOf v-s:Temporal ;
-  rdfs:subClassOf v-s:BackwardLink ;
-  rdfs:subClassOf v-s:Deliverable2 ;
-  rdfs:subClassOf v-s:Embedded ;
-  rdfs:subClassOf v-s:BackwardLink ;
-  rdfs:subClassOf v-s:AutomaticallyVersioned ;
-  rdfs:subClassOf v-s:Journaling ;
-  rdfs:label "Доставка"@ru ;
-  rdfs:label "Delivery"@en ;
-  v-ui:hasTemplate gen:DeliveryTemplate;
+gen:TS_Delivery
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:Delivery ;
+  v-ui:defaultTemplate gen:DeliveryTemplate ;
+  v-s:loadPriority 10 ;
 .
-
 
 # -------------------------------------------------------- СПЕЦИФИКАЦИИ --
 gen:PS_transportOrganization_Delivery
