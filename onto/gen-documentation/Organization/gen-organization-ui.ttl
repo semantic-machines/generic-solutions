@@ -16,7 +16,11 @@
 .
 
 # ------------------------------------------------------------ МОДЕЛИ --
-
+gen:AddCommunicationMeanBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Добавить средство связи"@ru ;
+  rdfs:label "Add CommunicationMean"@en ;
+.
 # ------------------------------------------------------------ ШАБЛОНЫ --
 
 gen:OrganizationTemplate
@@ -154,7 +158,7 @@ gen:OrganizationTemplate
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasClassifierCountry" property="rdfs:label"></label>
         </div>
-        <div class="col-sm-9 col-xs-7">
+        <div class="col-sm-4 col-xs-4">
           <div rel="v-s:hasClassifierCountry" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:hasClassifierCountry" class="-view edit search fulltext dropdown"></veda-control>
         </div>
@@ -163,7 +167,7 @@ gen:OrganizationTemplate
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasClassifierLegalForm" property="rdfs:label"></label>
         </div>
-        <div class="col-sm-9 col-xs-7">
+        <div class="col-sm-4 col-xs-4">
           <div rel="v-s:hasClassifierLegalForm" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:hasClassifierLegalForm" class="-view edit search fulltext dropdown"></veda-control>
         </div>
@@ -172,7 +176,7 @@ gen:OrganizationTemplate
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:taxId" property="rdfs:label"></label>
         </div>
-        <div class="col-sm-9 col-xs-7">
+        <div class="col-sm-4 col-xs-4">
       <div property="v-s:taxId" class="view -edit -search"></div>
           <veda-control data-type="string" property="v-s:taxId" class="-view edit search"></veda-control>
         </div>
@@ -181,7 +185,7 @@ gen:OrganizationTemplate
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:taxRegistrationCause" property="rdfs:label"></label>
         </div>
-        <div class="col-sm-9 col-xs-7">
+        <div class="col-sm-4 col-xs-4">
       <div property="v-s:taxRegistrationCause" class="view -edit -search"></div>
           <veda-control data-type="string" property="v-s:taxRegistrationCause" class="-view edit search"></veda-control>
         </div>
@@ -258,6 +262,54 @@ gen:OrganizationTemplate
           </div>
         </div>
       </div>
+
+
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <strong about="v-s:hasCommunicationMean" property="rdfs:label"></strong>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <table class="table table-condensed table-bordered">
+            <thead>
+              <tr class="view -edit -search active">
+                <th width="1%"><span class="glyphicon glyphicon-search"></th>
+                <th about="v-s:hasCommunicationMeanChannel" property="rdfs:label"></th>
+                <th about="v-s:hasCommunicationMeanTarget" property="rdfs:label"></th>
+                <th about="v-s:description" property="rdfs:label"></th>
+                <th about="rdfs:comment" property="rdfs:label"></th>
+              </tr>
+            </thead>
+            <tbody rel="v-s:hasCommunicationMean" data-embedded="true">
+              <tr>
+                <td about="@" data-template="v-ui:IconModalTemplate"></td>
+                <td>
+                  <div rel="v-s:hasCommunicationMeanChannel" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
+                  <veda-control data-type="link" rel="v-s:hasCommunicationMeanChannel" class="-view edit search fulltext dropdown"></veda-control>
+                </td>
+                <td>
+                  <div rel="v-s:hasCommunicationMeanTarget" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
+                  <veda-control data-type="link" rel="v-s:hasCommunicationMeanTarget" class="-view edit search fulltext dropdown"></veda-control> 
+                </td>
+                <td>
+                  <div property="v-s:description" class="view -edit -search"></div>
+                  <veda-control property="v-s:description" data-type="text" class="-view edit search"></div>
+                </td>
+                <td>
+                  <div property="rdfs:comment" class="view -edit -search"></div>
+                  <veda-control property="rdfs:comment" data-type="text" class="-view edit search"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="view -edit -search">
+            <button class="btn btn-xs btn-success" id="add-communicationMean">
+              <span class="glyphicon glyphicon-zoom-in"></span>
+              <span about="gen:AddCommunicationMeanBundle" property="rdfs:label"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:HeadOrganization" property="rdfs:label"></label>
@@ -355,6 +407,32 @@ gen:OrganizationTemplate
       modal.modal("hide").remove();
     });
   });  
+
+  $("#add-communicationMean", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("v-s:CommunicationMean"),
+        CommunicationMean = new veda.IndividualModel(),
+        tmpl = new veda.IndividualModel("v-s:CommunicationMeanTemplate");
+    CommunicationMean["rdf:type"] = [_class];
+    CommunicationMean["v-s:backwardTarget"] = [individual];
+    CommunicationMean["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasCommunicationMean")];
+    CommunicationMean["v-s:canRead"] = [ true ];
+    CommunicationMean.present(cntr, tmpl, "edit");
+    CommunicationMean.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    CommunicationMean.one("afterSave", function () {
+      modal.modal("hide").remove();
+    });
+  });
   //# sourceURL=gen:OrganizationTemplate_post
 </script>
   """ ;
