@@ -20,24 +20,18 @@
 # ------------------------------------------------------------ КЛАССЫ --
 
 #-------------------------------------------------------------- Инновация------
-gen:Innovation
-  rdf:type owl:Class ;
-  rdfs:subClassOf v-s:Idea ;
-  rdfs:subClassOf v-s:ManuallyVersioned ;
-  rdfs:subClassOf v-s:Enumerated ;
-  rdfs:label "Инновация"@ru ;
-  rdfs:label "Innovation"@en ;
-  rdfs:subClassOf v-s:Labeled ;
-  v-s:labelPattern "{@.rdf:type.rdfs:label} {@.v-s:registrationNumber}. {@.v-s:title}" ;
-  v-s:hasNumeration v-s:RegistrationNumberIdeaAndProjectsNumeration ;
-  v-ui:hasTemplate gen:InnovationTemplate ;
+gen:TS_Innovation
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:Idea ;
+  v-ui:defaultTemplate gen:InnovationTemplate ;
+  v-s:loadPriority 10 ;
 .
 
 #-----Регистрационный номер
 #v-s:registrationNumber
 gen:PS_registrationNumber_Innovation
 	rdf:type v-ui:DatatypePropertySpecification ;
-	v-ui:forClass gen:Innovation ;
+	v-ui:forClass v-s:Idea ;
 	v-ui:forProperty v-s:registrationNumber ;
 	v-ui:maxCardinality 1 ;
 	v-ui:minCardinality 0 ;
@@ -51,7 +45,7 @@ gen:PS_registrationNumber_Innovation
 #v-s:hasStatus
 gen:PS_hasStatus_Innovation
 	rdf:type v-ui:ObjectPropertySpecification ;
-	v-ui:forClass gen:Innovation ;
+	v-ui:forClass v-s:Idea ;
 	v-ui:forProperty v-s:hasStatus ;
 	v-ui:maxCardinality 30 ;
 	v-ui:minCardinality 1 ;
@@ -67,7 +61,7 @@ gen:PS_hasStatus_Innovation
 # v-s:title
 gen:PS_title_Innovation
 	rdf:type v-ui:DatatypePropertySpecification ;
-	v-ui:forClass gen:Innovation ;
+	v-ui:forClass v-s:Idea ;
 	v-ui:forProperty v-s:title ;
 	v-ui:maxCardinality 1 ;
 	v-ui:minCardinality 1 ;
@@ -79,7 +73,7 @@ gen:PS_title_Innovation
 # v-s:actualState
 gen:PS_actualState_Innovation
 	rdf:type v-ui:DatatypePropertySpecification ;
-	v-ui:forClass gen:Innovation ;
+	v-ui:forClass v-s:Idea ;
 	v-ui:forProperty v-s:actualState ;
 	v-ui:maxCardinality 1 ;
 	v-ui:minCardinality 1 ;
@@ -93,7 +87,7 @@ gen:PS_actualState_Innovation
 # v-s:description
 gen:PS_description_Innovation
 	rdf:type v-ui:DatatypePropertySpecification ;
-	v-ui:forClass gen:Innovation ;
+	v-ui:forClass v-s:Idea ;
 	v-ui:forProperty v-s:description ;
 	v-ui:maxCardinality 1 ;
 	v-ui:minCardinality 1 ;
@@ -107,7 +101,7 @@ gen:PS_description_Innovation
 #v-s:hasSector
 gen:PS_hasSector_Innovation
 	rdf:type v-ui:ObjectPropertySpecification ;
-	v-ui:forClass gen:Innovation ;
+	v-ui:forClass v-s:Idea ;
 	v-ui:forProperty v-s:hasSector ;
 	v-ui:maxCardinality 3 ;
 	v-ui:minCardinality 0 ;
@@ -125,7 +119,7 @@ gen:PS_hasSector_Innovation
 #v-s:author
 gen:PS_author_Innovation
 	rdf:type v-ui:ObjectPropertySpecification ;
-	v-ui:forClass gen:Innovation ;
+	v-ui:forClass v-s:Idea ;
 	v-ui:forProperty v-s:author ;
 	v-ui:maxCardinality 1 ;
 	v-ui:minCardinality 1 ;
@@ -142,7 +136,7 @@ gen:PS_author_Innovation
 #v-s:stakeholder
 gen:PS_stakeholder_Innovation
 	rdf:type v-ui:ObjectPropertySpecification ;
-	v-ui:forClass gen:Innovation ;
+	v-ui:forClass v-s:Idea ;
 	v-ui:forProperty v-s:stakeholder ;
 	v-ui:maxCardinality 1 ;
 	v-ui:minCardinality 1 ;
@@ -154,27 +148,11 @@ gen:PS_stakeholder_Innovation
 	rdfs:label "Спецификация v-s:stakeholder для gen:Innovation"@ru ;
 	rdfs:label "v-s:stakeholder property specification for gen:Innovation class"@en ;
 .
-#-----Соавтор
-#v-s:coauthor
 
-#-----Наличие финансового эффекта
-gen:financialEffectAvailability
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain gen:Innovation ;
-  rdfs:label "Наличие финансового эффекта"@ru ;
-  rdfs:label "Financial effect"@en ;
-  rdfs:range xsd:boolean ;
-.
-
-#-----Плановый годовой эффект, тыс.евро
-#v-s:planYearEffect 
-
-#-----Плановый разовый эффект, тыс.евро
-#v-s:planOnceEffect
-
-#-----Фактический годовой эффект, тыс.евро
-#v-s:factYearEffect
-
-#-----Фактический разовый эффект, тыс.евро 
-#v-s:factOnceEffect
+#v-s:coauthor #-----Соавтор
+#v-s:financialEffectAvailability #-----Наличие финансового эффекта
+#v-s:planYearEffect #-----Плановый годовой эффект, тыс.евро
+#v-s:planOnceEffect #-----Плановый разовый эффект, тыс.евро
+#v-s:factYearEffect #-----Фактический годовой эффект, тыс.евро
+#v-s:factOnceEffect #-----Фактический разовый эффект, тыс.евро 
 

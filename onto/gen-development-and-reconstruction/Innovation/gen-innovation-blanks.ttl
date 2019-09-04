@@ -22,11 +22,11 @@ gen:InnovationBlank
   a v-fc:Blank;
   rdfs:label "Инновация"@ru ;
   rdfs:label "Innovation"@en ;
-  v-fc:targetType gen:Innovation
+  v-fc:targetType v-s:Idea
 .
 gen:InnovationSearchBlank
   a v-fc:Blank;
   rdfs:label "Инновации"@ru ;
   rdfs:label "Innovations"@en ;
-  v-fc:targetType gen:Innovation
+  v-fc:targetType v-s:Idea
 .

@@ -39,7 +39,7 @@ gen:TechnicalDocumentSearchResultTemplate
 <table class="table table-bordered">
   <thead class="result-header">
     <tr>
-      <th colspan="13" about="gen:TechnicalDocument" property="rdfs:label"></th>
+      <th colspan="13" about="v-s:TechnicalDocument" property="rdfs:label"></th>
     </tr>
     <tr class="active">
       <th width="1%"><span class="glyphicon glyphicon-search"></span></th>

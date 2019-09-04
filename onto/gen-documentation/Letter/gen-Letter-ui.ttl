@@ -490,206 +490,6 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
 </script>
   """ ;
 .
-gen:CorrespondentTemplate
-  rdf:type v-ui:ClassTemplate ;
-  v-ui:forClass v-s:Letter ;
-  rdfs:label "Шаблон для класса v-s:Letter"@ru ;
-  rdfs:label "Template for v-s:Letter class"@en ;
-  v-ui:template """
-<div>
-  <div><br>
-    <div class="row row-attribute">
-      <div class="col-sm-3 col-xs-5">
-        <em about="v-s:correspondentOrganization" property="rdfs:label"></em>
-      </div>
-      <div class="col-sm-9 col-xs-7">
-        <div rel="v-s:correspondentOrganization" class="view -edit search">
-          <a class="label-template" href="#/@">
-            <strong about="@" property="rdfs:label"></strong>,
-            <span about="@" property="v-s:postalAddress"></span>
-          </a>
-        </div>
-        <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view edit -search fulltext create create-modal" data-template="{individual['v-s:shortLabel'].join(' ') + ', ' + individual['v-s:postalAddress'].join(' ')}"></veda-control>
-        <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view -edit search fulltext" data-template="{individual['v-s:shortLabel'].join(' ') + ', ' + individual['v-s:postalAddress'].join(' ')}"></veda-control>
-      </div>
-    </div>
-    <div class="row row-attribute user-organization">
-      <div class="col-sm-3 col-xs-5">
-        <em about="v-s:correspondentDepartment" property="rdfs:label"></em>
-      </div>
-      <div class="col-sm-9 col-xs-7">
-        <span rel="v-s:correspondentDepartment" class="view edit search" data-template="v-ui:LabelTemplate"></span>
-        <veda-control data-type="link" rel="v-s:correspondentDepartment" class="-view edit search fulltext"></veda-control>
-      </div>
-    </div>
-    <div class="row row-attribute user-organization">
-      <div class="col-sm-3 col-xs-5">
-        <em about="v-s:correspondentPerson" property="rdfs:label"></em>
-      </div>
-      <div class="col-sm-9 col-xs-7">
-        <span rel="v-s:correspondentPerson" class="view edit search" data-template="v-ui:LabelTemplate"></span>
-        <veda-control data-type="link" rel="v-s:correspondentPerson" class="-view edit search fulltext"></veda-control>
-      </div>
-    </div>
-    <div class="row row-attribute other-organization">
-      <div class="col-sm-3 col-xs-5">
-        <em about="v-s:correspondentDepartmentDescription" property="rdfs:label"></em>
-      </div>
-      <div class="col-sm-9 col-xs-7">
-        <span property="v-s:correspondentDepartmentDescription" class="view -edit -search"></span>
-        <veda-control data-type="text" property="v-s:correspondentDepartmentDescription" class="-view edit search"></veda-control>
-      </div>
-    </div>
-    <div class="row row-attribute other-organization">
-      <div class="col-sm-3 col-xs-5">
-        <em about="v-s:correspondentPersonDescription" property="rdfs:label"></em>
-      </div>
-      <div class="col-sm-9 col-xs-7">
-        <span property="v-s:correspondentPersonDescription" class="view -edit -search"></span>
-        <veda-control data-type="text" property="v-s:correspondentPersonDescription" class="-view edit search"></veda-control>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  var self = this;
-  correspondentOrganizationHandler.call(this);
-  this.on("v-s:correspondentOrganization", correspondentOrganizationHandler);
-  template.one("remove", function () {
-    self.off("v-s:correspondentOrganization", correspondentOrganizationHandler);
-  });
-  function correspondentOrganizationHandler () {
-    Promise.all([
-      self.getPropertyChain("v-s:correspondentOrganization", "v-s:isOwnOrganization"),
-      veda.appointment.getOrganization()
-    ]).then(function (resolved) {
-      var isOwnOrganization = resolved[0][0];
-      var userOrganization = resolved[1];
-
-      var isOwn = isOwnOrganization || self.hasValue("v-s:correspondentOrganization", userOrganization);
-      var parentRel = template.parent().attr("rel");
-      if ( isOwn ) {
-        self
-          .clearValue("v-s:correspondentDepartmentDescription")
-          .clearValue("v-s:correspondentPersonDescription");
-        $(".user-organization", template).show();
-        $(".other-organization", template).hide();
-        template.trigger(parentRel + ":own");
-      } else {
-        self
-          .clearValue("v-s:correspondentDepartment")
-          .clearValue("v-s:correspondentPerson");
-        $(".user-organization", template).hide();
-        $(".other-organization", template).show();
-        template.trigger(parentRel + ":foreign");
-      }
-    });
-  }
-
-  if ( template.parent().attr("rel") === "v-s:sender" ) {
-    template.addClass("panel-info");
-    template.children(":first").addClass("bg-info");
-  } else if ( template.parent().attr("rel") === "v-s:recipient" ) {
-    template.addClass("panel-success");
-    template.children(":first").addClass("bg-success");
-  }
-
-  $(".create .create", template).off("click");
-
-  $(".create .create", template).click(function () {
-    var modal = $("#notification-modal-template").html();
-    modal = $(modal);
-    modal.modal({"show": false});
-    $("body").append(modal);
-    modal.modal("show");
-    template.one("remove", function () {
-      modal.modal("hide").remove();
-    });
-
-    var cntr = $(".modal-body", modal),
-        _class = new veda.IndividualModel("v-s:Organization"),
-        Organization = new veda.IndividualModel();
-    Organization["rdf:type"] = [_class];
-
-    Organization.present(cntr, undefined, "edit");
-    Organization.one("beforeReset", function () {
-      modal.modal("hide").remove();
-    });
-    Organization.one("afterSave", function () {
-      modal.modal("hide").remove();
-      individual["v-s:correspondentOrganization"] = [ Organization ];
-    });
-  });
-  
-  //# sourceURL=gen:CorrespondentTemplate_post
-</script>
-  """ ;
-.
-gen:LetterRegistrationRecordTemplate
-  rdf:type v-ui:ClassTemplate ;
-  rdfs:label "Шаблон регистрационной записи для письма"@ru ;
-  rdfs:label "Letter registration record template"@en ;
-  v-ui:template """
-<div class="container sheet">
-  <div class="row">
-    <div class="col-sm-9 col-xs-7 view edit -search">
-      <div class="form-inline">
-        <div class="form-group">
-          <veda-control property="v-s:registrationNumber" data-type="string" class="-view edit search"></veda-control>
-          <div property="v-s:registrationNumber" class="view -edit search"></div>
-        </div>
-        <div class="form-group">
-          <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
-          <div property="v-s:registrationDate" class="view -edit search"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-9 col-xs-7 -view -edit search">
-      <div class="row">
-        <div class="col-md-6">
-          <div property="v-s:registrationNumber" class="view -edit search"></div>
-          <veda-control property="v-s:registrationNumber" data-type="string" class="-view edit search"></veda-control>
-        </div>
-        <div class="col-md-6">
-          <div property="v-s:registrationDate" class="view -edit search"></div>
-          <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  var self = this;
-  function date() {
-    if ( this.is("v-s:LetterRegistrationRecordEnumerated") && !this.hasValue("v-s:registrationNumber") ) {
-      var today = new Date();
-      today.setHours(0, 0, 0, 0);
-      this["v-s:registrationDate"] = [ today ];
-    }
-  }
-  this.on("beforeSave", date);
-  template.one("remove", function () {
-    self.off("beforeSave", date);
-  });
-  if ( mode === "edit" || template.data("mode") === "edit" ) {
-    individual.on("rdf:type", typeHandler);
-    template.one("remove", function () {
-      individual.off("rdf:type", typeHandler);
-    });
-    typeHandler.call(this);
-  }
-  function typeHandler () {
-    if ( this.is("v-s:LetterRegistrationRecordEnumerated") ) {
-      $("input", template).attr("placeholder", (new veda.IndividualModel("v-s:AutomaticallyBundle"))["rdfs:label"].join(" "));
-    } else {
-      $("input", template).attr("placeholder", (new veda.IndividualModel("v-s:ManuallyBundle"))["rdfs:label"].join(" "));
-    }
-  }
-  //# sourceURL=v-s:LetterRegistrationRecordTemplate_post
-</script>
-  """ ;
-.
-
 
 gen:DeliveryTemplate
   rdf:type v-ui:ClassTemplate ;
@@ -811,5 +611,209 @@ gen:DeliveryEmbeddedTemplate
       </div>
     </div>    
 </div>      
+  """ ;
+.
+
+gen:LetterRegistrationRecordTemplateNew
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон регистрационной записи для письма"@ru ;
+  rdfs:label "Letter registration record template"@en ;
+  v-ui:template """
+<div class="container sheet">
+  <div class="row">
+    <div class="col-sm-9 col-xs-7 view edit -search">
+      <div class="form-inline">
+        <div class="form-group">
+          <veda-control property="v-s:registrationNumber" data-type="string" class="-view edit search"></veda-control>
+          <div property="v-s:registrationNumber" class="view -edit search"></div>
+        </div>
+        <div class="form-group">
+          <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
+          <div property="v-s:registrationDate" class="view -edit search"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9 col-xs-7 -view -edit search">
+      <div class="row">
+        <div class="col-md-6">
+          <div property="v-s:registrationNumber" class="view -edit search"></div>
+          <veda-control property="v-s:registrationNumber" data-type="string" class="-view edit search"></veda-control>
+        </div>
+        <div class="col-md-6">
+          <div property="v-s:registrationDate" class="view -edit search"></div>
+          <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var self = this;
+  function setRegistrationDate() {
+    if ( this.hasValue("rdf:type", "v-s:LetterRegistrationRecordEnumerated") && !this.hasValue("v-s:registrationNumber") ) {
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+      individual["v-s:registrationDate"] = [ today ];
+    }
+  }
+  this.on("beforeSave", setRegistrationDate);
+  template.one("remove", function () {
+    self.off("beforeSave", setRegistrationDate);
+  });
+
+  if ( mode === "edit" || template.data("mode") === "edit" ) {
+    individual.on("rdf:type", typeHandler);
+    template.one("remove", function () {
+      individual.off("rdf:type", typeHandler);
+    });
+    typeHandler.call(this);
+  }
+
+  function typeHandler () {
+    this.is("v-s:LetterRegistrationRecordEnumerated").then(function (isEnumerated) {
+      if (isEnumerated ) {
+        var autoBundle = new veda.IndividualModel("v-s:AutomaticallyBundle");
+        autoBundle.load().then(function (autoBundle) {
+          $("input", template).attr("placeholder", autoBundle["rdfs:label"].join(" "));
+        });
+      } else {
+        var manualBundle = new veda.IndividualModel("v-s:ManuallyBundle");
+        manualBundle.load().then(function (manualBundle) {
+          $("input", template).attr("placeholder", manualBundle["rdfs:label"].join(" "));
+        });
+      }
+    });
+  }
+  //# sourceURL=v-s:LetterRegistrationRecordTemplate_post
+</script>
+  """ ;
+.
+
+gen:CorrespondentTemplateNew
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass v-s:Letter ;
+  rdfs:label "Шаблон для класса v-s:Letter"@ru ;
+  rdfs:label "Template for v-s:Letter class"@en ;
+  v-ui:template """
+<div>
+  <div>
+    <div class="row row-attribute">
+      <div class="col-sm-3 col-xs-5">
+        <em about="v-s:correspondentOrganization" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
+        <div rel="v-s:correspondentOrganization" class="view -edit search">
+          <a class="label-template" href="#/@">
+            <strong about="@" property="rdfs:label"></strong>,
+            <span about="@" property="v-s:postalAddress"></span>
+          </a>
+        </div>
+        <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view edit -search fulltext create create-modal" data-template="{individual['v-s:shortLabel'].join(' ') + ', ' + individual['v-s:postalAddress'].join(' ')}"></veda-control>
+        <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view -edit search fulltext" data-template="{individual['v-s:shortLabel'].join(' ') + ', ' + individual['v-s:postalAddress'].join(' ')}"></veda-control>
+      </div>
+    </div>
+    <div class="row row-attribute user-organization">
+      <div class="col-sm-3 col-xs-5">
+        <em about="v-s:correspondentDepartment" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
+        <span rel="v-s:correspondentDepartment" class="view edit search" data-template="v-ui:LabelTemplate"></span>
+        <veda-control data-type="link" rel="v-s:correspondentDepartment" class="-view edit search fulltext"></veda-control>
+      </div>
+    </div>
+    <div class="row row-attribute user-organization">
+      <div class="col-sm-3 col-xs-5">
+        <em about="v-s:correspondentPerson" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
+        <span rel="v-s:correspondentPerson" class="view edit search" data-template="v-ui:LabelTemplate"></span>
+        <veda-control data-type="link" rel="v-s:correspondentPerson" class="-view edit search fulltext"></veda-control>
+      </div>
+    </div>
+    <div class="row row-attribute other-organization">
+      <div class="col-sm-3 col-xs-5">
+        <em about="v-s:correspondentDepartmentDescription" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
+        <span property="v-s:correspondentDepartmentDescription" class="view -edit -search"></span>
+        <veda-control data-type="text" property="v-s:correspondentDepartmentDescription" class="-view edit search"></veda-control>
+      </div>
+    </div>
+    <div class="row row-attribute other-organization">
+      <div class="col-sm-3 col-xs-5">
+        <em about="v-s:correspondentPersonDescription" property="rdfs:label"></em>
+      </div>
+      <div class="col-sm-9 col-xs-7">
+        <span property="v-s:correspondentPersonDescription" class="view -edit -search"></span>
+        <veda-control data-type="text" property="v-s:correspondentPersonDescription" class="-view edit search"></veda-control>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>
+<script>
+  var self = this;
+  correspondentOrganizationHandler.call(this);
+  this.on("v-s:correspondentOrganization", correspondentOrganizationHandler);
+  template.one("remove", function () {
+    self.off("v-s:correspondentOrganization", correspondentOrganizationHandler);
+  });
+  function correspondentOrganizationHandler () {
+    Promise.all([
+      self.getPropertyChain("v-s:correspondentOrganization", "v-s:isOwnOrganization"),
+      veda.appointment.getOrganization()
+    ]).then(function (resolved) {
+      var isOwnOrganization = resolved[0][0];
+      var userOrganization = resolved[1];
+
+      var isOwn = isOwnOrganization || self.hasValue("v-s:correspondentOrganization", userOrganization);
+      var parentRel = template.parent().attr("rel");
+      if ( isOwn ) {
+        self
+          .clearValue("v-s:correspondentDepartmentDescription")
+          .clearValue("v-s:correspondentPersonDescription");
+        $(".user-organization", template).show();
+        $(".other-organization", template).hide();
+        template.trigger(parentRel + ":own");
+      } else {
+        self
+          .clearValue("v-s:correspondentDepartment")
+          .clearValue("v-s:correspondentPerson");
+        $(".user-organization", template).hide();
+        $(".other-organization", template).show();
+        template.trigger(parentRel + ":foreign");
+      }
+    });
+  }
+
+  $(".create .create", template).off("click");
+
+  $(".create .create", template).click(function () {
+    var modal = $("#notification-modal-template").html();
+    modal = $(modal);
+    modal.modal({"show": false});
+    $("body").append(modal);
+    modal.modal("show");
+    template.one("remove", function () {
+      modal.modal("hide").remove();
+    });
+
+    var cntr = $(".modal-body", modal),
+        _class = new veda.IndividualModel("v-s:Organization"),
+        Organization = new veda.IndividualModel();
+    Organization["rdf:type"] = [_class];
+
+    Organization.present(cntr, undefined, "edit");
+    Organization.one("beforeReset", function () {
+      modal.modal("hide").remove();
+    });
+    Organization.one("afterSave", function () {
+      modal.modal("hide").remove();
+      individual["v-s:correspondentOrganization"] = [ Organization ];
+    });
+  });
+
+  //# sourceURL=gen:CorrespondentTemplate_post
+</script>
   """ ;
 .

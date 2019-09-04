@@ -22,11 +22,11 @@ gen:TechnicalDocumentBlank
   a v-fc:Blank ;
   rdfs:label "Технический документ"@ru ;
   rdfs:label "Technical document"@en ;
-  v-fc:targetType gen:TechnicalDocument ;
+  v-fc:targetType v-s:TechnicalDocument ;
 .
 gen:TechnicalDocumentSearchBlank
   rdf:type v-fc:Blank ;
   rdfs:label "Технический документ"@ru ;
   rdfs:label "Technical document"@en ;
-  v-fc:targetType gen:TechnicalDocument ;
+  v-fc:targetType v-s:TechnicalDocument ;
 .

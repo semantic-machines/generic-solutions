@@ -20,10 +20,15 @@
 # ------------------------------------------------------------ СОБЫТИЯ --
 
 # ------------------------------------------------------------ СТРОКИ --
+gen:Innovation_Bundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Инновация"@ru ;
+  rdfs:label "Innovation"@en ;
+.
 # ------------------------------------------------------------ ШАБЛОНЫ --
 gen:InnovationTemplate
   rdf:type v-ui:ClassTemplate ;
-  v-ui:forClass gen:Innovation ;
+  v-ui:forClass v-s:Idea ;
   rdfs:label "Шаблон инновации"@ru ;
   rdfs:label "Innovation template"@en ;
   v-ui:template """
@@ -31,7 +36,7 @@ gen:InnovationTemplate
 <div>
   <div class="container sheet">
     <h2>
-     <span about="gen:Innovation" property="rdfs:label"></span>
+     <span about="gen:Innovation_Bundle" property="rdfs:label"></span>
      <small about="@" property="rdfs:label"></small>
     </h2>
     <hr>
@@ -128,15 +133,15 @@ gen:InnovationTemplate
       </div>  
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <label about="gen:financialEffectAvailability" property="rdfs:label"></label>
+          <label about="v-s:financialEffectAvailability" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
 					<div class="checkbox">
 						<label>
-							<veda-control property="gen:financialEffectAvailability" data-type="boolean"></veda-control>
+							<veda-control property="v-s:financialEffectAvailability" data-type="boolean"></veda-control>
 						</label>
 					</div>
-					<!--<div property="gen:financialEffectAvailability" class="view -edit -search"></div>-->
+					<!--<div property="v-s:financialEffectAvailability" class="view -edit -search"></div>-->
         </div>
       </div>  
       <div class="row row-attribute">

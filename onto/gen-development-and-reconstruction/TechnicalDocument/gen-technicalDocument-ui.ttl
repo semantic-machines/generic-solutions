@@ -78,9 +78,9 @@ gen:coordinateWithCustomer_Bundle
 #--------------Шаблоны----------------------------
 gen:TechnicalDocumentTemplate
   rdf:type v-ui:ClassTemplate ;
-  v-ui:forClass gen:TechnicalDocument ;
-  rdfs:label "Шаблон для класса gen:TechnicalDocument"@ru ;
-  rdfs:label "Template for gen:TechnicalDocument class"@en ;
+  v-ui:forClass v-s:TechnicalDocument ;
+  rdfs:label "Шаблон для класса v-s:TechnicalDocument"@ru ;
+  rdfs:label "Template for v-s:TechnicalDocument class"@en ;
   v-ui:template """
 <script>
   template.on("validate", function () {
@@ -117,7 +117,7 @@ gen:TechnicalDocumentTemplate
 <div>
   <div class="container sheet">
     <h2>
-      <span about="gen:TechnicalDocument" property="rdfs:label"></span><br>
+      <span about="v-s:TechnicalDocument" property="rdfs:label"></span><br>
       <small about="@" property="rdfs:label"></small>
     </h2>
     <span about="@" data-template="v-ui:RabbitHole"></span>
@@ -234,7 +234,7 @@ gen:TechnicalDocumentTemplate
 		</section>   
 
 		<section id="LinkedTechnicalDocuments">
-      <h4 class="section-header" about="gen:hasTechnicalDocument" property="rdfs:label"></h4>
+      <h4 class="section-header" about="v-s:hasTechnicalDocument" property="rdfs:label"></h4>
       <div class="table-responsive">
         <table class="table no-margin">
           <thead>
@@ -248,7 +248,7 @@ gen:TechnicalDocumentTemplate
 							<th about="gen:MarkCodeForTechnicalDocumentBundle" property="rdfs:label"></th>							
 						</tr>
 					</thead>
-					<tbody rel="gen:hasTechnicalDocument" >
+					<tbody rel="v-s:hasTechnicalDocument" >
 						<tr>
 							<td about="@" data-template="v-ui:IconModalTemplate"></td>
 							<td><div property="v-s:registrationNumber" class="view -edit -search"></div></td>
@@ -261,11 +261,11 @@ gen:TechnicalDocumentTemplate
 					</tbody>
 				</table>
 			</div><br>
-			<veda-control data-type="link" rel="gen:hasTechnicalDocument" class="-view edit search fulltext"></veda-control>
+			<veda-control data-type="link" rel="v-s:hasTechnicalDocument" class="-view edit search fulltext"></veda-control>
 			<div class="clearfix view -edit -search">
         <button class="btn btn-success" id="add-LinkedTechnicalDocument">
           <span class="glyphicon glyphicon-zoom-in"></span>
-          <span about="gen:hasTechnicalDocument" property="rdfs:label"></span>
+          <span about="v-s:hasTechnicalDocument" property="rdfs:label"></span>
         </button>
 			</div>
 		</section>    
@@ -293,12 +293,12 @@ gen:TechnicalDocumentTemplate
     if (!canCreate) $("#add-LinkedTechnicalDocument", template).remove();
   });
   $("#add-LinkedTechnicalDocument", template).click(function () {
-    var _class = new veda.IndividualModel("gen:TechnicalDocument"),
+    var _class = new veda.IndividualModel("v-s:TechnicalDocument"),
         TechnicalDocument = new veda.IndividualModel(),
         tmpl = "gen:TechnicalDocumentTemplate";
     TechnicalDocument["rdf:type"] = [_class];
     TechnicalDocument["v-s:backwardTarget"] = [individual];
-    TechnicalDocument["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasTechnicalDocument")];
+    TechnicalDocument["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasTechnicalDocument")];
     TechnicalDocument["v-s:canRead"] = [ true ];
     TechnicalDocument["v-s:title"] = individual["v-s:title"] ;
     TechnicalDocument["v-s:shortLabel"] = individual["v-s:shortLabel"] ;
@@ -329,7 +329,7 @@ gen:TechnicalDocumentTemplate
   });
     
   $("#add-copy", template).click(function () {
-    var _class = new veda.IndividualModel("gen:TechnicalDocument"),
+    var _class = new veda.IndividualModel("v-s:TechnicalDocument"),
         TechnicalDocument = new veda.IndividualModel(),
         tmpl = "gen:TechnicalDocumentTemplate" ;
     TechnicalDocument["rdf:type"] = [_class] ;
@@ -401,7 +401,7 @@ gen:TechnicalDocumentTemplate
   }
   function addBackwardProperty() {
     if (individual.hasValue('v-s:backwardTarget')) {
-      individual["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasTechnicalDocument")];
+      individual["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasTechnicalDocument")];
     }
   }
   documentKindHandler();
