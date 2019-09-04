@@ -88,7 +88,7 @@ gen:PS_prepayment_AccountingDoc
   rdf:type v-ui:PropertySpecification ;
   v-ui:forClass v-s:AccountingDoc ;
   v-ui:forProperty v-s:prepayment ;
-  v-ui:minCardinality 0 ;
+  v-ui:minCardinality 1 ;
   v-ui:maxCardinality 1 ;
   rdfs:label "Спецификация свойства v-s:prepayment для класса v-s:AccountingDoc"@ru ;
   rdfs:label "v-s:prepayment property specification for v-s:AccountingDoc class"@en ;
