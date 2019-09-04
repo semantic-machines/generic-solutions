@@ -145,7 +145,7 @@ gen:ContractorCategoryRequestTemplate
     var cntr = $(".modal-body", modal),
         _class = new veda.IndividualModel("v-s:ContractorCategoryDecision"),
         decision = new veda.IndividualModel(),
-        tmpl = new veda.IndividualModel("v-s:ContractorCategoryDecisionTemplate");
+        tmpl = new veda.IndividualModel("gen:ContractorCategoryDecisionTemplate");
     decision["rdf:type"] = [_class];
     decision["v-s:backwardTarget"] = [ individual ];
     decision["v-s:backwardProperty"] = [ new veda.IndividualModel("v-s:hasContractorCategoryDecision") ];

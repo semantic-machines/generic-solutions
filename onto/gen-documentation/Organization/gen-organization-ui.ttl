@@ -394,7 +394,7 @@ gen:OrganizationTemplate
     var cntr = $(".modal-body", modal),
         _class = new veda.IndividualModel("v-s:ContractorProfile"),
         profile = new veda.IndividualModel(),
-        tmpl = new veda.IndividualModel("v-s:ContractorProfileTemplate");
+        tmpl = new veda.IndividualModel("gen:ContractorProfileTemplate");
     profile["rdf:type"] = [_class];
     profile["v-s:backwardTarget"] = [individual];
     profile["v-s:backwardProperty"] = [new veda.IndividualModel("v-s:hasContractorProfile")];
