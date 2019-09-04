@@ -382,7 +382,6 @@ gen:BusinessTripTemplate
       <span class=" view -edit -search">
         <button type="button" class="action btn btn-warning view -edit -search" id="notify" about="gen:NotifyBundle" property="rdfs:label"/>
         <button type="button" class="action btn btn-default view -edit -search" id="add-copy" about="v-s:Clone" property="rdfs:label" />
-        <button type="button" class="action btn btn-info view -edit -search" id="createReport1" about="v-s:PrintBlank" property="rdfs:label"/>
       </span>
     </div>
   </div>
@@ -619,10 +618,6 @@ $("#add-RegRecord", template).click(function () {
   individual.on("propertyModified", handler);
   template.one("remove", function () {
     individual.off("propertyModified", handler);
-  });
-
-  $('#createReport1', template).on('click', function (e) {
-    veda.Util.createReport('gen:businessTrip_printBlank', individual);
   });
 
   if ( template.data("mode") === "edit" &&
