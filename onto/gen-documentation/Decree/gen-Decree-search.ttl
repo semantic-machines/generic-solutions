@@ -49,8 +49,7 @@ gen:DecreeSearchResultTemplate
       <th><span about="v-s:hasDocumentKind" property="rdfs:label"></span></th>
       <th><span about="v-s:initiator" property="rdfs:label"></span></th>
       <th><span about="v-s:signedBy" property="rdfs:label"></span></th>
-      <th><span about="v-s:responsible" property="rdfs:label"></span></th>
-      <th><span about="v-s:isFixedTerm" property="rdfs:label"></span></th>
+      <th><span about="v-s:responsibleDepartment" property="rdfs:label"></span></th>
       <th><span about="v-s:title" property="rdfs:label"></span></th>
       <th><span about="v-s:description" property="rdfs:label"></span></th>
       <th><span about="rdfs:comment" property="rdfs:label"></span></th>
@@ -71,8 +70,7 @@ gen:DecreeSearchResultTemplate
       <td rel="v-s:hasDocumentKind" data-template="v-ui:LabelTemplate"></td>
       <td rel="v-s:initiator" data-template="v-ui:LabelTemplate"></td>
       <td rel="v-s:signedBy" data-template="v-ui:LabelTemplate"></td>
-      <td rel="v-s:responsible" data-template="v-ui:LabelTemplate"></td>
-      <td property="v-s:isFixedTerm"></td>
+      <td rel="v-s:responsibleDepartment" data-template="v-ui:LabelTemplate"></td>
       <td property="v-s:title"></td>
       <td property="v-s:description"></td>
       <td property="rdfs:comment"></td>

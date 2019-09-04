@@ -34,6 +34,11 @@ gen:ownerBundleDecree
   rdfs:label "Юр. лицо"@ru ;
   rdfs:label "Юр. лицо"@en ;
 .
+gen:responsibleDepartmentBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "По подразделению"@ru ;
+  rdfs:label "Department"@en ;
+.
 #--------------------------------------------------------------НУМЕРАТОРЫ-----------------------------------------
 gen:RegistrationNumberDecreeNumeration
   rdf:type v-s:Numeration ;
@@ -134,32 +139,21 @@ gen:DecreeTemplate
       </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <label about="v-s:responsible" property="rdfs:label"></label>
+          <label about="gen:responsibleDepartmentBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:responsible" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext"></veda-control>
+          <div rel="v-s:responsibleDepartment" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:responsibleDepartment" class="-view edit search fulltext tree"></veda-control>
         </div>
       </div>
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <label about="v-s:isFixedTerm" property="rdfs:label"></label>
-        </div>
-        <div class="col-sm-9 col-xs-7">
-          <div class="checkbox no-margin">
-            <label>
-              <veda-control property="v-s:isFixedTerm" data-type="boolean"></veda-control>
-            </label>
-          </div>
-        </div>
-      </div>
+
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="gen:titleBundleDecree" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
           <div class="view -edit -search bg-warning padding-md"><strong property="v-s:title"></strong></div>
-          <veda-control data-type="multilingualString" property="v-s:title" class="-view edit search"></veda-control>
+          <veda-control data-type="string" property="v-s:title" class="-view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
