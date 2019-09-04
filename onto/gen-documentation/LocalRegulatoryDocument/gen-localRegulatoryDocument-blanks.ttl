@@ -23,17 +23,17 @@ gen:LocalRegulatoryDocumentBlank
   a v-fc:Blank ;
   rdfs:label "Локальный нормативный документ"@ru ;
   rdfs:label "Local regulatory document"@en ;
-  v-fc:targetType gen:LocalRegulatoryDocument ;
+  v-fc:targetType v-s:LocalRegulatoryDocument ;
 .
 gen:LocalRegulatoryDocumentSearchBlank
   rdf:type v-fc:Blank ;
   rdfs:label "Локальный нормативный документ"@ru ;
   rdfs:label "Local regulatory document"@en ;
-  v-fc:targetType gen:LocalRegulatoryDocument ;
+  v-fc:targetType v-s:LocalRegulatoryDocument ;
 .
 gen:VersionOfLocalRegulatoryDocumentSearchBlank
   rdf:type v-fc:Blank ;
   rdfs:label "Должностные инструкции"@ru ;
   rdfs:label "Job descriptions"@en ;
-  v-fc:targetType gen:VersionOfLocalRegulatoryDocument ;
+  v-fc:targetType v-s:VersionOfLocalRegulatoryDocument ;
 .

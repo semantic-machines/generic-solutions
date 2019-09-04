@@ -39,12 +39,17 @@ gen:LocalRegulatoryDocument_PeriodBundle
   rdfs:label "Период действия документа"@ru ;
   rdfs:label "Document validity period"@en ;
 .
+gen:LocalRegulatoryDocument_StakeholderBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Держатель"@ru ;
+  rdfs:label "Holder"@en ;
+.
 # ------------------------------------------------------------ ШАБЛОНЫ --
 gen:LocalRegulatoryDocumentTemplate
   rdf:type v-ui:ClassTemplate ;
   v-ui:forClass gen:LocalRegulatoryDocument ;
-  rdfs:label "Шаблон для класса gen:LocalRegulatoryDocument"@ru ;
-  rdfs:label "Template for gen:LocalRegulatoryDocument class"@en ;
+  rdfs:label "Шаблон для класса v-s:LocalRegulatoryDocument"@ru ;
+  rdfs:label "Template for v-s:LocalRegulatoryDocument class"@en ;
   v-ui:template """
   
 <div>
@@ -78,11 +83,7 @@ gen:LocalRegulatoryDocumentTemplate
           <label about="v-s:valid" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div class="checkbox no-margin">
-            <label>
-              <veda-control property="v-s:valid" data-type="boolean"></veda-control>
-            </label>
-          </div>
+          <veda-control property="v-s:valid" data-type="booleanRadio"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -91,7 +92,7 @@ gen:LocalRegulatoryDocumentTemplate
         </div>
         <div class="col-sm-9 col-xs-7">
           <div class="view -edit -search bg-warning padding-md"><strong property="v-s:title"></strong></div>
-          <veda-control data-type="multilingualString" property="v-s:title" class="-view edit search"></veda-control>
+          <veda-control data-type="text" property="v-s:title" class="-view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -105,72 +106,59 @@ gen:LocalRegulatoryDocumentTemplate
       </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <label about="v-s:owner" property="rdfs:label"></label>
+          <label about="gen:LocalRegulatoryDocument_StakeholderBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:owner" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="select" rel="v-s:owner" class="-view edit search fulltext"></veda-control>
+          <div rel="v-s:stakeholder" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:stakeholder" class="-view edit search fulltext dropdown"></veda-control>
         </div>
       </div>
-    </section>
-		<section id="DocumentKind">    
 			<div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasDocumentKind" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-					<table class="table no-margin">
-						<tbody rel="v-s:hasDocumentKind">
-							<tr>
-								<td property="rdfs:label" class="view edit search"></td>
-								<td property="rdfs:comment" class="view edit search"></td>
-							</tr>
-						</tbody>
-					</table>
-					<br>
+          <div rel="v-s:hasDocumentKind" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
 					<veda-control data-type="link" rel="v-s:hasDocumentKind" class="-view edit search fulltext dropdown"></veda-control>
         </div>
-      </div>    
+      </div>  
     </section>
     <section id="VersionsDocuments" class="view -edit -search">    
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <label about="v-s:hasVersionOfLocalRegulatoryDocument" property="rdfs:label"></label>
+      <h4 class="section-header clearfix">
+        <span about="v-s:hasVersionOfLocalRegulatoryDocument" property="rdfs:label"></span>
+        <veda-control data-type="link" rel="v-s:hasVersionOfLocalRegulatoryDocument" class="-view -edit search create pull-right"></veda-control>
+        <div class="view -edit -search pull-right">
+          <button class="btn btn-xs btn-success" id="add-RegulatoryDocument">
+            <span class="glyphicon glyphicon-zoom-in"></span>
+            <span about="v-s:hasVersionOfLocalRegulatoryDocument" property="rdfs:label"></span>
+          </button>
         </div>
-        <div class="col-sm-9 col-xs-7">
-					<div class="table-responsive">
-						<table class="table no-margin">
-							<thead>
-								<tr>
-									<th width="1%"><span class="glyphicon glyphicon-search"></th>
-									<th about="rdfs:label" property="rdfs:label"></th>
-									<th about="v-s:dateFrom" property="rdfs:label"></th>
-									<th about="v-s:dateTo" property="rdfs:label"></th>
-								</tr>
-							</thead>
-							<tbody rel="v-s:hasVersionOfLocalRegulatoryDocument">
-								<tr>
-									<td about="@" data-template="v-ui:IconModalTemplate"></td>
-									<td>
-										<div property="rdfs:label" class="view -edit -search"></div>
-									</td>
-									<td>
-										<div property="v-s:dateFrom" class="view -edit -search"></div>
-									</td>
-									<td>
-										<div property="v-s:dateTo" class="view -edit -search"></div>
-									</td>
-								</tr>
-							</tbody>
-						</table><br>
-				    <div class="view -edit -search">
-              <button class="btn btn-xs btn-success" id="add-RegulatoryDocument">
-                <span class="glyphicon glyphicon-zoom-in"></span>
-                <span about="v-s:hasVersionOfLocalRegulatoryDocument" property="rdfs:label"></span>
-              </button>
-            </div>
-					</div>
-        </div>
+      </h4>
+      <div class="table-responsive view edit -search">
+        <table class="table no-margin">
+          <thead>
+            <tr>
+              <th width="1%"><span class="glyphicon glyphicon-search"></th>
+              <th about="rdfs:label" property="rdfs:label"></th>
+              <th about="v-s:dateFrom" property="rdfs:label"></th>
+              <th about="v-s:dateTo" property="rdfs:label"></th>
+            </tr>
+          </thead>
+          <tbody rel="v-s:hasVersionOfLocalRegulatoryDocument">
+            <tr>
+              <td about="@" data-template="v-ui:IconModalTemplate"></td>
+              <td>
+                <div property="rdfs:label" class="view -edit -search"></div>
+              </td>
+              <td>
+                <div property="v-s:dateFrom" class="view -edit -search"></div>
+              </td>
+              <td>
+                <div property="v-s:dateTo" class="view -edit -search"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
     <hr>
@@ -186,7 +174,7 @@ gen:LocalRegulatoryDocumentTemplate
 </div>
 <script>
   $("#add-RegulatoryDocument", template).click(function () {
-    var _class = new veda.IndividualModel("gen:VersionOfLocalRegulatoryDocument"),
+    var _class = new veda.IndividualModel("v-s:VersionOfLocalRegulatoryDocument"),
         RegulatoryDocument = new veda.IndividualModel(),
         tmpl = "gen:VersionOfLocalRegulatoryDocumentTemplate";
     RegulatoryDocument["rdf:type"] = [_class];
@@ -219,9 +207,9 @@ gen:LocalRegulatoryDocumentTemplate
 
 gen:VersionOfLocalRegulatoryDocumentTemplate
   rdf:type v-ui:ClassTemplate ;
-  v-ui:forClass gen:VersionOfLocalRegulatoryDocument ;
-  rdfs:label "Шаблон для класса gen:VersionOfLocalRegulatoryDocument"@ru ;
-  rdfs:label "Template for gen:VersionOfLocalRegulatoryDocument class"@en ;
+  v-ui:forClass v-s:VersionOfLocalRegulatoryDocument ;
+  rdfs:label "Шаблон для класса v-s:VersionOfLocalRegulatoryDocument"@ru ;
+  rdfs:label "Template for v-s:VersionOfLocalRegulatoryDocument class"@en ;
   v-ui:template """
 <script>
   template.on("validate", function () {
@@ -291,11 +279,7 @@ gen:VersionOfLocalRegulatoryDocumentTemplate
           <label about="v-s:valid" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div class="checkbox no-margin">
-            <label>
-              <veda-control property="v-s:valid" data-type="boolean"></veda-control>
-            </label>
-          </div>
+          <veda-control property="v-s:valid" data-type="booleanRadio"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -304,21 +288,12 @@ gen:VersionOfLocalRegulatoryDocumentTemplate
         </div>
         <div class="col-sm-9 col-xs-7">
           <div class="view -edit -search bg-warning padding-md"><strong property="v-s:title"></strong></div>
-          <veda-control data-type="multilingualString" property="v-s:title" class="-view edit search"></veda-control>
-        </div>
-      </div>
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <label about="v-s:initiator" property="rdfs:label"></label>
-        </div>
-        <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:initiator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext"></veda-control>
+          <veda-control data-type="text" property="v-s:title" class="-view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute -view -edit search">
         <div class="col-sm-3 col-xs-5">
-          <label about="stg:LocalRegulatoryDocument_PeriodBundle" property="rdfs:label"></label>
+          <label about="gen:LocalRegulatoryDocument_PeriodBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
           <div class="form-inline">
@@ -329,6 +304,7 @@ gen:VersionOfLocalRegulatoryDocumentTemplate
                   <veda-control property="v-s:dateFrom" data-type="date" class="-view edit search"></veda-control>
                 </div>
               </div>
+              <span class="view -edit -search">&mdash;&nbsp;&nbsp;&nbsp;</span>
               <div class="col-md-4">
                 <div class="form-group">
                   <span property="v-s:dateTo" class="view -edit search"></span>
@@ -460,10 +436,6 @@ gen:VersionOfLocalRegulatoryDocumentTemplate
       $('#save.action', template).remove();
     }
   })
-
-  if (template.data("mode") == "search"){
-    individual["v-s:hasDocumentKind"] = [ new veda.IndividualModel("d:c9e0a1dd43d943ed87f5072a6790d5c2") ];
-  }
   //# sourceURL=gen:VersionOfLocalRegulatoryDocumentTemplate_post
 </script>
   """ ;

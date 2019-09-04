@@ -48,7 +48,7 @@ gen:LocalRegulatoryDocumentSearchResultTemplate
 <table class="table table-bordered">
   <thead class="result-header">
     <tr>
-      <th colspan="9" about="gen:LocalRegulatoryDocument" property="rdfs:label"></th>
+      <th colspan="9" about="v-s:LocalRegulatoryDocument" property="rdfs:label"></th>
     </tr>
     <tr class="active">
       <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
@@ -58,7 +58,7 @@ gen:LocalRegulatoryDocumentSearchResultTemplate
       <th class="orderby" data-orderby="v-s:valid"><span about="v-s:valid" property="rdfs:label"></span></th>
       <th><span about="v-s:title" property="rdfs:label"></span></th>
       <th><span about="rdfs:comment" property="rdfs:label"></span></th>
-      <th><span about="v-s:owner" property="rdfs:label"></span></th>
+      <th><span about="gen:LocalRegulatoryDocument_StakeholderBundle" property="rdfs:label"></span></th>
       <th><span about="v-s:hasDocumentKind" property="rdfs:label"></span></th>
     </tr>
   </thead>
@@ -71,7 +71,7 @@ gen:LocalRegulatoryDocumentSearchResultTemplate
       <td property="v-s:valid"></td>
       <td property="v-s:title"></td>
       <td property="rdfs:comment"></td>
-      <td rel="v-s:owner" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:stakeholder" data-template="v-ui:LabelTemplate"></td>
       <td rel="v-s:hasDocumentKind" data-template="v-ui:LabelTemplate"></td>
     </tr>
   </tbody>
@@ -86,7 +86,7 @@ gen:VersionOfLocalRegulatoryDocumentSearchResultTemplate
 <table class="table table-bordered">
   <thead class="result-header">
     <tr>
-      <th colspan="11" about="gen:LocalRegulatoryDocument" property="rdfs:label"></th>
+      <th colspan="11" about="v-s:LocalRegulatoryDocument" property="rdfs:label"></th>
     </tr>
     <tr class="active">
       <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
