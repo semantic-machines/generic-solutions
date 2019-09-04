@@ -55,7 +55,7 @@ The application is designed to work with claims.
   - Control the timing of claim execution.
   - Generate reports on taken actions.
   """@en ;
-
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:ClaimsManagementImage

@@ -88,7 +88,7 @@ gen:ContractorsManagementApplication
   v-s:hasRegistry gen:OrganizationSearch ;
   v-s:hasRegistry gen:ContractorProfileSearch;
   v-s:hasRegistry gen:ContractorCategoryRequestSearch;
-  
+
   v-s:description """
 Приложение предназначено для формирования актуальной базы данных контрагентов и проведения процедуры проверки контрагентов.
 
@@ -105,7 +105,7 @@ Application is designed to form actual contractors data base and to implement co
   - Verify services declared by the contractor.
   - Make agreements with contractor for the verified services only.
 """@en ;
-
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:ContractorsManagementImage_RU

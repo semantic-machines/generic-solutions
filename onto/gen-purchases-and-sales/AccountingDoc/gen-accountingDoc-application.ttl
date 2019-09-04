@@ -51,7 +51,8 @@ Application purpose is to provide operational processing and storage of primary 
   - Form an archive of primary documents for long-term storage.
   """@en ;
 
-  v-s:attachment gen:OF_09_Pervichnye_dokumenty_pdf ;
+#  v-s:attachment gen:OF_09_Pervichnye_dokumenty_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:AccountingDocImage
