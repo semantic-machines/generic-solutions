@@ -84,7 +84,7 @@ gen:PS_hasDocumentKind_Letter
   v-ui:forClass gen:Letter ;
   v-ui:forProperty v-s:hasDocumentKind ;
   v-ui:minCardinality 1 ;
-  v-ui:maxCardinality 1 ;
+  v-ui:maxCardinality 100 ;
   rdfs:label "Спецификация свойства v-s:hasDocumentKind для класса v-s:Delivery"@ru ;
   rdfs:label "v-s:hasDocumentKind property specification for v-s:Delivery class"@en ;
 .
