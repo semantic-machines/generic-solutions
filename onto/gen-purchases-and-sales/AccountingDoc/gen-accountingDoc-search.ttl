@@ -1,0 +1,107 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-function-search/> .
+@prefix vdi: <http://semantic-machines.com/veda/veda-index/> .
+
+<http://semantic-machines.com/veda/gen-accountingDoc-registries>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Первичный документ. Реестры"@ru ;
+  rdfs:label "GEN ontology. Accounting document. Registries"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------- Search ---------------
+gen:AccountingDocSaleSearch
+  a v-fs:AttributiveSearch;
+  rdfs:label "Первичные документы. Продажа"@ru ;
+  rdfs:label "Accounting documents. Sale"@en ;
+  v-fs:searchBlank gen:AccountingDocSaleSearchBlank ;
+  v-fs:searchBlankTemplate gen:AccountingDocTemplate;
+  v-fs:searchResultTemplate gen:AccountingDocResultTemplate ;
+.
+gen:AccountingDocPurchaseSearch
+  a v-fs:AttributiveSearch;
+  rdfs:label "Первичные документы. Закупка"@ru ;
+  rdfs:label "Accounting documents. Purchase"@en ;
+  v-fs:searchBlank gen:AccountingDocPurchaseSearchBlank ;
+  v-fs:searchBlankTemplate gen:AccountingDocTemplate;
+  v-fs:searchResultTemplate gen:AccountingDocResultTemplate ;
+.
+# ------------- Registry templates ---------------
+gen:AccountingDocResultTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон результатов реестра Первичный документ"@ru ;
+  rdfs:label "Accounting document registry result template"@en ;
+  v-ui:template """
+<table class="table table-bordered">
+  <thead class="result-header">
+    <tr>
+      <th colspan="10" about="v-s:AccountingDoc" property="rdfs:label"></th>
+      <th colspan="2" about="v-s:hasPrice" property="rdfs:label"></th>
+      <th colspan="2" about="v-s:prepayment" property="rdfs:label"></th>
+      <th colspan="2" about="v-s:hasContractParticipantCustomer" property="rdfs:label"></th>
+      <th colspan="2" about="v-s:hasContractParticipantSupplier" property="rdfs:label"></th>
+    </tr>
+    <tr class="active">
+      <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
+      <th class="orderby" data-orderby="v-s:creator"><span about="v-s:creator" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:created"><span about="v-s:created" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:hasDocumentKind"><span about="v-s:hasDocumentKind" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:registrationNumber"><span about="v-s:registrationNumber" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:registrationDate"><span about="v-s:registrationDate" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:transactionDate"><span about="v-s:transactionDate" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:hasContract"><span about="v-s:hasContract" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="rdfs:comment"><span about="rdfs:comment" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:vatRateForAccountingDoc"><span about="v-s:vatRateForAccountingDoc" property="rdfs:label"></span></th>
+<!--стоимость v-s:hasPrice  -->
+      <th class="orderby" data-orderby="v-s:sum"><span about="v-s:sum" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:hasCurrency"><span about="v-s:hasCurrency" property="rdfs:label"></span></th>
+<!--авансовый платеж v-s:prepayment-->
+      <th class="orderby" data-orderby="v-s:sum"><span about="v-s:sum" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:hasCurrency"><span about="v-s:hasCurrency" property="rdfs:label"></span></th>
+<!-- заказчик    -->
+      <th class="orderby" data-orderby="v-s:hasRoleInContract"><span about="v-s:hasRoleInContract" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:hasOrganization"><span about="v-s:hasOrganization" property="rdfs:label"></span></th>
+<!--исполнитель-->
+      <th class="orderby" data-orderby="v-s:hasRoleInContract"><span about="v-s:hasRoleInContract" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:hasOrganization"><span about="v-s:hasOrganization" property="rdfs:label"></span></th>
+   </tr>
+  </thead>
+  <tbody class="result-container">
+    <tr>
+      <td><a href="#/@" class="glyphicon glyphicon-search"></a></td>
+     <td rel="v-s:creator" data-template="v-ui:LabelTemplate"></td>
+      <td property="v-s:created"></td>
+      <td rel="v-s:hasDocumentKind" data-template="v-ui:LabelTemplate"></td>
+      <td property="v-s:registrationNumber"></td>
+      <td property="v-s:registrationDate"></td>
+      <td property="v-s:transactionDate"></td>
+      <td rel="v-s:hasContract" data-template="v-ui:LabelTemplate"></td>
+      <td property="rdfs:comment"></td>
+      <td property="v-s:vatRateForAccountingDoc"></td>
+<!--стоимость v-s:hasPrice  -->
+      <td rel="v-s:hasPrice" class="number"><span property="v-s:sum"></span></td>
+      <td rel="v-s:hasPrice"><span rel="v-s:hasCurrency" data-template="v-ui:LabelTemplate"></span></td>
+<!--авансовый платеж v-s:prepayment-->
+      <td rel="v-s:prepayment"><span property="v-s:sum"></span></td>
+      <td rel="v-s:prepayment"><span rel="v-s:hasCurrency" data-template="v-ui:LabelTemplate"></span></td>
+<!-- заказчик    -->
+      <td rel="v-s:hasContractParticipantCustomer"><span rel="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate"></span></td>
+      <td rel="v-s:hasContractParticipantCustomer"><span rel="v-s:hasOrganization" data-template="v-ui:LabelTemplate"></span></td>
+<!--исполнитель-->
+      <td rel="v-s:hasContractParticipantSupplier"><span rel="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate"></span></td>
+      <td rel="v-s:hasContractParticipantSupplier"><span rel="v-s:hasOrganization" data-template="v-ui:LabelTemplate"></span></td>
+    </tr>
+  </tbody>
+</table>
+  """ ;
+ .
+
