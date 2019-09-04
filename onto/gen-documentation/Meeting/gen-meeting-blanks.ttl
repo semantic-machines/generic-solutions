@@ -34,7 +34,7 @@ gen:MeetingActionSearchBlank
   rdf:type v-fc:Blank ;
   rdfs:label "Мероприятие по встрече"@ru ;
   rdfs:label "Meeting action"@en ;
-  v-fc:targetType v-s:MeetingAction ;
+  v-fc:targetType v-s:Action ;
 .
 # ------------- Meeting registry blanks ---------------
 gen:MeetingSearchBlank

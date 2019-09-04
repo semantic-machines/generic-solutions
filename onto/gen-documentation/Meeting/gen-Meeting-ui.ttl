@@ -34,6 +34,27 @@ gen:contributorMeetingBundle
   rdfs:label "С кем"@ru ;
   rdfs:label "With whom"@en ;
 .  
+gen:addMeetingThirdPartyParticipant
+  rdf:type v-s:Bundle ;
+  rdfs:label "Добавить участника сторонней компании"@ru ;
+  rdfs:label "Add ThirdPartyParticipant"@en ;
+.
+gen:MeetingParticipantsBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Участники встречи"@ru ;
+  rdfs:label "Meeting participants"@en ;
+.
+gen:MeetingMemberBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Участники данной организации"@ru ;
+  rdfs:label "Owner participant"@en ;
+.
+gen:MeetingThirdPartyParticipantBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Участники сторонних организаций"@ru ;
+  rdfs:label "ThirdPartyParticipant"@en ;
+.
+
 #--------------------------------------------------------------НУМЕРАТОРЫ-----------------------------------------
 
 # ------------------------------------------------------------ ШАБЛОНЫ --
@@ -69,7 +90,7 @@ gen:MeetingTemplate
         </div>
         <div class="col-sm-3 col-xs-3">
           <div property="v-s:registrationNumber" class="view -edit search"></div>
-          <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+          <veda-control data-type="string" property="v-s:registrationNumber" class="-view -edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -83,30 +104,11 @@ gen:MeetingTemplate
       </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-          <label about="v-s:initiator" property="rdfs:label"></label>
+          <label about="v-s:responsibleDepartment" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:initiator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext"></veda-control>
-        </div>
-      </div>
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <label about="v-s:member" property="rdfs:label"></label>
-        </div>
-        <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:member" class="view edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:member" class="-view edit search fulltext tree"></veda-control>
-        </div>
-      </div>
-
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <label about="v-s:hasThirdPartyParticipant" property="rdfs:label"></label>
-        </div>
-        <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:hasThirdPartyParticipant" class="view -edit search" data-template="gen:ThirdPartyParticipantEmbededTemplate"></div>
-          <veda-control data-type="link" rel="v-s:hasThirdPartyParticipant" class="-view edit search create"></veda-control>
+          <div rel="v-s:responsibleDepartment" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:responsibleDepartment" class="-view edit search fulltext"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -115,7 +117,7 @@ gen:MeetingTemplate
         </div>
         <div class="col-sm-9 col-xs-7">
           <div property="v-s:agenda" class="view -edit search"></div>
-          <veda-control data-type="multilingualText" rows="3" property="v-s:agenda" class="-view edit search"></veda-control>
+          <veda-control data-type="text" rows="3" property="v-s:agenda" class="-view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -124,7 +126,7 @@ gen:MeetingTemplate
         </div>
         <div class="col-sm-9 col-xs-7">
           <div property="v-s:meetingDecision" class="view -edit search"></div>
-          <veda-control data-type="multilingualText" rows="3" property="v-s:meetingDecision" class="-view edit search"></veda-control>
+          <veda-control data-type="text" rows="3" property="v-s:meetingDecision" class="-view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -136,6 +138,43 @@ gen:MeetingTemplate
           <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
         </div>
       </div>
+
+    <section id="Participants">
+      <h4 class="section-header" about="gen:MeetingParticipantsBundle" property="rdfs:label"></h4>
+
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:MeetingMemberBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:member" class="view edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:member" class="-view edit search fulltext tree"></veda-control>
+        </div>
+      </div>
+      <br>
+
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="gen:MeetingThirdPartyParticipantBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+
+          <table class="table no-margin">
+            <tbody rel="v-s:hasThirdPartyParticipant" data-template="gen:MeetingThirdPartyParticipantEmbeddedTemplate" data-embedded="true"></tbody>
+          </table>
+          <div class="row row-attribute">
+            <div class="col-sm-1 col-xs-1">
+              <veda-control rel="v-s:hasThirdPartyParticipant" data-type="link" class="-view edit search create"></veda-control>
+            </div>
+            <div class="col-sm-11 col-xs-9">
+              <label about="gen:addMeetingThirdPartyParticipant" property="rdfs:label" class="-view edit -search"></label>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </section>
+
 
       <section id="hasAction">
         <h4 class="section-header clearfix">
@@ -438,5 +477,26 @@ gen:ActionTemplate
   </div>
 </div>
 
+"""
+.
+
+
+gen:MeetingThirdPartyParticipantEmbeddedTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Вложенный шаблон для класса gen:Meeting"@ru ;
+  rdfs:label "Embedded template for gen:Meeting class"@en ;
+  v-ui:template """
+<tr>
+  <td width=50%>
+    <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view edit search fulltext"></veda-control>
+    <div rel="v-s:correspondentOrganization" data-template="v-ui:LabelTemplate" class="view -edit search"></div>
+  </td>
+  <td width=50%>
+    <veda-control property="v-s:correspondentPersonDescription" data-type="string" class="-view edit search"></veda-control>
+    <div property="v-s:correspondentPersonDescription" class="view -edit -search"></div>
+  </td>
+</tr>
+<script>
+</script>
 """
 .

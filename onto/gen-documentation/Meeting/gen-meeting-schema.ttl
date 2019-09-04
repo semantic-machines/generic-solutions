@@ -24,11 +24,19 @@ gen:TS_Meeting
   v-ui:defaultTemplate gen:MeetingTemplate ;
 .
 
+gen:TS_MeetingAction
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:Action ;
+  v-ui:defaultTemplate gen:ActionTemplate ;
+.
+
 # v-s:theme - Тема
 gen:PS_theme_Meeting
   rdf:type v-ui:PropertySpecification ;
   rdfs:label "Спецификация к свойству v-s:theme для класса v-s:Meeting"@ru ;
   rdfs:label "Spec for property v-s:theme for class v-s:Meeting"@en ;
+  v-ui:placeholder "Введите краткое наименование"@ru ;
+  v-ui:placeholder "Enter a short theme"@en ;
   v-ui:minCardinality "1"^^xsd:integer ;
   v-ui:maxCardinality "1"^^xsd:integer ;
   v-ui:forProperty v-s:theme ;
@@ -51,18 +59,18 @@ gen:PS_dateFrom_Meeting
 .
 
 #-----Подразделение
-#v-s:initiator
-gen:PS_initiator_Meeting
+#v-s:responsibleDepartment
+gen:PS_responsibleDepartment_Meeting
   rdf:type v-ui:ObjectPropertySpecification ;
   v-ui:forClass v-s:Meeting ;
-  v-ui:forProperty v-s:initiator ;
+  v-ui:forProperty v-s:responsibleDepartment ;
   v-ui:minCardinality 1 ;
   v-ui:maxCardinality 1 ;
   v-ui:queryPrefix "'rdf:type'==='v-s:Organization' || 'rdf:type'==='v-s:Department'" ;
   v-ui:placeholder "Начните ввод и выберите значение"@ru ;
   v-ui:placeholder "Start typing and select"@en ;
-  rdfs:label "Спецификация к свойству v-s:initiator для класса v-s:Meeting"@ru ;
-  rdfs:label "Spec for property v-s:initiator for class v-s:Meeting"@en ;
+  rdfs:label "Спецификация к свойству v-s:responsibleDepartment для класса v-s:Meeting"@ru ;
+  rdfs:label "Spec for property v-s:responsibleDepartment for class v-s:Meeting"@en ;
 .
 
 #-----Участник
@@ -93,6 +101,33 @@ gen:PS_hasThirdPartyParticipant_Meeting
   v-ui:maxCardinality 100 ;
   rdfs:label "Спецификация свойства v-s:hasThirdPartyParticipant для класса v-s:Meeting"@ru ;
   rdfs:label "v-s:hasThirdPartyParticipant property specification for v-s:Meeting class"@en ;
+.
+
+#-----Организация в Сторонние участники
+#v-s:correspondentOrganization
+gen:PS_correspondentOrganization_ThirdPartyParticipant
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:ThirdPartyParticipant ;
+  v-ui:forProperty v-s:correspondentOrganization ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:placeholder "Начните ввод и выберите организацию"@ru ;
+  v-ui:placeholder "Choose Organization"@en ;
+  rdfs:label "Спецификация к свойству v-s:correspondentOrganization для класса v-s:ThirdPartyParticipant"@ru ;
+  rdfs:label "Spec for property v-s:correspondentOrganization for class v-s:ThirdPartyParticipant"@en ;
+.
+#-----Персона в Сторонние участники
+#v-s:correspondentPersonDescription
+gen:PS_correspondentPersonDescription_ThirdPartyParticipant
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:ThirdPartyParticipant ;
+  v-ui:forProperty v-s:correspondentPersonDescription ;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:placeholder "Введите ФИО сотрудника"@ru ;
+  v-ui:placeholder "Input correspondentPersonDescription"@en ;
+  rdfs:label "Спецификация к свойству v-s:correspondentOrganization для класса v-s:ThirdPartyParticipant"@ru ;
+  rdfs:label "Spec for property v-s:correspondentOrganization for class v-s:ThirdPartyParticipant"@en ;
 .
 
 #-----Повестка
