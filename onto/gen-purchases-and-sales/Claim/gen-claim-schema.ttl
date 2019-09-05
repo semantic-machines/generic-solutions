@@ -6,7 +6,6 @@
 @prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
 @prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
 
-
 <http://semantic-machines.com/veda/gen-claimEvent-schema>
   rdf:type owl:Ontology ;
   rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Претензия. Схема."@ru ;

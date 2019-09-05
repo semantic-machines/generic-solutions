@@ -534,15 +534,15 @@ gen:ContractTemplate
         AdditionalAgreement = new veda.IndividualModel(),
         tmpl = "gen:AdditionalAgreementTemplate";
     AdditionalAgreement["rdf:type"] = [_class];
-   AdditionalAgreement["v-s:backwardTarget"] = [individual];
-    AdditionalAgreement["v-s:theme"]=individual["v-s:theme"];
-    AdditionalAgreement["v-s:initiator"]=individual["v-s:initiator"];
-    AdditionalAgreement["v-s:supportSpecialistOfContract"]=individual["v-s:supportSpecialistOfContract"];
-    AdditionalAgreement["v-s:hasObligationKind"]=individual["v-s:hasDeliveryConditions"];
+    AdditionalAgreement["v-s:backwardTarget"] = [individual];
+    AdditionalAgreement["v-s:theme"] = individual["v-s:theme"];
+    AdditionalAgreement["v-s:initiator"] = individual["v-s:initiator"];
+    AdditionalAgreement["v-s:supportSpecialistOfContract"] = individual["v-s:supportSpecialistOfContract"];
+    AdditionalAgreement["v-s:hasObligationKind"] = individual["v-s:hasDeliveryConditions"];
     AdditionalAgreement["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasAdditionalAgreement")];
     AdditionalAgreement["v-s:canRead"] = [ true ];
 
-    Promise.resolve(1).then(function(){
+    Promise.resolve().then(function () {
       if (individual.hasValue("gen:hasAdditionalAgreement")) {
         var promiseArr = individual["gen:hasAdditionalAgreement"].map(function(agreement){
           return agreement.load();
@@ -596,6 +596,24 @@ gen:ContractTemplate
 
     riot.route( ["#", AdditionalAgreement.id, "#main", tmpl, "edit"].join("/") );
   });
+
+  function processHandler() {
+    individual.canUpdate().then(function (canUpdate) {
+      if ( individual.hasValue("v-wf:isProcess") ) {
+        $('#send.action', template).remove();
+        $('#delete.action', template).remove();
+      } else if ( individual.isNew() || canUpdate ) {
+        $('#send.action', template).off("click");
+        $('#send.action', template).on('click', function () {
+          veda.Util.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:Contract_ComplexRouteStartForm_Template');
+        });
+      } else {
+        $('#send.action', template).remove();
+        $('#delete.action', template).remove();
+      }
+    });
+  }
+  processHandler();
 </script>
     """ ;
 .
