@@ -1,0 +1,53 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix mnd-s: <http://semantic-machines.com/veda/mondi-schema/>.
+@prefix d: <http://semantic-machines.com/veda/veda-data/>.
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+
+<http://semantic-machines.com/veda/gen-individual-ContractScope>
+  rdf:type owl:Ontology ;
+  v-s:loadPriority 10 ;
+.
+
+#v-s:ContractScope
+  #rdf:type owl:Class ;
+  #rdfs:subClassOf v-s:UserThing ;
+  #rdfs:label "Характер контракта"@ru ;
+  #rdfs:label "Contract scope"@en ;
+#.
+
+# --- В связи с вводом класса возникает предикат v-s:hasContractScope. Он описан в классе v-s:Contractual
+
+#-----------------------------------Инвидиды дополняющие класс v-s:ContractScope
+gen:CS_price
+    a v-s:ContractScope;
+    rdfs:label "Единичные расценки (прайс-лист)"@ru;
+    rdfs:label "Price list"@en;
+    v-s:updateCounter "1"^^xsd:integer.
+
+gen:CS_payment_terms
+    a v-s:ContractScope;
+    rdfs:label "Условия оплаты"@ru;
+    rdfs:label "Payment terms"@en;
+    v-s:updateCounter "1"^^xsd:integer.
+
+gen:CS_terms
+    a v-s:ContractScope;
+    rdfs:label "Сроки"@ru;
+    rdfs:label "Terms"@en;
+    v-s:updateCounter "1"^^xsd:integer.
+
+gen:CS_volume
+    a v-s:ContractScope;
+    rdfs:label "Объемы"@ru;
+    rdfs:label "Volumes"@en;
+    v-s:updateCounter "1"^^xsd:integer.
+
+gen:CS_other
+    a v-s:ContractScope;
+    rdfs:label "Прочие условия"@ru;
+    rdfs:label "Other conditions"@en;
+    v-s:updateCounter "1"^^xsd:integer.
