@@ -128,7 +128,7 @@ gen:LayoutTemplate
           <li about="v-cal:TasksCalendar" data-template="v-cal:FunctionCalendarIndicatorTemplate"></li>
           <li about="v-ft:Inbox" data-template="v-ft:FunctionTasksIndicatorTemplate"></li>
           <li id="user-info"></li>
-          <li id="menu" class="dropdown" about="v-s:MainMenu" data-template="v-s:MenuTemplate"></li>
+          <li id="menu" class="dropdown" about="gen:MainMenu" data-template="v-s:MenuTemplate"></li>
           <li about="v-ui:AvailableLanguage" data-template="v-ui:LanguageSwitchTemplate"></li>
           <li style="padding-left:10px; margin-left:10px; border-left:1px solid #ddd;" about="@" data-template="v-ui:FullWidthSwitchTemplate"></li>
         </ul>
