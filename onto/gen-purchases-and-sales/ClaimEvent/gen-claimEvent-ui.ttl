@@ -64,7 +64,7 @@ gen:ClaimEventTemplate
     individual["v-s:initiator"] = [ [veda.appointment][0] ];
   }
 
-template.on("validate", function () {
+/*template.on("validate", function () {
     var result = {};
     if ( !(individual.hasValue("v-s:content") || individual.hasValue("v-s:hasContract")) ) {
       result["v-s:content"] = {
@@ -77,7 +77,7 @@ template.on("validate", function () {
       };
     }
     template.trigger("validated", result);
-  });
+  });*/
 
   //# sourceURL=gen:EngineeringRequest_pre
 
