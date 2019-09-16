@@ -22,3 +22,32 @@ gen:TS_ClaimEvent
   v-ui:defaultTemplate gen:ClaimEventTemplate ;
   v-s:loadPriority 10 ;
 .
+
+#v-s:responsibleDepartment
+gen:PS_responsibleDepartment_ClaimEvent
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:ClaimEvent;
+  v-ui:forProperty v-s:responsibleDepartment ;
+  v-ui:maxCardinality 100 ;
+  v-ui:minCardinality 1 ;
+  v-ui:treeRoot d:org_RU1100220011 ;
+  v-ui:treeInProperty v-s:parentUnit ;
+  v-ui:treeAllowedClass v-s:Department ;
+  v-ui:treeSelectableClass v-s:Department ;
+  v-ui:treeDisplayedProperty rdfs:label ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:Department'&&'v-s:parentOrganization'=='d:org_RU1100220011')"^^xsd:string ;
+  rdfs:label "Спецификация инициатора для класса v-s:ClaimEvent"@ru ;
+  rdfs:label "Initiator specification for ClaimEvent class"@en ;
+.
+
+#v-s:hasContract
+gen:PS_hasContract_ClaimEvent
+  rdf:type v-ui:PropertySpecification ;
+  v-ui:forClass v-s:ClaimEvent ;
+  v-ui:forProperty v-s:hasContract ;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
+  v-ui:queryPrefix "('rdf:type'=='gen:Contract')"^^xsd:string ;
+  rdfs:label "Спецификация свойства v-s:hasContract для класса v-s:ClaimEvent"@ru ;
+  rdfs:label "v-s:hasContract property specification for v-s:ClaimEvent class"@en ;
+.
