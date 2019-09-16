@@ -33,8 +33,8 @@ gen:PS_responsibleDepartment_ClaimEvent
   v-ui:minCardinality 1 ;
   v-ui:treeRoot d:org_RU1100220011 ;
   v-ui:treeInProperty v-s:parentUnit ;
-  v-ui:treeAllowedClass v-s:Department ;
-  v-ui:treeSelectableClass v-s:Department ;
+  #v-ui:treeAllowedClass v-s:Department ;
+  #v-ui:treeSelectableClass v-s:Department ;
   v-ui:treeDisplayedProperty rdfs:label ;
   v-ui:queryPrefix "('rdf:type'=='v-s:Department'&&'v-s:parentOrganization'=='d:org_RU1100220011')"^^xsd:string ;
   rdfs:label "Спецификация инициатора для класса v-s:ClaimEvent"@ru ;

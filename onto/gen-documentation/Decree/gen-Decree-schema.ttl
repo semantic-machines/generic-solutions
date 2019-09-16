@@ -63,8 +63,8 @@ gen:PS_responsibleDepartment_Decree
   v-ui:maxCardinality 100 ;
   v-ui:treeRoot d:org_RU1100220011 ;
   v-ui:treeInProperty v-s:parentUnit ;
-  v-ui:treeAllowedClass v-s:Department ;
-  v-ui:treeSelectableClass v-s:Department ;
+  #v-ui:treeAllowedClass v-s:Department ;
+  #v-ui:treeSelectableClass v-s:Department ;
   v-ui:treeDisplayedProperty rdfs:label ;
 #  v-ui:queryPrefix "('rdf:type' === 'v-s:Department')"^^xsd:string ;
   v-ui:placeholder "Начните ввод и выберите значение"@ru ;
