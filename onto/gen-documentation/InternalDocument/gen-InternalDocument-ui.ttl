@@ -51,8 +51,8 @@ gen:InternalDocumentTemplate
           <label about="v-s:registrationNumber" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div property="v-s:registrationNumber" class="view -edit search"></div>
-          <veda-control data-type="string" property="v-s:registrationNumber" class="-view -edit search"></veda-control>
+          <div property="v-s:registrationNumber" class="view -edit -search"></div>
+          <veda-control data-type="text" property="v-s:registrationNumber" class="-view -edit search"></veda-control>
         </div>
       </div>
 

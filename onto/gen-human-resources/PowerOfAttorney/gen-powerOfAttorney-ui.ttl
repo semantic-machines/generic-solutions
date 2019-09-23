@@ -124,7 +124,7 @@ gen:PowerOfAttorneyTemplate
         </table>
       </div>
        <div rel="gen:hasPowerOfAttorneyRegistrationRecord" data-template="gen:PowerOfAttorneyRegistrationRecordEmbeddedTemplate" data-embedded="true" class="view -edit search create"></div>
-    </section> 
+    </section>
     <section id="MainProperties">
       <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
       <div class="row row-attribute">
@@ -132,10 +132,10 @@ gen:PowerOfAttorneyTemplate
           <label about="v-s:registrationNumber" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div property="v-s:registrationNumber" class="view -edit search"></div>
-          <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+          <div property="v-s:registrationNumber" class="view -edit -search"></div>
+          <veda-control data-type="text" property="v-s:registrationNumber" class="-view edit search"></veda-control>
         </div>
-      </div>      
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="gen:PowerOfAttorney_date_Bundle" property="rdfs:label"></label>
@@ -144,7 +144,7 @@ gen:PowerOfAttorneyTemplate
           <div property="v-s:registrationDate" class="view -edit search"></div>
           <veda-control data-type="date" property="v-s:registrationDate" class="-view edit search"></veda-control>
         </div>
-      </div>      
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasFormOfPowerOfAttorney" property="rdfs:label"></label>
@@ -153,23 +153,23 @@ gen:PowerOfAttorneyTemplate
           <div rel="v-s:hasFormOfPowerOfAttorney" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="radio" rel="v-s:hasFormOfPowerOfAttorney" class="-view edit search"></veda-control>
         </div>
-      </div>  
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:isIssuedForAbsencePeriodOfEmployee" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-					<div class="checkbox">
-						<label>
-							<veda-control property="v-s:isIssuedForAbsencePeriodOfEmployee" data-type="boolean"></veda-control>
-						</label>
-					</div>
-					<div property="v-s:issuedForAbsencePeriodOfEmployee" class="view edit search"></div>
-					<div id="toggle-AbsencePeriod">
-						<veda-control data-type="link" rel="v-s:issuedForAbsencePeriodOfEmployee" class="-view edit search fulltext"></veda-control>
-					</div>
+          <div class="checkbox">
+            <label>
+              <veda-control property="v-s:isIssuedForAbsencePeriodOfEmployee" data-type="boolean"></veda-control>
+            </label>
+          </div>
+          <div property="v-s:issuedForAbsencePeriodOfEmployee" class="view edit search"></div>
+          <div id="toggle-AbsencePeriod">
+            <veda-control data-type="link" rel="v-s:issuedForAbsencePeriodOfEmployee" class="-view edit search fulltext"></veda-control>
+          </div>
         </div>
-      </div>  
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="gen:PowerOfAttorney_duration_Bundle" property="rdfs:label"></label>
@@ -182,61 +182,61 @@ gen:PowerOfAttorneyTemplate
           <div property="v-s:dateTo" class="view -edit search"></div>
           <veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
         </div>
-      </div>  
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="gen:isPowerOfAttorneyProlongationRequired" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-					<div class="checkbox">
-						<label>
-							<veda-control property="gen:isPowerOfAttorneyProlongationRequired" data-type="boolean"></veda-control>
-						</label>
-					</div>
+          <div class="checkbox">
+            <label>
+              <veda-control property="gen:isPowerOfAttorneyProlongationRequired" data-type="boolean"></veda-control>
+            </label>
+          </div>
         </div>
-      </div>        
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-					<span about="gen:PowerOfAttorney_reason_Bundle" property="rdfs:label"></span>
+          <span about="gen:PowerOfAttorney_reason_Bundle" property="rdfs:label"></span>
         </div>
         <div class="col-sm-4 col-xs-3">
-					<div rel="v-s:hasReasonForPowerOfAttorney" data-template="v-ui:LabelTemplate" class="view edit search"></div>
-					<veda-control data-type="link" rel="v-s:hasReasonForPowerOfAttorney" class="-view edit search fulltext dropdown"></veda-control><br>
+          <div rel="v-s:hasReasonForPowerOfAttorney" data-template="v-ui:LabelTemplate" class="view edit search"></div>
+          <veda-control data-type="link" rel="v-s:hasReasonForPowerOfAttorney" class="-view edit search fulltext dropdown"></veda-control><br>
         </div>
         <div class="col-sm-5 col-xs-3">
-					<div property="v-s:reason" class="view -edit search"></div>
-					<veda-control data-type="text"  property="v-s:reason" class="-view edit search"></veda-control>
+          <div property="v-s:reason" class="view -edit search"></div>
+          <veda-control data-type="text"  property="v-s:reason" class="-view edit search"></veda-control>
         </div>
-      </div> 
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:grantor" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-					<div rel="v-s:grantor" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
-					<veda-control data-type="link" rel="v-s:grantor" class="-view edit search create"></veda-control>
+          <div rel="v-s:grantor" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
+          <veda-control data-type="link" rel="v-s:grantor" class="-view edit search create"></veda-control>
         </div>
-      </div>     
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:grantee" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-					<div rel="v-s:grantee" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
-					<veda-control  data-type="link" rel="v-s:grantee" class="-view edit search create"></veda-control>
+          <div rel="v-s:grantee" class="view edit search" data-template="v-s:CorrespondentTemplate" data-embedded="true"></div>
+          <veda-control  data-type="link" rel="v-s:grantee" class="-view edit search create"></veda-control>
         </div>
-      </div>     
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
-					<span about="v-s:attachment" property="rdfs:label"></span>
+          <span about="v-s:attachment" property="rdfs:label"></span>
         </div>
         <div class="col-sm-9 col-xs-7">
-					<div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
-					<veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
+          <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
+          <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
         </div>
-      </div>        
+      </div>
     </section>
-    
+
     <hr>
     <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
     <br>
@@ -401,7 +401,7 @@ gen:PowerOfAttorneyRegistrationRecordTemplate
         <div about="@" property="v-s:registrationDate" class="view  -edit search"></div>
         <veda-control data-type="date" property="v-s:registrationDate" class="-view edit -search"></veda-control>
         </div>
-      </div> 
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <em about="rdfs:comment" property="rdfs:label"></em>
@@ -419,7 +419,7 @@ gen:PowerOfAttorneyRegistrationRecordTemplate
           <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true" class="view edit -search"></div>
           <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
         </div>
-      </div>  
+      </div>
   </section>
   <hr>
   <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
@@ -458,7 +458,7 @@ rdf:type v-ui:ClassTemplate ;
         <div property="v-s:registrationDate" class="view  -edit search"></div>
         <veda-control data-type="date"  property="v-s:registrationDate" class="-view -edit search"></veda-control>
       </div>
-    </div> 
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="rdfs:comment" property="rdfs:label"></em>
@@ -476,8 +476,8 @@ rdf:type v-ui:ClassTemplate ;
           <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true" class="view edit -search"></div>
           <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
         </div>
-      </div> 
-  </div> 
+      </div>
+  </div>
 </div>
 """
 .

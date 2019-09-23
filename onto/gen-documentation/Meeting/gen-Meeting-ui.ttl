@@ -23,17 +23,17 @@ gen:DateFromBundle
   rdf:type v-s:Bundle ;
   rdfs:label "Дата проведения"@ru ;
   rdfs:label "DateFrom"@en ;
-.  
+.
 gen:HasActionBundle
   rdf:type v-s:Bundle ;
   rdfs:label "План мероприятий"@ru ;
   rdfs:label "Action Plan"@en ;
-.  
+.
 gen:contributorMeetingBundle
   rdf:type v-s:Bundle ;
   rdfs:label "С кем"@ru ;
   rdfs:label "With whom"@en ;
-.  
+.
 gen:addMeetingThirdPartyParticipant
   rdf:type v-s:Bundle ;
   rdfs:label "Добавить участника сторонней компании"@ru ;
@@ -89,8 +89,8 @@ gen:MeetingTemplate
           <label about="v-s:registrationNumber" property="rdfs:label"></label>
         </div>
         <div class="col-sm-3 col-xs-3">
-          <div property="v-s:registrationNumber" class="view -edit search"></div>
-          <veda-control data-type="string" property="v-s:registrationNumber" class="-view -edit search"></veda-control>
+          <div property="v-s:registrationNumber" class="view -edit -search"></div>
+          <veda-control data-type="text" property="v-s:registrationNumber" class="-view -edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -170,7 +170,7 @@ gen:MeetingTemplate
               <label about="gen:addMeetingThirdPartyParticipant" property="rdfs:label" class="-view edit -search"></label>
             </div>
           </div>
-        
+
         </div>
       </div>
     </section>
@@ -224,7 +224,7 @@ gen:MeetingTemplate
         <div rel="v-s:hasAction" data-template="gen:ActionEmbeddedTemplate" data-embedded="true" class="-view -edit search create"></div>
       </section>
 
-      
+
     </section>
     <hr>
     <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
@@ -328,10 +328,10 @@ gen:ActionEmbeddedTemplate
         <em about="v-s:registrationNumber" property="rdfs:label"></em>
       </div>
       <div class="col-sm-3 col-xs-3">
-        <div property="v-s:registrationNumber" class="view -edit search"></div>
-        <veda-control property="v-s:registrationNumber" data-type="string" class="-view edit search"></veda-control>
+        <div property="v-s:registrationNumber" class="view -edit -search"></div>
+        <veda-control property="v-s:registrationNumber" data-type="text" class="-view edit search"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:description" property="rdfs:label"></em>
@@ -340,7 +340,7 @@ gen:ActionEmbeddedTemplate
         <div property="v-s:description" class="view -edit search"></div>
         <veda-control data-type="text" property="v-s:description" class="-view edit search"></veda-control>
       </div>
-    </div>      
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:responsible" property="rdfs:label"></em>
@@ -349,7 +349,7 @@ gen:ActionEmbeddedTemplate
         <div rel="v-s:responsible" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
         <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="gen:contributorMeetingBundle" property="rdfs:label"></em>
@@ -358,7 +358,7 @@ gen:ActionEmbeddedTemplate
         <div rel="v-s:contributor" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
         <veda-control data-type="link" rel="v-s:contributor" class="-view edit search fulltext"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:controller" property="rdfs:label"></em>
@@ -367,7 +367,7 @@ gen:ActionEmbeddedTemplate
         <div rel="v-s:controller" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
         <veda-control data-type="link" rel="v-s:controller" class="-view edit search fulltext"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:dateToPlan" property="rdfs:label"></em>
@@ -376,7 +376,7 @@ gen:ActionEmbeddedTemplate
         <div property="v-s:dateToPlan" class="view -edit search"></div>
         <veda-control data-type="date" property="v-s:dateToPlan" class="-view edit search"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:hasStatus" property="rdfs:label"></em>
@@ -385,7 +385,7 @@ gen:ActionEmbeddedTemplate
         <div rel="v-s:hasStatus" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
         <veda-control data-type="link" rel="v-s:hasStatus" class="-view edit search fulltext dropdown"></veda-control>
       </div>
-    </div>  
+    </div>
   </section>
 """
 .
@@ -409,10 +409,10 @@ gen:ActionTemplate
         <em about="v-s:registrationNumber" property="rdfs:label"></em>
       </div>
       <div class="col-sm-3 col-xs-3">
-        <div property="v-s:registrationNumber" class="view -edit search"></div>
-        <veda-control property="v-s:registrationNumber" data-type="string" class="-view edit search"></veda-control>
+        <div property="v-s:registrationNumber" class="view -edit -search"></div>
+        <veda-control property="v-s:registrationNumber" data-type="text" class="-view edit search"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:description" property="rdfs:label"></em>
@@ -421,7 +421,7 @@ gen:ActionTemplate
         <div property="v-s:description" class="view -edit search"></div>
         <veda-control data-type="text" property="v-s:description" class="-view edit search"></veda-control>
       </div>
-    </div>      
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:responsible" property="rdfs:label"></em>
@@ -430,7 +430,7 @@ gen:ActionTemplate
         <div rel="v-s:responsible" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
         <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="gen:contributorMeetingBundle" property="rdfs:label"></em>
@@ -439,7 +439,7 @@ gen:ActionTemplate
         <div rel="v-s:contributor" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
         <veda-control data-type="link" rel="v-s:contributor" class="-view edit search fulltext"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:controller" property="rdfs:label"></em>
@@ -448,7 +448,7 @@ gen:ActionTemplate
         <div rel="v-s:controller" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
         <veda-control data-type="link" rel="v-s:controller" class="-view edit search fulltext"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:dateToPlan" property="rdfs:label"></em>
@@ -457,7 +457,7 @@ gen:ActionTemplate
         <div property="v-s:dateToPlan" class="view -edit search"></div>
         <veda-control data-type="date" property="v-s:dateToPlan" class="-view edit search"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:hasStatus" property="rdfs:label"></em>
@@ -466,7 +466,7 @@ gen:ActionTemplate
         <div rel="v-s:hasStatus" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
         <veda-control data-type="link" rel="v-s:hasStatus" class="-view edit search fulltext dropdown"></veda-control>
       </div>
-    </div>  
+    </div>
   </section>
   <hr>
   <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>

@@ -53,8 +53,8 @@ gen:AccountingDocTemplate
           <label about="v-s:registrationNumber" property="rdfs:label"></label>
         </div>
         <div class="col-sm-3 col-xs-3">
-          <div property="v-s:registrationNumber" class="view -edit search"></div>
-          <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+          <div property="v-s:registrationNumber" class="view -edit -search"></div>
+          <veda-control data-type="text" property="v-s:registrationNumber" class="-view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -74,7 +74,7 @@ gen:AccountingDocTemplate
           <div property="v-s:transactionDate" class="view -edit search"></div>
           <veda-control data-type="date" property="v-s:transactionDate" class="-view edit search"></veda-control>
         </div>
-      </div>      
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasContract" property="rdfs:label"></label>
@@ -141,7 +141,7 @@ gen:AccountingDocTemplate
             </div>
           </div>
         </div>
-      </div>      
+      </div>
     </section>
 
     <section id="Participants">

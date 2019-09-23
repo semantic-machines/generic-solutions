@@ -59,7 +59,7 @@ gen:ClaimEventTemplate
      individual["v-s:responsibleDepartment"] = [ veda.appointment["v-s:parentUnit"][0] ] ;
     }
   }
-  
+
   if(!individual.hasValue("v-s:initiator") && mode == "edit") {
     individual["v-s:initiator"] = [ [veda.appointment][0] ];
   }
@@ -82,7 +82,7 @@ gen:ClaimEventTemplate
   //# sourceURL=gen:EngineeringRequest_pre
 
  </script>
- 
+
 <div>
   <div class="container sheet">
     <h3 class="margin-sm">
@@ -91,17 +91,17 @@ gen:ClaimEventTemplate
     </h3>
     <section id="MainProperties">
       <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
-      
+
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:registrationNumber" property="rdfs:label"></label>
         </div>
         <div class="col-sm-3 col-xs-3">
-          <div property="v-s:registrationNumber" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div property="v-s:registrationNumber" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="text" property="v-s:registrationNumber" class="-view -edit search"></veda-control>
         </div>
       </div>
-      
+
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="gen:ClaimEvent_EventDate_Bundle" property="rdfs:label"></label>
@@ -171,7 +171,7 @@ gen:ClaimEventTemplate
       </div>
       <div class="col-sm-9 col-xs-7">
         <table class="table table-bordered">
-          <thead class="result-header"> 
+          <thead class="result-header">
             <tr class="active">
                <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
                <th about="rdfs:label" property="rdfs:label"></th>
@@ -192,7 +192,7 @@ gen:ClaimEventTemplate
            </tfoot>
          </table>
          </div>
-      </div>   
+      </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <label about="v-s:attachment" property="rdfs:label"></label>
@@ -202,7 +202,7 @@ gen:ClaimEventTemplate
         <veda-control data-type="file" rel="v-s:attachment" class="-view edit search"></veda-control>
       </div>
     </div>
-     
+
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <label about="gen:ClaimEvent_hasContract_Bundle" property="rdfs:label"></label>
@@ -232,7 +232,7 @@ gen:ClaimEventTemplate
             </tfoot>
           </table>
         </div>
-      </div>     
+      </div>
     </section>
     <hr>
     <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
@@ -253,7 +253,7 @@ gen:ClaimEventTemplate
     </div>
   </div>
 <script>
- 
+
   $("#add-OutgoingLetter", template).click(function () {
     var _class = new veda.IndividualModel("v-s:OutgoingLetter"),
     OutcomingLetter = new veda.IndividualModel(),
@@ -273,7 +273,7 @@ gen:ClaimEventTemplate
 
       OutcomingLetter["v-s:recipient"] = recipient ;
       OutcomingLetter["v-s:sender"] = [ newSender ];
-        
+
       var Link = new veda.IndividualModel();
       Link["rdf:type"] = [ new veda.IndividualModel("v-s:Link") ];
       Link["v-s:from"] = [ OutcomingLetter ];
@@ -307,7 +307,7 @@ gen:ClaimEventTemplate
       OutcomingClaim["v-s:dateFrom"] = individual ["v-s:date"];
       OutcomingClaim["v-s:hasStatus"] = individual ["v-s:hasStatus"];
       OutcomingClaim["v-s:hasClaimEvent"] = [ individual ];
-        
+
       var Link = new veda.IndividualModel();
       Link["rdf:type"] = [ new veda.IndividualModel("v-s:Link") ];
       Link["v-s:from"] = [ OutcomingClaim ];
@@ -316,7 +316,7 @@ gen:ClaimEventTemplate
 
       riot.route( ["#", OutcomingClaim.id, "#main", tmpl, "edit"].join("/") );
     })
-  });  
+  });
 
   $("#add-IncomingClaim", template).click(function () {
     var _class = new veda.IndividualModel("v-s:Claim"),
@@ -340,7 +340,7 @@ gen:ClaimEventTemplate
       IncomingClaim["v-s:dateFrom"] = individual ["v-s:date"];
       IncomingClaim["v-s:hasStatus"] = individual ["v-s:hasStatus"];
       IncomingClaim["v-s:hasClaimEvent"] = [ individual ];
-        
+
       var Link = new veda.IndividualModel();
       Link["rdf:type"] = [ new veda.IndividualModel("v-s:Link") ];
       Link["v-s:from"] = [ IncomingClaim ];
@@ -349,7 +349,7 @@ gen:ClaimEventTemplate
 
       riot.route( ["#", IncomingClaim.id, "#main", tmpl, "edit"].join("/") );
     })
-  }); 
+  });
 
   //Поцессная часть
   function processHandler() {
@@ -416,7 +416,7 @@ gen:ClaimEventEmbeddedTemplate
       <div property="v-s:theme" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
       <veda-control data-type="string" property="v-s:theme" class="-view edit search"></veda-control>
     </div>
-  </div>  
+  </div>
   <div class="row row-attribute">
     <div class="col-sm-3 col-xs-5">
       <label about="v-s:initiator" property="rdfs:label"></label>
@@ -443,7 +443,7 @@ gen:ClaimEventEmbeddedTemplate
       <div property="v-s:claimCircumstanceDescription" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
       <veda-control data-type="text" property="v-s:claimCircumstanceDescription" class="-view edit search"></veda-control>
     </div>
-  </div>  
-</div>      
+  </div>
+</div>
   """ ;
 .

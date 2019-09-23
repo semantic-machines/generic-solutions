@@ -125,10 +125,10 @@ gen:BusinessTripTemplate
       <small about="@" property="rdfs:label"></small>
     </h2>
     <hr>
-		<section>
-			<h4 class="section-header clearfix">
-				<span about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></span>
-				<!--<veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordTemplate" class="-view edit -search create create-modal pull-right"></veda-control>-->
+    <section>
+      <h4 class="section-header clearfix">
+        <span about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></span>
+        <!--<veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordTemplate" class="-view edit -search create create-modal pull-right"></veda-control>-->
         <veda-control data-type="link" rel="v-s:hasBusinessTripRegistrationRecord" class="-view -edit search create pull-right"></veda-control>
         <div class="view -edit -search pull-right">
           <button class="btn btn-xs btn-success" id="add-RegRecord">
@@ -136,32 +136,32 @@ gen:BusinessTripTemplate
             <span about="v-s:hasBusinessTripRegistrationRecord" property="rdfs:label"></span>
           </button>
         </div>
-			</h4>
-			<div class="table-responsive -view edit -search">
-				<table class="table no-margin">
-					<thead class="result-header">
-						<tr>
-							<th width="1"><span class="glyphicon glyphicon-search"></span></th>
-							<th about="gen:RegNumBusinessTripBundle" property="rdfs:label"></th>
-							<th about="v-s:registrationDate" property="rdfs:label"></th>
-						</tr>
-					</thead>
-					<tbody rel="v-s:hasBusinessTripRegistrationRecord" >
-						<tr>
+      </h4>
+      <div class="table-responsive -view edit -search">
+        <table class="table no-margin">
+          <thead class="result-header">
+            <tr>
+              <th width="1"><span class="glyphicon glyphicon-search"></span></th>
+              <th about="gen:RegNumBusinessTripBundle" property="rdfs:label"></th>
+              <th about="v-s:registrationDate" property="rdfs:label"></th>
+            </tr>
+          </thead>
+          <tbody rel="v-s:hasBusinessTripRegistrationRecord" >
+            <tr>
               <td about="@" data-template="v-ui:IconModalTemplate"></td>
-							<td>
-								<div about="@" property="v-s:registrationNumber"></div>
-							</td>
-							<td>
-								<div about="@" property="v-s:registrationDate"></div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+              <td>
+                <div about="@" property="v-s:registrationNumber"></div>
+              </td>
+              <td>
+                <div about="@" property="v-s:registrationDate"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
        <div rel="v-s:hasBusinessTripRegistrationRecord" data-template="gen:BusinessTripRegistrationRecordEmbeddedTemplate" data-embedded="true" class="view -edit search create"></div>
-		</section>    
-    
+    </section>
+
     <section id="MainProperties">
       <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
       <div class="row row-attribute">
@@ -292,9 +292,9 @@ gen:BusinessTripTemplate
           <div property="v-s:duration" class="view -edit search"></div>
           <veda-control data-type="decimal" property="v-s:duration" class="-view edit search"></veda-control>
         </div>
-      </div>                                          
-		</section>
-		<section id="hasChangeOfTerms">
+      </div>
+    </section>
+    <section id="hasChangeOfTerms">
       <h4 class="section-header clearfix">
         <span about="gen:ChangeOfTerms" property="rdfs:label"></span>
         <!--<veda-control data-type="link" rel="gen:hasChangeOfBusinessTrip" data-template="gen:ChangeOfTermsTemplate" class="-view edit -search create create-modal pull-right"></veda-control>-->
@@ -372,8 +372,8 @@ gen:BusinessTripTemplate
         </table>
       </div>
       <div rel="gen:hasDeviationOnExpenses" data-template="gen:DeviationOnExpensesEmbeddedTemplate" data-embedded="true" class="-view -edit search create"></div>
-    </section>      
-	  <hr>
+    </section>
+    <hr>
     <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
     <br>
     <!-- BUTTONS -->
@@ -505,7 +505,7 @@ $("#add-RegRecord", template).click(function () {
 
 
 
-  
+
 
 
 
@@ -676,10 +676,10 @@ gen:BusinessTripRegistrationRecordTemplate
           <em about="gen:RegNumBusinessTripBundle" property="rdfs:label"></em>
         </div>
         <div class="col-sm-3 col-xs-3">
-         <div about="@" property="v-s:registrationNumber" class="view  -edit search"></div>
-        <veda-control data-type="text" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+          <div property="v-s:registrationNumber" class="view -edit -search"></div>
+          <veda-control data-type="text" property="v-s:registrationNumber" class="-view edit search"></veda-control>
         </div>
-      </div> 
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <em about="v-s:registrationDate" property="rdfs:label" ></em>
@@ -688,7 +688,7 @@ gen:BusinessTripRegistrationRecordTemplate
           <div property="v-s:registrationDate" class="view -edit search"></div>
         <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
         </div>
-      </div> 
+      </div>
   </section>
   <hr>
   <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
@@ -712,19 +712,19 @@ gen:BusinessTripRegistrationRecordEmbeddedTemplate
         <em about="gen:RegNumBusinessTripBundle" property="rdfs:label"></em>
       </div>
       <div class="col-sm-3 col-xs-3">
-        <div about="@" property="v-s:registrationNumber" class="view  -edit search"></div>
+        <div property="v-s:registrationNumber" class="view -edit -search"></div>
         <veda-control data-type="text" property="v-s:registrationNumber" class="-view edit search"></veda-control>
-        </div>
-      </div> 
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <em about="v-s:registrationDate" property="rdfs:label" ></em>
+      </div>
+    </div>
+    <div class="row row-attribute">
+      <div class="col-sm-3 col-xs-5">
+        <em about="v-s:registrationDate" property="rdfs:label" ></em>
       </div>
       <div class="col-sm-3 col-xs-3">
         <div property="v-s:registrationDate" class="view -edit search"></div>
         <veda-control property="v-s:registrationDate" data-type="date" class="-view edit search"></veda-control>
       </div>
-    </div> 
+    </div>
   </section>
 """
 .
@@ -814,7 +814,7 @@ gen:ChangeOfTermsEmbeddedTemplate
         <div property="v-s:dateTo" class="view -edit search"></div>
         <veda-control property="v-s:dateTo" data-type="date" class="-view edit search"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:duration" property="rdfs:label"></em>
@@ -823,7 +823,7 @@ gen:ChangeOfTermsEmbeddedTemplate
         <div property="v-s:duration" class="view -edit search"></div>
         <veda-control data-type="decimal" property="v-s:duration" class="-view edit search"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:hasStatus" property="rdfs:label"></em>
@@ -832,7 +832,7 @@ gen:ChangeOfTermsEmbeddedTemplate
         <div rel="v-s:hasStatus" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
         <veda-control data-type="link" rel="v-s:hasStatus" class="-view edit search fulltext dropdown"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="rdfs:comment" property="rdfs:label"></em>
@@ -841,7 +841,7 @@ gen:ChangeOfTermsEmbeddedTemplate
         <div property="rdfs:comment" class="view -edit search"></div>
         <veda-control data-type="text" property="rdfs:comment" class="-view edit search"></veda-control>
       </div>
-    </div>  
+    </div>
   </section>
 """
 .
@@ -916,7 +916,7 @@ gen:DeviationOnExpensesEmbeddedTemplate
         <div rel="v-s:hasBusinessTripReasonDeviationOnExpenses" data-template="v-ui:LabelTemplate" class="view -edit search"></div>
         <veda-control data-type="link" rel="v-s:hasBusinessTripReasonDeviationOnExpenses" class="-view edit search fulltext dropdown"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:description" property="rdfs:label"></em>
@@ -925,7 +925,7 @@ gen:DeviationOnExpensesEmbeddedTemplate
         <div property="v-s:description" class="view -edit search"></div>
         <veda-control data-type="text" property="v-s:description" class="-view edit search"></veda-control>
       </div>
-    </div>  
+    </div>
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:attachment" property="rdfs:label" class="view edit -search"></em>
@@ -934,7 +934,7 @@ gen:DeviationOnExpensesEmbeddedTemplate
         <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
         <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
       </div>
-    </div>  
+    </div>
   </section>
 """
 .
