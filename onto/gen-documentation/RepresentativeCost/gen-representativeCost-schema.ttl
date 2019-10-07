@@ -83,7 +83,7 @@ gen:PS_dateTo_RepresentativeCosts
   rdfs:label "Property specification v-s:dateTo for gen:RepresentativeCosts class"@en ;
 .
 
-#-----Место 
+#-----Место
 #v-s:placeDescription
 gen:PS_placeDescription_RepresentativeCosts
   rdf:type v-ui:PropertySpecification ;
@@ -197,7 +197,7 @@ gen:PS_hasPrice_RepresentativeCostsForEvent
 gen:PS_hasPricePerUnit_RepresentativeCosts
   rdf:type v-ui:PropertySpecification ;
   v-ui:forClass gen:RepresentativeCosts ;
-  v-ui:forProperty v-s:hasPricePerUnit ; 
+  v-ui:forProperty v-s:hasPricePerUnit ;
   v-ui:minCardinality 0 ;
   v-ui:maxCardinality 1 ;
   rdfs:label "Спецификация свойства v-s:hasPricePerUnit для класса gen:RepresentativeCosts"@ru ;
@@ -228,7 +228,7 @@ gen:PS_property_RepresentativeCosts
 #-----Необходима предоплата
 gen:isPrepaymentRequired
   rdf:type owl:DatatypeProperty ;
-  rdfs:domain gen:Pass ;
+  rdfs:domain gen:RepresentativeCosts ;
   rdfs:label "Необходима предоплата"@ru ;
   rdfs:label "Prepayment required"@en ;
   rdfs:range xsd:boolean ;
@@ -345,7 +345,7 @@ gen:PS_correspondentOrganization_ThirdPartyParticipant
 .
 
 #-----Сотрудник
-#v-s:correspondentPersonDescription 
+#v-s:correspondentPersonDescription
 gen:PS_correspondentPersonDescription_ThirdPartyParticipant
   rdf:type v-ui:PropertySpecification ;
   v-ui:forClass v-s:ThirdPartyParticipant ;
@@ -364,7 +364,7 @@ gen:RepresentativeCostsEvent
   rdfs:label "Representative costs event"@en ;
   v-ui:hasTemplate gen:RepresentativeCostsEventTemplate ;
 .
-#-----Ответственный 
+#-----Ответственный
 #v-s:responsible
 gen:PS_responsible_RepresentativeCostsEvent
   rdf:type v-ui:ObjectPropertySpecification ;
@@ -379,7 +379,7 @@ gen:PS_responsible_RepresentativeCostsEvent
   rdfs:label "v-s:responsible property specification for gen:RepresentativeCostsEvent class"@en ;
 .
 
-#-----Дата окончания 
+#-----Дата окончания
 #v-s:dateTo
 gen:PS_dateTo_RepresentativeCostsEvent
   rdf:type v-ui:PropertySpecification ;
@@ -433,6 +433,6 @@ gen:PS_hasRepresentativeCostsKind_RepresentativeCostsForEvent
 .
 #-----Цена
 #v-s:hasPrice
-    
+
     #v-s:hasCurrency
     #v-s:sum

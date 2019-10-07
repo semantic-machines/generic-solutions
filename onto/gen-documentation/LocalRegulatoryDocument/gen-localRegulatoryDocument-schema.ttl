@@ -42,7 +42,7 @@ gen:hasPositionDictionary
   rdfs:label "Должность"@ru ;
   rdfs:label "Position"@en ;
   rdfs:range gen:PositionDictionary ;
-  rdfs:domain gen:LocalRegulatoryDocument ;
+  rdfs:domain v-s:LocalRegulatoryDocument ;
 .
 #-----------------------------------------------------
 #v-s:VersionOfLocalRegulatoryDocument
