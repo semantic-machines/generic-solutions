@@ -1,5 +1,4 @@
 @prefix d: <http://semantic-machines.com/veda/veda-data/> .
-@prefix : <http://semantic-machines.com/veda/gen-schema/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -32,8 +31,8 @@ gen:DocumentationManagementAspect
   v-s:hasApplication gen:CorrespondenceApplication;
   v-s:hasApplication gen:LocalRegulatoryDocumentApplication;
   v-s:hasApplication gen:BusinessTripApplication ;
-  v-s:hasApplication gen:RepresentativeCostsApplication ;	
-  v-s:hasApplication gen:MeetingsManagementApplication ;  
+  v-s:hasApplication gen:RepresentativeCostsApplication ;
+  v-s:hasApplication gen:MeetingsManagementApplication ;
 .
 
 #--------------------------ОТЧЕТЫ ПО ДОКУМЕНТАМ--------------

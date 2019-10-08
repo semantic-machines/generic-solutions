@@ -1,5 +1,4 @@
 @prefix d: <http://semantic-machines.com/veda/veda-data/> .
-@prefix : <http://semantic-machines.com/veda/mondi-schema/> .
 @prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -49,7 +48,7 @@ gen:ClaimEvent_ComplexRouteStartForm_Template
   //Рассмотрение
   individual[complex+'review'][0][simple+'visible'] = [true];
   individual[complex+'review'][0][simple+'editable'] = [true];
-  
+
   //# sourceURL=mnd-s:ClaimEvent_ComplexRouteStartForm_Template_pre
 </script>
 <div about="@" data-embedded="true" data-template="s-wf:ComplexRouteStartForm_Common_Template" class="view edit"></div>
