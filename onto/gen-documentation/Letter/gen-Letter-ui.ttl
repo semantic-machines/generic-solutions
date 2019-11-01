@@ -695,8 +695,8 @@ gen:CorrespondentTemplateNew
   rdfs:label "Шаблон для класса v-s:Letter"@ru ;
   rdfs:label "Template for v-s:Letter class"@en ;
   v-ui:template """
-<div>
-  <div>
+<div class="panel panel-default">
+  <div class="panel-body">
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:correspondentOrganization" property="rdfs:label"></em>
@@ -748,7 +748,6 @@ gen:CorrespondentTemplateNew
         <veda-control data-type="text" property="v-s:correspondentPersonDescription" class="-view edit search"></veda-control>
       </div>
     </div>
-    <hr>
   </div>
 </div>
 <script>
