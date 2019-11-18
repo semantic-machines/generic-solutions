@@ -24,3 +24,10 @@ gen:RequestBlank
   rdfs:label "Request"@en ;
   v-fc:targetType v-s:Request ;
 .
+
+gen:RequestSearchBlank
+  a v-fc:Blank;
+  rdfs:label "Заявка"@ru ;
+  rdfs:label "Request"@en ;
+  v-fc:targetType v-s:Request ;
+.

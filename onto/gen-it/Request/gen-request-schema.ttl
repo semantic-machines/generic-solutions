@@ -27,18 +27,54 @@ gen:TS_Request
 
 #-----Регистрационный номер
 #v-s:registrationNumber
+gen:PS_registrationNumber_Request
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass v-s:Request;
+   v-ui:forProperty v-s:registrationNumber ;
+   v-ui:minCardinality 1 ;
+   v-ui:maxCardinality 1 ;
+   rdfs:label "Спецификация свойства v-s:registrationNumber для класса v-s:Request"@ru ;
+   rdfs:label "v-s:registrationNumber property specification v-s:Request"@en ;
+.
 
 #-----Статус
 #v-s:hasStatus
+gen:PS_hasStatus_Request
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass v-s:Request;
+   v-ui:forProperty v-s:hasStatus ;
+   v-ui:minCardinality 1 ;
+   v-ui:maxCardinality 1 ;
+   rdfs:label "Спецификация свойства v-s:hasStatus для класса v-s:Request"@ru ;
+   rdfs:label "v-s:hasStatus property specification v-s:Request"@en ;
+.
 
 #-----Дата
 #v-s:date
 
 #-----Тема
 #v-s:theme
+gen:PS_theme_Request
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass v-s:Request;
+   v-ui:forProperty v-s:theme ;
+   v-ui:minCardinality 1 ;
+   v-ui:maxCardinality 1 ;
+   rdfs:label "Спецификация свойства v-s:theme для класса v-s:Request"@ru ;
+   rdfs:label "v-s:theme property specification v-s:Request"@en ;
+.
 
 #-----Мероприятие
 #v-s:hasAction
+gen:PS_hasAction_Request
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass v-s:Request;
+   v-ui:forProperty v-s:hasAction ;
+   v-ui:minCardinality 1 ;
+   v-ui:maxCardinality 1 ;
+   rdfs:label "Спецификация свойства v-s:hasAction для класса v-s:Request"@ru ;
+   rdfs:label "v-s:hasAction property specification v-s:Request"@en ;
+.
 
 
 

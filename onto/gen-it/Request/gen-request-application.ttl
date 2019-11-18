@@ -31,6 +31,8 @@ gen:RequestApplication
   v-ui:hasTemplate v-s:ApplicationTemplate ;
 
   v-s:hasCreate gen:RequestCreate ;
+  v-s:hasRegistry gen:RequestSearch ;
+  v-s:hasRegistry gen:ActionSearch ;
 
   v-s:description """
 Приложение предназначено для оформления и регистрации ИТ заявок.
