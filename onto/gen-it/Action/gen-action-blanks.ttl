@@ -24,3 +24,10 @@ gen:ActionBlank
   rdfs:label "Action"@en ;
   v-fc:targetType v-s:Action ;
 .
+
+gen:ActionSearchBlank
+  a v-fc:Blank;
+  rdfs:label "Мероприятие"@ru ;
+  rdfs:label "Action"@en ;
+  v-fc:targetType v-s:Action ;
+.

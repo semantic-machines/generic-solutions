@@ -25,27 +25,74 @@ gen:TS_Action
   v-s:loadPriority 10 ;
 .
 
-#-----Регистрационный номер
-#v-s:registrationNumber
-
-#-----Описание
-#v-s:description
-
-#-----Ответсвенный
+#-----Ответственный
 #v-s:responsible
 
-#-----С кем
-#v-s:contributor
+#-----Ответственное подразделение
+#v-s:responsibleDepartment
 
-#-----Контролер
-#v-s:controller
+#-----Ответственная организация
+#v-s:responsibleOrganization
+gen:PS_responsibleOrganization_Action
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass v-s:Action;
+   v-ui:forProperty v-s:responsibleOrganization;
+   v-ui:minCardinality 1 ;
+   v-ui:maxCardinality 1 ;
+   rdfs:label "Спецификация свойства v-s:responsibleOrganization для класса v-s:Action"@ru ;
+   rdfs:label "v-s:responsibleOrganization property specification v-s:Action"@en ;
+.
 
-#-----Дата окончания плановая
-#v-s:dateToPlan
+#-----Вложение
+#v-s:attachment
 
-#-----Статус
-#v-s:dateToPlan
+#-----Дата плановая
+#v-s:datePlan
 
+#-----Время работы
+#v-s:timeEffort
+
+#-----Описание задачи
+#v-s:taskDescription
+gen:PS_taskDescription_Action
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass v-s:Action;
+   v-ui:forProperty v-s:taskDescription;
+   v-ui:minCardinality 1 ;
+   v-ui:maxCardinality 1 ;
+   rdfs:label "Спецификация свойства v-s:taskDescription для класса v-s:Action"@ru ;
+   rdfs:label "v-s:taskDescription property specification v-s:Action"@en ;
+.
+
+#-----Дата фактическая 
+#v-s:dateFact
+gen:PS_dateFact_Action
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass v-s:Action;
+   v-ui:forProperty v-s:dateFact;
+   v-ui:minCardinality 1 ;
+   v-ui:maxCardinality 1 ;
+   rdfs:label "Спецификация свойства v-s:dateFact для класса v-s:Action"@ru ;
+   rdfs:label "v-s:dateFactproperty specification v-s:Action"@en ;
+.
+
+#-----Время работы
+#v-s:timeEffort
+
+#-----Описание отчета
+#v-s:reportDescription
+gen:PS_reportDescription_Action
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass v-s:Action;
+   v-ui:forProperty v-s:reportDescription;
+   v-ui:minCardinality 1 ;
+   v-ui:maxCardinality 1 ;
+   rdfs:label "Спецификация свойства v-s:reportDescription для класса v-s:Action"@ru ;
+   rdfs:label "v-s:reportDescription specification v-s:Action"@en ;
+.
+
+#-----Мероприятие
+#v-s:hasAction
 
 
 
