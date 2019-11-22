@@ -1,0 +1,212 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-itil-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Инфраструктура ИТ. Схема"@ru ;
+  rdfs:label "GEN ontology. Infrastructure IT. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+
+# ----------------------------------------------------------------------
+d:All_IT_InfrastructureObjects
+  a v-s:IT_InfrastructureObjects;
+  rdfs:label "Вся инфраструктура ИТ"@ru ;
+  rdfs:label "All IT Infrastructure"@en ;
+  v-s:title "Вся инфраструктура ИТ"^^xsd:string;
+.
+
+# ------------------------------------------------------------ КЛАССЫ --
+
+#--------------------------------------------------- Программное обеспечение --
+#v-s:IT_InfrastructureObjectsSoftware
+gen:TS_IT_InfrastructureObjectsSoftware
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:IT_InfrastructureObjectsSoftware ;
+  v-ui:defaultTemplate gen:IT_InfrastructureObjectsTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+#-----Название
+#v-s:title
+gen:PS_title_IT_InfrastructureObjects 
+  rdf:type v-ui:DatatypePropertySpecification;
+  v-ui:forClass v-s:IT_InfrastructureObjects;
+  v-ui:forProperty v-s:title;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:title для класса v-s:IT_InfrastructureObjects"@ru ;
+  rdfs:label "v-s:title property specification for v-s:IT_InfrastructureObjects  class"@en ;
+.
+
+#-----Назначение
+#v-s:description
+gen:PS_description_IT_InfrastructureObjects 
+  rdf:type v-ui:PropertySpecification;
+  v-ui:forClass v-s:IT_InfrastructureObjects;
+  v-ui:forProperty v-s:description;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  rdfs:label "Спецификация свойства v-s:description для класса v-s:IT_InfrastructureObjects"@ru ;
+  rdfs:label "v-s:description  property specification for v-s:IT_InfrastructureObjects  class"@en ;
+.
+
+#-----Вид объекта
+v-s:hasMaintenanceObjectKind 
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Вид объекта"@ru ;
+  rdfs:label "To be"@en ;
+  rdfs:range v-s:MaintenanceObjectKind;
+  rdfs:domain v-s:IT_InfrastructureObjects;
+.
+gen:PS_hasMaintenanceObjectKind_IT_InfrastructureObjects 
+  rdf:type v-ui:ObjectPropertySpecification;
+  v-ui:forClass v-s:IT_InfrastructureObjects;
+  v-ui:forProperty v-s:hasMaintenanceObjectKind;
+  v-ui:minCardinality 1 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:MaintenanceObjectKind' && 'v-s:hasParentLink' == '{individual[\"rdf:type\"][0].id}')"^^xsd:string;
+  rdfs:label "Спецификация свойства v-s:hasMaintenanceObjectKind для класса v-s:IT_InfrastructureObjects"@ru ;
+  rdfs:label "v-s:hasMaintenanceObjectKind property specification for v-s:IT_InfrastructureObjects  class"@en ;
+.
+
+#-----Где установлен
+#v-s:hasParentLink
+gen:PS_hasParentLink_IT_InfrastructureObjects
+  rdf:type v-ui:ObjectPropertySpecification;
+  v-ui:forClass v-s:IT_InfrastructureObjects;
+  v-ui:forProperty v-s:hasParentLink;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:IT_InfrastructureObjects')"^^xsd:string;
+  rdfs:label "Спецификация свойства v-s:hasParentLink для класса v-s:IT_InfrastructureObjects"@ru ;
+  rdfs:label "v-s:hasParentLink property specification for v-s:IT_InfrastructureObjects  class"@en ;
+.
+
+#-----Комплект поставки
+#v-s:hasLinkObject
+
+gen:PS_hasLinkObject_IT_InfrastructureObjects 
+  rdf:type v-ui:ObjectPropertySpecification;
+  v-ui:forClass v-s:IT_InfrastructureObjects;
+  v-ui:forProperty v-s:hasLinkObject;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "'rdf:type'=='v-s:IT_InfrastructureObjects'"^^xsd:string;
+  rdfs:label "Спецификация свойства v-s:hasLinkObject для класса v-s:IT_InfrastructureObjects"@ru ;
+  rdfs:label "v-s:hasLinkObject property specification for v-s:IT_InfrastructureObjects  class"@en ;
+.
+
+#-----Собственник
+#v-s:proprietor
+gen:PS_proprietor_IT_InfrastructureObjects 
+	rdf:type v-ui:ObjectPropertySpecification;
+  v-ui:forClass v-s:IT_InfrastructureObjects;
+  v-ui:forProperty v-s:proprietor;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'==='v-s:Organization')"^^xsd:string;
+  rdfs:label "Спецификация свойства v-s:proprietor для класса v-s:IT_InfrastructureObjects"@ru ;
+  rdfs:label "v-s:proprietor property specification for v-s:IT_InfrastructureObjects  class"@en ;
+.
+
+#-----Заказчик
+#v-s:customer
+gen:PS_customer_IT_InfrastructureObjects 
+	rdf:type v-ui:ObjectPropertySpecification;
+   v-ui:forClass v-s:IT_InfrastructureObjects;
+   v-ui:forProperty v-s:customer;
+   v-ui:minCardinality 0 ;
+  	v-ui:maxCardinality 1 ;
+   v-ui:queryPrefix "('rdf:type'==='v-s:Organization')"^^xsd:string;
+   rdfs:label "Спецификация свойства v-s:customer для класса v-s:IT_InfrastructureObjects"@ru ;
+  	rdfs:label "v-s:customer property specification for v-s:IT_InfrastructureObjects  class"@en ;
+.
+
+#-----Эксплуатант
+#v-s:operator
+gen:PS_operator_IT_InfrastructureObjects 
+	rdf:type v-ui:ObjectPropertySpecification;
+   v-ui:forClass v-s:IT_InfrastructureObjects;
+   v-ui:forProperty v-s:operator;
+   v-ui:minCardinality 0 ;
+  	v-ui:maxCardinality 1 ;
+   v-ui:queryPrefix "('rdf:type'==='v-s:Organization')"^^xsd:string;
+   rdfs:label "Спецификация свойства v-s:operator для класса v-s:IT_InfrastructureObjects"@ru ;
+  	rdfs:label "v-s:operator property specification for v-s:IT_InfrastructureObjects  class"@en ;
+.
+
+#-----Комментарий
+#rdfs:comment
+
+
+
+
+#--------------------------------------------------- Техническое обеспечение --
+#v-s:IT_InfrastructureObjectsHardware
+gen:TS_IT_InfrastructureObjectsHardware
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:IT_InfrastructureObjectsHardware ;
+  v-ui:defaultTemplate gen:IT_InfrastructureObjectsTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+#-------------------------------------------------------- Базы данных --
+#v-s:IT_InfrastructureObjectsDataBase
+gen:TS_IT_InfrastructureObjectsDataBase
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:IT_InfrastructureObjectsDataBase ;
+  v-ui:defaultTemplate gen:IT_InfrastructureObjectsTemplate ;
+  v-s:loadPriority 10 ;
+.
+
+
+
+v-s:MaintenanceObjectKind
+  rdf:type owl:Class ;    
+  rdfs:label "Вид обслуживаемого объекта"@ru ;
+  rdfs:label "Maintenance object kind"@en ;
+  rdfs:subClassOf v-s:UserThing;
+.
+
+# --- В связи с вводом класса возникает предикат v-s:hasMaintenanceObjectKind.
+
+d:ocxbn853beibgazl4mz3dm2st8
+  a v-s:MaintenanceObjectKind ;
+  rdfs:label "Информационная система"@ru ;
+  rdfs:label "Office software"@en ;
+  v-s:hasParentLink v-s:IT_InfrastructureObjectsSoftware;
+.
+d:xitswmi7rjbafvkvw2svtanp4y
+  a v-s:MaintenanceObjectKind ;
+  rdfs:label "Операционная система"@ru ;
+  rdfs:label "Operating system"@en ;
+  v-s:hasParentLink v-s:IT_InfrastructureObjectsSoftware;
+.
+d:1lhjo781ia8078wrtz0rj3csq1
+  a v-s:MaintenanceObjectKind ;
+  rdfs:label "Офисное программное обеспечение"@ru ;
+  rdfs:label "Office software"@en ;
+  v-s:hasParentLink v-s:IT_InfrastructureObjectsSoftware;
+.
+d:o4ykpomqa73n4ya3wkfa806276
+  a v-s:MaintenanceObjectKind ;
+  rdfs:label "Сервер виртуальный"@ru ;
+  rdfs:label "Virtual server"@en ;
+  v-s:hasParentLink v-s:IT_InfrastructureObjectsHardware;
+.
+d:6gl17gms9g1w3leignc8t6y6se
+  a v-s:MaintenanceObjectKind ;
+  rdfs:label "Сервер физический"@ru ;
+  rdfs:label "Physical server"@en ;
+  v-s:hasParentLink v-s:IT_InfrastructureObjectsHardware;
+.

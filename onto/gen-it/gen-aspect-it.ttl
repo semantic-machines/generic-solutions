@@ -32,4 +32,5 @@ gen:ITAspect
   v-ui:hasTemplate v-s:AspectTemplate ;
 
   v-s:hasApplication gen:RequestApplication ;
+  v-s:hasApplication gen:IT_InfrastructureObjectsApplication ;
 .
