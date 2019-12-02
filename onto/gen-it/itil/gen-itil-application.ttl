@@ -26,7 +26,6 @@ gen:IT_InfrastructureObjectsApplication
   #rdfs:comment "Highest-level support."@en ;
   v-s:shortLabel "Инфраструктура ИТ"@ru ;
   v-s:shortLabel "Infrastructure IT"@en ;
-  v-s:hasImage gen:RequestApplicationImage ;
   v-s:hasIcon gen:RequestApplicationIcon ;
   v-ui:hasTemplate v-s:ApplicationTemplate ;
 

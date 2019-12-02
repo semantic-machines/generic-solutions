@@ -33,6 +33,7 @@ gen:DocumentationManagementAspect
   v-s:hasApplication gen:BusinessTripApplication ;
   v-s:hasApplication gen:RepresentativeCostsApplication ;
   v-s:hasApplication gen:MeetingsManagementApplication ;
+  v-s:hasApplication gen:RequestApplication ;
 .
 
 #--------------------------ОТЧЕТЫ ПО ДОКУМЕНТАМ--------------

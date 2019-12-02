@@ -31,6 +31,7 @@ gen:ITAspect
   v-s:shortLabel "IT"@en ;
   v-ui:hasTemplate v-s:AspectTemplate ;
 
-  v-s:hasApplication gen:RequestApplication ;
+
   v-s:hasApplication gen:IT_InfrastructureObjectsApplication ;
+  v-s:hasApplication gen:RequestITApplication ;
 .

@@ -123,26 +123,26 @@ gen:PS_proprietor_IT_InfrastructureObjects
 #v-s:customer
 gen:PS_customer_IT_InfrastructureObjects 
 	rdf:type v-ui:ObjectPropertySpecification;
-   v-ui:forClass v-s:IT_InfrastructureObjects;
-   v-ui:forProperty v-s:customer;
-   v-ui:minCardinality 0 ;
-  	v-ui:maxCardinality 1 ;
-   v-ui:queryPrefix "('rdf:type'==='v-s:Organization')"^^xsd:string;
-   rdfs:label "Спецификация свойства v-s:customer для класса v-s:IT_InfrastructureObjects"@ru ;
-  	rdfs:label "v-s:customer property specification for v-s:IT_InfrastructureObjects  class"@en ;
+  v-ui:forClass v-s:IT_InfrastructureObjects;
+  v-ui:forProperty v-s:customer;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'==='v-s:Organization')"^^xsd:string;
+  rdfs:label "Спецификация свойства v-s:customer для класса v-s:IT_InfrastructureObjects"@ru ;
+  rdfs:label "v-s:customer property specification for v-s:IT_InfrastructureObjects  class"@en ;
 .
 
 #-----Эксплуатант
 #v-s:operator
 gen:PS_operator_IT_InfrastructureObjects 
 	rdf:type v-ui:ObjectPropertySpecification;
-   v-ui:forClass v-s:IT_InfrastructureObjects;
-   v-ui:forProperty v-s:operator;
-   v-ui:minCardinality 0 ;
-  	v-ui:maxCardinality 1 ;
-   v-ui:queryPrefix "('rdf:type'==='v-s:Organization')"^^xsd:string;
-   rdfs:label "Спецификация свойства v-s:operator для класса v-s:IT_InfrastructureObjects"@ru ;
-  	rdfs:label "v-s:operator property specification for v-s:IT_InfrastructureObjects  class"@en ;
+  v-ui:forClass v-s:IT_InfrastructureObjects;
+  v-ui:forProperty v-s:operator;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'==='v-s:Organization')"^^xsd:string;
+  rdfs:label "Спецификация свойства v-s:operator для класса v-s:IT_InfrastructureObjects"@ru ;
+  rdfs:label "v-s:operator property specification for v-s:IT_InfrastructureObjects  class"@en ;
 .
 
 #-----Комментарий

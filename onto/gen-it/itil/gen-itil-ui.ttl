@@ -144,9 +144,8 @@ gen:IT_InfrastructureObjectsTemplate
    </div>
 </div>
 <script>
-  console.log(individual["rdf:type"][0].id);
     $("#add-copy", template).click(function () {
-      var _class = new veda.IndividualModel("v-s:IT_InfrastructureObjects"),
+      var _class = new veda.IndividualModel(individual["rdf:type"][0].id),
           IT_InfrastructureObjects = new veda.IndividualModel(),
           tmpl = "gen:IT_InfrastructureObjectsTemplate" ;
       IT_InfrastructureObjects["rdf:type"] = [_class] ;
