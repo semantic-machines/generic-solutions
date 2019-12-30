@@ -26,7 +26,7 @@ gen:IT_InfrastructureObjectsApplication
   #rdfs:comment "Highest-level support."@en ;
   v-s:shortLabel "Инфраструктура ИТ"@ru ;
   v-s:shortLabel "Infrastructure IT"@en ;
-  v-s:hasIcon gen:RequestApplicationIcon ;
+  v-s:hasIcon gen:IT_InfrastructureObjectsIcon ;
   v-ui:hasTemplate v-s:ApplicationTemplate ;
 
   v-s:hasCreate gen:IT_InfrastructureObjectsSoftwareCreate ;
@@ -39,16 +39,10 @@ gen:IT_InfrastructureObjectsApplication
   #v-s:attachment gen:UserGuide_pdf ;
 .
 
-gen:RequestApplicationImage
-  a v-s:File ;
-  v-s:fileUri "it-services.jpg"^^xsd:string ;
-  v-s:fileName "it-services.jpg"^^xsd:string ;
-  v-s:filePath "/gen"^^xsd:string ;
-.
 
-gen:RequestApplicationIcon
+gen:IT_InfrastructureObjectsIcon 
   a v-s:File ;
-  v-s:fileUri "it-services.svg"^^xsd:string ;
-  v-s:fileName "it-services.svg"^^xsd:string ;
+  v-s:fileUri "platform.svg"^^xsd:string ;
+  v-s:fileName "platform.svg"^^xsd:string ;
   v-s:filePath "/gen"^^xsd:string ;
 .
