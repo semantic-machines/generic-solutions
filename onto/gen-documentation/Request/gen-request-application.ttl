@@ -21,12 +21,11 @@
 gen:RequestApplication
   rdf:type v-s:Application ;
   rdfs:label "Заявка"@ru ;
-  rdfs:label "ИТ"@en ;
+  rdfs:label "Request"@en ;
   rdfs:comment "Поддержка на высшем уровне."@ru ;
   rdfs:comment "Highest-level support."@en ;
-  v-s:shortLabel "ИТ"@ru ;
-  v-s:shortLabel "IT"@en ;
-  v-s:hasImage gen:RequestApplicationImage ;
+  v-s:shortLabel "Заявка"@ru ;
+  v-s:shortLabel "request"@en ;
   v-s:hasIcon gen:RequestApplicationIcon ;
   v-ui:hasTemplate v-s:ApplicationTemplate ;
 
@@ -34,39 +33,16 @@ gen:RequestApplication
   v-s:hasRegistry gen:RequestSearch ;
   v-s:hasRegistry gen:ActionSearch ;
 
-  v-s:description """
-Приложение предназначено для оформления и регистрации ИТ заявок.
-
-**Приложение обеспечивает возможность:**
-  - Автоматизировать выдачу и учет доверенностей на предприятии.
-  - Оформлять доверенности на физические и юридические лица.
-  - Вести единый реестр выданных доверенностей.
-  - Получить быстрый доступ к информации по выданной доверенности: срок действия, передаваемые полномочия, объект доверия.
-  """@ru ;
-  v-s:description """
-The application is intended for registration of powers of attorney.
-
-**The application allows to:**
-  - To automate issue and account of powers of attorney.
-  - To issue powers of attorney for individuals and legal entities.
-  - To maintain a single register of issued powers of attorney.
-  - Get quick access to information on the issued powers of attorney: expiration date, delegated authority, trust entity.
-  """@en ;
 
   #v-s:attachment mnd-s:OF_23_Doverennosti_pdf ;
   #v-s:attachment gen:UserGuide_pdf ;
 .
 
-gen:RequestApplicationImage
-  a v-s:File ;
-  v-s:fileUri "it-services.jpg"^^xsd:string ;
-  v-s:fileName "it-services.jpg"^^xsd:string ;
-  v-s:filePath "/gen"^^xsd:string ;
-.
+
 
 gen:RequestApplicationIcon
   a v-s:File ;
-  v-s:fileUri "it-services.svg"^^xsd:string ;
-  v-s:fileName "it-services.svg"^^xsd:string ;
+  v-s:fileUri "request.svg"^^xsd:string ;
+  v-s:fileName "request.svg"^^xsd:string ;
   v-s:filePath "/gen"^^xsd:string ;
 .

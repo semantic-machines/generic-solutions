@@ -70,14 +70,21 @@ gen:RequestTemplate
           <veda-control data-type="string" property="v-s:theme" class="-view edit search"></veda-control>
         </div>
       </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:initiator" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div rel="v-s:initiator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>
     </section>
     <section id="hasAction">
       <h4 class="section-header" about="v-s:hasAction" property="rdfs:label"></h4>
       <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
-          <label about="v-s:hasAction" property="rdfs:label"></label>
-        </div>
-        <div class="col-sm-9 col-xs-7">
+   
+        <div class="col-sm-12 col-xs-12">
           <!--<div rel="v-s:hasAction" class="view edit -search" data-template="v-s:ActionEmbedded_Template" data-embedded="true"></div>-->
           <!--<veda-control rel="v-s:hasAction" data-type="link" class="-view edit -search create"></veda-control>-->
           <table class="table table-condensed table-bordered">
@@ -88,8 +95,6 @@ gen:RequestTemplate
                 </th>
                 <!--<th width="1%">№</th>-->
                 <th about="v-s:hasStatus" property="rdfs:label"></th>
-                <th about="gen:FullNameOfEmployeeBundle" property="rdfs:label"></th>
-                <th about="gen:FullNameOfEmployeeBundle" property="rdfs:label"></th>
                 <th  about="v-s:responsible" property="rdfs:label"></th>
                 <th  about="v-s:taskDescription" property="rdfs:label"></th>
                 <th  about="v-s:hasAction" property="rdfs:label"></th>
@@ -104,12 +109,6 @@ gen:RequestTemplate
                 <td>
                   <div about="@" rel="v-s:hasStatus" data-template="v-ui:StatusTemplate" class="view  edit search"></div>
                   <veda-control data-type="link" rel="v-s:hasStatus" class="-view -edit search fulltext dropdown"></veda-control>
-                </td>
-                <td>
-                  <div about="@" property="gen:FullNameOfEmployeeBundle" class="view  edit -search"></div>
-                </td>
-                 <td>
-                  <div about="@" property="gen:FullNameOfEmployeeBundle" class="view  edit -search"></div>
                 </td>
                 <td>
                   <div about="@" rel="v-s:responsible" data-template="v-ui:LabelTemplate" class="view  edit search"></div>
@@ -199,6 +198,7 @@ gen:RequestTemplate
     });
   });
 </script>
+
 """ ;
 .
 
