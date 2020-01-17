@@ -1,0 +1,26 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-function-search/> .
+
+<http://semantic-machines.com/veda/gen-requestIT-blanks>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Заявка ИТ. Создание"@ru ;
+  rdfs:label "GEN ontology. Request IT. Create"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ CREATE --
+gen:RequestITCreate
+  a v-fc:Create;
+  rdfs:label "Заявка ИТ"@ru ;
+  rdfs:label "Request IT"@en ;
+  v-fc:hasBlank gen:RequestITBlank ;
+.

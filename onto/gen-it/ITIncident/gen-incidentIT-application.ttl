@@ -1,0 +1,47 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fs: <http://semantic-machines.com/veda/veda-search/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-incidentIT-application>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Инцидент ИТ. Приложение"@ru ;
+  rdfs:label "GEN ontology. Incident IT. Application"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------
+gen:IncidentITApplication
+  rdf:type v-s:Application ;
+  rdfs:label "Инцидент ИТ"@ru ;
+  rdfs:label "IT Incident"@en ;
+  rdfs:comment "Поддержка на высшем уровне."@ru ;
+  rdfs:comment "Highest-level support."@en ;
+  v-s:shortLabel "Инцидент ИТ"@ru ;
+  v-s:shortLabel "IT Incident"@en ;
+  v-s:hasIcon gen:IncidentITApplicationIcon ;
+  v-ui:hasTemplate v-s:ApplicationTemplate ;
+
+  v-s:hasCreate gen:IncidentITCreate ;
+  v-s:hasRegistry gen:IncidentITSearch ;
+
+
+  #v-s:attachment mnd-s:OF_23_Doverennosti_pdf ;
+  #v-s:attachment gen:UserGuide_pdf ;
+.
+
+
+gen:IncidentITApplicationIcon
+  a v-s:File;
+  v-s:fileUri "incident.svg"^^xsd:string ;
+  v-s:fileName "incident.svg"^^xsd:string ;
+  v-s:filePath "/gen"^^xsd:string ;
+.
+

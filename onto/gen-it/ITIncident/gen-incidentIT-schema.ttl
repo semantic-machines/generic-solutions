@@ -1,0 +1,45 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-incidentIT-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Инцидент ИТ. Схема"@ru ;
+  rdfs:label "GEN ontology. Incident IT. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ КЛАССЫ --
+gen:IncidentIT
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:UserThing ;
+  v-s:labelPattern "{@.v-s:registrationNumber} {@.v-s:theme.rdfs:label}" ;
+  v-ui:hasTemplate gen:IncidentITTemplate ;
+  rdfs:label "Инцидент ИТ"@ru ;
+  rdfs:label "Incident IT"@en ;
+.
+
+
+#-----Дата начала
+#v-s:dateFrom
+
+#-----Дата окончания
+#v-s:dateTo
+
+#-----Проблема
+#v-s:theme
+
+#-----Решение
+#v-s:description
+
+#-----Объект инфраструктуры ИТ
+#gen:hasIT_InfrastructureObjects
+
+

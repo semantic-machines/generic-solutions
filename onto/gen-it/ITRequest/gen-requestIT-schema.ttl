@@ -1,0 +1,76 @@
+@prefix d: <http://semantic-machines.com/veda/veda-data/> .
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
+@prefix v-ui: <http://semantic-machines.com/veda/veda-ui/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix v-wf: <http://semantic-machines.com/veda/veda-workflow/> .
+@prefix cfg: <http://semantic-machines.com/veda/config/> .
+@prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
+
+<http://semantic-machines.com/veda/gen-requestIT-schema>
+  rdf:type owl:Ontology ;
+  rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Заявка ИТ. Схема"@ru ;
+  rdfs:label "GEN ontology. Request IT. Schema"@en ;
+  v-s:loadPriority 20 ;
+.
+# ------------------------------------------------------------ КЛАССЫ --
+gen:RequestIT
+  rdf:type owl:Class ;
+  rdfs:subClassOf v-s:Request ;
+  v-s:labelPattern "{@.v-s:registrationNumber} {@.v-s:theme.rdfs:label}" ;
+  v-ui:hasTemplate gen:RequestITTemplate ;
+  rdfs:label "Заявка ИТ"@ru ;
+  rdfs:label "Request IT"@en ;
+.
+
+
+#-----Регистрационный номер
+#v-s:registrationNumber
+
+#-----Статус
+#v-s:hasStatus
+
+#-----Дата
+#v-s:date
+
+#-----Тема
+#v-s:theme
+
+#-----Мероприятие
+#v-s:hasAction
+
+#-----Объект инфраструктуры ИТ
+gen:hasIT_InfrastructureObjects
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Объект инфраструктуры ИТ"@ru ;
+  rdfs:label "IT infrastructure object"@en ;
+  rdfs:range v-s:IT_InfrastructureObjects;
+  rdfs:domain gen:RequestIT;
+.
+  gen:PS_hasIT_InfrastructureObjects_RequestIT
+    rdf:type v-ui:ObjectPropertySpecification ;
+    v-ui:forClass gen:RequestIT ;
+    v-ui:forProperty gen:hasIT_InfrastructureObjects ;
+    v-ui:maxCardinality 1 ;
+    v-ui:minCardinality 1 ;
+    v-ui:treeRoot d:org_RU1121003135 ;
+    v-ui:treeInProperty v-s:hasParentLink ;
+    v-ui:treeAllowedClass v-s:IT_InfrastructureObjects ;
+    v-ui:treeAllowedClass v-s:IT_InfrastructureObjectsSoftware ;
+    v-ui:treeAllowedClass v-s:IT_InfrastructureObjectsHardware;
+    v-ui:treeAllowedClass v-s:IT_InfrastructureObjectsDataBase ;
+    v-ui:treeSelectableClass v-s:IT_InfrastructureObjects ;
+    v-ui:treeSelectableClass v-s:IT_InfrastructureObjectsSoftware ;
+    v-ui:treeSelectableClass v-s:IT_InfrastructureObjectsHardware;
+    v-ui:treeSelectableClass v-s:IT_InfrastructureObjectsDataBase ;
+    v-ui:treeDisplayedProperty rdfs:label ;
+    v-ui:queryPrefix "('rdf:type'=='v-s:IT_InfrastructureObjects')"^^xsd:string;
+    v-ui:placeholder "Начните ввод и выберите значение"@ru ;
+    v-ui:placeholder "Start typing and select"@en ;
+    rdfs:label "Спецификация к свойству gen:hasIT_InfrastructureObjects для класса gen:RequestIT"@ru ;
+    rdfs:label "Spec for property gen:hasIT_InfrastructureObjects for class gen:RequestIT"@en ;
+  .
+
