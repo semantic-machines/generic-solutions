@@ -12,7 +12,7 @@
 @prefix v-fs: <http://semantic-machines.com/veda/veda-function-search/> .
 @prefix vdi: <http://semantic-machines.com/veda/veda-index/> .
 
-<http://semantic-machines.com/veda/mondi-decree-registries>
+<http://semantic-machines.com/veda/gen-decree-registries>
   rdf:type owl:Ontology ;
   rdfs:label "Распорядительный документ. Поиск"@ru ;
   rdfs:label "Decree. Search"@en ;

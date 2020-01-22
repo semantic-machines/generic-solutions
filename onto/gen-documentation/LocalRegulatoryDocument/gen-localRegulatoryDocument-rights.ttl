@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-localRegulatoryDocument-rights>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. ЛНД. Права"@ru ;
-  rdfs:label "Mondi ontology. LND. Rights"@en ;
+  rdfs:label "Онтология Веда. ЛНД. Права"@ru ;
+  rdfs:label "Veda ontology. LND. Rights"@en ;
   v-s:loadPriority 20 ;
 .
 # -------------------------------------- УПРАВЛЕНИЕ ПРАВАМИ --

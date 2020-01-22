@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-Decree-rights>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. Распорядительный документ. Права"@ru ;
-  rdfs:label "Mondi ontology. Decree. Rights"@en ;
+  rdfs:label "Онтология Веда. Распорядительный документ. Права"@ru ;
+  rdfs:label "Veda ontology. Decree. Rights"@en ;
   v-s:loadPriority 20 ;
 .
 # -------------------------------------- УПРАВЛЕНИЕ ПРАВАМИ --

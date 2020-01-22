@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-Letter-rights>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. Письма. Права"@ru ;
-  rdfs:label "Mondi ontology. Letter. Rights"@en ;
+  rdfs:label "Онтология Веда. Письма. Права"@ru ;
+  rdfs:label "Veda ontology. Letter. Rights"@en ;
   v-s:loadPriority 20 ;
 .
 # -------------------------------------- УПРАВЛЕНИЕ ПРАВАМИ --

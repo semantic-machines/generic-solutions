@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-internalDocument-rights>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. Внутренний документ. Права"@ru ;
-  rdfs:label "Mondi ontology. InternalDocument. Rights"@en ;
+  rdfs:label "Онтология Веда. Внутренний документ. Права"@ru ;
+  rdfs:label "Veda ontology. InternalDocument. Rights"@en ;
   v-s:loadPriority 20 ;
 .
 # -------------------------------------- УПРАВЛЕНИЕ ПРАВАМИ --

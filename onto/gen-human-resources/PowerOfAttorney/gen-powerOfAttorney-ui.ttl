@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-powerOfAttorney-ui>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. Доверенность. UI"@ru ;
-  rdfs:label "Mondi ontology. Power of attorney. UI"@en ;
+  rdfs:label "Онтология Веда. Доверенность. UI"@ru ;
+  rdfs:label "Veda ontology. Power of attorney. UI"@en ;
   v-s:loadPriority 20 ;
 .
 # ------------------------------------------------------------ СОБЫТИЯ --

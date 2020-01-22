@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-InternalDocument-print-blanks>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. Внутренний документ. Печатные бланки"@ru ;
-  rdfs:label "Mondi ontology. Internal document. Print blanks"@en ;
+  rdfs:label "Онтология Веда. Внутренний документ. Печатные бланки"@ru ;
+  rdfs:label "Veda ontology. Internal document. Print blanks"@en ;
   v-s:loadPriority 20 ;
 .
 #----------------------------------- Печатные формы ----

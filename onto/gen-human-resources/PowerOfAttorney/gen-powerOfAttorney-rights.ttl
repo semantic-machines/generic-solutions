@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-PowerOfAttorney-rights>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. Доверенность. Права"@ru ;
-  rdfs:label "Mondi ontology. PowerOfAttorney. Rights"@en ;
+  rdfs:label "Онтология Веда. Доверенность. Права"@ru ;
+  rdfs:label "Veda ontology. PowerOfAttorney. Rights"@en ;
   v-s:loadPriority 20 ;
 .
 # -------------------------------------- УПРАВЛЕНИЕ ПРАВАМИ --

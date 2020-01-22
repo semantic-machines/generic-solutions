@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-RepresentativeCost-rights>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. Представительские расходы. Права"@ru ;
-  rdfs:label "Mondi ontology. RepresentativeCost. Rights"@en ;
+  rdfs:label "Онтология Веда. Представительские расходы. Права"@ru ;
+  rdfs:label "Veda ontology. RepresentativeCost. Rights"@en ;
   v-s:loadPriority 20 ;
 .
 # -------------------------------------- УПРАВЛЕНИЕ ПРАВАМИ --

@@ -3,7 +3,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix v-s: <http://semantic-machines.com/veda/veda-schema/> .
-@prefix gen: <http://semantic-machines.com/veda/mondi-schema/>.
+@prefix gen: <http://semantic-machines.com/veda/gen-schema/>.
 @prefix d: <http://semantic-machines.com/veda/veda-data/>.
 
 <http://semantic-machines.com/veda/gen-individual-BusinessTripReasonDeviationOnExpenses>

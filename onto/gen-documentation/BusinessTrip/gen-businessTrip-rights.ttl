@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-BusinessTrip-rights>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. Коамндировка. Права"@ru ;
-  rdfs:label "Mondi ontology. BusinessTrip. Rights"@en ;
+  rdfs:label "Онтология Веда. Коамндировка. Права"@ru ;
+  rdfs:label "Veda ontology. BusinessTrip. Rights"@en ;
   v-s:loadPriority 20 ;
 .
 # -------------------------------------- УПРАВЛЕНИЕ ПРАВАМИ --

@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-Contract-rights>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. Контракт. Права"@ru ;
-  rdfs:label "Mondi ontology. Contract. Rights"@en ;
+  rdfs:label "Онтология Веда. Контракт. Права"@ru ;
+  rdfs:label "Veda ontology. Contract. Rights"@en ;
   v-s:loadPriority 20 ;
 .
 # -------------------------------------- УПРАВЛЕНИЕ ПРАВАМИ --

@@ -12,8 +12,8 @@
 
 <http://semantic-machines.com/veda/gen-Letter-print-blanks>
   rdf:type owl:Ontology ;
-  rdfs:label "Онтология Монди. Письмо. Печатные бланки"@ru ;
-  rdfs:label "Mondi ontology. Letter. Print blanks"@en ;
+  rdfs:label "Онтология Веда. Письмо. Печатные бланки"@ru ;
+  rdfs:label "Veda ontology. Letter. Print blanks"@en ;
   v-s:loadPriority 20 ;
 .
 #----------------------------------- Печатные формы ----
