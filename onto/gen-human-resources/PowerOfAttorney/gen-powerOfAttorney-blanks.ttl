@@ -37,8 +37,6 @@ gen:GrantorBlank
   rdfs:label "Доверитель"@ru ;
   rdfs:label "Grantor"@en ;
   v-fc:targetType gen:Correspondent ;
-  v-s:correspondentOrganization d:org_RU1121003135 ;
-  v-s:correspondentPerson d:mondi_appointment_00063551_70013758 ;
   v-s:deleted "true"^^xsd:boolean;
 .
 gen:GranteeSearchBlank
@@ -46,6 +44,5 @@ gen:GranteeSearchBlank
   rdfs:label "Доверенный"@ru ;
   rdfs:label "Grantee"@en ;
   v-fc:targetType gen:Correspondent ;
-  v-s:correspondentOrganization d:org_RU1121003135 ;
   v-s:deleted "true"^^xsd:boolean;
 .
