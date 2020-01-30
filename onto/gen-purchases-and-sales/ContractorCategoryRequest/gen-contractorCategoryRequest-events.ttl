@@ -35,7 +35,7 @@
 
 gen:Event_ContractCategoryRequestDecision
   rdf:type v-s:Event ;
-  v-s:author cfg:VedaSystem ;
+  v-s:author cfg:VedaSystemAppointment ;
   rdfs:label "Скрипт обработки v-s:ContractorCategoryDecision" ;
   rdfs:comment "Скрипт обработки v-s:ContractorCategoryDecision" ;
   v-s:triggerByType v-s:ContractorCategoryDecision ;
@@ -94,7 +94,7 @@ if (updateDate || updateOk) {
 
 gen:Event_ContractCategoryRequestDecision_Department
   rdf:type v-s:Event ;
-  v-s:author cfg:VedaSystem ;
+  v-s:author cfg:VedaSystemAppointment ;
   rdfs:label "Скрипт обновляет v-s:ContractorCategoryDecision при сохранении отдельного решения департамента" ;
   rdfs:comment "Скрипт обновляет v-s:ContractorCategoryDecision при сохранении отдельного решения департамента" ;
   v-s:triggerByType v-s:ContractorCategoryDecisionSecurity ;

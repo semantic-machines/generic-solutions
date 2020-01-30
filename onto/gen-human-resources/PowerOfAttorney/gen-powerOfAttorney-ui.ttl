@@ -484,7 +484,7 @@ rdf:type v-ui:ClassTemplate ;
 
 cfg:PowerOfAttorney_EmailNotification_Daily
   rdf:type v-s:Event ;
-  v-s:author cfg:VedaSystem ;
+  v-s:author cfg:VedaSystemAppointment ;
   rdfs:label "Email уведомление об истечении срока доверенности" ;
   v-s:triggerByUid cfg:daily ;
   v-s:runAt "V8.LowPriority";
