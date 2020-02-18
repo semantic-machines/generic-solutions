@@ -210,3 +210,15 @@ d:6gl17gms9g1w3leignc8t6y6se
   rdfs:label "Physical server"@en ;
   v-s:hasParentLink v-s:IT_InfrastructureObjectsHardware;
 .
+d:rb4wh9e66k5qldwy377fqzbutb
+  rdf:type  v-s:MaintenanceObjectKind  ;
+  rdfs:label "СУБД"@ru ;
+  rdfs:label "DBMS"@en ;
+  v-s:hasParentLink v-s:IT_InfrastructureObjectsDataBase;
+.
+d:xo6b9d0z3khahintirnn4qnhak
+  rdf:type v-s:MaintenanceObjectKind  ;
+  rdfs:label "БД"@ru ;
+  rdfs:label "DB"@en ;
+  v-s:hasParentLink v-s:IT_InfrastructureObjectsDataBase;
+.
