@@ -35,4 +35,7 @@ gen:ITAspect
   v-s:hasApplication gen:IT_InfrastructureObjectsApplication ;
   v-s:hasApplication gen:RequestITApplication ;
   v-s:hasApplication gen:IncidentITApplication ;
+  v-s:hasApplication gen:ClassSpecificationApplication ;
 .
+
+
