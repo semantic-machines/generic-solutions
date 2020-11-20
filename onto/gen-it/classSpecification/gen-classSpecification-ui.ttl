@@ -66,7 +66,16 @@ gen:ClassSpecificationTemplate
           </div>
           <div class="col-sm-9 col-xs-7">
             <div rel="v-s:hasClass" data-template="v-ui:LabelTemplate"></div>
-            <veda-control data-type="link" rel="v-s:hasClass" class="-view edit search fulltext dropdown" data-query-prefix="'rdf:type'=='owl:Class' && 'rdfs:subClassOf'==='v-s:UserSearchableDocument'"></veda-control>
+            <veda-control data-type="link" rel="v-s:hasClass" class="-view edit search fulltext dropdown" data-query-prefix="'rdf:type'=='owl:Class'"></veda-control>
+          </div>
+        </div>
+        <div class="row row-attribute">
+          <div class="col-sm-3 col-xs-5">
+            <label about="v-ui:defaultTemplate" property="rdfs:label"></label>
+          </div>
+          <div class="col-sm-9 col-xs-7">
+            <div rel="v-ui:defaultTemplate" data-template="v-ui:LabelTemplate"></div>
+            <veda-control data-type="link" rel="v-ui:defaultTemplate" class="-view edit search fulltext dropdown" data-query-prefix="'v-ui:ClassTemplate'"></veda-control>
           </div>
         </div>
         <div class="row row-attribute">
@@ -126,6 +135,15 @@ gen:ClassSpecificationTemplate
             <veda-control data-type="link" rel="v-s:hasAspect" class="-view edit search fulltext dropdown"></veda-control>
           </div>
         </div>
+        <div class="row row-attribute">
+          <div class="col-sm-3 col-xs-5">
+            <label about="rdfs:comment" property="rdfs:label"></label>
+          </div>
+          <div class="col-sm-9 col-xs-7">
+            <div property="rdfs:comment" class="view -edit -search"></div>
+            <veda-control data-type="text" property="rdfs:comment" class="-view edit search"></veda-control>
+          </div>
+        </div>
       </div>
     </section>
     
@@ -148,6 +166,7 @@ gen:ClassSpecificationTemplate
     }
     else { $(".shelfLife", template).addClass("hidden");}
   }
+  shelfLifeView();
   individual.on("v-s:isShelfLifeAlways", shelfLifeView);
   template.one("remove", function () {
     individual.off("v-s:isShelfLifeAlways", shelfLifeView);
