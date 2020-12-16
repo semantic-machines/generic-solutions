@@ -42,11 +42,23 @@ gen:IT_InfrastructureObjectsDataBaseBlank
   v-fc:targetType v-s:IT_InfrastructureObjectsDataBase ;
 .
 
-
-
 gen:IT_InfrastructureObjectsSearchBlank
   a v-fc:Blank;
   rdfs:label "Инфраструктура ИТ"@ru ;
   rdfs:label "Infrastructure IT"@en ;
   v-fc:targetType v-s:IT_InfrastructureObjects;
+.
+
+#--------------------------------------------------- Техническое обеспечение --
+gen:LinkObjectBlank
+  a v-fc:Blank;
+  rdfs:label "Инсталляция"@ru ;
+  rdfs:label "Installation"@en ;
+  v-fc:targetType v-s:LinkObject ;
+.
+gen:LinkObjectSearchBlank
+  a v-fc:Blank;
+  rdfs:label "Инсталляция"@ru ;
+  rdfs:label "Installation"@en ;
+  v-fc:targetType v-s:LinkObject ;
 .

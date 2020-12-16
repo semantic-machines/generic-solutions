@@ -34,6 +34,12 @@ v-s:hasLinkObjectITILBundle
   rdfs:label "Комплект поставки"@ru ;
   rdfs:label "Contents of delivery"@en;
 .
+v-s:IT_InstallationBundle
+  a v-s:Bundle;
+  rdf:type v-s:Bundle;
+  rdfs:label "Инсталляция"@ru ;
+  rdfs:label "Installation"@en;
+.
 
 # ------------------------------------------------------------ ШАБЛОНЫ --
 gen:IT_InfrastructureObjectsTemplate 
@@ -83,8 +89,18 @@ gen:IT_InfrastructureObjectsTemplate
           <label about="v-s:whereIsInstalledITILBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:hasParentLink" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div rel="v-s:hasParentLink" class="view edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:hasParentLink" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:IT_InstallationBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:hasLinkObject" class="-view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasLinkObject" class="-view edit search fulltext dropdown"></veda-control>
+          <div about='@' class="view -edit -search" data-template="v-s:LinksObjectListTemplate" data-embedded="true"></div>
         </div>
       </div>
       <div class="row row-attribute">
@@ -92,9 +108,8 @@ gen:IT_InfrastructureObjectsTemplate
           <label about="v-s:hasLinkObjectITILBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:hasLinkObject" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:hasLinkObject" class="-view edit search fulltext dropdown"></veda-control>
-          <div about="@" class="view -edit -search" data-template="v-s:LinksObjectListTemplate" data-embedded="true"></div>
+          <div rel="v-s:hasPartsList" class="view edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasPartsList" class="-view edit search fulltext dropdown"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -153,7 +168,6 @@ gen:IT_InfrastructureObjectsTemplate
       IT_InfrastructureObjects["v-s:description"]=individual["v-s:description"] ;
       IT_InfrastructureObjects["v-s:hasMaintenanceObjectKind"]=individual["v-s:hasMaintenanceObjectKind"] ;
       IT_InfrastructureObjects["v-s:hasParentLink"]=individual["v-s:hasParentLink"] ;
-      IT_InfrastructureObjects["v-s:hasLinkObject"]=individual["v-s:hasLinkObject"] ;
       IT_InfrastructureObjects["v-s:proprietor"]=individual["v-s:proprietor"] ;
       IT_InfrastructureObjects["v-s:customer"]=individual["v-s:customer"] ;
       IT_InfrastructureObjects["v-s:operator"]=individual["v-s:operator"] ;
@@ -227,10 +241,6 @@ v-s:LinksObjectListTemplate
 <div>
   <table class="hidden links-table table table-condensed table-striped table-sortable">
     <thead>
-      <tr>
-        <th about="v-s:Document" property="rdfs:label"></th>
-        <th width="15%"></th>
-      </tr>
     </thead>
     <tbody about="@" rel="v-s:hasLinkObject" data-embedded="true" data-limit="5" data-more="true">
       <script>
@@ -243,9 +253,17 @@ v-s:LinksObjectListTemplate
       </script>
       <tr>
         <td>
+          <div class="view -edit -search" about="@" property="v-s:title"></div>
+          <veda-control data-type="string" property="v-s:title" class="-view edit search"></veda-control>
+        </td>
+        <td>
           <div class="link-from" about="@" rel="v-s:from" data-template="v-ui:ClassNameLabelLinkTemplate"></div>
           <div class="link-to view -edit -search" about="@" rel="v-s:to" data-template="v-ui:ClassNameLabelLinkTemplate"></div>
-          <veda-control data-type="link" rel="v-s:to" class="-view edit search fulltext"></veda-control>
+          <veda-control data-type="link" rel="v-s:to" class="-view edit search fulltext" data-query-prefix="'rdf:type'=='v-s:UserThing'"></veda-control>
+        </td>
+        <td>
+          <div class="view -edit -search" about="@" property="rdfs:comment"></div>
+          <veda-control data-type="string" property="rdfs:comment" class="-view edit search"></veda-control>
         </td>
         <td><div class="pull-right" about="@" data-template="v-ui:IconButtonsTemplate" data-embedded="true"></div></td>
       </tr>
@@ -260,5 +278,87 @@ v-s:LinksObjectListTemplate
 </div>
 
 
+"""
+.
+
+
+gen:LinkObjectTemplate
+    rdf:type v-ui:ClassTemplate ;
+    rdfs:label "Шаблон для класса Инсталляция"@ru ;
+    rdfs:label "Installation IT"@en;
+    v-ui:forClass v-s:LinkObject;
+    v-ui:template """
+
+<div>
+  <div class="container sheet">
+    <h3 class="margin-sm">
+      <span about="@" property="rdf:type"></span>
+      <small about="@" property="rdfs:label" class="view edit -search"></small>
+    </h3>
+    <section id="MainProperties">
+      <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:title" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="v-s:title" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control property="v-s:title" data-type="text" class="-view edit search"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:from" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:from" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:from" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:to" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:to" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:to" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="rdfs:comment" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div property="rdfs:comment" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="text" property="rdfs:comment" rows="3" class="-view edit search fulltext dropdown"></veda-control>
+        </div>
+      </div>
+    </section>
+    <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
+    <hr>
+    <!-- BUTTONS -->
+    <div class="actions view edit -search">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete"></span>
+      <button type="button" class="action btn btn-default view -edit -search" id="add-copy" about="v-s:Clone" property="rdfs:label" />
+    </div>
+   </div>
+</div>
+<script>
+  $("#add-copy", template).click(function () {
+    var _class = new veda.IndividualModel(individual["rdf:type"][0].id),
+        Installation = new veda.IndividualModel(),
+        tmpl = "gen:LinkObjectTemplate" ;
+        Installation["rdf:type"] = [_class] ;
+        Installation["v-s:title"]=individual["v-s:title"] ;
+        Installation["v-s:to"]=individual["v-s:to"] ;
+        Installation["v-s:from"]=individual["v-s:from"] ;
+        Installation["rdfs:comment"]=individual["rdfs:comment"] ;
+
+    riot.route( ["#", Installation.id, "#main", tmpl, "edit"].join("/") ) ;
+    Installation.one("afterSave", function () {
+      riot.route("#/" + Installation.id, false);
+    });
+  });
+</script>
 """
 .

@@ -26,6 +26,13 @@ d:All_IT_InfrastructureObjects
 .
 
 # ------------------------------------------------------------ КЛАССЫ --
+#v-s:IT_InfrastructureObjects
+gen:TS_IT_InfrastructureObjects
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:IT_InfrastructureObjects ;
+  v-ui:defaultTemplate gen:IT_InfrastructureObjectsTemplate  ;
+  v-s:loadPriority 10 ;
+.
 
 #--------------------------------------------------- Программное обеспечение --
 #v-s:IT_InfrastructureObjectsSoftware
@@ -86,7 +93,7 @@ gen:PS_hasParentLink_IT_InfrastructureObjects
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:hasParentLink;
   v-ui:minCardinality 0 ;
-  v-ui:maxCardinality 1 ;
+  v-ui:maxCardinality 100 ;
   v-ui:queryPrefix "('rdf:type'=='v-s:IT_InfrastructureObjects')"^^xsd:string;
   rdfs:label "Спецификация свойства v-s:hasParentLink для класса v-s:IT_InfrastructureObjects"@ru ;
   rdfs:label "v-s:hasParentLink property specification for v-s:IT_InfrastructureObjects  class"@en ;
@@ -100,7 +107,25 @@ gen:PS_hasLinkObject_IT_InfrastructureObjects
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:hasLinkObject;
   v-ui:minCardinality 0 ;
-  v-ui:maxCardinality 1 ;
+  v-ui:maxCardinality 100 ;
+  v-ui:queryPrefix "'rdf:type'=='v-s:IT_InfrastructureObjects'"^^xsd:string;
+  rdfs:label "Спецификация свойства v-s:hasLinkObject для класса v-s:IT_InfrastructureObjects"@ru ;
+  rdfs:label "v-s:hasLinkObject property specification for v-s:IT_InfrastructureObjects  class"@en ;
+.
+
+v-s:hasPartsList
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Список комплектующих"@ru ;
+  rdfs:label "Part List"@en ;
+  rdfs:range rdfs:Resource;
+  rdfs:domain v-s:Thing;
+.
+gen:PS_hasPartsList_IT_InfrastructureObjects 
+  rdf:type v-ui:ObjectPropertySpecification;
+  v-ui:forClass v-s:IT_InfrastructureObjects;
+  v-ui:forProperty v-s:hasPartsList;
+  v-ui:minCardinality 0 ;
+  v-ui:maxCardinality 100 ;
   v-ui:queryPrefix "'rdf:type'=='v-s:IT_InfrastructureObjects'"^^xsd:string;
   rdfs:label "Спецификация свойства v-s:hasLinkObject для класса v-s:IT_InfrastructureObjects"@ru ;
   rdfs:label "v-s:hasLinkObject property specification for v-s:IT_InfrastructureObjects  class"@en ;
@@ -169,8 +194,31 @@ gen:TS_IT_InfrastructureObjectsDataBase
   v-s:loadPriority 10 ;
 .
 
+#-------------------------------------------------------- Инсталция --
+#v-s:LinkObject
+gen:TS_LinkObject
+  rdf:type v-ui:TemplateSpecification ;
+  v-ui:forClass v-s:LinkObject ;
+  v-ui:defaultTemplate gen:IT_InstallationTemplate ;
+  v-s:loadPriority 10 ;
+.
+gen:PS_from_to_LinkObject
+	rdf:type v-ui:ObjectPropertySpecification;
+  v-ui:forClass v-s:LinkObject;
+  v-ui:forProperty v-s:from;
+  v-ui:forProperty v-s:to;
+  v-ui:queryPrefix "'rdf:type'=='v-s:IT_InfrastructureObjects'"^^xsd:string;
+  rdfs:label "Спецификация свойства v-s:from и v-s:to  для класса v-s:LinkObject"@ru ;
+  rdfs:label "v-s:from и v-s:to property specification for v-s:LinkObject class"@en ;
+.
 
 
+
+
+
+
+
+#-------------------------------------------------------- Вид объекта ИТ --
 v-s:MaintenanceObjectKind
   rdf:type owl:Class ;    
   rdfs:label "Вид обслуживаемого объекта"@ru ;

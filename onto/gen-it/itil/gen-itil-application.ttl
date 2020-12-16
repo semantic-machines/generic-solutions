@@ -32,8 +32,10 @@ gen:IT_InfrastructureObjectsApplication
   v-s:hasCreate gen:IT_InfrastructureObjectsSoftwareCreate ;
   v-s:hasCreate gen:IT_InfrastructureObjectsHardwareCreate ;
   v-s:hasCreate gen:IT_InfrastructureObjectsDataBaseCreate ;
+  v-s:hasCreate gen:LinkObjectCreate ;
   v-s:hasRegistry gen:IT_InfrastructureObjectsSearch ;
   v-s:hasRegistry gen:Tr_hasParentLink_IT_InfrastructureObjects;
+  v-s:hasRegistry gen:LinkObjectSearch ;
 
  #v-s:attachment mnd-s:OF_23_Doverennosti_pdf ;
   #v-s:attachment gen:UserGuide_pdf ;

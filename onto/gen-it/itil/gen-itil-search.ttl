@@ -37,14 +37,17 @@ gen:Tr_hasParentLink_IT_InfrastructureObjects
   v-ui:forProperty v-s:hasParentLink ;
   v-ui:treeRoot d:All_IT_InfrastructureObjects ;
   v-ui:treeInProperty v-s:hasParentLink ;
+  v-ui:treeInProperty v-s:hasLinkObject ;
   v-ui:treeAllowedClass v-s:IT_InfrastructureObjects ;
   v-ui:treeAllowedClass v-s:IT_InfrastructureObjectsSoftware ;
   v-ui:treeAllowedClass v-s:IT_InfrastructureObjectsHardware;
   v-ui:treeAllowedClass v-s:IT_InfrastructureObjectsDataBase ;
+  v-ui:treeAllowedClass v-s:LinkObject ;
   v-ui:treeSelectableClass v-s:IT_InfrastructureObjects ;
   v-ui:treeSelectableClass v-s:IT_InfrastructureObjectsSoftware ;
   v-ui:treeSelectableClass v-s:IT_InfrastructureObjectsHardware;
   v-ui:treeSelectableClass v-s:IT_InfrastructureObjectsDataBase ;
+  v-ui:treeSelectableClass v-s:LinkObject ;
   v-ui:treeDisplayedProperty rdfs:label ;
   #v-ui:treeDisplayedProperty v-s:shortLabel ;
     v-ui:queryPrefix "('rdf:type'=='v-s:IT_InfrastructureObjects')"  ;
@@ -104,3 +107,46 @@ gen:IT_InfrastructureObjectsSearchResultTemplate
 .
 
 
+gen:LinkObjectSearch
+  a v-fs:AttributiveSearch;
+  rdfs:label "Инсталляция"@ru ;
+  rdfs:label "Installation"@en ;
+  v-fs:searchBlank gen:LinkObjectSearchBlank ;
+  v-fs:searchBlankTemplate gen:LinkObjectTemplate ;
+  v-fs:searchResultTemplate gen:LinkObjectSearchResultTemplate ;
+.
+
+gen:LinkObjectSearchResultTemplate
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон результатов реестра Инфраструктура ИТ"@ru ;
+  rdfs:label "Infrastructure IT registry result template"@en ;
+  v-ui:template """
+<table class="table table-bordered">
+  <thead class="result-header">
+    <tr>
+      <th colspan="7" about="v-s:Request" property="rdfs:label"></th>
+    </tr>
+    <tr class="active">
+      <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
+      <th><span about="v-s:title" property="rdfs:label"></span></th>
+      <th><span about="v-s:from" property="rdfs:label"></span></th>
+      <th><span about="v-s:to" property="rdfs:label"></span></th>
+      <th><span about="rdfs:comment" property="rdfs:label"></span></th>
+      <th><span about="v-s:creator" property="rdfs:label"></span></th>
+      <th class="orderby" data-orderby="v-s:created"><span about="v-s:created" property="rdfs:label"></span></th>
+    </tr>
+  </thead>
+  <tbody class="result-container">
+    <tr>
+      <td><a href="#/@" class="glyphicon glyphicon-search"></a></td>
+      <td property="v-s:title"></td>
+      <td rel="v-s:from" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-s:to" data-template="v-ui:LabelTemplate"></td>
+      <td property="rdfs:comment"></td>
+      <td rel="v-s:creator" data-template="v-ui:LabelTemplate"></td>
+      <td property="v-s:created"></td>
+    </tr>
+  </tbody>
+</table>
+  """ ;
+.

@@ -42,3 +42,11 @@ gen:IT_InfrastructureObjectsDataBaseCreate
   rdfs:label "Database"@en ;
   v-fc:hasBlank gen:IT_InfrastructureObjectsDataBaseBlank ;
 .
+
+#-------------------------------------------------------- ИНсталляция --
+gen:LinkObjectCreate
+  a v-fc:Create;
+  rdfs:label "Инсталляция"@ru ;
+  rdfs:label "Installation"@en ;
+  v-fc:hasBlank gen:LinkObjectBlank ;
+.
