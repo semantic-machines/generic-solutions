@@ -56,7 +56,7 @@ gen:DecreeNumeration
     try {
       var decreeKind = typeof window === 'object' ? individual['gen:hasDecreeKind'][0].id : individual['gen:hasDecreeKind'][0].data ;
       decreeKind = decreeKind.replace(":", "_");
-      var decreeDate = typeof window === 'object' ? individual["v-s:registrationDate"][0].getFullYear() : individual["v-s:registrationDate"][0].data.getFullYear();
+      var decreeDate = typeof window === 'object' ? individual["v-s:registrationDate"][0].getFullYear() : new Date(individual["v-s:registrationDate"][0].data).getFullYear();
       return "numeration-scope-GEN_" + decreeKind + decreeDate;
     } catch (err) {
       return "";
