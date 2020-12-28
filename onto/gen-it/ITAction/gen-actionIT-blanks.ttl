@@ -22,12 +22,12 @@ gen:ActionITBlank
   a v-fc:Blank;
   rdfs:label "Мероприятие ИТ"@ru ;
   rdfs:label "Action IT"@en ;
-  v-fc:targetType v-s:Action ;
+  v-fc:targetType gen:ActionIT ;
 .
 
 gen:ActionITSearchBlank
   a v-fc:Blank;
   rdfs:label "Мероприятие ИТ"@ru ;
   rdfs:label "Action IT"@en ;
-  v-fc:targetType v-s:Action ;
+  v-fc:targetType gen:ActionIT ;
 .
