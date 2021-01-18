@@ -40,7 +40,6 @@ gen:RequestITTemplate
           </div>
           <div class="col-sm-3 col-xs-3">
             <div property="v-s:registrationNumber" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
-            <veda-control data-type="text" property="v-s:registrationNumber" class="-view edit search"></veda-control>
           </div>
         </div>
         <div class="row row-attribute">

@@ -232,7 +232,6 @@ gen:ActionITEmbeddedTemplate
   <div class="panel panel-default">
     <div class="panel-heading clearfix">
       <h3 class="panel-title pull-left">
-        <div rel="gen:hasActionIT" class="view edit search" data-template="v-ui:LabelTemplate"></div>
         <span about="@" data-template="v-ui:IconModalTemplate"></span>
         <span about="@" class="view -edit -search">
           <a href="#/@///edit" class="glyphicon glyphicon-edit" tabindex="-1"></a>
@@ -245,62 +244,88 @@ gen:ActionITEmbeddedTemplate
     </div>
     <div class="panel-body">
       <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
+        <div class="col-sm-2 col-xs-5">
+          <label about="v-s:hasStatus" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-10 col-xs-7">
+          <div rel="v-s:hasStatus" class="view edit -search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:hasStatus" class="-view edit search fulltext" ></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-2 col-xs-5">
           <label about="gen:hasIT_InfrastructureObjects" property="rdfs:label"></label>
         </div>
-        <div class="col-sm-9 col-xs-7">
+        <div class="col-sm-10 col-xs-7">
           <div rel="gen:hasIT_InfrastructureObjects" class="view edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control rel="gen:hasIT_InfrastructureObjects" data-type="link" class="-view edit search fulltext tree"></veda-control>
         </div>
       </div>
+      
       <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
+        <div class="col-sm-2 col-xs-5">
           <label about="v-s:responsible" property="rdfs:label"></label>
         </div>
-        <div class="col-sm-9 col-xs-7">
+        <div class="col-sm-10 col-xs-7">
           <div rel="v-s:responsible" class="view edit -search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext" ></veda-control>
         </div>
       </div>
-      <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
+      <div class="row row-attribute alert-danger">
+        <div class="col-sm-2 col-xs-5">
           <label>План</label>
         </div>
         <div class="col-sm-2 col-xs-2">
           <div property="v-s:datePlan" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="date" property="v-s:datePlan" class="-view edit search"></veda-control>
         </div>
-        <div class="col-sm-7 col-xs-5">
+        <div class="col-sm-8 col-xs-5">
           <div property="v-s:taskDescription" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="text" property="v-s:taskDescription" class="-view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
+        <div class="col-sm-2 col-xs-5">
           <label>Факт</label>
         </div>
         <div class="col-sm-2 col-xs-2">
           <div property="v-s:dateFact" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="date" property="v-s:dateFact" class="-view edit search"></veda-control>
         </div>
-        <div class="col-sm-7 col-xs-5">
+        <div class="col-sm-8 col-xs-5">
           <div property="v-s:reportDescription" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="text" property="v-s:reportDescription" class="-view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
-        <div class="col-sm-3 col-xs-5">
+        <div class="col-sm-2 col-xs-5">
           <label about="gen:hasActionIT" property="rdfs:label"></label>
         </div>
-        <div class="col-sm-9 col-xs-7">
-          <div rel="gen:hasActionIT" class="view edit search" data-template="v-ui:LabelTemplate"></div>
-          <!--<veda-control rel="gen:ActionIT" data-type="link" class="-view edit search fulltext tree"></veda-control>-->
+        <div class="col-sm-10 col-xs-7">
+          <table class="table">
+            <thead>
+              <tr>
+                <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
+                <th about="v-s:registrationNumber" property="rdfs:label"></th>
+                <th about="v-s:hasStatus" property="rdfs:label"></th>
+                <th about="rdfs:label" property="rdfs:label"></th>
+                <th about="v-s:responsible" property="rdfs:label"></th>
+              </tr>
+            </thead>
+            <tbody rel="gen:hasActionIT">
+              <tr>
+                <td width="1%"><a href="#/@" class="glyphicon glyphicon-search"></a></td>
+                <td property="v-s:registrationNumber"></td>
+                <td rel="v-s:hasStatus"></td>
+                <td property="rdfs:label"></td>
+                <td rel="v-s:responsible" data-template="v-ui:LabelTemplate"></td>
+              </tr>
+            </tbody>
+          </table>
+          <!--<div rel="gen:hasActionIT" class="view edit search" data-template="gen:ActionITEmbeddedTemplate"></div>-->
         </div>
       </div>
     </div>
   </div>
-
-
-  
 """ ;
 .
