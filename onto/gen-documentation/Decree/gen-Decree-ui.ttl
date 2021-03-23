@@ -208,7 +208,9 @@ gen:DecreeTemplate
     Decree["v-s:hasLink"] = [Link];
     riot.route( ["#", Decree.id, "#main", tmpl, "edit"].join("/") ) ;
     Decree.one("afterSave", function () {
-      riot.route("#/" + Decree.id, false);
+      setTimeout(() => {
+        riot.route("#/" + Decree.id, false);
+      }, 250);
     });
   });
   $("#add-RegRecord", template).click(function () {

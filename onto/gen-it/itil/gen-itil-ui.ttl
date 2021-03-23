@@ -16,19 +16,19 @@
   rdfs:label "GEN ontology. Infrastructure IT. UI"@en ;
   v-s:loadPriority 20 ;
 .
-# ------------------------------------------------------------ СТРОКИ 
-v-s:purposeITILBundle 
+# ------------------------------------------------------------ СТРОКИ
+v-s:purposeITILBundle
   rdf:type v-s:Bundle;
   rdfs:label "Назначение"@ru ;
   rdfs:label "Purpose"@en;
 .
-v-s:whereIsInstalledITILBundle 
+v-s:whereIsInstalledITILBundle
   a v-s:Bundle;
   rdf:type v-s:Bundle;
   rdfs:label "Где установлен"@ru ;
   rdfs:label "Where is install"@en;
 .
-v-s:hasLinkObjectITILBundle 
+v-s:hasLinkObjectITILBundle
   a v-s:Bundle;
   rdf:type v-s:Bundle;
   rdfs:label "Комплект поставки"@ru ;
@@ -42,7 +42,7 @@ v-s:IT_InstallationBundle
 .
 
 # ------------------------------------------------------------ ШАБЛОНЫ --
-gen:IT_InfrastructureObjectsTemplate 
+gen:IT_InfrastructureObjectsTemplate
     rdf:type v-ui:ClassTemplate ;
     rdfs:label "Шаблон для класса Инфраструктура ИТ"@ru ;
     rdfs:label "Infrastructure IT"@en;
@@ -172,10 +172,12 @@ gen:IT_InfrastructureObjectsTemplate
       IT_InfrastructureObjects["v-s:customer"]=individual["v-s:customer"] ;
       IT_InfrastructureObjects["v-s:operator"]=individual["v-s:operator"] ;
       IT_InfrastructureObjects["rdfs:comment"]=individual["rdfs:comment"] ;
-  
+
       riot.route( ["#", IT_InfrastructureObjects.id, "#main", tmpl, "edit"].join("/") ) ;
       IT_InfrastructureObjects.one("afterSave", function () {
-        riot.route("#/" + IT_InfrastructureObjects.id, false);
+        setTimeout(() => {
+          riot.route("#/" + IT_InfrastructureObjects.id, false);
+        }, 250);
       });
     });
 </script>
@@ -356,7 +358,9 @@ gen:LinkObjectTemplate
 
     riot.route( ["#", Installation.id, "#main", tmpl, "edit"].join("/") ) ;
     Installation.one("afterSave", function () {
-      riot.route("#/" + Installation.id, false);
+      setTimeout(() => {
+        riot.route("#/" + Installation.id, false);
+      }, 250);
     });
   });
 </script>

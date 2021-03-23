@@ -135,7 +135,9 @@ gen:InternalDocumentTemplate
     InternalDocument["v-s:hasLink"] = [Link];
     riot.route( ["#", InternalDocument.id, "#main", tmpl, "edit"].join("/") ) ;
     InternalDocument.one("afterSave", function () {
-      riot.route("#/" + InternalDocument.id, false);
+      setTimeout(() => {
+        riot.route("#/" + InternalDocument.id, false);
+      }, 250);
     });
   });
 

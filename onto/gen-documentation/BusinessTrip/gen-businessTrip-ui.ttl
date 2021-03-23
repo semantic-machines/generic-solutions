@@ -407,7 +407,9 @@ gen:BusinessTripTemplate
     BusinessTrip["v-s:duration"]=individual["v-s:duration"] ;
     riot.route( ["#", BusinessTrip.id, "#main", tmpl, "edit"].join("/") ) ;
     BusinessTrip.one("afterSave", function () {
-      riot.route("#/" + BusinessTrip.id, false);
+      setTimeout(() => {
+        riot.route("#/" + BusinessTrip.id, false);
+      }, 250);
     });
   });
 

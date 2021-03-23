@@ -259,7 +259,9 @@ gen:PowerOfAttorneyTemplate
     copyAttorney(Attorney).then(function(){
       riot.route( ["#", Attorney.id, "#main", tmpl, "edit"].join("/") ) ;
       Attorney.one("afterSave", function () {
-        riot.route("#/" + Attorney.id, false);
+        setTimeout(() => {
+          riot.route("#/" + Attorney.id, false);
+        }, 250);
       });
     });
   });

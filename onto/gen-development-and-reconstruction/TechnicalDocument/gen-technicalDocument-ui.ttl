@@ -341,7 +341,9 @@ gen:TechnicalDocumentTemplate
     TechnicalDocument["v-s:hasClassifierSectionOfProjectDocumentation"]=individual["v-s:hasClassifierSectionOfProjectDocumentation"] ;
     TechnicalDocument["v-s:hasClassifierMarkOfWorkingDrawingsSet"]=individual["v-s:hasClassifierMarkOfWorkingDrawingsSet"] ;
     TechnicalDocument.one("afterSave", function () {
-      riot.route("#/" + TechnicalDocument.id, false);
+      setTimeout(() => {
+        riot.route("#/" + TechnicalDocument.id, false);
+      }, 250);
     });
     Promise.resolve().then(function() {
       if ( individual.hasValue("v-s:developer") ) {

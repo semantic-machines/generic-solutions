@@ -147,7 +147,7 @@ gen:RepresentativeCostsTemplate
         </table>
       </div>
       <div rel="gen:hasRepresentativeCostsEvent" data-template="gen:RepresentativeCostsEventEmbeddedTemplate" class="-view -edit search create"></div>
-    </section>   
+    </section>
     <section id="Consumption">
       <h4 class="section-header clearfix">
         <span about="gen:hasRepresentativeCostsForEvent" property="rdfs:label"></span>
@@ -323,17 +323,17 @@ gen:RepresentativeCostsTemplate
     RepresentativeCost["rdf:type"] = [_class] ;
     RepresentativeCost["v-s:stakeholder"]=individual["v-s:stakeholder"] ;
     RepresentativeCost["v-s:goal"]=individual["v-s:goal"] ;
-    RepresentativeCost["v-s:dateFrom"]=individual["v-s:dateFrom"] ;    
-    RepresentativeCost["v-s:dateTo"]=individual["v-s:dateTo"] ;    
-    RepresentativeCost["v-s:placeDescription"]=individual["v-s:placeDescription"] ;    
-    RepresentativeCost["v-s:count"]=individual["v-s:count"] ;    
-    RepresentativeCost["v-s:participant"]=individual["v-s:participant"] ;    
-    RepresentativeCost["v-s:hasPaymentForm"]=individual["v-s:hasPaymentForm"] ;    
-    RepresentativeCost["rdfs:comment"]=individual["rdfs:comment"] ;    
-    RepresentativeCost["gen:isPrepaymentRequired"]=individual["gen:isPrepaymentRequired"] ;    
+    RepresentativeCost["v-s:dateFrom"]=individual["v-s:dateFrom"] ;
+    RepresentativeCost["v-s:dateTo"]=individual["v-s:dateTo"] ;
+    RepresentativeCost["v-s:placeDescription"]=individual["v-s:placeDescription"] ;
+    RepresentativeCost["v-s:count"]=individual["v-s:count"] ;
+    RepresentativeCost["v-s:participant"]=individual["v-s:participant"] ;
+    RepresentativeCost["v-s:hasPaymentForm"]=individual["v-s:hasPaymentForm"] ;
+    RepresentativeCost["rdfs:comment"]=individual["rdfs:comment"] ;
+    RepresentativeCost["gen:isPrepaymentRequired"]=individual["gen:isPrepaymentRequired"] ;
     RepresentativeCost["gen:toWhomToGiveAnPrepayment"]=individual["gen:toWhomToGiveAnPrepayment"] ;
-    RepresentativeCost["v-s:hasThirdPartyParticipant"]=individual["v-s:hasThirdPartyParticipant"] ;    
-    RepresentativeCost["gen:toWhomToCompensateRepresentativeCosts"]=individual["gen:toWhomToCompensateRepresentativeCosts"] ;       
+    RepresentativeCost["v-s:hasThirdPartyParticipant"]=individual["v-s:hasThirdPartyParticipant"] ;
+    RepresentativeCost["gen:toWhomToCompensateRepresentativeCosts"]=individual["gen:toWhomToCompensateRepresentativeCosts"] ;
 
     //Мероприятия
     var newRepresentativeCostsEvent = new veda.IndividualModel();
@@ -368,11 +368,13 @@ gen:RepresentativeCostsTemplate
 
     riot.route( ["#", RepresentativeCost.id, "#main", tmpl, "edit"].join("/") ) ;
     RepresentativeCost.one("afterSave", function () {
-      riot.route("#/" + RepresentativeCost.id, false);
-    });    
-    
+      setTimeout(() => {
+        riot.route("#/" + RepresentativeCost.id, false);
+      }, 250);
+    });
+
   });
-    
+
 </script>
 
   """
@@ -463,7 +465,7 @@ gen:RepresentativeCostsEventEmbeddedTemplate
           <div rel="v-s:responsible" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext"></veda-control>
         </div>
-      </div> 
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <em about="v-s:dateTo" property="rdfs:label"></em>
@@ -472,7 +474,7 @@ gen:RepresentativeCostsEventEmbeddedTemplate
           <div property="v-s:dateTo" class="view -edit -search"></div>
           <veda-control data-type="date" property="v-s:dateTo" class="-view edit search"></veda-control>
         </div>
-      </div> 
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <em about="v-s:description" property="rdfs:label"></em>
@@ -481,7 +483,7 @@ gen:RepresentativeCostsEventEmbeddedTemplate
           <div property="v-s:description" class="view -edit -search"></div>
           <veda-control data-type="text" property="v-s:description" class="-view edit search"></veda-control>
         </div>
-      </div> 
+      </div>
     </section>
 """
 .
