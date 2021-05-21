@@ -45,7 +45,7 @@ gen:TS_IT_InfrastructureObjectsSoftware
 
 #-----Название
 #v-s:title
-gen:PS_title_IT_InfrastructureObjects 
+gen:PS_title_IT_InfrastructureObjects
   rdf:type v-ui:DatatypePropertySpecification;
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:title;
@@ -57,7 +57,7 @@ gen:PS_title_IT_InfrastructureObjects
 
 #-----Назначение
 #v-s:description
-gen:PS_description_IT_InfrastructureObjects 
+gen:PS_description_IT_InfrastructureObjects
   rdf:type v-ui:PropertySpecification;
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:description;
@@ -68,20 +68,20 @@ gen:PS_description_IT_InfrastructureObjects
 .
 
 #-----Вид объекта
-v-s:hasMaintenanceObjectKind 
+v-s:hasMaintenanceObjectKind
   rdf:type owl:ObjectProperty ;
   rdfs:label "Вид объекта"@ru ;
   rdfs:label "To be"@en ;
   rdfs:range v-s:MaintenanceObjectKind;
   rdfs:domain v-s:IT_InfrastructureObjects;
 .
-gen:PS_hasMaintenanceObjectKind_IT_InfrastructureObjects 
+gen:PS_hasMaintenanceObjectKind_IT_InfrastructureObjects
   rdf:type v-ui:ObjectPropertySpecification;
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:hasMaintenanceObjectKind;
   v-ui:minCardinality 1 ;
   v-ui:maxCardinality 1 ;
-  v-ui:queryPrefix "('rdf:type'=='v-s:MaintenanceObjectKind' && 'v-s:hasParentLink' == '{individual[\"rdf:type\"][0].id}')"^^xsd:string;
+  v-ui:queryPrefix "('rdf:type'=='v-s:MaintenanceObjectKind' && 'v-s:hasParentLink' == '{@.rdf:type.id}')"^^xsd:string;
   rdfs:label "Спецификация свойства v-s:hasMaintenanceObjectKind для класса v-s:IT_InfrastructureObjects"@ru ;
   rdfs:label "v-s:hasMaintenanceObjectKind property specification for v-s:IT_InfrastructureObjects  class"@en ;
 .
@@ -102,7 +102,7 @@ gen:PS_hasParentLink_IT_InfrastructureObjects
 #-----Комплект поставки
 #v-s:hasLinkObject
 
-gen:PS_hasLinkObject_IT_InfrastructureObjects 
+gen:PS_hasLinkObject_IT_InfrastructureObjects
   rdf:type v-ui:ObjectPropertySpecification;
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:hasLinkObject;
@@ -120,7 +120,7 @@ v-s:hasPartsList
   rdfs:range rdfs:Resource;
   rdfs:domain v-s:Thing;
 .
-gen:PS_hasPartsList_IT_InfrastructureObjects 
+gen:PS_hasPartsList_IT_InfrastructureObjects
   rdf:type v-ui:ObjectPropertySpecification;
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:hasPartsList;
@@ -133,8 +133,8 @@ gen:PS_hasPartsList_IT_InfrastructureObjects
 
 #-----Собственник
 #v-s:proprietor
-gen:PS_proprietor_IT_InfrastructureObjects 
-	rdf:type v-ui:ObjectPropertySpecification;
+gen:PS_proprietor_IT_InfrastructureObjects
+  rdf:type v-ui:ObjectPropertySpecification;
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:proprietor;
   v-ui:minCardinality 0 ;
@@ -146,8 +146,8 @@ gen:PS_proprietor_IT_InfrastructureObjects
 
 #-----Заказчик
 #v-s:customer
-gen:PS_customer_IT_InfrastructureObjects 
-	rdf:type v-ui:ObjectPropertySpecification;
+gen:PS_customer_IT_InfrastructureObjects
+  rdf:type v-ui:ObjectPropertySpecification;
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:customer;
   v-ui:minCardinality 0 ;
@@ -159,8 +159,8 @@ gen:PS_customer_IT_InfrastructureObjects
 
 #-----Эксплуатант
 #v-s:operator
-gen:PS_operator_IT_InfrastructureObjects 
-	rdf:type v-ui:ObjectPropertySpecification;
+gen:PS_operator_IT_InfrastructureObjects
+  rdf:type v-ui:ObjectPropertySpecification;
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:operator;
   v-ui:minCardinality 0 ;
@@ -203,7 +203,7 @@ gen:TS_LinkObject
   v-s:loadPriority 10 ;
 .
 gen:PS_from_to_LinkObject
-	rdf:type v-ui:ObjectPropertySpecification;
+  rdf:type v-ui:ObjectPropertySpecification;
   v-ui:forClass v-s:LinkObject;
   v-ui:forProperty v-s:from;
   v-ui:forProperty v-s:to;
@@ -220,7 +220,7 @@ gen:PS_from_to_LinkObject
 
 #-------------------------------------------------------- Вид объекта ИТ --
 v-s:MaintenanceObjectKind
-  rdf:type owl:Class ;    
+  rdf:type owl:Class ;
   rdfs:label "Вид обслуживаемого объекта"@ru ;
   rdfs:label "Maintenance object kind"@en ;
   rdfs:subClassOf v-s:UserThing;
