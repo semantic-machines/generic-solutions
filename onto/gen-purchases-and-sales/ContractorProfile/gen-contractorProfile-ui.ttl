@@ -322,7 +322,7 @@ gen:ContractorProfileEmbeddedTemplate
       </tr>
     </tbody>
     <tfoot><tr><td colspan="3">
-      <veda-control data-type="link" rel="v-s:hasClassifierOKVED" class="-view edit search fulltext" data-template="{individual['v-s:registrationNumber'][0] + ' - ' + individual['rdfs:label'][0]}"></veda-control>
+      <veda-control data-type="link" rel="v-s:hasClassifierOKVED" class="-view edit search fulltext" data-template="{@.v-s:registrationNumber} - {@.rdfs:label}"></veda-control>
     </td></tr></tfoot>
   </table>
   <br>

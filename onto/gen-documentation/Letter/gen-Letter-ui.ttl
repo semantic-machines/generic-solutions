@@ -708,8 +708,8 @@ gen:CorrespondentTemplateNew
             <span about="@" property="v-s:postalAddress"></span>
           </a>
         </div>
-        <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view edit -search fulltext create create-modal" data-template="{individual['v-s:shortLabel'].join(' ') + ', ' + individual['v-s:postalAddress'].join(' ')}"></veda-control>
-        <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view -edit search fulltext" data-template="{individual['v-s:shortLabel'].join(' ') + ', ' + individual['v-s:postalAddress'].join(' ')}"></veda-control>
+        <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view edit -search fulltext create create-modal" data-template="{@.v-s:shortLabel}, {@.v-s:postalAddress}"></veda-control>
+        <veda-control data-type="link" rel="v-s:correspondentOrganization" class="-view -edit search fulltext" data-template="{@.v-s:shortLabel}, {@.v-s:postalAddress}"></veda-control>
       </div>
     </div>
     <div class="row row-attribute user-organization">

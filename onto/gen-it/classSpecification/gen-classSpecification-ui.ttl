@@ -84,7 +84,7 @@ gen:ClassSpecificationTemplate
           </div>
           <div class="col-sm-9 col-xs-7 value">
             <div rel="v-s:dateProperties" data-template="v-ui:ClassNameLabelLinkTemplate"></div>
-            <veda-control rel="v-s:dateProperties" data-type="link" class="-view edit search fulltext dropdown" data-template="{individual['rdfs:label'].join(' ') + ', ' + individual.id}"></veda-control>
+            <veda-control rel="v-s:dateProperties" data-type="link" class="-view edit search fulltext dropdown" data-template="{@.rdfs:label}, {@.id}"></veda-control>
          </div>
         </div>
         <div class="row row-attribute">
@@ -146,7 +146,7 @@ gen:ClassSpecificationTemplate
         </div>
       </div>
     </section>
-    
+
     <hr>
     <!--Системные свойства-->
     <div about="@" data-template="v-ui:SystemPropertiesTemplate" data-embedded="true"></div>
@@ -155,7 +155,7 @@ gen:ClassSpecificationTemplate
       <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete"></span>
     </div>
   </div>
-   
+
   <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
   <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
 </div>

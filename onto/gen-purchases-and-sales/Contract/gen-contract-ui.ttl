@@ -723,7 +723,7 @@ gen:ContractParticipantEmbeddedTemplate
     <div rel="v-s:hasRoleInContract" data-template="v-ui:LabelTemplate" class="view -edit search"></div>
   </td>
   <td width=20%>
-    <veda-control data-type="link" rel="v-s:hasContractor" class="-view edit search fulltext" data-template="{individual['rdfs:label'].join(' ') + ', ' + individual['v-s:registrationNumber'][0]}"></veda-control>
+    <veda-control data-type="link" rel="v-s:hasContractor" class="-view edit search fulltext" data-template="{@.rdfs:label}, {@.v-s:registrationNumber}"></veda-control>
     <div rel="v-s:hasContractor" class="view -edit search">
       <a href="#/@">
         <span about="@" property="rdfs:label"></span>,
@@ -732,7 +732,7 @@ gen:ContractParticipantEmbeddedTemplate
     </div>
   </td>
   <td width=50%>
-    <veda-control data-type="link" rel="v-s:hasOrganization" class="-view edit search fulltext" data-template="{individual['v-s:shortLabel'].join(' ') + ', ' + individual['v-s:taxId'][0]}"></veda-control>
+    <veda-control data-type="link" rel="v-s:hasOrganization" class="-view edit search fulltext" data-template="{@.v-s:shortLabel}, {@.v-s:taxId}"></veda-control>
     <div rel="v-s:hasOrganization" class="view -edit search">
       <a href="#/@">
         <span about="@" property="rdfs:label"></span>,
