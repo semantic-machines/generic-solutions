@@ -77,7 +77,7 @@ gen:DecreeTemplate
   rdfs:label "Template for gen:Decree class"@en ;
   v-ui:template """
 <script>
-//# sourceURL=gen:DecreeTemplate_pre
+
 </script>
 <div>
   <div class="container sheet">
@@ -271,7 +271,7 @@ gen:DecreeTemplate
   })
 
 
-//# sourceURL=gen:DecreeTemplate_post
+
 </script>
 """
 .

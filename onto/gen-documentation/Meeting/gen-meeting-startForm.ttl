@@ -58,7 +58,7 @@ gen:Meeting_ComplexRouteStartForm_Template
     individual[complex+'autoinstruction'][0][simple+'editable'] = [false];
     individual[complex+'autoinstruction'][0][simple+'actions'] = doc[actionPredicate];
   }
-//# sourceURL=gen:Meeting_ComplexRouteStartForm_Template_pre
+
 </script>
 <div about="@" data-embedded="true" data-template="s-wf:ComplexRouteStartForm_Common_Template" class="view edit"></div>
 """ ;

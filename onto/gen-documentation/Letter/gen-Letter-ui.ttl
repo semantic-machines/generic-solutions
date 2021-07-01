@@ -62,7 +62,7 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
     });
   }
 
-  //# sourceURL=v-s:LetterTemplate_pre
+  
 </script>
 <div>
   <div class="container sheet">
@@ -486,7 +486,7 @@ if ( mode === "edit" || template.data("mode") === "edit" ) {
       veda.Util.createReport('gen:OutgoingLetterPrintBlank_rtf', individual);
     });
   }
-  //# sourceURL=gen:LetterTemplate_post
+  
 </script>
   """ ;
 .
@@ -684,7 +684,7 @@ gen:LetterRegistrationRecordTemplateNew
       }
     });
   }
-  //# sourceURL=v-s:LetterRegistrationRecordTemplate_post
+  
 </script>
   """ ;
 .
@@ -812,7 +812,7 @@ gen:CorrespondentTemplateNew
     });
   });
 
-  //# sourceURL=gen:CorrespondentTemplate_post
+  
 </script>
   """ ;
 .

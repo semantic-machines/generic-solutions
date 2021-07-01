@@ -78,7 +78,7 @@ gen:LayoutTemplate
     observer.observe(target, markdownConfig);
   }
 
-//# sourceURL=gen:LayoutTemplate_pre
+
 </script>
 <div class="page">
   <nav role="navigation" class="navbar navbar-veda">
@@ -162,7 +162,7 @@ gen:LayoutTemplate
     $(this).closest("table").tableSortable(this);
   });
 
-//# sourceURL=gen:LayoutTemplate_post
+
 </script>
   """ ;
 .
@@ -285,7 +285,7 @@ this.search = function () {
     return Promise.resolve(self.result);
   }
 };
-//# sourceURL=gen:SearchAppFunctionModel
+
   """
 .
 
@@ -316,7 +316,7 @@ gen:SearchAppFunctionIconTemplate
       $("input", template).focus();
     });
   });
-//# sourceURL=gen:SearchAppFunctionIconTemplate
+
 </script>
   """ ;
 .
@@ -352,7 +352,7 @@ gen:SearchAppFunctionTemplate
       fn.present(resultsContainer, resultTemplate);
     });
   }
-//# sourceURL=gen:SearchAppFunctionTemplate_pre
+
 </script>
 <div>
   <veda-control property="*" data-type="string"></veda-control>
@@ -367,7 +367,7 @@ gen:SearchAppFunctionTemplate
   placeholder.load().then(function (placeholder) {
     $("input", template).prop("placeholder", placeholder).toString();
   });
-  //# sourceURL=gen:SearchAppFunctionTemplate_post
+  
 </script>
   """ ;
 .

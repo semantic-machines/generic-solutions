@@ -57,7 +57,7 @@ gen:ClaimTemplate
       regRecord["rdf:type"] = [ new veda.IndividualModel("v-s:LetterRegistrationRecord" + keyWord), isOwn ? enumerated : null ];
     });
   }
-  //# sourceURL=v-s:LetterTemplate_pre
+  
 </script>
 <div>
   <div class="container sheet">
@@ -255,7 +255,7 @@ gen:ClaimTemplate
     individual.off("afterReset", processHandler);
   });
 
-  //# sourceURL=gen:LetterTemplate_post  
+    
 </script>
   """ ;
 .

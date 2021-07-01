@@ -86,7 +86,7 @@ gen:ContractorCategoryRequestTemplate
       $(".action#save_and_start_process2", template).attr("disabled", "disabled");
     }
   })
-//# sourceURL=v-s:ContractorCategoryRequestTemplate_pre
+
 </script>
 <div>
   <div class="container sheet">
@@ -207,7 +207,7 @@ gen:ContractorCategoryRequestTemplate
   template.one("remove", function () {
      individual.off("afterReset", processHandler);
   });  
-  //# sourceURL=v-s:ContractorCategoryRequestTemplate
+  
 </script>
     """ ;
 .
@@ -236,7 +236,7 @@ gen:ContractorCategoryDecisionTemplate
   }
   handler(individual["v-s:isOrganizationOk"]);
 
-  //# sourceURL=v-s:ContractorCategoryDecisionTemplate_pre
+  
 </script>
 <div class="container sheet">
   <h2>
@@ -446,7 +446,7 @@ gen:ContractorCategoryDecisionTemplate
     handlerManagement(individual["v-s:hasContractorCategoryDecisionManagement"]);
 
   });
-  //# sourceURL=v-s:ContractorCategoryDecisionTemplate_post
+  
 </script>
    """ ;
 .
@@ -613,7 +613,7 @@ gen:ContractorCategoryDepartmentDecisionEmbeddedTemplate
   } catch (error) {
     console.log(error);
   }
-//# sourceURL=v-s:ContractorCategoryDepartmentDecisionEmbeddedTemplate_pre
+
 </script>
 <div class="panel panel-horizontal">
   <div class="panel-heading">

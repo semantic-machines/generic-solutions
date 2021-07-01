@@ -29,7 +29,7 @@ gen:AccountingDocTemplate
   rdfs:label "Template for v-s:AccountingDoc class"@en ;
   v-ui:template """
 <script>
-//# sourceURL=gen:AccountingDocTemplate_pre
+
 </script>
 <div>
   <div class="container sheet">
@@ -216,7 +216,7 @@ gen:AccountingDocTemplate
   });
 
 
-//# sourceURL=gen:AccountingDocTemplate_post
+
 </script>
 """
 .

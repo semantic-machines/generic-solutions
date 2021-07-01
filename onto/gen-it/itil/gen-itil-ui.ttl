@@ -238,7 +238,7 @@ v-s:LinksObjectListTemplate
     }
   }
 
-//# sourceURL=v-s:LinksListTemplate_pre
+
 </script>
 <div>
   <table class="hidden links-table table table-condensed table-striped table-sortable">

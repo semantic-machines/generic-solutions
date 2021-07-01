@@ -65,7 +65,7 @@ gen:MeetingTemplate
   rdfs:label "Template for v-s:Meeting class"@en ;
   v-ui:template """
 <script>
-//# sourceURL=gen:MeetingTemplate_pre
+
 </script>
 <div>
   <div class="container sheet">
@@ -312,7 +312,7 @@ gen:MeetingTemplate
 
 
 
-//# sourceURL=gen:MeetingTemplate_post
+
 </script>
 """
 .

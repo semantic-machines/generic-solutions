@@ -65,7 +65,7 @@ gen:ContractorProfileTemplate
     files.append(relName, relValue);
   });
 
-  //# sourceURL=v-s:ContractorProfileTemplate_pre
+  
 </script>
 <div class="container sheet">
    <h2>
@@ -223,7 +223,7 @@ gen:ContractorProfileTemplate
           idx = fn.lastIndexOf("."),
           ext = fn.substr(idx + 1);
         $("span#icon", template).text(ext);
-        //# sourceURL=v-s:ContractorProfileFileTemplate
+        
       </script>
     </tbody>
   </table>
@@ -247,7 +247,7 @@ gen:ContractorProfileTemplate
     request["v-s:canRead"] = [ true ];
     riot.route( ["#", request.id, "#main", tmpl, "edit"].join("/") );
   });
-  //# sourceURL=v-s:ContractorProfileTemplate_post
+  
 </script>
   """ ;
 .
@@ -291,7 +291,7 @@ gen:ContractorProfileEmbeddedTemplate
     var relValue = relValueTmpl.clone().attr("rel", property_uri);
     files.append(relName, relValue);
   });
-  //# sourceURL=v-s:ContractorProfileEmbeddedTemplate_pre
+  
 </script>
 <div>
   <h2>
@@ -381,7 +381,7 @@ gen:ContractorProfileEmbeddedTemplate
           idx = fn.lastIndexOf("."),
           ext = fn.substr(idx + 1);
         $("span#icon", template).text(ext);
-        //# sourceURL=v-s:ContractorProfileFileTemplate
+        
       </script>
     </tbody>
   </table>
@@ -391,7 +391,7 @@ gen:ContractorProfileEmbeddedTemplate
      veda.Util.send(individual, template, 's-wf:complexRouteTransform');
   });
 
-  //# sourceURL=v-s:ContractorProfileEmbeddedTemplate_post
+  
 </script>
 
     """ ;

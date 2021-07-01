@@ -81,7 +81,7 @@ gen:PowerOfAttorneyTemplate
       $("#add-linkedCopy", template).remove();
     }
   })
- //# sourceURL=gen:PowerOfAttorneyTemplate_pre
+ 
 </script>
 <div>
   <div class="container sheet">
@@ -375,7 +375,7 @@ gen:PowerOfAttorneyTemplate
     individual.off("v-s:isIssuedForAbsencePeriodOfEmployee", absencePeriodHandler);
   });
 
- //# sourceURL=gen:PowerOfAttorneyTemplate_post
+ 
 </script>
       """ ;
 .
@@ -439,7 +439,7 @@ gen:PowerOfAttorneyRegistrationRecordTemplate
       date.setSeconds(0);
     individual["v-s:registrationDate"] = [date] ;
   }
-  //# sourceURL=gen:PowerOfAttorneyRegistrationRecordTemplate_post
+  
 </script>
 """
 .

@@ -116,7 +116,7 @@ gen:BusinessTripTemplate
     }
     template.trigger("validated", result);
   });
-  //# sourceURL=gen:BusinessTripTemplate_pre
+  
 </script>
 <div>
   <div class="container sheet">
@@ -651,7 +651,7 @@ $("#add-RegRecord", template).click(function () {
     individual.off("gen:hasBusinessTripTransportKind", showBoolean);
   });*/
 
-  //# sourceURL=gen:BusinessTripTemplate_post
+  
 </script>
 """
 .
@@ -989,7 +989,7 @@ gen:BusinessTrip_EmployeeTemplate
           .removeAttr("property")
           .text(tabNumber);
       }
-      //# sourceURL=gen:BusinessTrip_EmployeeTemplate_pre
+      
     </script>
     <span>
       <span about="@" property="v-s:lastName"></span>

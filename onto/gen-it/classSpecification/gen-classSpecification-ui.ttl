@@ -49,7 +49,7 @@ gen:ClassSpecificationTemplate
     template.trigger("validated", result);
   });
 
-  //# sourceURL=v-s:OrganizationTemplate_pre
+  
 </script>
 <div>
   <div class="container sheet">
@@ -172,7 +172,7 @@ gen:ClassSpecificationTemplate
     individual.off("v-s:isShelfLifeAlways", shelfLifeView);
   });
 
-  //# sourceURL=v-s:OrganizationTemplate_post
+  
 </script>
   """ ;
 .

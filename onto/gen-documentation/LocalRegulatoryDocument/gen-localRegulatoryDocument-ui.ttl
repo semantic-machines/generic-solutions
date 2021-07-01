@@ -199,7 +199,7 @@ gen:LocalRegulatoryDocumentTemplate
     $('button#send').hide();
     $('button#edit').hide();
   }
-  //# sourceURL=gen:LocalRegulatoryDocumentTemplate_post
+  
 </script>
     """ ;
 .
@@ -235,7 +235,7 @@ gen:VersionOfLocalRegulatoryDocumentTemplate
     };
     template.trigger("validated", result);
   });
-  //# sourceURL=gen:VersionOfLocalRegulatoryDocumentTemplate_pre
+  
 </script>
 <div>
   <div class="container sheet">
@@ -434,7 +434,7 @@ gen:VersionOfLocalRegulatoryDocumentTemplate
       $('#save.action', template).remove();
     }
   })
-  //# sourceURL=gen:VersionOfLocalRegulatoryDocumentTemplate_post
+  
 </script>
   """ ;
 .

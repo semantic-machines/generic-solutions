@@ -56,7 +56,7 @@ gen:InternalDocument_ComplexRouteStartForm_Template
   individual[complex+'instruction'][0][simple+'visible'] = [true];
   individual[complex+'instruction'][0][simple+'editable'] = [true];
 
-//# sourceURL=gen:InternalDocument_ComplexRouteStartForm_Template_pre
+
 </script>
 <div about="@" data-embedded="true" data-template="s-wf:ComplexRouteStartForm_Common_Template" class="view edit"></div>
 """ ;

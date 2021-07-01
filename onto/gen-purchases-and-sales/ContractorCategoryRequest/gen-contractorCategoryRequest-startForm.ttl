@@ -46,7 +46,7 @@ gen:ContractorCategoryRequest_Initial_ComplexRouteStartForm_Template
   individual[complex+'examination'][0][simple+'visible'] = [true];
   individual[complex+'examination'][0][simple+'editable'] = [true];
 
-  //# sourceURL=mnd-s:ContractorCategoryRequest_ComplexRouteStartForm_Template_pre
+  
 </script>
 <div about="@" data-embedded="true" data-template="s-wf:ComplexRouteStartForm_Common_Template" class="view edit"></div>
 """ ;
@@ -81,7 +81,7 @@ gen:ContractorCategoryRequest_Risks_ComplexRouteStartForm_Template
 
   individual[complex+'examination'][0][simple+'comment'] = [new String('Оценка рисков произведена')];
 
-  //# sourceURL=mnd-s:ContractorCategoryRequest_ComplexRouteStartForm_Template_pre
+  
 </script>
 <div about="@" data-embedded="true" data-template="s-wf:ComplexRouteStartForm_Common_Template" class="view edit"></div>
 """ ;
