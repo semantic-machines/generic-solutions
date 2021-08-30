@@ -35,9 +35,10 @@ gen:Tr_hasParentLink_IT_InfrastructureObjects
   rdf:type v-ui:Tree ;
   v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:forProperty v-s:hasParentLink ;
+  v-ui:forProperty v-s:hasLinkObject;
   v-ui:treeRoot d:All_IT_InfrastructureObjects ;
   v-ui:treeInProperty v-s:hasParentLink ;
-  v-ui:treeInProperty v-s:hasLinkObject ;
+  v-ui:treeInProperty v-s:to;
   v-ui:treeAllowedClass v-s:IT_InfrastructureObjects ;
   v-ui:treeAllowedClass v-s:IT_InfrastructureObjectsSoftware ;
   v-ui:treeAllowedClass v-s:IT_InfrastructureObjectsHardware;

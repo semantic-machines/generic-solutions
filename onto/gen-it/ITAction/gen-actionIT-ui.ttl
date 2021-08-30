@@ -64,7 +64,7 @@ gen:ActionITTemplate
           <label about="gen:hasIT_InfrastructureObjects" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="gen:hasIT_InfrastructureObjects" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div rel="gen:hasIT_InfrastructureObjects" class="view edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="gen:hasIT_InfrastructureObjects" class="-view edit search fulltext dropdown tree"></veda-control>
         </div>
       </div>

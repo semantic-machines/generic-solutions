@@ -40,6 +40,14 @@ v-s:IT_InstallationBundle
   rdfs:label "Инсталляция"@ru ;
   rdfs:label "Installation"@en;
 .
+gen:TS_IT_InfrastructureObjects
+  rdf:type v-ui:TemplateSpecification;
+  rdfs:isDefinedBy <http: //semantic-machines.com/veda/gen-itil-schema>;
+  v-s:created "2020-12-22T07:50:47Z"^^xsd:dateTime;
+  v-s:loadPriority "10"^^xsd:integer;
+  v-s:updateCounter "2"^^xsd:integer;
+  v-ui:defaultTemplate gen:IT_InfrastructureObjectsTemplate;
+  v-ui:forClass v-s:IT_InfrastructureObjects.
 
 # ------------------------------------------------------------ ШАБЛОНЫ --
 gen:IT_InfrastructureObjectsTemplate
@@ -304,7 +312,7 @@ gen:LinkObjectTemplate
           <label about="v-s:title" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div property="v-s:title" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div property="v-s:title" class="view -edit search" data-template="v-ui:LabelLinkTemplate"></div>
           <veda-control property="v-s:title" data-type="text" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -313,7 +321,7 @@ gen:LinkObjectTemplate
           <label about="v-s:from" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:from" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div rel="v-s:from" class="view -edit search" data-template="v-ui:LabelLinkTemplate"></div>
           <veda-control data-type="link" rel="v-s:from" class="-view edit search fulltext"></veda-control>
         </div>
       </div>
@@ -324,6 +332,14 @@ gen:LinkObjectTemplate
         <div class="col-sm-9 col-xs-7">
           <div rel="v-s:to" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:to" class="-view edit search fulltext"></veda-control>
+        </div>
+      </div>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:purposeITILBundle" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-9 col-xs-7">
+          <div rel="v-s:from" about="@" class="view edit -search"><span property="v-s:description"></span></div>
         </div>
       </div>
       <div class="row row-attribute">
@@ -363,6 +379,7 @@ gen:LinkObjectTemplate
       }, 250);
     });
   });
+  //# sourceURL=gen:LinkObjectTemplate_post
 </script>
 """
 .

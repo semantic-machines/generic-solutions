@@ -26,6 +26,17 @@ gen:ActionIT
   rdfs:label "Action IT"@en ;
 .
 
+#-----Статус
+#v-s:hasStatus
+gen:PS_hasStatus_ActionIT
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass gen:ActionIT;
+   v-ui:forProperty v-s:hasStatus;
+   v-ui:queryPrefix "'@'=='v-s:StatusPreparation' ||  '@'=='v-s:StatusMoreInformationPending' || '@'=='v-s:StatusCanceled' || '@'=='v-s:StatusExecuted' || '@'=='v-s:StatusExecution' || '@'=='v-s:StatusRejected' || '@'=='v-s:StatusRejected' || '@'=='v-s:StatusPostponed' || '@'=='v-s:StatusArchived' || '@'=='v-s:StatusDraft' || '@'=='v-s:StatusAgreement' || '@'=='v-s:StatusApproved'"^^xsd:string;
+   rdfs:label "Спецификация свойства v-s:hasStatus для класса gen:ActionIT"@ru ;
+   rdfs:label "v-s:hasStatus specification gen:ActionIT"@en ;
+.
+
 #-----Ответственный
 #v-s:responsible
 

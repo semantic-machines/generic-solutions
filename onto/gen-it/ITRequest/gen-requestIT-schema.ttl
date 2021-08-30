@@ -33,6 +33,14 @@ gen:RequestIT
 
 #-----Статус
 #v-s:hasStatus
+gen:PS_hasStatus_RequestIT
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass gen:RequestIT;
+   v-ui:forProperty v-s:hasStatus;
+   v-ui:queryPrefix "'@'=='v-s:StatusPreparation' ||  '@'=='v-s:StatusMoreInformationPending' || '@'=='v-s:StatusCanceled' || '@'=='v-s:StatusExecuted' || '@'=='v-s:StatusExecution' || '@'=='v-s:StatusRejected' || '@'=='v-s:StatusRejected' || '@'=='v-s:StatusPostponed' || '@'=='v-s:StatusArchived' || '@'=='v-s:StatusDraft' || '@'=='v-s:StatusAgreement' || '@'=='v-s:StatusApproved'"^^xsd:string;
+   rdfs:label "Спецификация свойства v-s:hasStatus для класса gen:RequestIT"@ru ;
+   rdfs:label "v-s:hasStatus specification gen:RequestIT"@en ;
+.
 
 #-----Дата
 #v-s:date
