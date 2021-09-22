@@ -23,7 +23,16 @@ gen:FullNameOfEmployeeBundle
   rdfs:label "ФИО сотрудника"@ru ;
   rdfs:label "Full name of the employee"@en ;
 .
-
+gen:RegNumBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Рег. №"@ru ;
+  rdfs:label "Reg. num."@en ;
+.
+gen:ResponsibleBundle
+  rdf:type v-s:Bundle ;
+  rdfs:label "Отв."@ru ;
+  rdfs:label "Res."@en ;
+.
 # ------------------------------------------------------------ ШАБЛОНЫ --
 gen:ActionITTemplate
   rdf:type v-ui:ClassTemplate ;
@@ -41,6 +50,15 @@ gen:ActionITTemplate
     <span about="@" data-template="v-ui:RabbitHole"></span>
     <section id="MainProperties">
       <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
+      <div class="row row-attribute">
+        <div class="col-sm-3 col-xs-5">
+          <label about="v-s:registrationNumber" property="rdfs:label"></label>
+        </div>
+        <div class="col-sm-3 col-xs-3">
+          <div property="v-s:registrationNumber" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
+        </div>
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:hasStatus" property="rdfs:label"></label>
@@ -138,7 +156,7 @@ gen:ActionITTemplate
           <label about="v-s:taskDescription" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div property="v-s:taskDescription" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div property="v-s:taskDescription" class="view -edit search alert alert-warning" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="text" property="v-s:taskDescription" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -167,7 +185,7 @@ gen:ActionITTemplate
           <label about="v-s:reportDescription" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div property="v-s:reportDescription" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div property="v-s:reportDescription" class="view -edit search alert alert-success" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="text" property="v-s:reportDescription" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -196,6 +214,10 @@ gen:ActionITTemplate
   </div>
 </div>
 <script>
+  if (individual.isNew()){
+    individual["v-s:hasStatus"] = [new veda.IndividualModel("v-s:StatusDraft")];
+  }
+
   $("#add-ActionIT", template).click(function () {
       var modal = $("#notification-modal-template").html();
       modal = $(modal);
@@ -213,6 +235,9 @@ gen:ActionITTemplate
       ActionIT.present(cntr, tmpl, "edit");
       ActionIT["v-s:backwardTarget"] = [individual];
       ActionIT["v-s:backwardProperty"] = [new veda.IndividualModel("gen:hasActionIT")];
+      ActionIT["gen:hasIT_InfrastructureObjects"] = individual["gen:hasIT_InfrastructureObjects"];
+      ActionIT["v-s:responsibleOrganization"] = individual["v-s:responsibleOrganization"];
+      ActionIT["v-s:responsibleDepartment"] = individual["v-s:responsibleDepartment"];
       ActionIT.one("afterReset", function () {
         modal.modal("hide").remove();
       });
@@ -221,6 +246,10 @@ gen:ActionITTemplate
 </script>
 """ ;
 .
+
+
+
+
 gen:ActionITEmbeddedTemplate
   rdf:type v-ui:ClassTemplate ;
   rdfs:label "Шаблон Мероприятия"@ru ;
@@ -240,38 +269,36 @@ gen:ActionITEmbeddedTemplate
         <span about="@" rel="v-s:hasStatus" data-template="v-ui:StatusTemplate"></span>&nbsp
         <small about="@" property="rdfs:label" class="view edit -search"></small>
       </h3>
-      <button type="button" class="action glyphicon glyphicon-duplicate -view edit -search clone btn btn-default btn-xs pull-left" id="duplicateItRequest" tabindex="-1"></button>
     </div>
     <div class="panel-body">
       <div class="row row-attribute">
         <div class="col-sm-2 col-xs-5">
-          <label about="v-s:hasStatus" property="rdfs:label"></label>
+          <label about="gen:RegNumBundle" property="rdfs:label"></label>
         </div>
-        <div class="col-sm-10 col-xs-7">
-          <div rel="v-s:hasStatus" class="view edit -search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:hasStatus" class="-view edit search fulltext" ></veda-control>
+        <div class="col-sm-3 col-xs-3">
+          <div property="v-s:registrationNumber" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="string" property="v-s:registrationNumber" class="-view edit search"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
         <div class="col-sm-2 col-xs-5">
-          <label about="gen:hasIT_InfrastructureObjects" property="rdfs:label"></label>
+          <label about="v-s:theme" property="rdfs:label"></label>
         </div>
         <div class="col-sm-10 col-xs-7">
-          <div rel="gen:hasIT_InfrastructureObjects" class="view edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control rel="gen:hasIT_InfrastructureObjects" data-type="link" class="-view edit search fulltext tree"></veda-control>
+          <div property="v-s:theme" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="string" property="v-s:theme" class="-view edit search"></veda-control>
         </div>
       </div>
-      
       <div class="row row-attribute">
         <div class="col-sm-2 col-xs-5">
-          <label about="v-s:responsible" property="rdfs:label"></label>
+          <label about="gen:ResponsibleBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-10 col-xs-7">
-          <div rel="v-s:responsible" class="view edit -search" data-template="v-ui:LabelTemplate"></div>
+          <div rel="v-s:responsible" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext" ></veda-control>
         </div>
       </div>
-      <div class="row row-attribute alert-danger">
+      <div class="row row-attribute">
         <div class="col-sm-2 col-xs-5">
           <label>План</label>
         </div>
@@ -280,7 +307,7 @@ gen:ActionITEmbeddedTemplate
           <veda-control data-type="date" property="v-s:datePlan" class="-view edit search"></veda-control>
         </div>
         <div class="col-sm-8 col-xs-5">
-          <div property="v-s:taskDescription" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div property="v-s:taskDescription" class="alert-warning view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="text" property="v-s:taskDescription" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -293,39 +320,31 @@ gen:ActionITEmbeddedTemplate
           <veda-control data-type="date" property="v-s:dateFact" class="-view edit search"></veda-control>
         </div>
         <div class="col-sm-8 col-xs-5">
-          <div property="v-s:reportDescription" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
+          <div property="v-s:reportDescription" class="alert-success view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="text" property="v-s:reportDescription" class="-view edit search"></veda-control>
         </div>
       </div>
-      <div class="row row-attribute">
-        <div class="col-sm-2 col-xs-5">
-          <label about="gen:hasActionIT" property="rdfs:label"></label>
-        </div>
-        <div class="col-sm-10 col-xs-7">
-          <table class="table">
-            <thead>
-              <tr>
-                <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
-                <th about="v-s:registrationNumber" property="rdfs:label"></th>
-                <th about="v-s:hasStatus" property="rdfs:label"></th>
-                <th about="rdfs:label" property="rdfs:label"></th>
-                <th about="v-s:responsible" property="rdfs:label"></th>
-              </tr>
-            </thead>
-            <tbody rel="gen:hasActionIT">
-              <tr>
-                <td width="1%"><a href="#/@" class="glyphicon glyphicon-search"></a></td>
-                <td property="v-s:registrationNumber"></td>
-                <td rel="v-s:hasStatus"></td>
-                <td property="rdfs:label"></td>
-                <td rel="v-s:responsible" data-template="v-ui:LabelTemplate"></td>
-              </tr>
-            </tbody>
-          </table>
-          <!--<div rel="gen:hasActionIT" class="view edit search" data-template="gen:ActionITEmbeddedTemplate"></div>-->
+     <div class="row row-attribute">
+        <div class="col-sm-1 col-xs-5"></div>
+        <div class="col-sm-11 col-xs-7">
+          <div rel="gen:hasActionIT" class="view edit search" data-template="gen:ActionITEmbeddedTemplate" data-embedded="true"></div>
         </div>
       </div>
     </div>
   </div>
 """ ;
 .
+gen:PS_hasIT_InfrastructureObjects_ActionIT_test
+  rdf:type v-ui:Tree ;
+  v-ui:forClass gen:ActionIT ;
+  v-ui:forProperty gen:hasActionIT ;
+  v-ui:treeRoot individual ;
+  v-ui:treeInProperty gen:hasActionIT ;
+  v-ui:treeAllowedClass gen:ActionIT ;
+  v-ui:treeSelectableClass gen:ActionIT ;
+  v-ui:treeDisplayedProperty rdfs:label ;
+  v-ui:queryPrefix "('rdf:type'=='gen:ActionIT')"^^xsd:string;
+  rdfs:label "Дерево Инфраструктуры ИТ"@ru ;
+  rdfs:label "Infrastructure 434324IT Tree"@en ;
+.
+

@@ -37,6 +37,17 @@ gen:PS_hasStatus_ActionIT
    rdfs:label "v-s:hasStatus specification gen:ActionIT"@en ;
 .
 
+#v-s:theme
+gen:PS_theme_ActionIT
+   rdf:type v-ui:ObjectPropertySpecification ;
+   v-ui:forClass gen:ActionIT;
+   v-ui:forProperty v-s:theme;
+   v-ui:minCardinality 1 ;
+   v-ui:maxCardinality 1 ;
+   rdfs:label "Спецификация свойства v-s:hasStatus для класса v-s:theme"@ru ;
+   rdfs:label "v-s:theme specification gen:ActionIT"@en ;
+.
+
 #-----Ответственный
 #v-s:responsible
 
@@ -98,7 +109,7 @@ gen:PS_dateFact_Action
     v-ui:forProperty gen:hasIT_InfrastructureObjects ;
     v-ui:maxCardinality 10 ;
     v-ui:minCardinality 1 ;
-    v-ui:treeRoot d:org_RU1121003135 ;
+    v-ui:treeRoot d:All_IT_InfrastructureObjects ;
     v-ui:treeInProperty v-s:hasParentLink ;
     v-ui:treeAllowedClass v-s:IT_InfrastructureObjects ;
     v-ui:treeAllowedClass v-s:IT_InfrastructureObjectsSoftware ;

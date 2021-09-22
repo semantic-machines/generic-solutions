@@ -21,7 +21,7 @@ gen:RequestIT
   rdf:type owl:Class ;
   rdfs:subClassOf v-s:Request, v-s:Labeled, v-s:Enumerated ;
   v-s:labelPattern "{@.v-s:registrationNumber} {@.v-s:theme} {@.v-s:date}" ;
-  v-s:hasNumeration v-s:RegistrationNumberSimpleNumeration ;
+  v-s:hasNumeration v-s:RegistrationNumberYearNumeration2_6;
   v-ui:hasTemplate gen:RequestITTemplate ;
   rdfs:label "Заявка ИТ"@ru ;
   rdfs:label "Request IT"@en ;
@@ -70,7 +70,7 @@ gen:hasIT_InfrastructureObjects
     v-ui:forProperty gen:hasIT_InfrastructureObjects ;
     v-ui:maxCardinality 10 ;
     v-ui:minCardinality 0 ;
-    v-ui:treeRoot d:org_RU1121003135 ;
+    v-ui:treeRoot d:All_IT_InfrastructureObjects ;
     v-ui:treeInProperty v-s:hasParentLink ;
     v-ui:treeAllowedClass v-s:IT_InfrastructureObjects ;
     v-ui:treeAllowedClass v-s:IT_InfrastructureObjectsSoftware ;
