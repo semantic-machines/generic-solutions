@@ -25,7 +25,21 @@ gen:Innovation_Bundle
   rdfs:label "Инновация"@ru ;
   rdfs:label "Innovation"@en ;
 .
+
+
 # ------------------------------------------------------------ ШАБЛОНЫ --
+gen:CS_Idea
+  rdf:type v-s:ClassSpecification ;
+  rdfs:label "Спецификация класса v-s:Idea"@ru, "Class specification v-s:Idea"@en ;
+  v-s:hasApplication gen:InnovationsManagementApplication;
+  v-s:hasAspect gen:DevelopmentAndReconstructionAspect ;
+  v-s:hasClass v-s:Idea ;
+  v-s:isShelfLifeAlways true ;
+  v-s:listProperties v-s:attachment, v-s:hasComment ;
+  v-ui:defaultTemplate gen:InnovationTemplate ;
+  v-s:loadPriority 10 ;
+.
+
 gen:InnovationTemplate
   rdf:type v-ui:ClassTemplate ;
   v-ui:forClass v-s:Idea ;

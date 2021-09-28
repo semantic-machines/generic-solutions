@@ -76,6 +76,18 @@ gen:coordinateWithCustomer_Bundle
 .
 
 #--------------Шаблоны----------------------------
+gen:CS_TechnicalDocument
+  rdf:type v-s:ClassSpecification ;
+  rdfs:label "Спецификация класса v-s:TechnicalDocument"@ru, "Class specification v-s:TechnicalDocument"@en ;
+  v-s:hasApplication gen:TechnicalDocumentApplication;
+  v-s:hasAspect gen:DevelopmentAndReconstructionAspect ;
+  v-s:hasClass v-s:TechnicalDocument ;
+  v-s:isShelfLifeAlways true ;
+  v-s:listProperties v-s:attachment, v-s:hasComment, v-s:developer, v-s:hasTechnicalDocument;
+  v-ui:defaultTemplate gen:TechnicalDocumentTemplate;
+  v-s:loadPriority 10 ;
+.
+
 gen:TechnicalDocumentTemplate
   rdf:type v-ui:ClassTemplate ;
   v-ui:forClass v-s:TechnicalDocument ;
