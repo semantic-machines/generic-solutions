@@ -34,6 +34,7 @@ gen:CS_Action
   v-s:isShelfLifeAlways true ;
   v-s:listProperties v-s:attachment, v-s:hasComment, v-s:hasAction;
   v-ui:defaultTemplate gen:ActionTemplate;
+  v-s:labelPattern "{@.v-s:registrationNumber} - {@.v-s:description [0,100]}" ;
   v-s:loadPriority 10 ;
 .
 

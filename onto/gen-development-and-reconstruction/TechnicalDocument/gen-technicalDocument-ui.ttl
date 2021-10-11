@@ -85,6 +85,8 @@ gen:CS_TechnicalDocument
   v-s:isShelfLifeAlways true ;
   v-s:listProperties v-s:attachment, v-s:hasComment, v-s:developer, v-s:hasTechnicalDocument;
   v-ui:defaultTemplate gen:TechnicalDocumentTemplate;
+  v-s:labelPattern "{@.v-s:shortLabel} - {@.v-s:title} - {@.v-s:hasClassifierSectionOfProjectDocumentation.v-s:shortLabel} - {@.v-s:hasClassifierMarkOfWorkingDrawingsSet.v-s:shortLabel}" ;
+  v-s:hasNumeration v-s:RegistrationNumberYearNumeration2_6 ;
   v-s:loadPriority 10 ;
 .
 

@@ -69,14 +69,14 @@ gen:DeviationOnExpensesBundle
 .
 
 # ------------------------------------------------------------ ШАБЛОНЫ --
-gen:CS_Action
+gen:CS_BusinessTrip
   rdf:type v-s:ClassSpecification ;
   rdfs:label "Спецификация класса gen:BusinessTrip"@ru, "Class specification gen:BusinessTrip"@en ;
   #v-s:hasApplication gen:TechnicalDocumentApplication;
   #v-s:hasAspect gen:DevelopmentAndReconstructionAspect ;
-  v-s:hasClass v-s:Action;
+  v-s:hasClass gen:BusinessTrip;
   v-s:isShelfLifeAlways true ;
-  v-s:listProperties v-s:attachment, v-s:hasComment, v-s:hasAction;
+  v-s:listProperties gen:hasChangeOfTerms, gen:hasDeviationOnExpenses, v-s:hasComment;
   v-ui:defaultTemplate gen:BusinessTripTemplate;
   v-s:loadPriority 10 ;
 .

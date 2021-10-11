@@ -37,6 +37,8 @@ gen:CS_Idea
   v-s:isShelfLifeAlways true ;
   v-s:listProperties v-s:attachment, v-s:hasComment ;
   v-ui:defaultTemplate gen:InnovationTemplate ;
+  v-s:labelPattern "{@.rdf:type.rdfs:label} {@.v-s:registrationNumber}. {@.v-s:title}" ;
+  v-s:hasNumeration v-s:RegistrationNumberIdeaAndProjectsNumeration ;
   v-s:loadPriority 10 ;
 .
 
