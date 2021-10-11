@@ -30,9 +30,10 @@ gen:CS_Action
   rdfs:label "Спецификация класса v-s:Action"@ru, "Class specification v-s:Action"@en ;
   #v-s:hasApplication gen:TechnicalDocumentApplication;
   #v-s:hasAspect gen:DevelopmentAndReconstructionAspect ;
-  v-s:hasClass v-s:Action;
-  v-s:isShelfLifeAlways true ;
+  v-ui:forClass v-s:Action;
+  v-s:shelfLife 9999;
   v-s:listProperties v-s:attachment, v-s:hasComment, v-s:hasAction;
+  v-s:hasDeletedProperties v-s:attachment, v-s:hasComment, v-s:hasAction;
   v-ui:defaultTemplate gen:ActionTemplate;
   v-s:labelPattern "{@.v-s:registrationNumber} - {@.v-s:description [0,100]}" ;
   v-s:loadPriority 10 ;

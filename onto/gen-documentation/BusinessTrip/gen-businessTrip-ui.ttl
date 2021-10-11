@@ -74,9 +74,10 @@ gen:CS_BusinessTrip
   rdfs:label "Спецификация класса gen:BusinessTrip"@ru, "Class specification gen:BusinessTrip"@en ;
   #v-s:hasApplication gen:TechnicalDocumentApplication;
   #v-s:hasAspect gen:DevelopmentAndReconstructionAspect ;
-  v-s:hasClass gen:BusinessTrip;
-  v-s:isShelfLifeAlways true ;
+  v-ui:forClass gen:BusinessTrip;
+  v-s:shelfLife 9999;
   v-s:listProperties gen:hasChangeOfTerms, gen:hasDeviationOnExpenses, v-s:hasComment;
+  v-s:hasDeletedProperties gen:hasChangeOfTerms, gen:hasDeviationOnExpenses, v-s:hasComment;
   v-ui:defaultTemplate gen:BusinessTripTemplate;
   v-s:loadPriority 10 ;
 .

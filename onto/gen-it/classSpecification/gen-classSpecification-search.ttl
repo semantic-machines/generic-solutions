@@ -43,7 +43,7 @@ gen:ClassSpecificationSearchResultTemplate
     </tr>
     <tr class="active">
       <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
-      <th><span about="v-s:hasClass" property="rdfs:label"></span></th>
+      <th><span about="v-ui:forClass" property="rdfs:label"></span></th>
       <th><span about="v-s:dateProperties" property="rdfs:label"></span></th>
       <th><span about="v-s:shelfLife" property="rdfs:label"></span></th>
       <th><span about="v-s:isShelfLifeAlways" property="rdfs:label"></span></th>
@@ -55,7 +55,7 @@ gen:ClassSpecificationSearchResultTemplate
   <tbody class="result-container">
     <tr>
       <td><a href="#/@" class="glyphicon glyphicon-search"></a></td>
-      <td rel="v-s:hasClass" data-template="v-ui:LabelTemplate"></td>
+      <td rel="v-ui:forClass" data-template="v-ui:LabelTemplate"></td>
       <td rel="v-s:dateProperties" data-template="v-ui:LabelTemplate"></td>
       <td property="v-s:shelfLife"></td>
       <td><veda-control property="v-s:isShelfLifeAlways" data-type="boolean"></veda-control>

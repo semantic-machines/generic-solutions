@@ -81,9 +81,10 @@ gen:CS_TechnicalDocument
   rdfs:label "Спецификация класса v-s:TechnicalDocument"@ru, "Class specification v-s:TechnicalDocument"@en ;
   v-s:hasApplication gen:TechnicalDocumentApplication;
   v-s:hasAspect gen:DevelopmentAndReconstructionAspect ;
-  v-s:hasClass v-s:TechnicalDocument ;
-  v-s:isShelfLifeAlways true ;
+  v-ui:forClass v-s:TechnicalDocument ;
+  v-s:shelfLife 9999;
   v-s:listProperties v-s:attachment, v-s:hasComment, v-s:developer, v-s:hasTechnicalDocument;
+  v-s:hasDeletedProperties v-s:attachment, v-s:hasComment, v-s:developer, v-s:hasTechnicalDocument;
   v-ui:defaultTemplate gen:TechnicalDocumentTemplate;
   v-s:labelPattern "{@.v-s:shortLabel} - {@.v-s:title} - {@.v-s:hasClassifierSectionOfProjectDocumentation.v-s:shortLabel} - {@.v-s:hasClassifierMarkOfWorkingDrawingsSet.v-s:shortLabel}" ;
   v-s:hasNumeration v-s:RegistrationNumberYearNumeration2_6 ;

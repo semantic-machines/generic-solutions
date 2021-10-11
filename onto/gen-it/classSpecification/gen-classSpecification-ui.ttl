@@ -42,8 +42,8 @@ gen:ClassSpecificationTemplate
         cause: ["v-ui:minCardinality"]
       };
     }
-    result["v-s:hasClass"] = {
-        state: individual.hasValue("v-s:hasClass"),
+    result["v-ui:forClass"] = {
+        state: individual.hasValue("v-ui:forClass"),
         cause: ["v-ui:minCardinality"]
       };
     template.trigger("validated", result);
@@ -62,11 +62,11 @@ gen:ClassSpecificationTemplate
       <div class="section-content">
         <div class="row row-attribute">
           <div class="col-sm-3 col-xs-5">
-            <label about="v-s:hasClass" property="rdfs:label"></label>
+            <label about="v-ui:forClass" property="rdfs:label"></label>
           </div>
           <div class="col-sm-9 col-xs-7">
-            <div rel="v-s:hasClass" data-template="v-ui:LabelTemplate"></div>
-            <veda-control data-type="link" rel="v-s:hasClass" class="-view edit search fulltext dropdown" data-query-prefix="'rdf:type'=='owl:Class'"></veda-control>
+            <div rel="v-ui:forClass" data-template="v-ui:LabelTemplate"></div>
+            <veda-control data-type="link" rel="v-ui:forClass" class="-view edit search fulltext dropdown" data-query-prefix="'rdf:type'=='owl:Class'"></veda-control>
           </div>
         </div>
         <div class="row row-attribute">

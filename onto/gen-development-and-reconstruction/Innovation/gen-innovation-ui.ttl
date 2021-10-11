@@ -33,9 +33,10 @@ gen:CS_Idea
   rdfs:label "Спецификация класса v-s:Idea"@ru, "Class specification v-s:Idea"@en ;
   v-s:hasApplication gen:InnovationsManagementApplication;
   v-s:hasAspect gen:DevelopmentAndReconstructionAspect ;
-  v-s:hasClass v-s:Idea ;
-  v-s:isShelfLifeAlways true ;
+  v-ui:forClass v-s:Idea ;
+  v-s:shelfLife 9999;
   v-s:listProperties v-s:attachment, v-s:hasComment ;
+  v-s:hasDeletedProperties v-s:attachment, v-s:hasComment ;
   v-ui:defaultTemplate gen:InnovationTemplate ;
   v-s:labelPattern "{@.rdf:type.rdfs:label} {@.v-s:registrationNumber}. {@.v-s:title}" ;
   v-s:hasNumeration v-s:RegistrationNumberIdeaAndProjectsNumeration ;
