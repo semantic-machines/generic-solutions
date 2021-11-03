@@ -36,12 +36,10 @@ gen:ClassSpecificationTemplate
 <script>
   template.on("validate", function () {
     var result = {};
-    if (individual.hasValue("v-s:isShelfLifeAlways",false)) {
-      result["v-s:shelfLife"] = {
-        state: individual.hasValue("v-s:shelfLife"),
-        cause: ["v-ui:minCardinality"]
-      };
-    }
+    result["v-s:shelfLife"] = {
+      state: individual.hasValue("v-s:shelfLife"),
+      cause: ["v-ui:minCardinality"]
+    };
     result["v-ui:forClass"] = {
         state: individual.hasValue("v-ui:forClass"),
         cause: ["v-ui:minCardinality"]
@@ -87,7 +85,7 @@ gen:ClassSpecificationTemplate
             <veda-control rel="v-s:dateProperties" data-type="link" class="-view edit search fulltext dropdown" data-template="{@.rdfs:label}, {@.id}"></veda-control>
          </div>
         </div>
-        <div class="row row-attribute">
+        <!--<div class="row row-attribute">
           <div class="col-sm-3 col-xs-5">
             <em about="v-s:isShelfLifeAlways" property="rdfs:label"></em>
           </div>
@@ -98,7 +96,7 @@ gen:ClassSpecificationTemplate
                 </label>
               </div>
           </div>
-        </div>
+        </div>-->
         <div class="row row-attribute shelfLife hidden">
           <div class="col-sm-3 col-xs-5">
             <label about="v-s:shelfLife" property="rdfs:label"></label>
@@ -160,7 +158,7 @@ gen:ClassSpecificationTemplate
   <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
 </div>
 <script>
-  function shelfLifeView() {
+  /*function shelfLifeView() {
     if (individual.hasValue("v-s:isShelfLifeAlways",false)) {
       $(".shelfLife", template).removeClass("hidden");
     }
@@ -170,7 +168,7 @@ gen:ClassSpecificationTemplate
   individual.on("v-s:isShelfLifeAlways", shelfLifeView);
   template.one("remove", function () {
     individual.off("v-s:isShelfLifeAlways", shelfLifeView);
-  });
+  });*/
 
   
 </script>

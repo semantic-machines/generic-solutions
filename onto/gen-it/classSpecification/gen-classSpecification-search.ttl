@@ -46,7 +46,6 @@ gen:ClassSpecificationSearchResultTemplate
       <th><span about="v-ui:forClass" property="rdfs:label"></span></th>
       <th><span about="v-s:dateProperties" property="rdfs:label"></span></th>
       <th><span about="v-s:shelfLife" property="rdfs:label"></span></th>
-      <th><span about="v-s:isShelfLifeAlways" property="rdfs:label"></span></th>
       <th><span about="v-s:responsible" property="rdfs:label"></span></th>
       <th><span about="v-s:hasApplication" property="rdfs:label"></span></th>
       <th><span about="v-s:hasAspect" property="rdfs:label"></span></th>
@@ -58,8 +57,6 @@ gen:ClassSpecificationSearchResultTemplate
       <td rel="v-ui:forClass" data-template="v-ui:LabelTemplate"></td>
       <td rel="v-s:dateProperties" data-template="v-ui:LabelTemplate"></td>
       <td property="v-s:shelfLife"></td>
-      <td><veda-control property="v-s:isShelfLifeAlways" data-type="boolean"></veda-control>
-      </td>
       <td rel="v-s:responsible" data-template="v-ui:LabelTemplate"></td>
       <td rel="v-s:hasApplication" data-template="v-ui:LabelTemplate"></td>
       <td rel="v-s:hasAspect" data-template="v-ui:LabelTemplate"></td>
