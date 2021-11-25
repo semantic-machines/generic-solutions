@@ -129,7 +129,7 @@ gen:BusinessTripTemplate
     }
     template.trigger("validated", result);
   });
-  
+
 </script>
 <div>
   <div class="container sheet">
@@ -621,18 +621,18 @@ $("#add-RegRecord", template).click(function () {
     individual.off("gen:hasChangeOfTerms", notifyHandler);
   });
 
-  function handler(property_uri) {
+  function handler1(property_uri) {
     if ( individual.hasValue("v-s:hasBusinessTripRegistrationRecord") ) {
       $("#add-regEntry", template).addClass("hidden");
     } else {
       $("#add-regEntry", template).removeClass("hidden");
     }
   }
-  handler("v-s:hasBusinessTripRegistrationRecord");
+  handler1("v-s:hasBusinessTripRegistrationRecord");
 
-  individual.on("propertyModified", handler);
+  individual.on("propertyModified", handler1);
   template.one("remove", function () {
-    individual.off("propertyModified", handler);
+    individual.off("propertyModified", handler1);
   });
 
   if ( template.data("mode") === "edit" &&
@@ -664,7 +664,7 @@ $("#add-RegRecord", template).click(function () {
     individual.off("gen:hasBusinessTripTransportKind", showBoolean);
   });*/
 
-  
+
 </script>
 """
 .
@@ -1002,7 +1002,7 @@ gen:BusinessTrip_EmployeeTemplate
           .removeAttr("property")
           .text(tabNumber);
       }
-      
+
     </script>
     <span>
       <span about="@" property="v-s:lastName"></span>
