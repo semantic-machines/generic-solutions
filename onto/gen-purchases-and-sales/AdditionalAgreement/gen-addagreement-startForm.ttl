@@ -31,7 +31,7 @@ gen:AdditionalAgreement_ComplexRouteStartForm_Template
     var simple = "s-wf:SimpleRouteStartForm_";
     var doc = individual['v-wf:processedDocument'][0];
 
-    doc.load().then(function (doc) {
+    return doc.load().then(function (doc) {
       return Promise.all([
         doc.hasValue("v-s:initiator") ? doc["v-s:initiator"][0].getChief() : undefined,
         doc.hasValue("v-s:creator") ? doc["v-s:creator"][0].getChief() : undefined,
