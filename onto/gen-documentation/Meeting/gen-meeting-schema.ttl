@@ -27,7 +27,7 @@ gen:TS_Meeting
 gen:TS_MeetingAction
   rdf:type v-ui:TemplateSpecification ;
   v-ui:forClass v-s:Action ;
-  v-ui:defaultTemplate gen:ActionTemplate ;
+  v-ui:defaultTemplate gen:MeetingActionTemplate ;
 .
 
 # v-s:theme - Тема
