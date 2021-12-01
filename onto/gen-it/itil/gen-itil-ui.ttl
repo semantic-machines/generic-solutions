@@ -198,9 +198,8 @@ v-s:LinksObjectListTemplate
     rdfs:comment "Список"@ru;
     rdfs:label "Шаблон для управлениями произвольными связями документа"@ru, "Template to manage generic document links"@en, "List"@en;
     v-ui:template """
-
 <script>
-  var rowTmpl = $("tbody", template).html();
+  var rowTmpl = "v-s:LinksObjectListTemplate_Item";
 
   $("#add-link", template).click(function () {
     $(".links-table", template).removeClass("hidden");
@@ -245,39 +244,12 @@ v-s:LinksObjectListTemplate
       $(".links-table", template).addClass("hidden");
     }
   }
-
-
 </script>
 <div>
   <table class="hidden links-table table table-condensed table-striped table-sortable">
     <thead>
     </thead>
-    <tbody about="@" rel="v-s:hasLinkObject" data-embedded="true" data-limit="5" data-more="true">
-      <script>
-        var displayedDoc = container.closest("[resource]").attr("resource");
-        if ( this.hasValue("v-s:from", displayedDoc) ) {
-          $(".link-from", template).remove();
-        } else if ( this.hasValue("v-s:to", displayedDoc) ) {
-          $(".link-to", template).remove();
-        }
-      </script>
-      <tr>
-        <td>
-          <div class="view -edit -search" about="@" property="v-s:title"></div>
-          <veda-control data-type="string" property="v-s:title" class="-view edit search"></veda-control>
-        </td>
-        <td>
-          <div class="link-from" about="@" rel="v-s:from" data-template="v-ui:ClassNameLabelLinkTemplate"></div>
-          <div class="link-to view -edit -search" about="@" rel="v-s:to" data-template="v-ui:ClassNameLabelLinkTemplate"></div>
-          <veda-control data-type="link" rel="v-s:to" class="-view edit search fulltext" data-query-prefix="'rdf:type'=='v-s:UserThing'"></veda-control>
-        </td>
-        <td>
-          <div class="view -edit -search" about="@" property="rdfs:comment"></div>
-          <veda-control data-type="string" property="rdfs:comment" class="-view edit search"></veda-control>
-        </td>
-        <td><div class="pull-right" about="@" data-template="v-ui:IconButtonsTemplate" data-embedded="true"></div></td>
-      </tr>
-    </tbody>
+    <tbody about="@" rel="v-s:hasLinkObject" data-embedded="true" data-limit="5" data-more="true"></tbody>
   </table>
   <div class="view -edit -search">
       <button class="btn btn-success" id="add-link">
@@ -286,11 +258,38 @@ v-s:LinksObjectListTemplate
     </div>
   <!--<button class="margin-sm btn btn-success" id="add-link" about="v-s:AddLink" property="rdfs:label"></button>-->
 </div>
-
-
 """
 .
 
+v-s:LinksObjectListTemplate_Item
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:template """
+<script>
+  var displayedDoc = container.closest("[resource]").attr("resource");
+  if ( this.hasValue("v-s:from", displayedDoc) ) {
+    $(".link-from", template).remove();
+  } else if ( this.hasValue("v-s:to", displayedDoc) ) {
+    $(".link-to", template).remove();
+  }
+</script>
+<tr>
+  <td>
+    <div class="view -edit -search" about="@" property="v-s:title"></div>
+    <veda-control data-type="string" property="v-s:title" class="-view edit search"></veda-control>
+  </td>
+  <td>
+    <div class="link-from" about="@" rel="v-s:from" data-template="v-ui:ClassNameLabelLinkTemplate"></div>
+    <div class="link-to view -edit -search" about="@" rel="v-s:to" data-template="v-ui:ClassNameLabelLinkTemplate"></div>
+    <veda-control data-type="link" rel="v-s:to" class="-view edit search fulltext" data-query-prefix="'rdf:type'=='v-s:UserThing'"></veda-control>
+  </td>
+  <td>
+    <div class="view -edit -search" about="@" property="rdfs:comment"></div>
+    <veda-control data-type="string" property="rdfs:comment" class="-view edit search"></veda-control>
+  </td>
+  <td><div class="pull-right" about="@" data-template="v-ui:IconButtonsTemplate" data-embedded="true"></div></td>
+</tr>
+"""
+.
 
 gen:LinkObjectTemplate
     rdf:type v-ui:ClassTemplate ;

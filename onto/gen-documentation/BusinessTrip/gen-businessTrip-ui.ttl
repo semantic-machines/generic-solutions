@@ -992,27 +992,33 @@ gen:BusinessTrip_EmployeeTemplate
   v-ui:template
   """
 <div>
-  <span about="@" rel="v-s:employee">
-    <script>
-      if ( !individual.hasValue("v-s:tabNumber") ) {
-        var regexp = new RegExp("(\\" + "D*([0-9]+)\\" + "D*)");
-        var tabNumber = individual.id.replace(regexp, "$2");
-        $("#tabNumber", template)
-          .removeAttr("about")
-          .removeAttr("property")
-          .text(tabNumber);
-      }
-
-    </script>
-    <span>
-      <span about="@" property="v-s:lastName"></span>
-      <span about="@" property="v-s:firstName"></span>
-      <span about="@" property="v-s:middleName"></span> -
-      <span id="tabNumber" about="@" property="v-s:tabNumber"></span>
-    </span>
-  </span>-
+  <span about="@" rel="v-s:employee" data-template="gen:BusinessTrip_EmployeeTemplate_Person"></span>
+  -
   <span about="@" rel="v-s:occupation" data-template="v-ui:LabelTemplate"></span>
 </div>
+  """ ;
+.
+
+gen:BusinessTrip_EmployeeTemplate_Person
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:template
+  """
+<script>
+  if ( !individual.hasValue("v-s:tabNumber") ) {
+    var regexp = new RegExp("(\\" + "D*([0-9]+)\\" + "D*)");
+    var tabNumber = individual.id.replace(regexp, "$2");
+    $("#tabNumber", template)
+      .removeAttr("about")
+      .removeAttr("property")
+      .text(tabNumber);
+  }
+</script>
+<span>
+  <span about="@" property="v-s:lastName"></span>
+  <span about="@" property="v-s:firstName"></span>
+  <span about="@" property="v-s:middleName"></span> -
+  <span id="tabNumber" about="@" property="v-s:tabNumber"></span>
+</span>
   """ ;
 .
 

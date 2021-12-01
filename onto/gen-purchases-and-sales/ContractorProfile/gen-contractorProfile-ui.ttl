@@ -24,6 +24,25 @@ gen:TS_ContractorProfile
   v-s:loadPriority 10 ;
 .
 
+gen:ContractorProfileTemplate_ContractorCategoryDecision
+  rdf:type v-ui:ClassTemplate ;
+  v-ui:forClass v-s:ContractorProfile ;
+  v-ui:template """
+<div>
+  <veda-control property="v-s:isOrganizationOk" data-type="boolean"></veda-control>
+</div>
+<script>
+  if( individual.hasValue("v-s:isOrganizationOk", true) ) {
+    template.closest("tr").addClass("success");
+  } else if ( individual.hasValue("v-s:isOrganizationOk", false) ) {
+    template.closest("tr").addClass("danger");
+  } else {
+    template.closest("tr").addClass("warning");
+  }
+</script>
+  """ ;
+.
+
 gen:ContractorProfileTemplate
   rdf:type v-ui:ClassTemplate ;
   v-ui:forClass v-s:ContractorProfile ;
@@ -64,8 +83,6 @@ gen:ContractorProfileTemplate
     var relValue = $(relValueTmpl).attr("rel", property_uri);
     files.append(relName, relValue);
   });
-
-  
 </script>
 <div class="container sheet">
    <h2>
@@ -107,20 +124,7 @@ gen:ContractorProfileTemplate
             <div property="v-s:date" class="view -edit -search"></div>
           </div>
         </td>
-        <td width="30%" rel="v-s:hasContractorCategoryDecision">
-          <div>
-            <veda-control  property="v-s:isOrganizationOk" data-type="boolean"></veda-control>
-          </div>
-          <script>
-              if( individual.hasValue("v-s:isOrganizationOk", true) ) {
-                template.closest("tr").addClass("success");
-              } else if ( individual.hasValue("v-s:isOrganizationOk", false) ) {
-                template.closest("tr").addClass("danger");
-              } else {
-                template.closest("tr").addClass("warning");
-              }
-          </script>
-        </td>
+        <td width="30%" rel="v-s:hasContractorCategoryDecision" data-template="gen:ContractorProfileTemplate_ContractorCategoryDecision"></td>
       </tr>
     </tbody>
   </table>
@@ -199,7 +203,6 @@ gen:ContractorProfileTemplate
     <tbody class="rel-value" rel="" data-embedded="true">
       <tr>
         <td>
-          <span id="icon" class="label label-primary"></span>
           <a href="/files/@">
             <span about="@" property="v-s:fileName"></span>
           </a>
@@ -218,16 +221,8 @@ gen:ContractorProfileTemplate
         </td>
         <td><span about="@" rel="v-s:creator" data-template="v-ui:LabelTemplate"></span> <span about="@" property="v-s:created"></span></td>
       </tr>
-      <script>
-        var fn = individual["v-s:fileName"][0],
-          idx = fn.lastIndexOf("."),
-          ext = fn.substr(idx + 1);
-        $("span#icon", template).text(ext);
-        
-      </script>
     </tbody>
   </table>
-
   <hr>
   <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
   <br>
@@ -247,11 +242,10 @@ gen:ContractorProfileTemplate
     request["v-s:canRead"] = [ true ];
     riot.route( ["#", request.id, "#main", tmpl, "edit"].join("/") );
   });
-  
+
 </script>
   """ ;
 .
-
 
 gen:ContractorProfileEmbeddedTemplate
   rdf:type v-ui:ClassTemplate ;
@@ -291,7 +285,6 @@ gen:ContractorProfileEmbeddedTemplate
     var relValue = relValueTmpl.clone().attr("rel", property_uri);
     files.append(relName, relValue);
   });
-  
 </script>
 <div>
   <h2>
@@ -357,7 +350,6 @@ gen:ContractorProfileEmbeddedTemplate
     <tbody class="rel-value" rel="" data-embedded="true">
       <tr>
         <td>
-          <span id="icon" class="label label-primary"></span>
           <a href="/files/@">
             <span about="@" property="v-s:fileName"></span>
           </a>
@@ -376,13 +368,6 @@ gen:ContractorProfileEmbeddedTemplate
         </td>
         <td><span about="@" rel="v-s:creator" data-template="v-ui:LabelTemplate"></span> <span about="@" property="v-s:created"></span></td>
       </tr>
-      <script>
-        var fn = individual["v-s:fileName"][0],
-          idx = fn.lastIndexOf("."),
-          ext = fn.substr(idx + 1);
-        $("span#icon", template).text(ext);
-        
-      </script>
     </tbody>
   </table>
 </div>
@@ -390,9 +375,6 @@ gen:ContractorProfileEmbeddedTemplate
   $('#save_and_start_process', template).on('click', function () {
      veda.Util.send(individual, template, 's-wf:complexRouteTransform');
   });
-
-  
 </script>
-
-    """ ;
+  """ ;
 .

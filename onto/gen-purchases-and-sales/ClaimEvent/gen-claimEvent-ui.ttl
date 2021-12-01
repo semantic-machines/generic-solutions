@@ -53,7 +53,7 @@ gen:ClaimEventTemplate
   rdfs:label "Шаблон для класса gen:ClaimEvent"@ru ;
   rdfs:label "Template for gen:ClaimEvent class"@en ;
   v-ui:template """
-  <script>
+<script>
   if (mode == "edit" && individual.isNew()) {
     if (!individual.hasValue("v-s:responsibleDepartment")){
      individual["v-s:responsibleDepartment"] = [ veda.appointment["v-s:parentUnit"][0] ] ;
@@ -63,26 +63,7 @@ gen:ClaimEventTemplate
   if(!individual.hasValue("v-s:initiator") && mode == "edit") {
     individual["v-s:initiator"] = [ [veda.appointment][0] ];
   }
-
-/*template.on("validate", function () {
-    var result = {};
-    if ( !(individual.hasValue("v-s:content") || individual.hasValue("v-s:hasContract")) ) {
-      result["v-s:content"] = {
-        state: false,
-        cause: ["v-ui:minCardinality"]
-      };
-      result["v-s:hasContract"] = {
-        state: false,
-        cause: ["v-ui:minCardinality"]
-      };
-    }
-    template.trigger("validated", result);
-  });*/
-
-  
-
- </script>
-
+</script>
 <div>
   <div class="container sheet">
     <h3 class="margin-sm">
@@ -244,16 +225,10 @@ gen:ClaimEventTemplate
       <button type="button" class="action btn btn-success view -edit -search" id="add-IncomingClaim" about="gen:IncomingClaimCreate" property="rdfs:label"></button>
     </div>
   </div>
-</div>
-  </div><!--container-->
   <div about="@" class="container sheet view edit -search" data-template="v-s:LinksTemplate" data-embedded="true"></div>
   <div about="@" class="container sheet view -edit -search" data-template="v-s:CommentsTemplate"></div>
 </div>
-      </div>
-    </div>
-  </div>
 <script>
-
   $("#add-OutgoingLetter", template).click(function () {
     var _class = new veda.IndividualModel("v-s:OutgoingLetter"),
     OutcomingLetter = new veda.IndividualModel(),
@@ -283,7 +258,6 @@ gen:ClaimEventTemplate
       riot.route( ["#", OutcomingLetter.id, "#main", tmpl, "edit"].join("/") );
     })
   });
-
 
   $("#add-OutgoingClaim", template).click(function () {
     var _class = new veda.IndividualModel("v-s:Claim"),
@@ -369,10 +343,8 @@ gen:ClaimEventTemplate
     })
   }
   processHandler();
-
-  
 </script>
-"""
+""" ;
 .
 
 gen:ClaimEventEmbeddedTemplate
