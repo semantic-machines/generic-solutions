@@ -2,7 +2,7 @@ export const html = `
 <table class="table table-bordered">
   <thead class="result-header">
     <tr>
-      <th colspan="11" about="gen:Innovation" property="rdfs:label"></th>
+      <th colspan="11" about="v-s:Idea" property="rdfs:label"></th>
     </tr>
     <tr class="active">
       <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
@@ -31,7 +31,6 @@ export const html = `
       <td rel="v-s:attachment" data-template="v-ui:FileMinTemplate"></td>
       <td rel="v-s:author" data-template="v-ui:LabelTemplate"></td>
       <td rel="v-s:stakeholder" data-template="v-ui:LabelTemplate"></td>
-      
     </tr>
   </tbody>
 </table>

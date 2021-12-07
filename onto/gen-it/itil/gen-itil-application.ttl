@@ -37,12 +37,11 @@ gen:IT_InfrastructureObjectsApplication
   v-s:hasRegistry gen:Tr_hasParentLink_IT_InfrastructureObjects;
   v-s:hasRegistry gen:LinkObjectSearch ;
 
- #v-s:attachment mnd-s:OF_23_Doverennosti_pdf ;
+  #v-s:attachment mnd-s:OF_23_Doverennosti_pdf ;
   #v-s:attachment gen:UserGuide_pdf ;
 .
 
-
-gen:IT_InfrastructureObjectsIcon 
+gen:IT_InfrastructureObjectsIcon
   a v-s:File ;
   v-s:fileUri "platform.svg"^^xsd:string ;
   v-s:fileName "platform.svg"^^xsd:string ;

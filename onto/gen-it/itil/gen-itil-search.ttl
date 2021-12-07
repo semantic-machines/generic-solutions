@@ -56,10 +56,6 @@ gen:Tr_hasParentLink_IT_InfrastructureObjects
   rdfs:label "Infrastructure IT Tree"@en ;
 .
 
-
-
-
-
 #---------------------------------------------------REGISTRY TEMPLATE----------------------
 #---------------------------------------------------Инфраструктура ИТ----------------------
 gen:IT_InfrastructureObjectsSearchResultTemplate
@@ -68,7 +64,6 @@ gen:IT_InfrastructureObjectsSearchResultTemplate
   rdfs:label "Infrastructure IT registry result template"@en ;
   v-ui:template "gen_IT_InfrastructureObjectsSearchResultTemplate.js" ;
 .
-
 
 gen:LinkObjectSearch
   a v-fs:AttributiveSearch;

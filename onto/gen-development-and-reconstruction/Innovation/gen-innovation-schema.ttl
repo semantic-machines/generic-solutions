@@ -30,123 +30,123 @@ gen:TS_Innovation
 #-----Регистрационный номер
 #v-s:registrationNumber
 gen:PS_registrationNumber_Innovation
-	rdf:type v-ui:DatatypePropertySpecification ;
-	v-ui:forClass v-s:Idea ;
-	v-ui:forProperty v-s:registrationNumber ;
-	v-ui:maxCardinality 1 ;
-	v-ui:minCardinality 0 ;
-	v-ui:tooltip "Присваивается автоматически"@ru ;
-	v-ui:tooltip "Assigned automatically"@en ;
-	rdfs:label "Спецификация v-s:registrationNumber  для класса gen:Innovation"@ru ;
-	rdfs:label "v-s:registrationNumber property specification for gen:Innovation class"@en ;
+  rdf:type v-ui:DatatypePropertySpecification ;
+  v-ui:forClass v-s:Idea ;
+  v-ui:forProperty v-s:registrationNumber ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 0 ;
+  v-ui:tooltip "Присваивается автоматически"@ru ;
+  v-ui:tooltip "Assigned automatically"@en ;
+  rdfs:label "Спецификация v-s:registrationNumber  для класса v-s:Idea"@ru ;
+  rdfs:label "v-s:registrationNumber property specification for v-s:Idea class"@en ;
 .
 
 #-----Статус инновации
 #v-s:hasStatus
 gen:PS_hasStatus_Innovation
-	rdf:type v-ui:ObjectPropertySpecification ;
-	v-ui:forClass v-s:Idea ;
-	v-ui:forProperty v-s:hasStatus ;
-	v-ui:maxCardinality 30 ;
-	v-ui:minCardinality 1 ;
-	v-ui:alternativeName "Статус инновации"@ru ;
-	v-ui:defaultValue v-s:StatusDraft ;
-	#v-ui:queryPrefix "('rdf:type'=='v-s:Status') && ('@' == 'v-s:StatusAgreed' || '@' == 'v-s:StatusArchived' || '@' == 'v-s:StatusImplementation' || '@' == 'v-s:StatusPostponed' )"^^xsd:string ;
-	v-ui:tooltip "Выберите из списка."@ru ;
-	v-ui:tooltip "Select from list"@en ;
-	rdfs:label "Спецификация v-s:hasStatus для gen:Innovation"@ru ;
-	rdfs:label "v-s:hasStatus property specification for gen:Innovation class"@en ;
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:Idea ;
+  v-ui:forProperty v-s:hasStatus ;
+  v-ui:maxCardinality 30 ;
+  v-ui:minCardinality 1 ;
+  v-ui:alternativeName "Статус инновации"@ru ;
+  v-ui:defaultValue v-s:StatusDraft ;
+  #v-ui:queryPrefix "('rdf:type'=='v-s:Status') && ('@' == 'v-s:StatusAgreed' || '@' == 'v-s:StatusArchived' || '@' == 'v-s:StatusImplementation' || '@' == 'v-s:StatusPostponed' )"^^xsd:string ;
+  v-ui:tooltip "Выберите из списка."@ru ;
+  v-ui:tooltip "Select from list"@en ;
+  rdfs:label "Спецификация v-s:hasStatus для v-s:Idea"@ru ;
+  rdfs:label "v-s:hasStatus property specification for v-s:Idea class"@en ;
 .
 
 # v-s:title
 gen:PS_title_Innovation
-	rdf:type v-ui:DatatypePropertySpecification ;
-	v-ui:forClass v-s:Idea ;
-	v-ui:forProperty v-s:title ;
-	v-ui:maxCardinality 1 ;
-	v-ui:minCardinality 1 ;
-	rdfs:label "Спецификация v-s:title для gen:Innovation"@ru ;
-	rdfs:label "v-s:title property specification for gen:Innovation class"@en ;
+  rdf:type v-ui:DatatypePropertySpecification ;
+  v-ui:forClass v-s:Idea ;
+  v-ui:forProperty v-s:title ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 1 ;
+  rdfs:label "Спецификация v-s:title для v-s:Idea"@ru ;
+  rdfs:label "v-s:title property specification for v-s:Idea class"@en ;
 .
 
 #-----Описание актуального состояния
 # v-s:actualState
 gen:PS_actualState_Innovation
-	rdf:type v-ui:DatatypePropertySpecification ;
-	v-ui:forClass v-s:Idea ;
-	v-ui:forProperty v-s:actualState ;
-	v-ui:maxCardinality 1 ;
-	v-ui:minCardinality 1 ;
-	v-ui:tooltip "Введите информацию о текущем статусе объекта, на который направлены изменения"@ru ;
-	v-ui:tooltip "Describe current status of the facility requiring changes"@en ;
-	rdfs:label "Спецификация v-s:actualState для gen:Innovation"@ru ;
-	rdfs:label "v-s:actualState property specification for gen:Innovation class"@en ;
+  rdf:type v-ui:DatatypePropertySpecification ;
+  v-ui:forClass v-s:Idea ;
+  v-ui:forProperty v-s:actualState ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 1 ;
+  v-ui:tooltip "Введите информацию о текущем статусе объекта, на который направлены изменения"@ru ;
+  v-ui:tooltip "Describe current status of the facility requiring changes"@en ;
+  rdfs:label "Спецификация v-s:actualState для v-s:Idea"@ru ;
+  rdfs:label "v-s:actualState property specification for v-s:Idea class"@en ;
 .
 
 #-----Описание
 # v-s:description
 gen:PS_description_Innovation
-	rdf:type v-ui:DatatypePropertySpecification ;
-	v-ui:forClass v-s:Idea ;
-	v-ui:forProperty v-s:description ;
-	v-ui:maxCardinality 1 ;
-	v-ui:minCardinality 1 ;
-	v-ui:tooltip "Подробно и максимально понятно опишите суть Вашей идеи. Помните, что идея должна быть нова, целесообразна и осуществима"@ru ;
-	v-ui:tooltip "Describe the point of your idea fully in detail. Keep in mind that the idea should be new, rational and feasible"@en ;
-	rdfs:label "Спецификация v-s:description для gen:Innovation"@ru ;
-	rdfs:label "v-s:description property specification for gen:Innovation class"@en ;
+  rdf:type v-ui:DatatypePropertySpecification ;
+  v-ui:forClass v-s:Idea ;
+  v-ui:forProperty v-s:description ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 1 ;
+  v-ui:tooltip "Подробно и максимально понятно опишите суть Вашей идеи. Помните, что идея должна быть нова, целесообразна и осуществима"@ru ;
+  v-ui:tooltip "Describe the point of your idea fully in detail. Keep in mind that the idea should be new, rational and feasible"@en ;
+  rdfs:label "Спецификация v-s:description для v-s:Idea"@ru ;
+  rdfs:label "v-s:description property specification for v-s:Idea class"@en ;
 .
 
 #-----Тематика
 #v-s:hasSector
 gen:PS_hasSector_Innovation
-	rdf:type v-ui:ObjectPropertySpecification ;
-	v-ui:forClass v-s:Idea ;
-	v-ui:forProperty v-s:hasSector ;
-	v-ui:maxCardinality 3 ;
-	v-ui:minCardinality 0 ;
-	v-ui:alternativeName "Область применения"@ru ;
-	v-ui:tooltip "Выберите сферы деятельности, на которые распространяется Ваша идея. Не более 3 штук."@ru ;
-	v-ui:tooltip "Select functional areas which are covered by your idea"@en ;
-	rdfs:label "Спецификация v-s:hasSector для gen:Innovation"@ru ;
-	rdfs:label "v-s:hasSector property specification for gen:Innovation class"@en ;
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:Idea ;
+  v-ui:forProperty v-s:hasSector ;
+  v-ui:maxCardinality 3 ;
+  v-ui:minCardinality 0 ;
+  v-ui:alternativeName "Область применения"@ru ;
+  v-ui:tooltip "Выберите сферы деятельности, на которые распространяется Ваша идея. Не более 3 штук."@ru ;
+  v-ui:tooltip "Select functional areas which are covered by your idea"@en ;
+  rdfs:label "Спецификация v-s:hasSector для v-s:Idea"@ru ;
+  rdfs:label "v-s:hasSector property specification for v-s:Idea class"@en ;
 .
 
 #-----Вложение
 #v-s:attachment
 
-#-----Автор 
+#-----Автор
 #v-s:author
 gen:PS_author_Innovation
-	rdf:type v-ui:ObjectPropertySpecification ;
-	v-ui:forClass v-s:Idea ;
-	v-ui:forProperty v-s:author ;
-	v-ui:maxCardinality 1 ;
-	v-ui:minCardinality 1 ;
-	v-ui:queryPrefix "('rdf:type'=='v-s:Appointment' )"^^xsd:string ;
-	v-ui:tooltip "Укажите автора идеи"@ru ;
-	v-ui:tooltip "Non-required, simple value. Link to instance of Appointment class"@en ;
-	v-ui:placeholder "Начните ввод и выберите значение"@ru ;
-	v-ui:placeholder "Start typing and select"@en ;
-	rdfs:label "Спецификация v-s:author для gen:Innovation"@ru ;
-	rdfs:label "v-s:author property specification for gen:Innovation class"@en ;
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:Idea ;
+  v-ui:forProperty v-s:author ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type'=='v-s:Appointment' )"^^xsd:string ;
+  v-ui:tooltip "Укажите автора идеи"@ru ;
+  v-ui:tooltip "Non-required, simple value. Link to instance of Appointment class"@en ;
+  v-ui:placeholder "Начните ввод и выберите значение"@ru ;
+  v-ui:placeholder "Start typing and select"@en ;
+  rdfs:label "Спецификация v-s:author для v-s:Idea"@ru ;
+  rdfs:label "v-s:author property specification for v-s:Idea class"@en ;
 .
 
 #-----Заинтересованная сторона
 #v-s:stakeholder
 gen:PS_stakeholder_Innovation
-	rdf:type v-ui:ObjectPropertySpecification ;
-	v-ui:forClass v-s:Idea ;
-	v-ui:forProperty v-s:stakeholder ;
-	v-ui:maxCardinality 1 ;
-	v-ui:minCardinality 1 ;
-	v-ui:queryPrefix "('rdf:type' === 'v-s:Department' && 'v-s:hasChief.isExists' == 'true')"^^xsd:string ;
-	v-ui:tooltip "Укажите подразделение, которому выгодна реализация Вашей инновации"@ru ;
-	v-ui:tooltip "Select department which will benefit from the innovation"@en ;
-	v-ui:placeholder "Начните ввод и выберите значение"@ru ;
-	v-ui:placeholder "Start typing and select"@en ;
-	rdfs:label "Спецификация v-s:stakeholder для gen:Innovation"@ru ;
-	rdfs:label "v-s:stakeholder property specification for gen:Innovation class"@en ;
+  rdf:type v-ui:ObjectPropertySpecification ;
+  v-ui:forClass v-s:Idea ;
+  v-ui:forProperty v-s:stakeholder ;
+  v-ui:maxCardinality 1 ;
+  v-ui:minCardinality 1 ;
+  v-ui:queryPrefix "('rdf:type' === 'v-s:Department' && 'v-s:hasChief.isExists' == 'true')"^^xsd:string ;
+  v-ui:tooltip "Укажите подразделение, которому выгодна реализация Вашей инновации"@ru ;
+  v-ui:tooltip "Select department which will benefit from the innovation"@en ;
+  v-ui:placeholder "Начните ввод и выберите значение"@ru ;
+  v-ui:placeholder "Start typing and select"@en ;
+  rdfs:label "Спецификация v-s:stakeholder для v-s:Idea"@ru ;
+  rdfs:label "v-s:stakeholder property specification for v-s:Idea class"@en ;
 .
 
 #v-s:coauthor #-----Соавтор
@@ -154,5 +154,5 @@ gen:PS_stakeholder_Innovation
 #v-s:planYearEffect #-----Плановый годовой эффект, тыс.евро
 #v-s:planOnceEffect #-----Плановый разовый эффект, тыс.евро
 #v-s:factYearEffect #-----Фактический годовой эффект, тыс.евро
-#v-s:factOnceEffect #-----Фактический разовый эффект, тыс.евро 
+#v-s:factOnceEffect #-----Фактический разовый эффект, тыс.евро
 

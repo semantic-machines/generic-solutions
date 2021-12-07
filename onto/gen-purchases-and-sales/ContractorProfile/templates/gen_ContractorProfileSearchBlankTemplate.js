@@ -30,7 +30,7 @@ export const html = `
       </div>
       <div class="col-sm-9 col-xs-7">
         <div rel="v-s:hasClassifierOKVED" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-        <veda-control data-type="link" rel="v-s:hasClassifierOKVEDt" class="-view edit search fulltext" data-template="{@.v-s:registrationNumber} - {@.rdfs:label}"></veda-control>
+        <veda-control data-type="link" rel="v-s:hasClassifierOKVED" class="-view edit search fulltext" data-template="{@.v-s:registrationNumber} - {@.rdfs:label}"></veda-control>
       </div>
     </div>
   </section>

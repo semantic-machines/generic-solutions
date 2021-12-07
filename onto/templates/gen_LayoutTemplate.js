@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import veda from '/js/common/veda.js';
 import IndividualModel from '/js/common/individual_model.js';
+import marked from 'marked';
 
 export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
@@ -81,6 +82,7 @@ export const html = `
         <a class="navbar-brand" href="#/gen:Main" about="gen:Logo" data-template="v-ui:ImageTemplate"></a>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" style="margin-right:-30px;" about="gen:MainMenu" data-template="v-s:MenuTemplate"></ul>
         <ul class="nav navbar-nav navbar-right">
           <li about="v-s:Favorites" data-template="v-s:FavoritesIndicatorTemplate" style="border-right:1px solid #ddd;"></li>
           <li about="v-s:NewsSearchUser" data-template="v-s:NewsIndicatorTemplate"></li>
@@ -89,9 +91,9 @@ export const html = `
           <li about="v-cal:TasksCalendar" data-template="v-cal:FunctionCalendarIndicatorTemplate"></li>
           <li about="v-ft:Inbox" data-template="v-ft:FunctionTasksIndicatorTemplate"></li>
           <li id="user-info"></li>
-          <li id="menu" class="dropdown" about="gen:MainMenu" data-template="v-s:MenuTemplate"></li>
+          <li about="v-s:Logout" data-template="v-ui:ExitButtonTemplate"></li>
           <li about="v-ui:AvailableLanguage" data-template="v-ui:LanguageSwitchTemplate"></li>
-          <li style="padding-left:10px; margin-left:10px; border-left:1px solid #ddd;" about="@" data-template="v-ui:FullWidthSwitchTemplate"></li>
+          <li about="@" data-template="v-ui:FullWidthSwitchTemplate"></li>
         </ul>
       </div>
     </div>

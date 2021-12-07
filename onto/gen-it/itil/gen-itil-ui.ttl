@@ -49,23 +49,23 @@ gen:TS_IT_InfrastructureObjects
   v-ui:forClass v-s:IT_InfrastructureObjects.
 
 # ------------------------------------------------------------ ШАБЛОНЫ --gen:IT_InfrastructureObjectsTemplate
-    rdf:type v-ui:ClassTemplate ;
-    rdfs:label "Шаблон для класса Инфраструктура ИТ"@ru ;
-    rdfs:label "Infrastructure IT"@en;
-    v-ui:forClass v-s:IT_InfrastructureObjects;
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон для класса Инфраструктура ИТ"@ru ;
+  rdfs:label "Infrastructure IT"@en;
+  v-ui:forClass v-s:IT_InfrastructureObjects;
   v-ui:template "gen_IT_InfrastructureObjectsTemplate.js"
 .v-s:LinksObjectListTemplate
-    rdf:type v-ui:ClassTemplate ;
-    rdfs:comment "Список"@ru;
-    rdfs:label "Шаблон для управлениями произвольными связями документа"@ru, "Template to manage generic document links"@en, "List"@en;
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:comment "Список"@ru;
+  rdfs:label "Шаблон для управлениями произвольными связями документа"@ru, "Template to manage generic document links"@en, "List"@en;
   v-ui:template "v-s_LinksObjectListTemplate.js"
 .v-s:LinksObjectListTemplate_Item
   rdf:type v-ui:ClassTemplate ;
   v-ui:template "v-s_LinksObjectListTemplate_Item.js"
 .gen:LinkObjectTemplate
-    rdf:type v-ui:ClassTemplate ;
-    rdfs:label "Шаблон для класса Инсталляция"@ru ;
-    rdfs:label "Installation IT"@en;
-    v-ui:forClass v-s:LinkObject;
+  rdf:type v-ui:ClassTemplate ;
+  rdfs:label "Шаблон для класса Инсталляция"@ru ;
+  rdfs:label "Installation IT"@en;
+  v-ui:forClass v-s:LinkObject;
   v-ui:template "gen_LinkObjectTemplate.js"
 .

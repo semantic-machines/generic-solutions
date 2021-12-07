@@ -148,6 +148,4 @@ gen:MainMenu
   v-s:menuItem v-s:Completed ;
   v-s:menuItem v-s:Divider ;
   v-s:menuItem v-s:Administration ;
-  v-s:menuItem v-s:Divider ;
-  v-s:menuItem v-s:Exit ;
 .

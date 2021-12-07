@@ -411,7 +411,7 @@ export const html = `
               <th colspan="3" about="v-s:recipient" property="rdfs:label"></th>
             </tr>
             <tr class="active">
-              <th width="1%"><span class="glyphicon glyphicon-search"></th>
+              <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
               <th about="v-s:correspondentOrganization" property="rdfs:label"></th>
               <th about="v-s:registrationNumber" property="rdfs:label"></th>
               <th about="v-s:registrationDate" property="rdfs:label"></th>
@@ -432,9 +432,11 @@ export const html = `
             </tr>
           </tbody>
         </table>
-      </div><br>
+      </div>
+      <br>
       <veda-control data-type="link" rel="v-s:hasRelatedLetter" class="-view edit search fulltext"></veda-control>
-    </section><br>
+    </section>
+    <br>
     <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
     <br>
     <div class="actions view edit -search">
@@ -442,10 +444,10 @@ export const html = `
       <button type="button" class="action btn btn-success view -edit -search" id="add-OutgoingLetter" about="v-s:OutgoingLetter" property="rdfs:label"></button>
       <button type="button" class="action btn btn-success view -edit -search" id="add-IncomingLetter" about="v-s:IncomingLetter" property="rdfs:label"></button>
       <button type="button" class="action btn btn-default view -edit -search" id="add-Letter" about="v-s:Clone" property="rdfs:label"></button>
-      <button type="button" class="action btn btn-info view -edit -search" id="incoming-print-blank" about="v-s:IncomingLetterPrintBlank" property="rdfs:label"/>
+      <button type="button" class="action btn btn-info view -edit -search" id="incoming-print-blank" about="v-s:IncomingLetterPrintBlank" property="rdfs:label"></button>
       <div class="btn-group dropup" id="outgoing-print-blank">
         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         <span about="v-s:OutgoingLetterPrintBlank" property="rdfs:label"> </span>
+          <span about="v-s:OutgoingLetterPrintBlank" property="rdfs:label"></span>
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
