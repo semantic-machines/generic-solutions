@@ -26,7 +26,7 @@ export const pre = function (individual, template, container, mode, extra) {
         cause: ["v-ui:minCardinality"]
       };
     };
-    template.trigger("validated", result);
+    template[0].dispatchEvent(new CustomEvent("validated", {detail: result}));
   });
 
 

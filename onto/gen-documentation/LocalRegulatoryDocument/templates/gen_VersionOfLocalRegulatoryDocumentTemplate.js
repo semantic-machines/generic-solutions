@@ -27,7 +27,7 @@ export const pre = function (individual, template, container, mode, extra) {
     } else {
       $("veda-control[property='v-s:registrationNumberAdd'] input", template).popover("destroy");
     };
-    template.trigger("validated", result);
+    template[0].dispatchEvent(new CustomEvent("validated", {detail: result}));
   });
 };
 

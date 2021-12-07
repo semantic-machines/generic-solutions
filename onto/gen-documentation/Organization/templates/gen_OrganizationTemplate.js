@@ -82,7 +82,7 @@ export const pre = function (individual, template, container, mode, extra) {
             state: (!queryResult.length || queryResult[0] === individual.id),
             cause: ["v-s:NonUniqueTaxId"]
           }
-          template.trigger("validated", result);
+          template[0].dispatchEvent(new CustomEvent("validated", {detail: result}));
         });
       }
     }
@@ -100,7 +100,7 @@ export const pre = function (individual, template, container, mode, extra) {
         cause: ["v-ui:regexp"]
       }
     }
-    template.trigger("validated", result);
+    template[0].dispatchEvent(new CustomEvent("validated", {detail: result}));
   });
 };
 
@@ -144,7 +144,7 @@ export const post = function (individual, template, container, mode, extra) {
       modal.modal("hide").remove();
     });
   });
-  
+
   $("#add-profile", template).click(function () {
     var modal = $("#notification-modal-template").html();
     modal = $(modal);
@@ -169,7 +169,7 @@ export const post = function (individual, template, container, mode, extra) {
     profile.one("afterSave", function () {
       modal.modal("hide").remove();
     });
-  });  
+  });
 
   $("#add-communicationMean", template).click(function () {
     var modal = $("#notification-modal-template").html();
@@ -213,7 +213,7 @@ export const html = `
           <label about="rdfs:label" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-		  <div property="rdfs:label" class="view -edit -search"></div>
+      <div property="rdfs:label" class="view -edit -search"></div>
           <veda-control data-type="string" property="rdfs:label" class="-view edit search"></veda-control>
         </div>
       </div>
@@ -360,7 +360,7 @@ export const html = `
                 </td>
                 <td>
                   <div rel="v-s:hasCommunicationMeanTarget" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
-                  <veda-control data-type="link" rel="v-s:hasCommunicationMeanTarget" class="-view edit search fulltext dropdown"></veda-control> 
+                  <veda-control data-type="link" rel="v-s:hasCommunicationMeanTarget" class="-view edit search fulltext dropdown"></veda-control>
                 </td>
                 <td>
                   <div property="v-s:description" class="view -edit -search"></div>
@@ -404,7 +404,7 @@ export const html = `
             </button>
           </div>
         </div>
-      </div>     
+      </div>
     </section>
     <hr>
     <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
