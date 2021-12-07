@@ -205,7 +205,7 @@ gen:PS_from_to_LinkObject
   v-ui:forProperty v-s:from;
   v-ui:forProperty v-s:to;
   v-ui:queryPrefix "'rdf:type'=='v-s:IT_InfrastructureObjects'"^^xsd:string;
-  rdfs:label "Спецификация свойства v-s:from и v-s:to  для класса v-s:LinkObject"@ru ;
+  rdfs:label "Спецификация свойства v-s:from и v-s:to для класса v-s:LinkObject"@ru ;
   rdfs:label "v-s:from и v-s:to property specification for v-s:LinkObject class"@en ;
 .
 
