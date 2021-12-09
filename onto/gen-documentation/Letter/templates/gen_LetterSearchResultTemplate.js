@@ -33,8 +33,10 @@ export const html = `
       <td><a href="#/@" class="glyphicon glyphicon-search"></a></td>
       <td property="v-s:created"></td>
       <td rel="v-s:hasLetterRegistrationRecordSender">
-        <span property="v-s:registrationNumber"></span>
-        <span property="v-s:registrationDate"></span>
+        <div>
+          <span property="v-s:registrationNumber"></span>
+          <span property="v-s:registrationDate"></span>
+        </div>
       </td>
       <td rel="v-s:sender">
         <span rel="v-s:correspondentOrganization" data-template="v-ui:LabelTemplate"></span>
@@ -46,8 +48,10 @@ export const html = `
         </div>
       </td>
       <td rel="v-s:hasLetterRegistrationRecordRecipient">
-        <span property="v-s:registrationNumber"></span>
-        <span property="v-s:registrationDate"></span>
+        <div>
+          <span property="v-s:registrationNumber"></span>
+          <span property="v-s:registrationDate"></span>
+        </div>
       </td>
       <td rel="v-s:recipient">
        <span rel="v-s:correspondentOrganization" data-template="v-ui:LabelTemplate"></span>
@@ -76,7 +80,7 @@ export const html = `
          <div>
           <span property="v-s:from"></span>
           <span property="v-s:to"></span>
-        </div>     
+        </div>
       </td>
     </tr>
   </tbody>

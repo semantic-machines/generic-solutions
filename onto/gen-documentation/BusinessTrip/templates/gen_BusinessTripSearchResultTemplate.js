@@ -16,7 +16,6 @@ export const html = `
       <th><span about="v-s:hasClassifierCountry" property="rdfs:label"></span></th>
       <th><span about="gen:businessTripOrganizationDescription" property="rdfs:label"></span></th>
       <th><span about="gen:hasBusinessTripTransportKind" property="rdfs:label"></span></th>
-      <th><span about="gen:hasBusinessTripSupport" property="rdfs:label"></span></th>
       <th><span about="v-s:dateTo" property="rdfs:label"></span></th>
       <th><span about="v-s:dateFrom" property="rdfs:label"></span></th>
       <th><span about="v-s:duration" property="rdfs:label"></span></th>
@@ -39,7 +38,6 @@ export const html = `
       <td rel="v-s:hasClassifierCountry" data-template="v-ui:LabelTemplate"></td>
       <td property="gen:businessTripOrganizationDescription"></td>
       <td rel="gen:hasBusinessTripTransportKind" data-template="v-ui:LabelTemplate"></td>
-      <td property="gen:hasBusinessTripSupport"></td>
       <td property="v-s:dateTo"></td>
       <td property="v-s:dateFrom"></td>
       <td property="v-s:duration"></td>
