@@ -51,7 +51,7 @@ Application is designed to support employees' collaboration during working meeti
   - To form a set of instructions to responsible persons based on action plan & monitor it's implementation.
   """@en ;
 
-  v-s:attachment gen:OF_02_Otchety_o_vstreche_pdf ;
+  v-s:attachment gen:UserGuide_pdf ;
 .
 
 gen:MeetingsManagementApplicationImage
