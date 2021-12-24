@@ -137,7 +137,7 @@ export const html = `
         </div>
         <div class="col-sm-9 col-xs-7">
           <div rel="v-s:initiator" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext"></veda-control>
+          <veda-control data-type="link" rel="v-s:initiator" class="-view edit search fulltext dropdown"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -146,7 +146,7 @@ export const html = `
         </div>
         <div class="col-sm-9 col-xs-7">
           <div rel="v-s:signedBy" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:signedBy" class="-view edit search fulltext"></veda-control>
+          <veda-control data-type="link" rel="v-s:signedBy" class="-view edit search fulltext dropdown"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -154,11 +154,10 @@ export const html = `
           <label about="gen:responsibleDepartmentBundle" property="rdfs:label"></label>
         </div>
         <div class="col-sm-9 col-xs-7">
-          <div rel="v-s:responsibleDepartment" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:responsibleDepartment" class="-view edit search fulltext tree"></veda-control>
+          <div rel="v-s:responsibleDepartment" class="view edit search" data-template="v-ui:LabelTemplate"></div>
+          <veda-control data-type="link" rel="v-s:responsibleDepartment" class="-view edit search fulltext dropdown tree"></veda-control>
         </div>
       </div>
-
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="gen:titleBundleDecree" property="rdfs:label"></label>

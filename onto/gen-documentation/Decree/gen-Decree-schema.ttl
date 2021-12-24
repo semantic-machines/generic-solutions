@@ -22,6 +22,7 @@ gen:Decree
   rdfs:subClassOf v-s:Decree ;
   rdfs:subClassOf v-s:Temporal ;
   rdfs:subClassOf v-s:Labeled ;
+  rdfs:subClassOf v-s:UserSearchableDocument ;
   rdfs:label "Распорядительный документ"@ru ;
   rdfs:label "Decree"@en ;
   v-ui:hasTemplate gen:DecreeTemplate ;

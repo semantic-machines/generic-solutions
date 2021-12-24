@@ -24,6 +24,7 @@ gen:PowerOfAttorney
   rdfs:subClassOf v-s:PowerOfAttorney ;
   rdfs:subClassOf v-s:Labeled ;
   rdfs:subClassOf v-s:Enumerated ;
+  rdfs:subClassOf v-s:UserSearchableDocument ;
   v-s:labelPattern "({@.v-s:registrationNumber} - {@.v-s:registrationDate}) {@.v-s:grantor.v-s:correspondentPerson.rdfs:label}{@.v-s:grantor.v-s:correspondentPersonDescription} -> {@.v-s:grantee.v-s:correspondentPerson.rdfs:label}{@.v-s:grantee.v-s:correspondentPersonDescription} [{@.v-s:dateFrom} - {@.v-s:dateTo}]" ;
   rdfs:label "Доверенность"@ru ;
   rdfs:label "Power of attorney"@en ;
@@ -38,7 +39,7 @@ gen:hasPowerOfAttorneyRegistrationRecord
   rdfs:label "Registration record"@en ;
   rdfs:range gen:PowerOfAttorneyRegistrationRecord ;
   rdfs:domain gen:PowerOfAttorney ;
-. 
+.
 
 #-----Регистрационный номер
 #v-s:registrationNumber
@@ -196,7 +197,7 @@ gen:PowerOfAttorneyRegistrationRecord
 
 
 #------------------------------------------------------Доверитель/Доверенности
-#v-s:Correspondent 
+#v-s:Correspondent
 #    a owl:Class;
 #    rdfs:isDefinedBy <http://semantic-machines.com/veda/veda-correspondence-schema>;
 #    rdfs:label "Корреспондент"@ru, "Correspondent"@en;

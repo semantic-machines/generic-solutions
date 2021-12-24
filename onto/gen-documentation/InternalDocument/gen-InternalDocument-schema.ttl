@@ -21,7 +21,8 @@ gen:InternalDocument
   rdf:type owl:Class ;
   rdfs:subClassOf v-s:InternalDocument ;
   rdfs:subClassOf v-s:Labeled ;
-	rdfs:subClassOf v-s:Enumerated ;
+  rdfs:subClassOf v-s:Enumerated ;
+  rdfs:subClassOf v-s:UserSearchableDocument ;
   v-s:labelPattern "{@.v-s:registrationNumber} - {@.v-s:hasDocumentKind.rdfs:label} - {@.v-s:theme}" ;
   rdfs:label "Внутренний документ"@ru ;
   rdfs:label "Internal document"@en ;

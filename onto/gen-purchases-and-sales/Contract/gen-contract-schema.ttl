@@ -25,11 +25,12 @@ gen:Contract
   rdfs:subClassOf v-s:Enumerated ;
   rdfs:subClassOf v-s:GroupAuthorized ;
   rdfs:subClassOf v-s:Contract ;
-  rdfs:label "Contract"@en ;
   rdfs:subClassOf v-s:BackwardLink ;
   rdfs:subClassOf v-s:Labeled ;
-  v-s:labelPattern "{@.v-s:registrationNumberAdd} - {@.v-s:theme}" ;
+  rdfs:subClassOf v-s:UserSearchableDocument ;
   rdfs:label "Контракт"@ru ;
+  rdfs:label "Contract"@en ;
+  v-s:labelPattern "{@.v-s:registrationNumberAdd} - {@.v-s:theme}" ;
 #  v-s:hasNumeration v-s:RegistrationNumberYearNumeration2_4 ;
   v-ui:hasTemplate gen:ContractTemplate ;
 .
@@ -284,7 +285,7 @@ gen:hasAdditionalAgreement
   rdfs:range gen:AdditionalAgreement ;
   rdfs:domain gen:Contract ;
 .
-#-----Стоимость 
+#-----Стоимость
 #v-s:hasPrice
 gen:PS_hasPrice_Contract
   rdf:type v-ui:PropertySpecification ;
