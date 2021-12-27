@@ -44,7 +44,7 @@ export const html = `
           <veda-control data-type="link" rel="v-s:responsibleOrganization" class="-view edit search fulltext"></veda-control>
         </div>
       </div>
-      <!--<div class="row row-attribute">
+      <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:description" property="rdfs:label"></label>
         </div>
@@ -52,7 +52,7 @@ export const html = `
           <div property="v-s:description" class="view -edit search" data-template="v-ui:LabelTemplate"></div>
           <veda-control data-type="text" property="v-s:description" class="-view edit search"></veda-control>
         </div>
-      </div>-->
+      </div>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <label about="v-s:attachment" property="rdfs:label"></label>
