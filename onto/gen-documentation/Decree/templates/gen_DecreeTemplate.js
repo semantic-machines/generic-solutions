@@ -8,10 +8,9 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-copy', template).click(function () {
-    var cntr = $('<div></div>'),
-      _class = new IndividualModel('gen:Decree'),
-      Decree = new IndividualModel(),
-      tmpl = 'gen:DecreeTemplate';
+    const _class = new IndividualModel('gen:Decree');
+    const Decree = new IndividualModel();
+    const tmpl = 'gen:DecreeTemplate';
     Decree['rdf:type'] = [_class];
     Decree['v-s:hasDecreeKind'] = individual['v-s:hasDecreeKind'];
     Decree['v-s:owner'] = individual['v-s:owner'];
@@ -19,8 +18,8 @@ export const post = function (individual, template, container, mode, extra) {
     Decree['v-s:initiator'] = individual['v-s:initiator'];
     Decree['v-s:signedBy'] = individual['v-s:signedBy'];
     Decree['v-s:responsible'] = individual['v-s:responsible'];
-    var link_class = new IndividualModel('v-s:Link'),
-      Link = new IndividualModel();
+    const link_class = new IndividualModel('v-s:Link');
+    const Link = new IndividualModel();
     Link['rdf:type'] = [link_class];
     Link['v-s:from'] = [individual];
     Link['v-s:to'] = [Decree];
@@ -33,18 +32,18 @@ export const post = function (individual, template, container, mode, extra) {
     });
   });
   $('#add-RegRecord', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('gen:DecreeRegistrationRecord'),
-      RegRecord = new IndividualModel(),
-      tmpl = new IndividualModel('gen:DecreeRegistrationRecordTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('gen:DecreeRegistrationRecord');
+    const RegRecord = new IndividualModel();
+    const tmpl = new IndividualModel('gen:DecreeRegistrationRecordTemplate');
 
     RegRecord['rdf:type'] = [_class];
     RegRecord['gen:hasDecreeKind'] = individual['gen:hasDecreeKind'];
@@ -60,7 +59,7 @@ export const post = function (individual, template, container, mode, extra) {
       modal.modal('hide').remove();
     });
   });
-  function handler(property_uri) {
+  function handler (property_uri) {
     if (individual.hasValue('gen:hasDecreeRegistrationRecord')) {
       $('#buttonReg').hide();
     } else {
@@ -76,7 +75,7 @@ export const post = function (individual, template, container, mode, extra) {
   individual.canUpdate().then(function (canUpdate) {
     if (individual.hasValue('v-wf:isProcess')) {
       $('#send.action', template).remove();
-      //$('#save.action', template).remove();
+      // $('#save.action', template).remove();
     } else if (individual.isNew() || canUpdate) {
       $('#send.action', template).off('click');
       $('#send.action', template).on('click', function () {

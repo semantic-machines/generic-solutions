@@ -10,18 +10,18 @@ export const post = function (individual, template, container, mode, extra) {
   }
 
   $('#add-ActionIT', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('gen:ActionIT'),
-      ActionIT = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ActionITTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('gen:ActionIT');
+    const ActionIT = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ActionITTemplate');
     ActionIT['rdf:type'] = [_class];
     ActionIT.present(cntr, tmpl, 'edit');
     ActionIT['v-s:backwardTarget'] = [individual];

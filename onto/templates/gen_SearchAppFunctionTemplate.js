@@ -5,8 +5,8 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  var resultsContainer = $('.fn-search-results', template);
-  var resultTemplate = resultsContainer.html();
+  const resultsContainer = $('.fn-search-results', template);
+  const resultTemplate = resultsContainer.html();
   resultsContainer.empty();
   individual.on('*', triggerSearch);
   template.one('remove', function () {
@@ -15,13 +15,13 @@ export const pre = function (individual, template, container, mode, extra) {
   if (this.result.length) {
     renderResults(this.result);
   }
-  function triggerSearch() {
+  function triggerSearch () {
     this.search().then(renderResults);
   }
-  function renderResults(fn_uris) {
+  function renderResults (fn_uris) {
     resultsContainer.empty();
     fn_uris.forEach(function (fn_uri) {
-      var fn = new IndividualModel(fn_uri);
+      const fn = new IndividualModel(fn_uri);
       fn.present(resultsContainer, resultTemplate);
     });
   }
@@ -31,7 +31,7 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  var placeholder = new IndividualModel('gen:SearchAppPlaceholder');
+  const placeholder = new IndividualModel('gen:SearchAppPlaceholder');
   placeholder.load().then(function (placeholder) {
     $('input', template).prop('placeholder', placeholder).toString();
   });

@@ -9,8 +9,8 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   if (mode === 'edit' && individual.isNew()) {
-    var _class = new IndividualModel('v-s:Correspondent'),
-      Grantor = new IndividualModel();
+    const _class = new IndividualModel('v-s:Correspondent');
+    const Grantor = new IndividualModel();
     Grantor['rdf:type'] = [_class];
     Grantor['v-s:correspondentOrganization'] = [veda.appointment['v-s:parentOrganization'][0]];
     Grantor['v-s:correspondentDepartment'] = [veda.appointment['v-s:parentUnit'][0]];
@@ -19,17 +19,17 @@ export const pre = function (individual, template, container, mode, extra) {
   }
 
   template.on('validate', function () {
-    var result = {};
+    const result = {};
     if (individual.hasValue('v-s:isIssuedForAbsencePeriodOfEmployee', true) && !individual.hasValue('v-s:issuedForAbsencePeriodOfEmployee')) {
       result['v-s:issuedForAbsencePeriodOfEmployee'] = {
         state: false,
         cause: ['v-ui:minCardinality'],
       };
     }
-    template[0].dispatchEvent(new CustomEvent('validated', { detail: result }));
+    template[0].dispatchEvent(new CustomEvent('validated', {detail: result}));
   });
 
-  var _class = new IndividualModel('gen:PowerOfAttorney');
+  const _class = new IndividualModel('gen:PowerOfAttorney');
   _class.canCreate().then(function (canCreate) {
     if (!canCreate) {
       $('#add-copy', template).remove();
@@ -43,9 +43,9 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-copy', template).click(function () {
-    var _class = new IndividualModel('gen:PowerOfAttorney'),
-      Attorney = new IndividualModel(),
-      tmpl = 'gen:PowerOfAttorneyTemplate';
+    const _class = new IndividualModel('gen:PowerOfAttorney');
+    const Attorney = new IndividualModel();
+    const tmpl = 'gen:PowerOfAttorneyTemplate';
     Attorney['rdf:type'] = [_class];
     copyAttorney(Attorney).then(function () {
       riot.route(['#', Attorney.id, '#main', tmpl, 'edit'].join('/'));
@@ -58,12 +58,12 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-linkedCopy', template).click(function () {
-    var _class = new IndividualModel('gen:PowerOfAttorney'),
-      Attorney = new IndividualModel(),
-      tmpl = 'gen:PowerOfAttorneyTemplate';
+    const _class = new IndividualModel('gen:PowerOfAttorney');
+    const Attorney = new IndividualModel();
+    const tmpl = 'gen:PowerOfAttorneyTemplate';
     Attorney['rdf:type'] = [_class];
     copyAttorney(Attorney).then(function () {
-      var Link = new IndividualModel();
+      const Link = new IndividualModel();
       Link['rdf:type'] = [new IndividualModel('v-s:Link')];
       Link['v-s:to'] = [individual];
       Link['v-s:from'] = [Attorney];
@@ -73,19 +73,19 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-RegRecord', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
 
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('gen:PowerOfAttorneyRegistrationRecord'),
-      RegRecord = new IndividualModel(),
-      tmpl = new IndividualModel('gen:PowerOfAttorneyRegistrationRecordTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('gen:PowerOfAttorneyRegistrationRecord');
+    const RegRecord = new IndividualModel();
+    const tmpl = new IndividualModel('gen:PowerOfAttorneyRegistrationRecordTemplate');
     RegRecord['rdf:type'] = [_class];
     RegRecord['v-s:backwardTarget'] = [individual];
     RegRecord['v-s:backwardProperty'] = [new IndividualModel('gen:hasPowerOfAttorneyRegistrationRecord')];
@@ -101,24 +101,24 @@ export const post = function (individual, template, container, mode, extra) {
     });
   });
 
-  function copyAttorney(Attorney) {
+  function copyAttorney (Attorney) {
     Attorney['v-s:issuedForAbsencePeriodOfEmployee'] = individual['v-s:issuedForAbsencePeriodOfEmployee'];
     Attorney['v-s:hasFormOfPowerOfAttorney'] = individual['v-s:hasFormOfPowerOfAttorney'];
     Attorney['v-s:hasReasonForPowerOfAttorney'] = individual['v-s:hasReasonForPowerOfAttorney'];
     Attorney['v-s:reason'] = individual['v-s:reason'];
 
-    var promises = [individual['v-s:grantor'][0].clone(), individual['v-s:grantee'][0].clone()];
+    const promises = [individual['v-s:grantor'][0].clone(), individual['v-s:grantee'][0].clone()];
     return Promise.all(promises).then(function (results) {
-      var clonedGrantor = results[0];
+      const clonedGrantor = results[0];
       clonedGrantor['v-s:parent'] = [Attorney.id];
-      var clonedGrantee = results[1];
+      const clonedGrantee = results[1];
       clonedGrantee['v-s:parent'] = [Attorney.id];
       Attorney['v-s:grantor'] = [clonedGrantor];
       Attorney['v-s:grantee'] = [clonedGrantee];
     });
   }
 
-  function regRecordHandler() {
+  function regRecordHandler () {
     if (template.data('mode') === 'edit') {
       if (individual.hasValue('gen:hasPowerOfAttorneyRegistrationRecord')) {
         $('#buttonReg', template).hide();
@@ -127,7 +127,7 @@ export const post = function (individual, template, container, mode, extra) {
       }
     }
   }
-  function absencePeriodHandler() {
+  function absencePeriodHandler () {
     if (template.data('mode') === 'edit') {
       if (individual.hasValue('v-s:isIssuedForAbsencePeriodOfEmployee', true)) {
         $('#toggle-AbsencePeriod', template).show();
@@ -138,7 +138,7 @@ export const post = function (individual, template, container, mode, extra) {
       }
     }
   }
-  function processHandler() {
+  function processHandler () {
     individual.canUpdate().then(function (canUpdate) {
       if (individual.hasValue('v-wf:isProcess')) {
         $('#send.action', template).remove();

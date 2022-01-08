@@ -20,10 +20,9 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-copy', template).click(function () {
-    var cntr = $('<div></div>'),
-      _class = new IndividualModel('gen:InternalDocument'),
-      InternalDocument = new IndividualModel(),
-      tmpl = 'gen:InternalDocumentTemplate';
+    const _class = new IndividualModel('gen:InternalDocument');
+    const InternalDocument = new IndividualModel();
+    const tmpl = 'gen:InternalDocumentTemplate';
     InternalDocument['rdf:type'] = [_class];
     InternalDocument['v-s:hasDocumentKind'] = individual['v-s:hasDocumentKind'];
     InternalDocument['v-s:initiator'] = individual['v-s:initiator'];
@@ -31,8 +30,8 @@ export const post = function (individual, template, container, mode, extra) {
     InternalDocument['v-s:copyTo'] = individual['v-s:copyTo'];
     InternalDocument['v-s:theme'] = individual['v-s:theme'];
     InternalDocument['v-s:content'] = individual['v-s:content'];
-    var link_class = new IndividualModel('v-s:Link'),
-      Link = new IndividualModel();
+    const link_class = new IndividualModel('v-s:Link');
+    const Link = new IndividualModel();
     Link['rdf:type'] = [link_class];
     Link['v-s:from'] = [individual];
     Link['v-s:to'] = [InternalDocument];
@@ -48,7 +47,7 @@ export const post = function (individual, template, container, mode, extra) {
   individual.canUpdate().then(function (canUpdate) {
     if (individual.hasValue('v-wf:isProcess')) {
       $('#send.action', template).remove();
-      //$('#save.action', template).remove();
+      // $('#save.action', template).remove();
     } else if (individual.isNew() || canUpdate) {
       $('#send.action', template).off('click');
       $('#send.action', template).on('click', function () {

@@ -5,13 +5,13 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  var decisionContractorCategoryState = $('#decisionContractorCategoryState', template);
+  const decisionContractorCategoryState = $('#decisionContractorCategoryState', template);
 
   individual.on('v-s:isOrganizationOk', handler);
   template.one('remove', function () {
     individual.off('v-s:isOrganizationOk', handler);
   });
-  function handler(values) {
+  function handler (values) {
     if (values[0] === true) {
       decisionContractorCategoryState.removeClass('alert-danger alert-warning').addClass('alert-success');
     } else if (values[0] === false) {
@@ -28,18 +28,18 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-ContractorCategoryDecisionSecurity', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('v-s:ContractorCategoryDecisionSecurity'),
-      ContractorCategoryDecisionSecurity = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ContractorCategoryDepartmentDecisionTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('v-s:ContractorCategoryDecisionSecurity');
+    const ContractorCategoryDecisionSecurity = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ContractorCategoryDepartmentDecisionTemplate');
     ContractorCategoryDecisionSecurity['rdf:type'] = [_class];
     ContractorCategoryDecisionSecurity['v-s:backwardTarget'] = [individual];
     ContractorCategoryDecisionSecurity['v-s:backwardProperty'] = [new IndividualModel('v-s:hasContractorCategoryDecisionSecurity')];
@@ -56,18 +56,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-ContractorCategoryDecisionLegal', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('v-s:ContractorCategoryDecisionLegal'),
-      ContractorCategoryDecisionLegal = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ContractorCategoryDepartmentDecisionTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('v-s:ContractorCategoryDecisionLegal');
+    const ContractorCategoryDecisionLegal = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ContractorCategoryDepartmentDecisionTemplate');
     ContractorCategoryDecisionLegal['rdf:type'] = [_class];
     ContractorCategoryDecisionLegal['v-s:backwardTarget'] = [individual];
     ContractorCategoryDecisionLegal['v-s:backwardProperty'] = [new IndividualModel('v-s:hasContractorCategoryDecisionLegal')];
@@ -81,18 +81,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-ContractorCategoryDecisionFinancial', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('v-s:ContractorCategoryDecisionFinancial'),
-      ContractorCategoryDecisionFinancial = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ContractorCategoryDepartmentDecisionTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('v-s:ContractorCategoryDecisionFinancial');
+    const ContractorCategoryDecisionFinancial = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ContractorCategoryDepartmentDecisionTemplate');
     ContractorCategoryDecisionFinancial['rdf:type'] = [_class];
     ContractorCategoryDecisionFinancial['v-s:backwardTarget'] = [individual];
     ContractorCategoryDecisionFinancial['v-s:backwardProperty'] = [new IndividualModel('v-s:hasContractorCategoryDecisionFinancial')];
@@ -106,18 +106,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-ContractorCategoryDecisionManagement', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('v-s:ContractorCategoryDecisionManagement'),
-      ContractorCategoryDecisionFinancial = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ContractorCategoryDepartmentDecisionTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('v-s:ContractorCategoryDecisionManagement');
+    const ContractorCategoryDecisionFinancial = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ContractorCategoryDepartmentDecisionTemplate');
     ContractorCategoryDecisionFinancial['rdf:type'] = [_class];
     ContractorCategoryDecisionFinancial['v-s:backwardTarget'] = [individual];
     ContractorCategoryDecisionFinancial['v-s:backwardProperty'] = [new IndividualModel('v-s:hasContractorCategoryDecisionManagement')];
@@ -130,26 +130,26 @@ export const post = function (individual, template, container, mode, extra) {
     });
   });
 
-  var _classSecurity = new IndividualModel('v-s:ContractorCategoryDecisionSecurity');
-  var _classLegal = new IndividualModel('v-s:ContractorCategoryDecisionLegal');
-  var _classFinancial = new IndividualModel('v-s:ContractorCategoryDecisionFinancial');
-  var _classManagement = new IndividualModel('v-s:ContractorCategoryDecisionManagement');
+  const _classSecurity = new IndividualModel('v-s:ContractorCategoryDecisionSecurity');
+  const _classLegal = new IndividualModel('v-s:ContractorCategoryDecisionLegal');
+  const _classFinancial = new IndividualModel('v-s:ContractorCategoryDecisionFinancial');
+  const _classManagement = new IndividualModel('v-s:ContractorCategoryDecisionManagement');
   Promise.all([_classSecurity.canCreate(), _classLegal.canCreate(), _classFinancial.canCreate(), _classManagement.canCreate(), individual.canUpdate()]).then(
     function (rights) {
-      var canCreateSecurity = rights[0],
-        canCreateLegal = rights[1],
-        canCreateFinancial = rights[2],
-        canCreateManagement = rights[3],
-        canUpdateIndividual = rights[4],
-        hasRightsSecurity = canCreateSecurity && canUpdateIndividual,
-        hasRightsLegal = canCreateLegal && canUpdateIndividual,
-        hasRightsFinancial = canCreateFinancial && canUpdateIndividual,
-        hasRightsManagement = canCreateManagement && canUpdateIndividual;
+      const canCreateSecurity = rights[0];
+      const canCreateLegal = rights[1];
+      const canCreateFinancial = rights[2];
+      const canCreateManagement = rights[3];
+      const canUpdateIndividual = rights[4];
+      const hasRightsSecurity = canCreateSecurity && canUpdateIndividual;
+      const hasRightsLegal = canCreateLegal && canUpdateIndividual;
+      const hasRightsFinancial = canCreateFinancial && canUpdateIndividual;
+      const hasRightsManagement = canCreateManagement && canUpdateIndividual;
       individual.on('v-s:hasContractorCategoryDecisionSecurity', handlerSecurity);
       template.one('remove', function () {
         individual.off('v-s:hasContractorCategoryDecisionSecurity', handlerSecurity);
       });
-      function handlerSecurity(values) {
+      function handlerSecurity (values) {
         if (values.length || !hasRightsSecurity) {
           $('#add-ContractorCategoryDecisionSecurity', template).remove();
         }
@@ -160,7 +160,7 @@ export const post = function (individual, template, container, mode, extra) {
       template.one('remove', function () {
         individual.off('v-s:hasContractorCategoryDecisionLegal', handlerLegal);
       });
-      function handlerLegal(values) {
+      function handlerLegal (values) {
         if (values.length || !hasRightsLegal) {
           $('#add-ContractorCategoryDecisionLegal', template).remove();
         }
@@ -171,7 +171,7 @@ export const post = function (individual, template, container, mode, extra) {
       template.one('remove', function () {
         individual.off('v-s:hasContractorCategoryDecisionFinancial', handlerFinancial);
       });
-      function handlerFinancial(values) {
+      function handlerFinancial (values) {
         if (values.length || !hasRightsFinancial) {
           $('#add-ContractorCategoryDecisionFinancial', template).remove();
         }
@@ -182,7 +182,7 @@ export const post = function (individual, template, container, mode, extra) {
       template.one('remove', function () {
         individual.off('v-s:hasContractorCategoryDecisionManagement', handlerManagement);
       });
-      function handlerManagement(values) {
+      function handlerManagement (values) {
         if (values.length || !hasRightsManagement) {
           $('#add-ContractorCategoryDecisionManagement', template).remove();
         }

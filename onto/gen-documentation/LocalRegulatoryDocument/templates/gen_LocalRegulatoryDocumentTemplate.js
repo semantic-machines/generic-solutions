@@ -7,19 +7,19 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-RegulatoryDocument', template).click(function () {
-    var _class = new IndividualModel('v-s:VersionOfLocalRegulatoryDocument'),
-      RegulatoryDocument = new IndividualModel(),
-      tmpl = 'gen:VersionOfLocalRegulatoryDocumentTemplate';
+    const _class = new IndividualModel('v-s:VersionOfLocalRegulatoryDocument');
+    const RegulatoryDocument = new IndividualModel();
+    const tmpl = 'gen:VersionOfLocalRegulatoryDocumentTemplate';
     RegulatoryDocument['rdf:type'] = [_class];
     RegulatoryDocument['v-s:backwardTarget'] = [individual];
     RegulatoryDocument['v-s:backwardProperty'] = [new IndividualModel('v-s:hasVersionOfLocalRegulatoryDocument')];
     RegulatoryDocument['v-s:canRead'] = [true];
     RegulatoryDocument['v-s:hasDocumentKind'] = individual['v-s:hasDocumentKind'];
     RegulatoryDocument['v-s:title'] = individual['v-s:title'];
-    var newRegNumber =
+    const newRegNumber =
       individual['v-s:hasVersionOfLocalRegulatoryDocument'].reduce(function (max, current) {
         if (current.hasValue('v-s:registrationNumberAdd')) {
-          var numberAdd = +current['v-s:registrationNumberAdd'][0];
+          const numberAdd = +current['v-s:registrationNumberAdd'][0];
           if (!isNaN(numberAdd)) {
             if (numberAdd > max) max = numberAdd;
           }

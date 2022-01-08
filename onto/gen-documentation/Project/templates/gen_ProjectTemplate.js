@@ -7,19 +7,17 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  function prepayment() {
+  function prepayment () {
     if (individual.hasValue('gen:toWhomToGiveAnPrepayment')) {
-      var prepaymentPrice;
-      prepaymentPrice = new IndividualModel();
+      const prepaymentPrice = new IndividualModel();
       prepaymentPrice['rdf:type'] = [new IndividualModel('v-s:Price')];
       prepaymentPrice['v-s:parent'] = [individual];
       individual['gen:hasPricePrepayment'] = [prepaymentPrice];
     } else individual['gen:hasPricePrepayment'] = [];
   }
-  function compensate() {
+  function compensate () {
     if (individual.hasValue('gen:toWhomToCompensateRepresentativeCosts')) {
-      var compensatePrice;
-      compensatePrice = new IndividualModel();
+      const compensatePrice = new IndividualModel();
       compensatePrice['rdf:type'] = [new IndividualModel('v-s:Price')];
       compensatePrice['v-s:parent'] = [individual];
       individual['gen:hasPriceCompensate'] = [compensatePrice];
@@ -35,7 +33,7 @@ export const post = function (individual, template, container, mode, extra) {
   individual.canUpdate().then(function (canUpdate) {
     if (individual.hasValue('v-wf:isProcess')) {
       $('#send.action', template).remove();
-      //$('#save.action', template).remove();
+      // $('#save.action', template).remove();
     } else if (individual.isNew() || canUpdate) {
       $('#send.action', template).off('click');
       $('#send.action', template).on('click', function () {
@@ -48,15 +46,15 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   // Проверка разрешения на создание копии
-  var This_class = individual['rdf:type'][0];
+  const This_class = individual['rdf:type'][0];
   This_class.canCreate().then(function (canCreate) {
     if (!canCreate) $('#add-RepresentativeCost', template).remove();
   });
 
   $('#add-RepresentativeCost', template).click(function () {
-    var _class = new IndividualModel('gen:RepresentativeCosts'),
-      RepresentativeCost = new IndividualModel(),
-      tmpl = 'gen:RepresentativeCostsTemplate';
+    const _class = new IndividualModel('gen:RepresentativeCosts');
+    const RepresentativeCost = new IndividualModel();
+    const tmpl = 'gen:RepresentativeCostsTemplate';
     RepresentativeCost['rdf:type'] = [_class];
     RepresentativeCost['v-s:stakeholder'] = individual['v-s:stakeholder'];
     RepresentativeCost['v-s:goal'] = individual['v-s:goal'];
@@ -72,10 +70,10 @@ export const post = function (individual, template, container, mode, extra) {
     RepresentativeCost['v-s:hasThirdPartyParticipant'] = individual['v-s:hasThirdPartyParticipant'];
     RepresentativeCost['gen:toWhomToCompensateRepresentativeCosts'] = individual['gen:toWhomToCompensateRepresentativeCosts'];
 
-    //Мероприятия
-    var newRepresentativeCostsEvent = new IndividualModel();
+    // Мероприятия
+    const newRepresentativeCostsEvent = new IndividualModel();
     newRepresentativeCostsEvent['rdf:type'] = [new IndividualModel('gen:RepresentativeCostsEvent')];
-    var RepresentativeCostsEventPromise = individual
+    const RepresentativeCostsEventPromise = individual
       .getPropertyChain('gen:hasRepresentativeCostsEvent')
       .then(function (RepresentativeCostsEventArr) {
         return RepresentativeCostsEventArr.length > 0 ? RepresentativeCostsEventArr[0].load() : null;
@@ -89,10 +87,10 @@ export const post = function (individual, template, container, mode, extra) {
         return newRepresentativeCostsEvent;
       });
 
-    //Расходы для Мероприятия
-    var newRepresentativeCostsForEvent = new IndividualModel();
+    // Расходы для Мероприятия
+    const newRepresentativeCostsForEvent = new IndividualModel();
     newRepresentativeCostsForEvent['rdf:type'] = [new IndividualModel('gen:RepresentativeCostsForEvent')];
-    var RepresentativeCostsForEventPromise = individual
+    const RepresentativeCostsForEventPromise = individual
       .getPropertyChain('gen:hasRepresentativeCostsForEvent')
       .then(function (RepresentativeCostsForEventArr) {
         return RepresentativeCostsForEventArr.length > 0 ? RepresentativeCostsForEventArr[0].load() : null;

@@ -5,8 +5,7 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  function getOwner() {
-    var hasContract;
+  function getOwner () {
     if (
       individual.hasValue('v-s:hasOrganization', new IndividualModel('d:org_RU1121016110_1')) ||
       individual.hasValue('v-s:hasOrganization', new IndividualModel('d:org_RU1121016110_2')) ||
@@ -19,7 +18,7 @@ export const post = function (individual, template, container, mode, extra) {
       }
     }
   }
-  function linkedOrganization() {
+  function linkedOrganization () {
     if (template.data('mode') == 'edit') {
       individual['v-s:hasOrganization'] = individual['v-s:hasContractor'][0]['v-s:linkedOrganization'];
     }
@@ -30,7 +29,6 @@ export const post = function (individual, template, container, mode, extra) {
     individual.off('v-s:hasContractor', linkedOrganization);
     individual.off('v-s:hasOrganization', getOwner);
   });
-  //#sourceURL=gen:ContractParticipantEmbeddedTemplate_post
 };
 
 export const html = `

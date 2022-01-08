@@ -5,7 +5,7 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   if (mode == 'edit' && !individual.hasValue('v-s:registrationDate')) {
-    var date = new Date();
+    const date = new Date();
     date.setHours(0);
     date.setMinutes(0);
     date.setSeconds(0);

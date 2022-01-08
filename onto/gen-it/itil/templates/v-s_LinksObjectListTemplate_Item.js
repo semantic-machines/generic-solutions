@@ -4,7 +4,7 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  var displayedDoc = container.closest('[resource]').attr('resource');
+  const displayedDoc = container.closest('[resource]').attr('resource');
   if (this.hasValue('v-s:from', displayedDoc)) {
     $('.link-from', template).remove();
   } else if (this.hasValue('v-s:to', displayedDoc)) {

@@ -6,17 +6,16 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   if (mode === 'edit' && individual.hasValue('v-wf:processedDocument')) {
-    var stages = ['coordination1', 'coordination2', 'examination'];
-    var complex = 's-wf:ComplexRouteStartForm_';
-    var simple = 's-wf:SimpleRouteStartForm_';
-    var doc = individual['v-wf:processedDocument'][0];
+    const stages = ['coordination1', 'coordination2', 'examination'];
+    const complex = 's-wf:ComplexRouteStartForm_';
+    const simple = 's-wf:SimpleRouteStartForm_';
 
     individual.addSimpleStartForm(stages, complex);
 
     individual[complex + 'coordination1'][0][simple + 'visible'] = [true];
     individual[complex + 'coordination1'][0][simple + 'editable'] = [true];
     individual[complex + 'coordination1'][0][simple + 'participant'] = [new IndividualModel('d:org_RU1100220011_position_1')]; // Руководитель
-    individual[complex + 'coordination1'][0][simple + 'comment'] = [new String('Оценка рисков')];
+    individual[complex + 'coordination1'][0][simple + 'comment'] = ['Оценка рисков'];
 
     individual[complex + 'examination'][0][simple + 'visible'] = [true];
     individual[complex + 'examination'][0][simple + 'editable'] = [true];
@@ -30,7 +29,7 @@ export const pre = function (individual, template, container, mode, extra) {
       new IndividualModel('d:org_RU1100220011_position_7'),
     ); // бухгалтерия
 
-    individual[complex + 'examination'][0][simple + 'comment'] = [new String('Оценка рисков произведена')];
+    individual[complex + 'examination'][0][simple + 'comment'] = ['Оценка рисков произведена'];
   }
 };
 

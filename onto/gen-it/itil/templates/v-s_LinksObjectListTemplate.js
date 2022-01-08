@@ -5,13 +5,13 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  var rowTmpl = 'v-s:LinksObjectListTemplate_Item';
+  const rowTmpl = 'v-s:LinksObjectListTemplate_Item';
 
   $('#add-link', template).click(function () {
     $('.links-table', template).removeClass('hidden');
-    var cntr = $("[rel='v-s:hasLinkObject']", template),
-      _class = new IndividualModel('v-s:LinkObject'),
-      Link = new IndividualModel();
+    const cntr = $('[rel=\'v-s:hasLinkObject\']', template);
+    const _class = new IndividualModel('v-s:LinkObject');
+    const Link = new IndividualModel();
     Link['rdf:type'] = [_class];
     Link['v-s:from'] = [individual];
 
@@ -24,7 +24,7 @@ export const pre = function (individual, template, container, mode, extra) {
       Link.one('afterSave', function () {
         newRow.remove();
       });
-      /*if ( individual.isNew() ) {
+      /* if ( individual.isNew() ) {
         newRow.find(".action#save").hide();
       }*/
     });
@@ -34,8 +34,8 @@ export const pre = function (individual, template, container, mode, extra) {
   template.one('remove', function () {
     individual.off('afterSave', saveHandler);
   });
-  function saveHandler() {
-    $("[rel='v-s:hasLinkObject']", template).children().trigger('save');
+  function saveHandler () {
+    $('[rel=\'v-s:hasLinkObject\']', template).children().trigger('save');
   }
 
   individual.on('v-s:hasLinkObject', linksHandler);
@@ -43,7 +43,7 @@ export const pre = function (individual, template, container, mode, extra) {
     individual.off('v-s:hasLinkObject', linksHandler);
   });
   linksHandler();
-  function linksHandler() {
+  function linksHandler () {
     if (individual.hasValue('v-s:hasLinkObject')) {
       $('.links-table', template).removeClass('hidden');
     } else {

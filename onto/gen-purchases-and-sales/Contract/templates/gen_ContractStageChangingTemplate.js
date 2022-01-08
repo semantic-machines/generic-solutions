@@ -10,7 +10,7 @@ export const post = function (individual, template, container, mode, extra) {
     individual['v-s:initiator'] = [[veda.appointment][0]];
   }
 
-  function contractClose() {
+  function contractClose () {
     if (individual.hasValue('gen:hasContractStage', new IndividualModel('d:uolcp82wtvh9nhjvkwmjd8s1kj'))) {
       individual['gen:isContractClosed'] = true;
     } else {
@@ -24,7 +24,7 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   if (mode == 'edit' && individual.isNew()) {
-    var date = new Date();
+    const date = new Date();
     date.setHours(0);
     date.setMinutes(0);
     date.setSeconds(0);

@@ -8,18 +8,18 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-ContractStageChanging_prolongate', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('gen:ContractStageChanging'),
-      ContractStageChanging = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ContractStageChangingTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('gen:ContractStageChanging');
+    const ContractStageChanging = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ContractStageChangingTemplate');
     ContractStageChanging['rdf:type'] = [_class];
     ContractStageChanging['v-s:backwardTarget'] = [individual];
     ContractStageChanging['v-s:backwardProperty'] = [new IndividualModel('gen:hasContractStageChanging')];
@@ -35,18 +35,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-ContractStageChanging_close', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('gen:ContractStageChanging'),
-      ContractStageChanging = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ContractStageChangingTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('gen:ContractStageChanging');
+    const ContractStageChanging = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ContractStageChangingTemplate');
     ContractStageChanging['rdf:type'] = [_class];
     ContractStageChanging['v-s:backwardTarget'] = [individual];
     ContractStageChanging['v-s:backwardProperty'] = [new IndividualModel('gen:hasContractStageChanging')];
@@ -63,18 +63,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-ContractStageChanging_reopen', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('gen:ContractStageChanging'),
-      ContractStageChanging = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ContractStageChangingTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('gen:ContractStageChanging');
+    const ContractStageChanging = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ContractStageChangingTemplate');
     ContractStageChanging['rdf:type'] = [_class];
     ContractStageChanging['v-s:backwardTarget'] = [individual];
     ContractStageChanging['v-s:backwardProperty'] = [new IndividualModel('gen:hasContractStageChanging')];
@@ -89,7 +89,7 @@ export const post = function (individual, template, container, mode, extra) {
       modal.modal('hide').remove();
     });
   });
-  function prolongateHandler() {
+  function prolongateHandler () {
     if (individual.hasValue('gen:isAutoProlongateProvides', true)) {
       $('#add-ContractStageChanging_prolongate', template).removeClass('hidden');
     } else {
@@ -114,9 +114,9 @@ export const post = function (individual, template, container, mode, extra) {
   prolongateHandler();
 
   $('#add-AdditionalAgreement', template).click(function () {
-    var _class = new IndividualModel('gen:AdditionalAgreement'),
-      AdditionalAgreement = new IndividualModel(),
-      tmpl = 'gen:AdditionalAgreementTemplate';
+    const _class = new IndividualModel('gen:AdditionalAgreement');
+    const AdditionalAgreement = new IndividualModel();
+    const tmpl = 'gen:AdditionalAgreementTemplate';
     AdditionalAgreement['rdf:type'] = [_class];
     AdditionalAgreement['v-s:backwardTarget'] = [individual];
     AdditionalAgreement['v-s:theme'] = individual['v-s:theme'];
@@ -129,20 +129,20 @@ export const post = function (individual, template, container, mode, extra) {
     Promise.resolve()
       .then(function () {
         if (individual.hasValue('gen:hasAdditionalAgreement')) {
-          var promiseArr = individual['gen:hasAdditionalAgreement'].map(function (agreement) {
+          const promiseArr = individual['gen:hasAdditionalAgreement'].map(function (agreement) {
             return agreement.load();
           });
           return Promise.all(promiseArr).then(function (agreements) {
-            var massivregnum = [];
+            const massivregnum = [];
             agreements.forEach(function (agreement) {
-              var object;
+              let object;
               if (agreement.hasValue('v-s:registrationNumberAdd')) {
                 object = agreement['v-s:registrationNumberAdd'][0].toString();
               } else {
                 object = '0';
               }
-              var proverca = object.lastIndexOf('.');
-              var a;
+              const proverca = object.lastIndexOf('.');
+              let a;
               if (proverca > 0) {
                 a = parseInt(object.split('.')[0]);
               } else {
@@ -168,9 +168,9 @@ export const post = function (individual, template, container, mode, extra) {
       });
     // В случае если есть допы у контракта, скрипт вычисляет количество допов, скажем их 6
     // и прибавляет один получаем цифру 7, пробегает по всем привязанным допам и проверяет не занят ли этот доп номер
-    function getMaxValue(array) {
-      var max = array[0]; // берем первый элемент массива
-      for (var i = 0; i < array.length; i++) {
+    function getMaxValue (array) {
+      let max = array[0]; // берем первый элемент массива
+      for (let i = 0; i < array.length; i++) {
         // переберем весь массив
         // если элемент больше, чем в переменной, то присваиваем его значение переменной
         if (max < array[i]) max = array[i];
@@ -182,7 +182,7 @@ export const post = function (individual, template, container, mode, extra) {
     riot.route(['#', AdditionalAgreement.id, '#main', tmpl, 'edit'].join('/'));
   });
 
-  function processHandler() {
+  function processHandler () {
     individual.canUpdate().then(function (canUpdate) {
       if (individual.hasValue('v-wf:isProcess')) {
         $('#send.action', template).remove();

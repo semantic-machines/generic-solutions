@@ -5,7 +5,7 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   template.on('validate', function () {
-    var result = {};
+    const result = {};
     result['v-s:shelfLife'] = {
       state: individual.hasValue('v-s:shelfLife'),
       cause: ['v-ui:minCardinality'],
@@ -14,7 +14,7 @@ export const pre = function (individual, template, container, mode, extra) {
       state: individual.hasValue('v-ui:forClass'),
       cause: ['v-ui:minCardinality'],
     };
-    template[0].dispatchEvent(new CustomEvent('validated', { detail: result }));
+    template[0].dispatchEvent(new CustomEvent('validated', {detail: result}));
   });
 };
 
@@ -22,7 +22,7 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  /*function shelfLifeView() {
+  /* function shelfLifeView() {
     if (individual.hasValue("v-s:isShelfLifeAlways",false)) {
       $(".shelfLife", template).removeClass("hidden");
     }

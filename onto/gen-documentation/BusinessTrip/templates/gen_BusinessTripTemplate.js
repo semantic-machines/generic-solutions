@@ -8,17 +8,17 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  //Права зеленных кнопок
-  var _class = new IndividualModel('v-s:BusinessTripRegistrationRecord');
-  var _class2 = new IndividualModel('gen:ChangeOfTerms');
+  // Права зеленных кнопок
+  const _class = new IndividualModel('v-s:BusinessTripRegistrationRecord');
+  const _class2 = new IndividualModel('gen:ChangeOfTerms');
   _class.canCreate().then(function (result) {
-    //    if (!result) $("#add-regEntry", template).remove();
+    // if (!result) $("#add-regEntry", template).remove();
   });
-  var changeOfTermsCanCreate = _class2.canCreate();
+  const changeOfTermsCanCreate = _class2.canCreate();
   changeOfTermsCanCreate.then(function (result) {
     if (!result) $('#add-ChangeOfBusinessTrip', template).remove();
   });
-  function handler() {
+  function handler () {
     changeOfTermsCanCreate.then(function (result) {
       if (!result) {
         $('#notify.action', template).remove();
@@ -35,7 +35,7 @@ export const pre = function (individual, template, container, mode, extra) {
     individual.off('propertyModified', handler);
   });
   template.on('validate', function () {
-    var result = {};
+    const result = {};
     if (individual.hasValue('gen:hasBusinessTripTransportKind', 'd:2078749d2bcf42e0ae80c5d8287d19d9')) {
       result['gen:isTicketRefund'] = {
         state: individual.hasValue('gen:isTicketRefund'),
@@ -46,7 +46,7 @@ export const pre = function (individual, template, container, mode, extra) {
         cause: ['v-ui:minCardinality'],
       };
     }
-    template[0].dispatchEvent(new CustomEvent('validated', { detail: result }));
+    template[0].dispatchEvent(new CustomEvent('validated', {detail: result}));
   });
 };
 
@@ -55,9 +55,9 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-copy', template).click(function () {
-    var _class = new IndividualModel('gen:BusinessTrip'),
-      BusinessTrip = new IndividualModel(),
-      tmpl = 'gen:BusinessTripTemplate';
+    const _class = new IndividualModel('gen:BusinessTrip');
+    const BusinessTrip = new IndividualModel();
+    const tmpl = 'gen:BusinessTripTemplate';
     BusinessTrip['rdf:type'] = [_class];
     BusinessTrip['v-s:businessTripEmployee'] = individual['v-s:businessTripEmployee'];
     BusinessTrip['v-s:businessTripDepartment'] = individual['v-s:businessTripDepartment'];
@@ -78,20 +78,20 @@ export const post = function (individual, template, container, mode, extra) {
     });
   });
 
-  //Скрипты зеленных кнопок
+  // Скрипты зеленных кнопок
   $('#add-RegRecord', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('v-s:BusinessTripRegistrationRecord'),
-      RegRecord = new IndividualModel(),
-      tmpl = new IndividualModel('gen:BusinessTripRegistrationRecordTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('v-s:BusinessTripRegistrationRecord');
+    const RegRecord = new IndividualModel();
+    const tmpl = new IndividualModel('gen:BusinessTripRegistrationRecordTemplate');
 
     RegRecord['rdf:type'] = [_class];
     RegRecord['v-s:backwardTarget'] = [individual];
@@ -105,7 +105,7 @@ export const post = function (individual, template, container, mode, extra) {
       modal.modal('hide').remove();
     });
   });
-  function handler(property_uri) {
+  function handler (property_uri) {
     if (individual.hasValue('v-s:hasBusinessTripRegistrationRecord')) {
       $('#buttonReg').hide();
     } else {
@@ -119,18 +119,18 @@ export const post = function (individual, template, container, mode, extra) {
   handler('v-s:BusinessTripRegistrationRecord');
 
   $('#add-ChangeOfTerms', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('gen:ChangeOfTerms'),
-      ChangeOfTerms = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ChangeOfTermsTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('gen:ChangeOfTerms');
+    const ChangeOfTerms = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ChangeOfTermsTemplate');
     ChangeOfTerms['rdf:type'] = [_class];
     ChangeOfTerms['v-s:backwardTarget'] = [individual];
     ChangeOfTerms['v-s:backwardProperty'] = [new IndividualModel('gen:hasChangeOfTerms')];
@@ -145,18 +145,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-DeviationOnExpenses', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('gen:DeviationOnExpenses'),
-      DeviationOnExpenses = new IndividualModel(),
-      tmpl = new IndividualModel('gen:DeviationOnExpensesTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('gen:DeviationOnExpenses');
+    const DeviationOnExpenses = new IndividualModel();
+    const tmpl = new IndividualModel('gen:DeviationOnExpensesTemplate');
     DeviationOnExpenses['rdf:type'] = [_class];
     DeviationOnExpenses['v-s:backwardTarget'] = [individual];
     DeviationOnExpenses['v-s:backwardProperty'] = [new IndividualModel('gen:hasDeviationOnExpenses')];
@@ -170,7 +170,7 @@ export const post = function (individual, template, container, mode, extra) {
     });
   });
 
-  function ModifiedHandlerSupplier() {
+  function modifiedHandlerSupplier () {
     if (template.data('mode') === 'edit' && individual.hasValue('v-s:supplier')) {
       if (!individual.hasValue('gen:businessTripOrganization')) {
         individual.getPropertyChain('v-s:supplier', 'v-s:shortLabel').then(function (shortLabel) {
@@ -190,9 +190,9 @@ export const post = function (individual, template, container, mode, extra) {
       }
     }
   }
-  ModifiedHandlerSupplier();
+  modifiedHandlerSupplier();
 
-  function getDepartment() {
+  function getDepartment () {
     if (individual.hasValue('v-s:businessTripEmployee') && template.data('mode') === 'edit') {
       individual.getPropertyChain('v-s:businessTripEmployee', 'v-s:parentUnit').then(function (parentUnit) {
         individual['v-s:businessTripDepartment'] = parentUnit;
@@ -200,7 +200,7 @@ export const post = function (individual, template, container, mode, extra) {
     }
   }
 
-  function directionBT() {
+  function directionBT () {
     if (template.data('mode') === 'edit') {
       if (individual.hasValue('v-s:hasClassifierCountry', new IndividualModel('d:Country_RUS'))) {
         individual['gen:hasBusinessTripDirection'] = [new IndividualModel('d:87116c2092da45cba4300daa6de0b748')];
@@ -208,19 +208,19 @@ export const post = function (individual, template, container, mode, extra) {
     }
   }
 
-  individual.on('v-s:supplier', ModifiedHandlerSupplier);
+  individual.on('v-s:supplier', modifiedHandlerSupplier);
   individual.on('v-s:businessTripEmployee', getDepartment);
   individual.on('v-s:hasClassifierCountry', directionBT);
   template.one('remove', function () {
-    individual.off('v-s:supplier', ModifiedHandlerSupplier);
+    individual.off('v-s:supplier', modifiedHandlerSupplier);
     individual.off('v-s:businessTripEmployee', getDepartment);
     individual.off('v-s:hasClassifierCountry', directionBT);
   });
 
-  //Процессная часть
-  function processHandler() {
+  // Процессная часть
+  function processHandler () {
     individual.canUpdate().then(function (canUpdate) {
-      var userId = 'cfg:Administrator'; //Администратор
+      const userId = 'cfg:Administrator'; // Администратор
       if (veda.user.id !== userId && individual.hasValue('v-wf:isProcess')) {
         $('#send.action', template).remove();
         $('#save.action', template).remove();
@@ -244,7 +244,7 @@ export const post = function (individual, template, container, mode, extra) {
     individual.off('afterReset', processHandler);
   });
 
-  function notifyHandler() {
+  function notifyHandler () {
     if (template.data('mode') != 'search') {
       if (individual.hasValue('gen:hasChangeOfTerms')) {
         $('#notify.action', template).removeClass('hidden');
@@ -264,7 +264,7 @@ export const post = function (individual, template, container, mode, extra) {
     individual.off('gen:hasChangeOfTerms', notifyHandler);
   });
 
-  function handler1(property_uri) {
+  function handler1 (property_uri) {
     if (individual.hasValue('v-s:hasBusinessTripRegistrationRecord')) {
       $('#add-regEntry', template).addClass('hidden');
     } else {
@@ -282,7 +282,7 @@ export const post = function (individual, template, container, mode, extra) {
     $('.action#save, .action#edit, .action#cancel, .action#delete', template).remove();
   }
 
-  /*function showBoolean () {
+  /* function showBoolean () {
     if ( mode != "search") {
       if ( individual.hasValue("gen:hasBusinessTripTransportKind","d:2078749d2bcf42e0ae80c5d8287d19d9") ) {
         $("#ticketRefund", template).removeClass("hidden");

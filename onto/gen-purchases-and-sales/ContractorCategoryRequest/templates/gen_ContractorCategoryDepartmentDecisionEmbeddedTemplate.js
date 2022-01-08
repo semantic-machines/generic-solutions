@@ -5,7 +5,7 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   try {
-    var types = {
+    const types = {
       'v-s:ContractorCategoryDecisionSecurity': {
         ok: 'v-s:isContractorOkSecurityDepSummary',
         summary: 'v-s:contractorSecurityDepSummary',
@@ -24,11 +24,11 @@ export const pre = function (individual, template, container, mode, extra) {
       },
     };
 
-    var type = individual['rdf:type'][0].id;
-    var ok = types[type].ok;
-    var summary = types[type].summary;
+    const type = individual['rdf:type'][0].id;
+    const ok = types[type].ok;
+    const summary = types[type].summary;
 
-    function checkHandler(property_uri) {
+    function checkHandler (property_uri) {
       if (property_uri === ok) {
         if (individual.hasValue(ok, true)) {
           template.addClass('panel-success').removeClass('panel-warning').removeClass('panel-danger');

@@ -6,9 +6,9 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('.fn-search-toggle', template).click(function () {
-    var searchAppFnContainer = $('.fn-search-container', template);
+    const searchAppFnContainer = $('.fn-search-container', template);
     if (searchAppFnContainer.is(':empty')) {
-      var searchAppFn = new IndividualModel('gen:SearchAppFunction');
+      const searchAppFn = new IndividualModel('gen:SearchAppFunction');
       searchAppFn.present(searchAppFnContainer);
     }
     setTimeout(function () {

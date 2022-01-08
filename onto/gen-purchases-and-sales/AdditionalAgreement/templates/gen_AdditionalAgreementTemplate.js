@@ -5,7 +5,7 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  function processHandler() {
+  function processHandler () {
     individual.canUpdate().then(function (canUpdate) {
       if (individual.hasValue('v-wf:isProcess')) {
         $('#send.action', template).remove();

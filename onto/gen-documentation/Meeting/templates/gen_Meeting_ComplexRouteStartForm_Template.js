@@ -6,10 +6,10 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   if (mode === 'edit' && individual.hasValue('v-wf:processedDocument')) {
-    var stages = ['introduction', 'coordination1', 'approval', 'instruction4', 'autoinstruction'];
-    var complex = 's-wf:ComplexRouteStartForm_';
-    var simple = 's-wf:SimpleRouteStartForm_';
-    var doc = individual['v-wf:processedDocument'][0];
+    const stages = ['introduction', 'coordination1', 'approval', 'instruction4', 'autoinstruction'];
+    const complex = 's-wf:ComplexRouteStartForm_';
+    const simple = 's-wf:SimpleRouteStartForm_';
+    const doc = individual['v-wf:processedDocument'][0];
 
     individual.addSimpleStartForm(stages, complex);
 
@@ -22,12 +22,8 @@ export const pre = function (individual, template, container, mode, extra) {
     individual[complex + 'approval'][0][simple + 'visible'] = [true];
     individual[complex + 'approval'][0][simple + 'editable'] = [true];
 
-    var actionPredicate = 'v-s:hasAction';
+    const actionPredicate = 'v-s:hasAction';
     if (doc.hasValue(actionPredicate)) {
-      var promises = doc[actionPredicate].map(function (action) {
-        return action.load();
-      });
-
       individual[complex + 'autoinstruction'][0]['rdfs:label'] = ['Поручения на основе блока "' + new IndividualModel(actionPredicate)['rdfs:label'][0] + '"'];
       individual[complex + 'autoinstruction'][0][simple + 'visible'] = [true];
       individual[complex + 'autoinstruction'][0][simple + 'editable'] = [false];

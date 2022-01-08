@@ -5,22 +5,22 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   if (mode === 'edit' && individual.hasValue('v-wf:processedDocument')) {
-    var stages = ['coordination1', 'review'];
-    var complex = 's-wf:ComplexRouteStartForm_';
-    var simple = 's-wf:SimpleRouteStartForm_';
-    var doc = individual['v-wf:processedDocument'][0];
+    const stages = ['coordination1', 'review'];
+    const complex = 's-wf:ComplexRouteStartForm_';
+    const simple = 's-wf:SimpleRouteStartForm_';
+    const doc = individual['v-wf:processedDocument'][0];
 
     individual.addSimpleStartForm(stages, complex);
 
-    //Согласование
+    // Согласование
     individual[complex + 'coordination1'][0][simple + 'visible'] = [true];
     individual[complex + 'coordination1'][0][simple + 'editable'] = [true];
 
-    //Рассмотрение
+    // Рассмотрение
     individual[complex + 'review'][0][simple + 'visible'] = [true];
     individual[complex + 'review'][0][simple + 'editable'] = [true];
 
-    var reviewParticipants = [];
+    const reviewParticipants = [];
     reviewParticipants.push(doc['v-s:creator'][0].getChief());
     Promise.all(reviewParticipants).then(function (result) {
       individual[complex + 'coordination1'][0][simple + 'participant'] = result;

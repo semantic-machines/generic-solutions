@@ -8,14 +8,14 @@ export const post = function (individual, template, container, mode, extra) {
 
   $('#bluePlus', template).click(function () {
     individual.save();
-    var _class = new IndividualModel('v-s:Action'),
-      action = new IndividualModel(),
-      tmpl = new IndividualModel('v-s:Action_Template');
+    const _class = new IndividualModel('v-s:Action');
+    const action = new IndividualModel();
+    const tmpl = new IndividualModel('v-s:Action_Template');
     action['rdf:type'] = [_class];
     action['v-s:parent'] = [individual];
-    /*action["v-s:backwardTarget"] = [individual];
+    /* action["v-s:backwardTarget"] = [individual];
     action["v-s:backwardProperty"] = [new IndividualModel("v-s:hasAction")];*/
-    var modal = BrowserUtil.showModal(action, tmpl, 'edit');
+    const modal = BrowserUtil.showModal(action, tmpl, 'edit');
     action.one('beforeReset', function () {
       modal.modal('hide').remove();
     });

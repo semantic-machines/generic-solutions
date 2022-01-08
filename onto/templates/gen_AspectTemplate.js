@@ -5,7 +5,7 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  $(".aspect-link[about='" + BrowserUtil.escape4$(individual.id) + "']", template).addClass('active');
+  $('.aspect-link[about=\'' + BrowserUtil.escape4$(individual.id) + '\']', template).addClass('active');
 };
 
 export const html = `

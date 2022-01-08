@@ -1,6 +1,5 @@
 import BrowserUtil from '/js/browser/util.js';
 import $ from 'jquery';
-import veda from '/js/common/veda.js';
 import IndividualModel from '/js/common/individual_model.js';
 import riot from 'riot';
 
@@ -9,7 +8,7 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   template.on('validate', function () {
-    var result = {};
+    const result = {};
     if (
       individual.hasValue('v-s:hasLifecycleStage', 'd:a6uu8yexul97649zuczu37abf4f') ||
       (individual.hasValue('v-s:hasLifecycleStage') && individual['v-s:hasLifecycleStage'][0].hasValue('v-s:hasParentLink', 'd:a6uu8yexul97649zuczu37abf4f'))
@@ -37,7 +36,7 @@ export const pre = function (individual, template, container, mode, extra) {
         }
       }
     }
-    template[0].dispatchEvent(new CustomEvent('validated', { detail: result }));
+    template[0].dispatchEvent(new CustomEvent('validated', {detail: result}));
   });
 };
 
@@ -45,19 +44,14 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  //if (individual.isNew() ) {
-  //  individual["v-s:developer"][0]["v-s:correspondentOrganization"] = veda.appointment["v-s:parentOrganization"];
-  //}
-
   // Проверка разрешения на создание тех документов
-  var This_class = individual['rdf:type'][0];
-  This_class.canCreate().then(function (canCreate) {
+  individual['rdf:type'][0].canCreate().then(function (canCreate) {
     if (!canCreate) $('#add-LinkedTechnicalDocument', template).remove();
   });
   $('#add-LinkedTechnicalDocument', template).click(function () {
-    var _class = new IndividualModel('v-s:TechnicalDocument'),
-      TechnicalDocument = new IndividualModel(),
-      tmpl = 'gen:TechnicalDocumentTemplate';
+    const _class = new IndividualModel('v-s:TechnicalDocument');
+    const TechnicalDocument = new IndividualModel();
+    const tmpl = 'gen:TechnicalDocumentTemplate';
     TechnicalDocument['rdf:type'] = [_class];
     TechnicalDocument['v-s:backwardTarget'] = [individual];
     TechnicalDocument['v-s:backwardProperty'] = [new IndividualModel('v-s:hasTechnicalDocument')];
@@ -87,15 +81,14 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   // Проверка разрешения на создание копии
-  var This_class = individual['rdf:type'][0];
-  This_class.canCreate().then(function (canCreate) {
+  individual['rdf:type'][0].canCreate().then(function (canCreate) {
     if (!canCreate) $('#add-copy', template).remove();
   });
 
   $('#add-copy', template).click(function () {
-    var _class = new IndividualModel('v-s:TechnicalDocument'),
-      TechnicalDocument = new IndividualModel(),
-      tmpl = 'gen:TechnicalDocumentTemplate';
+    const _class = new IndividualModel('v-s:TechnicalDocument');
+    const TechnicalDocument = new IndividualModel();
+    const tmpl = 'gen:TechnicalDocumentTemplate';
     TechnicalDocument['rdf:type'] = [_class];
     TechnicalDocument['v-s:title'] = individual['v-s:title'];
     TechnicalDocument['v-s:hasLifecycleStage'] = individual['v-s:hasLifecycleStage'];
@@ -128,7 +121,7 @@ export const post = function (individual, template, container, mode, extra) {
       });
   });
 
-  function lifeCycleStage() {
+  function lifeCycleStage () {
     if (individual.hasValue('v-s:hasLifecycleStage', new IndividualModel('d:a6uu8yexul97649zuczu37abf4f'))) {
       $('#EngineeringRequest', template).hide();
       $('#LinkedTechnicalDocuments', template).hide();
@@ -153,7 +146,7 @@ export const post = function (individual, template, container, mode, extra) {
     });
   }
 
-  function documentKindHandler() {
+  function documentKindHandler () {
     if (individual.hasValue('v-s:hasDocumentKind', new IndividualModel('d:2fb47ad2cca5420686f5722cbadaee51'))) {
       $('#Section', template).hide();
       $('#Mark', template).hide();
@@ -162,7 +155,7 @@ export const post = function (individual, template, container, mode, extra) {
       $('#Mark', template).show();
     }
   }
-  function addBackwardProperty() {
+  function addBackwardProperty () {
     if (individual.hasValue('v-s:backwardTarget')) {
       individual['v-s:backwardProperty'] = [new IndividualModel('v-s:hasTechnicalDocument')];
     }
@@ -180,7 +173,7 @@ export const post = function (individual, template, container, mode, extra) {
   individual.canUpdate().then(function (canUpdate) {
     if (individual.hasValue('v-wf:isProcess')) {
       $('#send.action', template).remove();
-      //$('#save.action', template).remove();
+      // $('#save.action', template).remove();
     } else if (individual.isNew() || canUpdate) {
       $('#send.action', template).off('click');
       $('#send.action', template).on('click', function () {

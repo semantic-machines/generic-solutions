@@ -6,7 +6,7 @@ export const post = function (individual, template, container, mode, extra) {
 
   $('#showHideContent', template).click(function (e) {
     e.preventDefault();
-    var a = $('#showHideContent1').attr('class');
+    const a = $('#showHideContent1').attr('class');
     if (a == 'glyphicon glyphicon-chevron-right') {
       $('#showHideContent1').removeClass().addClass('glyphicon glyphicon-chevron-down');
     } else {

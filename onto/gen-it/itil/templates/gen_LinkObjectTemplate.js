@@ -7,9 +7,9 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-copy', template).click(function () {
-    var _class = new IndividualModel(individual['rdf:type'][0].id),
-      Installation = new IndividualModel(),
-      tmpl = 'gen:LinkObjectTemplate';
+    const _class = new IndividualModel(individual['rdf:type'][0].id);
+    const Installation = new IndividualModel();
+    const tmpl = 'gen:LinkObjectTemplate';
     Installation['rdf:type'] = [_class];
     Installation['v-s:title'] = individual['v-s:title'];
     Installation['v-s:to'] = individual['v-s:to'];
@@ -23,7 +23,7 @@ export const post = function (individual, template, container, mode, extra) {
       }, 250);
     });
   });
-  //# sourceURL=gen:LinkObjectTemplate_post
+  // # sourceURL=gen:LinkObjectTemplate_post
 };
 
 export const html = `

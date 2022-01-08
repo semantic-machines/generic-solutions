@@ -6,7 +6,7 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  //кнопка активна если итоговая оценка отрицательная
+  // кнопка активна если итоговая оценка отрицательная
   individual.getPropertyChain('v-s:hasContractorCategoryDecision', 'v-s:isOrganizationOk').then(function (isOkArr) {
     if (isOkArr.length > 0 && isOkArr[0] === false) {
       $('.action#save_and_start_process2', template).removeAttr('disabled');
@@ -21,18 +21,18 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-ContractorCategoryDecision', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('v-s:ContractorCategoryDecision'),
-      decision = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ContractorCategoryDecisionTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('v-s:ContractorCategoryDecision');
+    const decision = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ContractorCategoryDecisionTemplate');
     decision['rdf:type'] = [_class];
     decision['v-s:backwardTarget'] = [individual];
     decision['v-s:backwardProperty'] = [new IndividualModel('v-s:hasContractorCategoryDecision')];
@@ -46,14 +46,14 @@ export const post = function (individual, template, container, mode, extra) {
     });
   });
 
-  var _class = new IndividualModel('v-s:ContractorCategoryDecision');
+  const _class = new IndividualModel('v-s:ContractorCategoryDecision');
   _class.rights.then(function (rights) {
     if (!rights.hasValue('v-s:canCreate', true)) {
       $('#add-ContractorCategoryDecision', template).prop('disabled', true);
     }
   });
 
-  function handler() {
+  function handler () {
     if (individual.hasValue('v-s:hasContractorCategoryDecision')) {
       $('#add-ContractorCategoryDecision', template).hide();
     } else {
@@ -66,7 +66,7 @@ export const post = function (individual, template, container, mode, extra) {
     individual.off('v-s:hasContractorCategoryDecision', handler);
   });
 
-  function processHandler() {
+  function processHandler () {
     individual.canUpdate().then(function (canUpdate) {
       if (individual.hasValue('v-wf:isProcess')) {
         $('#save_and_start_process1.action', template).remove();

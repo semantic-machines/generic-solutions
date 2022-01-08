@@ -6,16 +6,16 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   template.on('validate', function () {
-    var result = {};
-    var numberArr = [];
+    const result = {};
+    const numberArr = [];
     individual['v-s:backwardTarget'][0]['v-s:hasVersionOfLocalRegulatoryDocument'].forEach(function (doc) {
       if (doc.id !== individual.id) {
         numberArr.push(String(doc['v-s:registrationNumberAdd'][0]));
       }
     });
-    var number = String(individual['v-s:registrationNumberAdd'][0]);
+    const number = String(individual['v-s:registrationNumberAdd'][0]);
     if (numberArr.indexOf(number) !== -1) {
-      $("veda-control[property='v-s:registrationNumberAdd'] input", template).popover({
+      $('veda-control[property=\'v-s:registrationNumberAdd\'] input', template).popover({
         placement: 'top',
         trigger: 'hover',
         content: 'Регистрационный номер уже существует',
@@ -25,9 +25,9 @@ export const pre = function (individual, template, container, mode, extra) {
         cause: [],
       };
     } else {
-      $("veda-control[property='v-s:registrationNumberAdd'] input", template).popover('destroy');
+      $('veda-control[property=\'v-s:registrationNumberAdd\'] input', template).popover('destroy');
     }
-    template[0].dispatchEvent(new CustomEvent('validated', { detail: result }));
+    template[0].dispatchEvent(new CustomEvent('validated', {detail: result}));
   });
 };
 
@@ -40,9 +40,9 @@ export const post = function (individual, template, container, mode, extra) {
     BrowserUtil.createReport('gen:LND_PrintBlank_dolgn', individual);
   });
 
-  function regNumberAddHandler() {
-    var prefix = individual['v-s:registrationNumber'][0].split('.')[0];
-    var postfix = individual.hasValue('v-s:registrationNumberAdd') ? individual['v-s:registrationNumberAdd'][0] : '';
+  function regNumberAddHandler () {
+    const prefix = individual['v-s:registrationNumber'][0].split('.')[0];
+    const postfix = individual.hasValue('v-s:registrationNumberAdd') ? individual['v-s:registrationNumberAdd'][0] : '';
     individual['v-s:registrationNumber'] = [prefix + '.' + postfix];
   }
   individual.on('v-s:registrationNumberAdd', regNumberAddHandler);
@@ -53,7 +53,7 @@ export const post = function (individual, template, container, mode, extra) {
   individual.canUpdate().then(function (canUpdate) {
     if (individual.hasValue('v-wf:isProcess')) {
       $('#send.action', template).remove();
-      //$('#save.action', template).remove();
+      // $('#save.action', template).remove();
     } else if (individual.isNew() || canUpdate) {
       $('#send.action', template).off('click');
       $('#send.action', template).on('click', function () {

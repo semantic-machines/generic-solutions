@@ -9,7 +9,7 @@ export const post = function (individual, template, container, mode, extra) {
   individual.canUpdate().then(function (canUpdate) {
     if (individual.hasValue('v-wf:isProcess')) {
       $('#send.action', template).remove();
-      //$('#save.action', template).remove();
+      // $('#save.action', template).remove();
     } else if (individual.isNew() || canUpdate) {
       $('#send.action', template).off('click');
       $('#send.action', template).on('click', function () {
@@ -26,18 +26,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-action', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('v-s:Action'),
-      Action = new IndividualModel(),
-      tmpl = new IndividualModel('gen:MeetingActionTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('v-s:Action');
+    const Action = new IndividualModel();
+    const tmpl = new IndividualModel('gen:MeetingActionTemplate');
     Action['rdf:type'] = [_class];
     Action['v-s:backwardTarget'] = [individual];
     Action['v-s:backwardProperty'] = [new IndividualModel('v-s:hasAction')];
@@ -51,8 +51,8 @@ export const post = function (individual, template, container, mode, extra) {
     });
   });
 
-  //Процессная часть
-  function processHandler() {
+  // Процессная часть
+  function processHandler () {
     individual.canUpdate().then(function (canUpdate) {
       if (individual.hasValue('v-wf:isProcess')) {
         $('#send.action', template).attr('disabled', 'disabled');

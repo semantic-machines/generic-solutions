@@ -9,16 +9,15 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   if (mode === 'edit' || template.data('mode') === 'edit') {
-    var userOrganization = veda.appointment.getOrganization();
-    var enumerated = new IndividualModel('v-s:LetterRegistrationRecordEnumerated');
+    const enumerated = new IndividualModel('v-s:LetterRegistrationRecordEnumerated');
 
     // These events are triggered in v-s:CorrespondentTemplate
     template.on('v-s:sender:own v-s:sender:foreign v-s:recipient:own v-s:recipient:foreign', function (e) {
       e.stopPropagation();
-      var keyWord = e.type.split(':')[1];
+      let keyWord = e.type.split(':')[1];
       keyWord = keyWord.charAt(0).toUpperCase() + keyWord.slice(1);
-      var isOwn = 'own' === e.type.split(':')[2];
-      var regRecord;
+      const isOwn = 'own' === e.type.split(':')[2];
+      let regRecord;
       if (individual.hasValue('v-s:hasLetterRegistrationRecord' + keyWord)) {
         regRecord = individual['v-s:hasLetterRegistrationRecord' + keyWord][0];
       } else {
@@ -40,7 +39,7 @@ export const post = function (individual, template, container, mode, extra) {
     individual['v-s:sender'][0]['v-s:correspondentOrganization'] = veda.appointment['v-s:parentOrganization'];
   }
   // Проверка разрешения на кнопку исходящее письмо
-  var OutgoingLetter_class = new IndividualModel('gen:OutgoingLetter');
+  const OutgoingLetter_class = new IndividualModel('gen:OutgoingLetter');
   OutgoingLetter_class.canCreate().then(function (canCreate) {
     if (individual.hasValue('rdf:type', 'gen:OutgoingLetter') || !canCreate) {
       $('#add-OutgoingLetter').remove();
@@ -49,9 +48,9 @@ export const post = function (individual, template, container, mode, extra) {
 
   // Исходящий документ
   $('#add-OutgoingLetter', template).click(function () {
-    var newSender = new IndividualModel();
+    const newSender = new IndividualModel();
     newSender['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
-    var senderPromise = individual
+    const senderPromise = individual
       .getPropertyChain('v-s:sender')
       .then(function (senderArr) {
         return senderArr.length > 0 ? senderArr[0].load() : null;
@@ -65,9 +64,9 @@ export const post = function (individual, template, container, mode, extra) {
         return newSender;
       });
 
-    var newRecipient = new IndividualModel();
+    const newRecipient = new IndividualModel();
     newRecipient['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
-    var recipientPromise = individual
+    const recipientPromise = individual
       .getPropertyChain('v-s:recipient')
       .then(function (recipientArr) {
         return recipientArr.length > 0 ? recipientArr[0].load() : null;
@@ -82,16 +81,16 @@ export const post = function (individual, template, container, mode, extra) {
       });
 
     Promise.all([senderPromise, recipientPromise]).then(function (result) {
-      var _class = new IndividualModel('gen:OutgoingLetter'),
-        OutcomingLetter = new IndividualModel(),
-        tmpl = 'gen:LetterTemplate';
+      const _class = new IndividualModel('gen:OutgoingLetter');
+      const OutcomingLetter = new IndividualModel();
+      const tmpl = 'gen:LetterTemplate';
       OutcomingLetter['rdf:type'] = [_class];
 
       OutcomingLetter['v-s:recipient'] = [result[0]];
       OutcomingLetter['v-s:sender'] = [result[1]];
       OutcomingLetter['v-s:description'] = individual['v-s:description'];
 
-      var Link = new IndividualModel();
+      const Link = new IndividualModel();
       Link['rdf:type'] = [new IndividualModel('v-s:Link')];
       Link['v-s:from'] = [OutcomingLetter];
       Link['v-s:to'] = [individual];
@@ -102,18 +101,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   // Проверка разрешения на кнопку и на входящее письмо
-  var incomingLetter_class = new IndividualModel('gen:IncomingLetter');
+  const incomingLetter_class = new IndividualModel('gen:IncomingLetter');
   incomingLetter_class.canCreate().then(function (canCreate) {
     if (individual.hasValue('rdf:type', 'gen:IncomingLetter') || !canCreate) {
       $('#add-IncomingLetter').remove();
     }
   });
 
-  //Входящий документ
+  // Входящий документ
   $('#add-IncomingLetter', template).click(function () {
-    var newSender = new IndividualModel();
+    const newSender = new IndividualModel();
     newSender['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
-    var senderPromise = individual
+    const senderPromise = individual
       .getPropertyChain('v-s:sender')
       .then(function (senderArr) {
         return senderArr.length > 0 ? senderArr[0].load() : null;
@@ -127,9 +126,9 @@ export const post = function (individual, template, container, mode, extra) {
         return newSender;
       });
 
-    var newRecipient = new IndividualModel();
+    const newRecipient = new IndividualModel();
     newRecipient['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
-    var recipientPromise = individual
+    const recipientPromise = individual
       .getPropertyChain('v-s:recipient')
       .then(function (recipientArr) {
         return recipientArr.length > 0 ? recipientArr[0].load() : null;
@@ -144,14 +143,14 @@ export const post = function (individual, template, container, mode, extra) {
       });
 
     Promise.all([senderPromise, recipientPromise]).then(function (result) {
-      var _class = new IndividualModel('gen:IncomingLetter'),
-        IncomingLetter = new IndividualModel(),
-        tmpl = 'gen:LetterTemplate';
+      const _class = new IndividualModel('gen:IncomingLetter');
+      const IncomingLetter = new IndividualModel();
+      const tmpl = 'gen:LetterTemplate';
       IncomingLetter['rdf:type'] = [_class];
       IncomingLetter['v-s:recipient'] = [result[0]];
       IncomingLetter['v-s:sender'] = [result[1]];
 
-      var Link = new IndividualModel();
+      const Link = new IndividualModel();
       Link['rdf:type'] = [new IndividualModel('v-s:Link')];
       Link['v-s:from'] = [IncomingLetter];
       Link['v-s:to'] = [individual];
@@ -163,24 +162,24 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   // Проверка разрешения на создание копии
-  var This_class = individual['rdf:type'][0];
+  const This_class = individual['rdf:type'][0];
   This_class.canCreate().then(function (canCreate) {
     if (!canCreate) $('#add-Letter', template).remove();
   });
 
   $('#add-Letter', template).click(function () {
-    var _class = individual['rdf:type'][0],
-      Letter = new IndividualModel(),
-      tmpl = 'gen:LetterTemplate';
+    const _class = individual['rdf:type'][0];
+    const Letter = new IndividualModel();
+    const tmpl = 'gen:LetterTemplate';
 
     Letter['rdf:type'] = [_class];
     Letter['v-s:description'] = individual['v-s:description'];
     Letter['v-s:hasDocumentKind'] = individual['v-s:hasDocumentKind'];
 
-    //Отправитель
-    var newSender = new IndividualModel();
+    // Отправитель
+    const newSender = new IndividualModel();
     newSender['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
-    var senderPromise = individual
+    const senderPromise = individual
       .getPropertyChain('v-s:sender')
       .then(function (senderArr) {
         return senderArr.length > 0 ? senderArr[0].load() : null;
@@ -199,10 +198,10 @@ export const post = function (individual, template, container, mode, extra) {
         return newSender;
       });
 
-    //Получатель
-    var newRecipient = new IndividualModel();
+    // Получатель
+    const newRecipient = new IndividualModel();
     newRecipient['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
-    var recipientPromise = individual
+    const recipientPromise = individual
       .getPropertyChain('v-s:recipient')
       .then(function (recipientArr) {
         return recipientArr.length > 0 ? recipientArr[0].load() : null;
@@ -227,14 +226,14 @@ export const post = function (individual, template, container, mode, extra) {
     });
   });
 
-  //Процессная часть
-  function processHandler() {
+  // Процессная часть
+  function processHandler () {
     individual.canUpdate().then(function (canUpdate) {
       if (individual.hasValue('v-wf:isProcess')) {
         $('#send.action', template).remove();
         $('#delete.action', template).remove();
       } else if (individual.isNew() || canUpdate) {
-        var complexTemplateUri;
+        let complexTemplateUri;
         if (individual['rdf:type'][0].id === 'gen:IncomingLetter') {
           complexTemplateUri = 'v-s:IncomingLetter_ComplexRouteStartForm_Template';
         }

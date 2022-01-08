@@ -8,16 +8,15 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   if (mode === 'edit' || template.data('mode') === 'edit') {
-    var userOrganization = veda.appointment.getOrganization();
-    var enumerated = new IndividualModel('v-s:LetterRegistrationRecordEnumerated');
+    const enumerated = new IndividualModel('v-s:LetterRegistrationRecordEnumerated');
 
     // These events are triggered in v-s:CorrespondentTemplate
     template.on('v-s:sender:own v-s:sender:foreign v-s:recipient:own v-s:recipient:foreign', function (e) {
       e.stopPropagation();
-      var keyWord = e.type.split(':')[1];
+      let keyWord = e.type.split(':')[1];
       keyWord = keyWord.charAt(0).toUpperCase() + keyWord.slice(1);
-      var isOwn = 'own' === e.type.split(':')[2];
-      var regRecord;
+      const isOwn = 'own' === e.type.split(':')[2];
+      let regRecord;
       if (individual.hasValue('v-s:hasLetterRegistrationRecord' + keyWord)) {
         regRecord = individual['v-s:hasLetterRegistrationRecord' + keyWord][0];
       } else {
@@ -49,7 +48,7 @@ export const post = function (individual, template, container, mode, extra) {
     }
   });
 
-  function processHandler() {
+  function processHandler () {
     individual.canUpdate().then(function (canUpdate) {
       if (individual.hasValue('v-wf:isProcess')) {
         $('#send.action', template).remove();

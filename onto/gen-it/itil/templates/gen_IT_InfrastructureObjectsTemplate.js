@@ -7,9 +7,9 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-copy', template).click(function () {
-    var _class = new IndividualModel(individual['rdf:type'][0].id),
-      IT_InfrastructureObjects = new IndividualModel(),
-      tmpl = 'gen:IT_InfrastructureObjectsTemplate';
+    const _class = new IndividualModel(individual['rdf:type'][0].id);
+    const IT_InfrastructureObjects = new IndividualModel();
+    const tmpl = 'gen:IT_InfrastructureObjectsTemplate';
     IT_InfrastructureObjects['rdf:type'] = [_class];
     IT_InfrastructureObjects['v-s:title'] = individual['v-s:title'];
     IT_InfrastructureObjects['v-s:description'] = individual['v-s:description'];

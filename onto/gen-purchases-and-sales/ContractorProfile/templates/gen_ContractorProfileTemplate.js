@@ -6,7 +6,7 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  var props = [
+  const props = [
     'v-s:attachOrganizationProperties',
     'v-s:attachCertificateRegistrationLegal',
     'v-s:attachExcerptFromEGRUL',
@@ -28,15 +28,15 @@ export const pre = function (individual, template, container, mode, extra) {
     'v-s:attachDocConfirmUseForestryEquipment',
     'v-s:attachOtherDoc',
   ];
-  var files = $('.files', template),
-    relNameTmpl = $('.rel-name', template).get(0).outerHTML,
-    relValueTmpl = $('.rel-value', template).get(0).outerHTML;
+  const files = $('.files', template);
+  const relNameTmpl = $('.rel-name', template).get(0).outerHTML;
+  const relValueTmpl = $('.rel-value', template).get(0).outerHTML;
   $('.rel-name, .rel-value', template).remove();
   props.map(function (property_uri) {
-    var relName = $(relNameTmpl);
+    const relName = $(relNameTmpl);
     relName.find('strong').attr('about', property_uri);
     relName.find('veda-control').attr('rel', property_uri);
-    var relValue = $(relValueTmpl).attr('rel', property_uri);
+    const relValue = $(relValueTmpl).attr('rel', property_uri);
     files.append(relName, relValue);
   });
 };
@@ -46,9 +46,9 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-contractorCategoryRequest', template).click(function () {
-    var _class = new IndividualModel('v-s:ContractorCategoryRequest'),
-      request = new IndividualModel(),
-      tmpl = 'gen:ContractorCategoryRequestTemplate';
+    const _class = new IndividualModel('v-s:ContractorCategoryRequest');
+    const request = new IndividualModel();
+    const tmpl = 'gen:ContractorCategoryRequestTemplate';
     request['rdf:type'] = [_class];
     request['v-s:backwardTarget'] = [individual];
     request['v-s:backwardProperty'] = [new IndividualModel('v-s:hasContractorCategoryRequest')];

@@ -24,26 +24,26 @@ export const post = function (individual, template, container, mode, extra) {
   container = $(container);
 
   $('#add-OutgoingLetter', template).click(function () {
-    var _class = new IndividualModel('v-s:OutgoingLetter'),
-      OutcomingLetter = new IndividualModel(),
-      tmpl = 'gen:LetterTemplate';
+    const _class = new IndividualModel('v-s:OutgoingLetter');
+    const OutcomingLetter = new IndividualModel();
+    const tmpl = 'gen:LetterTemplate';
     OutcomingLetter['rdf:type'] = [_class];
 
-    var recipientPromise = individual['v-s:stakeholder'].map(function (stakeholder) {
-      var newRecipient = new IndividualModel();
+    const recipientPromise = individual['v-s:stakeholder'].map(function (stakeholder) {
+      const newRecipient = new IndividualModel();
       newRecipient['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
       newRecipient['v-s:correspondentOrganization'] = [stakeholder];
       return newRecipient;
     });
     Promise.all(recipientPromise).then(function (recipient) {
-      var newSender = new IndividualModel();
+      const newSender = new IndividualModel();
       newSender['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
       newSender['v-s:correspondentOrganization'] = [new IndividualModel('d:org_RU1100220011')];
 
       OutcomingLetter['v-s:recipient'] = recipient;
       OutcomingLetter['v-s:sender'] = [newSender];
 
-      var Link = new IndividualModel();
+      const Link = new IndividualModel();
       Link['rdf:type'] = [new IndividualModel('v-s:Link')];
       Link['v-s:from'] = [OutcomingLetter];
       Link['v-s:to'] = [individual];
@@ -54,19 +54,19 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-OutgoingClaim', template).click(function () {
-    var _class = new IndividualModel('v-s:Claim'),
-      OutcomingClaim = new IndividualModel(),
-      tmpl = 'gen:ClaimTemplate';
+    const _class = new IndividualModel('v-s:Claim');
+    const OutcomingClaim = new IndividualModel();
+    const tmpl = 'gen:ClaimTemplate';
     OutcomingClaim['rdf:type'] = [_class];
 
-    var recipientPromise = individual['v-s:stakeholder'].map(function (stakeholder) {
-      var newRecipient = new IndividualModel();
+    const recipientPromise = individual['v-s:stakeholder'].map(function (stakeholder) {
+      const newRecipient = new IndividualModel();
       newRecipient['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
       newRecipient['v-s:correspondentOrganization'] = [stakeholder];
       return newRecipient;
     });
     Promise.all(recipientPromise).then(function (recipient) {
-      var newSender = new IndividualModel();
+      const newSender = new IndividualModel();
       newSender['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
       newSender['v-s:correspondentOrganization'] = [new IndividualModel('d:org_RU1100220011')];
 
@@ -76,7 +76,7 @@ export const post = function (individual, template, container, mode, extra) {
       OutcomingClaim['v-s:hasStatus'] = individual['v-s:hasStatus'];
       OutcomingClaim['v-s:hasClaimEvent'] = [individual];
 
-      var Link = new IndividualModel();
+      const Link = new IndividualModel();
       Link['rdf:type'] = [new IndividualModel('v-s:Link')];
       Link['v-s:from'] = [OutcomingClaim];
       Link['v-s:to'] = [individual];
@@ -87,19 +87,19 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-IncomingClaim', template).click(function () {
-    var _class = new IndividualModel('v-s:Claim'),
-      IncomingClaim = new IndividualModel(),
-      tmpl = 'gen:ClaimTemplate';
+    const _class = new IndividualModel('v-s:Claim');
+    const IncomingClaim = new IndividualModel();
+    const tmpl = 'gen:ClaimTemplate';
     IncomingClaim['rdf:type'] = [_class];
 
-    var recipientPromise = individual['v-s:stakeholder'].map(function (stakeholder) {
-      var newSender = new IndividualModel();
+    const recipientPromise = individual['v-s:stakeholder'].map(function (stakeholder) {
+      const newSender = new IndividualModel();
       newSender['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
       newSender['v-s:correspondentOrganization'] = [stakeholder];
       return newSender;
     });
     Promise.all(recipientPromise).then(function (sender) {
-      var newRecipient = new IndividualModel();
+      const newRecipient = new IndividualModel();
       newRecipient['rdf:type'] = [new IndividualModel('v-s:Correspondent')];
       newRecipient['v-s:correspondentOrganization'] = [new IndividualModel('d:org_RU1100220011')];
 
@@ -109,7 +109,7 @@ export const post = function (individual, template, container, mode, extra) {
       IncomingClaim['v-s:hasStatus'] = individual['v-s:hasStatus'];
       IncomingClaim['v-s:hasClaimEvent'] = [individual];
 
-      var Link = new IndividualModel();
+      const Link = new IndividualModel();
       Link['rdf:type'] = [new IndividualModel('v-s:Link')];
       Link['v-s:from'] = [IncomingClaim];
       Link['v-s:to'] = [individual];
@@ -119,8 +119,8 @@ export const post = function (individual, template, container, mode, extra) {
     });
   });
 
-  //Поцессная часть
-  function processHandler() {
+  // Поцессная часть
+  function processHandler () {
     individual.canUpdate().then(function (canUpdate) {
       if (individual.hasValue('v-wf:isProcess')) {
         $('#send.action', template).remove();

@@ -5,19 +5,19 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  var _class = new IndividualModel('v-s:ContractorCategoryDecision');
+  const _class = new IndividualModel('v-s:ContractorCategoryDecision');
   _class.canCreate().then(function (canCreate) {
     if (!canCreate) {
       $('#AddResolution', template).remove();
     }
   });
 
-  var decisionContractorCategoryEmbeddedState = $('#decisionContractorCategoryEmbeddedState', template);
+  const decisionContractorCategoryEmbeddedState = $('#decisionContractorCategoryEmbeddedState', template);
   individual.on('v-s:isOrganizationOk', handler);
   template.one('remove', function () {
     individual.off('v-s:isOrganizationOk', handler);
   });
-  function handler() {
+  function handler () {
     if (individual.hasValue('v-s:isOrganizationOk', true)) {
       decisionContractorCategoryEmbeddedState.removeClass('panel-danger panel-warning').addClass('panel-success');
     } else if (individual.hasValue('v-s:isOrganizationOk', false)) {

@@ -5,7 +5,7 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  var props = [
+  const props = [
     'v-s:attachOrganizationProperties',
     'v-s:attachCertificateRegistrationLegal',
     'v-s:attachExcerptFromEGRUL',
@@ -27,14 +27,14 @@ export const pre = function (individual, template, container, mode, extra) {
     'v-s:attachDocConfirmUseForestryEquipment',
     'v-s:attachOtherDoc',
   ];
-  var files = $('.files', template),
-    relNameTmpl = files.children('.rel-name').remove(),
-    relValueTmpl = files.children('.rel-value').remove();
+  const files = $('.files', template);
+  const relNameTmpl = files.children('.rel-name').remove();
+  const relValueTmpl = files.children('.rel-value').remove();
   props.map(function (property_uri) {
-    var relName = relNameTmpl.clone();
+    const relName = relNameTmpl.clone();
     relName.find('strong').attr('about', property_uri);
     relName.find('veda-control').attr('rel', property_uri);
-    var relValue = relValueTmpl.clone().attr('rel', property_uri);
+    const relValue = relValueTmpl.clone().attr('rel', property_uri);
     files.append(relName, relValue);
   });
 };

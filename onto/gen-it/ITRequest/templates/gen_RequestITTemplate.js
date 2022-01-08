@@ -1,4 +1,3 @@
-import BrowserUtil from '/js/browser/util.js';
 import $ from 'jquery';
 import IndividualModel from '/js/common/individual_model.js';
 
@@ -6,37 +5,19 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  /*$("#bluePlus", template).click(function () {
-    individual.save();
-    var _class = new IndividualModel("gen:ActionIT"),
-        action = new IndividualModel(),
-        tmpl = new IndividualModel("gen:ActionITTemplate");
-    action["rdf:type"] = [_class];
-    action["v-s:parent"] = [individual];
-    /*action["v-s:backwardTarget"] = [individual];
-    action["v-s:backwardProperty"] = [new IndividualModel("v-s:hasAction")];
-    var modal = BrowserUtil.showModal(action, tmpl, "edit");
-    action.one("beforeReset", function () {
-      modal.modal("hide").remove();
-    });
-    action.one("afterSave", function () {
-      modal.modal("hide").remove();
-    });
-  });*/
-
   $('#add-ActionIT', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('gen:ActionIT'),
-      ActionIT = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ActionITTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('gen:ActionIT');
+    const ActionIT = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ActionITTemplate');
     ActionIT['rdf:type'] = [_class];
     ActionIT.present(cntr, tmpl, 'edit');
     ActionIT['v-s:backwardTarget'] = [individual];

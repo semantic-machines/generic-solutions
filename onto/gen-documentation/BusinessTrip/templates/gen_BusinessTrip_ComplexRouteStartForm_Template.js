@@ -5,10 +5,9 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   if (mode === 'edit' && individual.hasValue('v-wf:processedDocument')) {
-    var stages = ['coordination1', 'coordination2', 'sign', 'review', 'examination', 'instruction'];
-    var complex = 's-wf:ComplexRouteStartForm_';
-    var simple = 's-wf:SimpleRouteStartForm_';
-    var doc = individual['v-wf:processedDocument'][0];
+    const stages = ['coordination1', 'coordination2', 'sign', 'review', 'examination', 'instruction'];
+    const complex = 's-wf:ComplexRouteStartForm_';
+    const simple = 's-wf:SimpleRouteStartForm_';
 
     individual.addSimpleStartForm(stages, complex);
 

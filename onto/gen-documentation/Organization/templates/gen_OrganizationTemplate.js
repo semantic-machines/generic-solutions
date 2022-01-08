@@ -8,11 +8,11 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  var _ContractorProfile = new IndividualModel('v-s:ContractorProfile');
-  var canCreateProfile = _ContractorProfile.canCreate();
-  var canUpdatePromise = individual.canUpdate();
+  const _ContractorProfile = new IndividualModel('v-s:ContractorProfile');
+  const canCreateProfile = _ContractorProfile.canCreate();
+  const canUpdatePromise = individual.canUpdate();
 
-  function handler() {
+  function handler () {
     Promise.all([canCreateProfile, canUpdatePromise]).then(function (results) {
       if (template.data('mode') === 'edit' || individual.hasValue('v-s:hasContractorProfile') || !(results[0] && results[1])) {
         $('#add-profile', template).remove();
@@ -25,12 +25,12 @@ export const pre = function (individual, template, container, mode, extra) {
   });
   handler();
 
-  var _class = new IndividualModel('v-s:Subsidiary');
+  const _class = new IndividualModel('v-s:Subsidiary');
 
   Promise.all([_class.rights, individual.rights])
     .then(function (rights) {
-      var class_rights = rights[0],
-        individual_rights = rights[1];
+      const class_rights = rights[0];
+      const individual_rights = rights[1];
       if (!class_rights.hasValue('v-s:canCreate', true) || !individual_rights.hasValue('v-s:canUpdate', true)) {
         $('#add-subsidiary', template).remove();
       }
@@ -39,12 +39,12 @@ export const pre = function (individual, template, container, mode, extra) {
       console.log(error);
     });
 
-  var prevTaxId = individual.hasValue('v-s:taxId') && individual['v-s:taxId'][0].toString();
+  let prevTaxId = individual.hasValue('v-s:taxId') && individual['v-s:taxId'][0].toString();
 
   // Validation
   template.on('validate', function () {
-    var result = { state: true },
-      regexp;
+    const result = {state: true};
+    let regexp;
     if (individual.hasValue('v-s:hasClassifierCountry', 'd:Country_RUS') && individual.hasValue('v-s:hasClassifierLegalForm', 'd:OKOPF_50102')) {
       regexp = /^([0-9]{12})$/gi;
     } else if (individual.hasValue('v-s:hasClassifierCountry', 'd:Country_RUS')) {
@@ -61,7 +61,7 @@ export const pre = function (individual, template, container, mode, extra) {
       };
     } else {
       // Check regexp
-      var taxId = individual['v-s:taxId'][0].toString();
+      const taxId = individual['v-s:taxId'][0].toString();
       if (taxId != '0000000000' && taxId != '000000000000') {
         result['v-s:taxId'] = {
           state: regexp.test(taxId),
@@ -75,18 +75,17 @@ export const pre = function (individual, template, container, mode, extra) {
       }
 
       // Check unique
-      var newTaxId = individual.hasValue('v-s:taxId') && individual['v-s:taxId'][0].toString();
+      const newTaxId = individual.hasValue('v-s:taxId') && individual['v-s:taxId'][0].toString();
       if (prevTaxId !== newTaxId) {
         prevTaxId = newTaxId;
       }
       if (result['v-s:taxId'].state) {
-        Backend.query(veda.ticket, "'rdf:type'==='v-s:Organization' && 'v-s:taxId'=='" + taxId + "'").then(function (queryResult) {
-          var queryResult = queryResult.result;
+        Backend.query(veda.ticket, '\'rdf:type\'===\'v-s:Organization\' && \'v-s:taxId\'==\'' + taxId + '\'').then(function (queryResult) {
           result['v-s:taxId'] = {
-            state: !queryResult.length || queryResult[0] === individual.id,
+            state: !queryResult.result.length || queryResult.result[0] === individual.id,
             cause: ['v-s:NonUniqueTaxId'],
           };
-          template[0].dispatchEvent(new CustomEvent('validated', { detail: result }));
+          template[0].dispatchEvent(new CustomEvent('validated', {detail: result}));
         });
       }
     }
@@ -108,7 +107,7 @@ export const pre = function (individual, template, container, mode, extra) {
         cause: ['v-ui:regexp'],
       };
     }
-    template[0].dispatchEvent(new CustomEvent('validated', { detail: result }));
+    template[0].dispatchEvent(new CustomEvent('validated', {detail: result}));
   });
 };
 
@@ -116,10 +115,10 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  //Генерация Uri
+  // Генерация Uri
   BrowserUtil.registerHandler(individual, template, 'beforeSave', function () {
-    var shortLabel = individual['v-s:hasClassifierCountry'][0]['v-s:shortLabel'];
-    var taxId = individual['v-s:taxId'];
+    const shortLabel = individual['v-s:hasClassifierCountry'][0]['v-s:shortLabel'];
+    const taxId = individual['v-s:taxId'];
     if (individual.hasValue('v-s:hasClassifierCountry', 'd:Country_RUS') && individual.isNew()) {
       individual.id = 'd:org_' + shortLabel + taxId;
     } else if (individual.isNew()) {
@@ -128,18 +127,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-subsidiary', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('v-s:Subsidiary'),
-      subsidiary = new IndividualModel(),
-      tmpl = new IndividualModel('gen:SubsidiaryTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('v-s:Subsidiary');
+    const subsidiary = new IndividualModel();
+    const tmpl = new IndividualModel('gen:SubsidiaryTemplate');
     subsidiary['rdf:type'] = [_class];
     subsidiary['v-s:backwardTarget'] = [individual];
     subsidiary['v-s:backwardProperty'] = [new IndividualModel('v-s:hasSubsidiary')];
@@ -154,18 +153,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-profile', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('v-s:ContractorProfile'),
-      profile = new IndividualModel(),
-      tmpl = new IndividualModel('gen:ContractorProfileTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('v-s:ContractorProfile');
+    const profile = new IndividualModel();
+    const tmpl = new IndividualModel('gen:ContractorProfileTemplate');
     profile['rdf:type'] = [_class];
     profile['v-s:backwardTarget'] = [individual];
     profile['v-s:backwardProperty'] = [new IndividualModel('v-s:hasContractorProfile')];
@@ -180,18 +179,18 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   $('#add-communicationMean', template).click(function () {
-    var modal = $('#notification-modal-template').html();
+    let modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({ show: false });
+    modal.modal({show: false});
     $('body').append(modal);
     modal.modal('show');
     template.one('remove', function () {
       modal.modal('hide').remove();
     });
-    var cntr = $('.modal-body', modal),
-      _class = new IndividualModel('v-s:CommunicationMean'),
-      CommunicationMean = new IndividualModel(),
-      tmpl = new IndividualModel('v-s:CommunicationMeanTemplate');
+    const cntr = $('.modal-body', modal);
+    const _class = new IndividualModel('v-s:CommunicationMean');
+    const CommunicationMean = new IndividualModel();
+    const tmpl = new IndividualModel('v-s:CommunicationMeanTemplate');
     CommunicationMean['rdf:type'] = [_class];
     CommunicationMean['v-s:backwardTarget'] = [individual];
     CommunicationMean['v-s:backwardProperty'] = [new IndividualModel('v-s:hasCommunicationMean')];

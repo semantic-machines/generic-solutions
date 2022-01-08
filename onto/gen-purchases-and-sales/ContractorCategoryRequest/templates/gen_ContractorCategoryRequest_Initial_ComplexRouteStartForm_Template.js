@@ -6,10 +6,9 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   if (mode === 'edit' && individual.hasValue('v-wf:processedDocument')) {
-    var stages = ['coordination1', 'coordination2', 'examination'];
-    var complex = 's-wf:ComplexRouteStartForm_';
-    var simple = 's-wf:SimpleRouteStartForm_';
-    var doc = individual['v-wf:processedDocument'][0];
+    const stages = ['coordination1', 'coordination2', 'examination'];
+    const complex = 's-wf:ComplexRouteStartForm_';
+    const simple = 's-wf:SimpleRouteStartForm_';
 
     individual.addSimpleStartForm(stages, complex);
 
@@ -24,7 +23,7 @@ export const pre = function (individual, template, container, mode, extra) {
     individual[complex + 'coordination1'][0][simple + 'participant'] = individual[complex + 'coordination1'][0][simple + 'participant'].concat(
       new IndividualModel('d:org_RU1100220011_position_7'),
     ); // бухгалтерия
-    individual[complex + 'coordination1'][0][simple + 'comment'] = [new String('Произвести оценку контрагента')];
+    individual[complex + 'coordination1'][0][simple + 'comment'] = ['Произвести оценку контрагента'];
 
     individual[complex + 'examination'][0][simple + 'visible'] = [true];
     individual[complex + 'examination'][0][simple + 'editable'] = [true];
