@@ -1,5 +1,5 @@
 export const html = `
-<section id="changeOfTerms">
+  <section id="changeOfTerms">
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="gen:datesChangesBundle" property="rdfs:label"></em>

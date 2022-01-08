@@ -1,13 +1,13 @@
 export const html = `
-<div class="container sheet">
-  <h2>
-    <span about="@" property="rdf:type"></span>
-    <small about="@" property="rdfs:label"></small>
-  </h2>
-  <span about="@" data-template="v-ui:RabbitHole"></span>
-  <hr>
-  <section id="RepresentativeCosts">
-    <h4 class="section-header" about="gen:RepresentativeCostsEvent" property="rdfs:label"></h4>
+  <div class="container sheet">
+    <h2>
+      <span about="@" property="rdf:type"></span>
+      <small about="@" property="rdfs:label"></small>
+    </h2>
+    <span about="@" data-template="v-ui:RabbitHole"></span>
+    <hr />
+    <section id="RepresentativeCosts">
+      <h4 class="section-header" about="gen:RepresentativeCostsEvent" property="rdfs:label"></h4>
       <div class="row row-attribute">
         <div class="col-sm-3 col-xs-5">
           <strong about="v-s:responsible" property="rdfs:label"></strong>
@@ -35,13 +35,13 @@ export const html = `
           <veda-control data-type="text" property="v-s:description" class="-view edit search"></veda-control>
         </div>
       </div>
-  </section>
-  <hr>
-  <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
-  <br>
-  <!-- BUTTONS -->
-  <div class="actions view edit -search">
-    <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal "></span>
+    </section>
+    <hr />
+    <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
+    <br />
+    <!-- BUTTONS -->
+    <div class="actions view edit -search">
+      <span about="@" data-template="v-ui:StandardButtonsTemplate" data-embedded="true" data-buttons="edit save cancel delete journal "></span>
+    </div>
   </div>
-</div>
 `;

@@ -1,5 +1,5 @@
 export const html = `
-<section id="deviationOnExpensesBundle">
+  <section id="deviationOnExpensesBundle">
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:hasBusinessTripReasonDeviationOnExpenses" property="rdfs:label"></em>
@@ -24,7 +24,7 @@ export const html = `
       </div>
       <div class="col-sm-9 col-xs-7">
         <div rel="v-s:attachment" data-template="v-ui:FileTemplateWithComment" data-embedded="true"></div>
-        <veda-control data-type="file"  rel="v-s:attachment" class="-view edit -search"></veda-control>
+        <veda-control data-type="file" rel="v-s:attachment" class="-view edit -search"></veda-control>
       </div>
     </div>
   </section>

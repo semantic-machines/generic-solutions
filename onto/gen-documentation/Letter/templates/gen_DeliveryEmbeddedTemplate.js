@@ -1,5 +1,5 @@
 export const html = `
-<div class="container sheet">
+  <div class="container sheet">
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <label about="v-s:date" property="rdfs:label"></label>
@@ -45,5 +45,5 @@ export const html = `
         <veda-control data-type="file" rel="v-s:attachment" class="-view edit -search create"></veda-control>
       </div>
     </div>
-</div>
+  </div>
 `;

@@ -1,5 +1,5 @@
 export const html = `
-<section id="hasAction">
+  <section id="hasAction">
     <div class="row row-attribute">
       <div class="col-sm-3 col-xs-5">
         <em about="v-s:registrationNumber" property="rdfs:label"></em>

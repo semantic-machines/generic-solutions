@@ -6,12 +6,10 @@ export const pre = function (individual, template, container, mode, extra) {
 
   template.tooltip({
     container: template,
-    trigger: "hover",
-    placement: "bottom",
-    title: individual["rdfs:label"].join(" ")
+    trigger: 'hover',
+    placement: 'bottom',
+    title: individual['rdfs:label'].join(' '),
   });
 };
 
-export const html = `
-<a href="#/@"><span class="fa fa-lg fa-search"></span></a>
-`;
+export const html = ` <a href="#/@"><span class="fa fa-lg fa-search"></span></a> `;

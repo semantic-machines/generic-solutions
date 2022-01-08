@@ -7,171 +7,171 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  $("#add-ContractStageChanging_prolongate", template).click(function () {
-    var modal = $("#notification-modal-template").html();
+  $('#add-ContractStageChanging_prolongate', template).click(function () {
+    var modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({"show": false});
-    $("body").append(modal);
-    modal.modal("show");
-    template.one("remove", function () {
-      modal.modal("hide").remove();
+    modal.modal({ show: false });
+    $('body').append(modal);
+    modal.modal('show');
+    template.one('remove', function () {
+      modal.modal('hide').remove();
     });
-    var cntr = $(".modal-body", modal),
-        _class = new IndividualModel("gen:ContractStageChanging"),
-        ContractStageChanging = new IndividualModel(),
-        tmpl = new IndividualModel("gen:ContractStageChangingTemplate");
-    ContractStageChanging["rdf:type"] = [_class];
-    ContractStageChanging["v-s:backwardTarget"] = [individual];
-    ContractStageChanging["v-s:backwardProperty"] = [new IndividualModel("gen:hasContractStageChanging")];
-    ContractStageChanging["v-s:canRead"] = [ true ];
-    ContractStageChanging["gen:hasContractStage"] = [new IndividualModel("d:nq4w68sngp2q296unrdotup48f")];
-    ContractStageChanging.present(cntr, tmpl, "edit");
-    ContractStageChanging.one("beforeReset", function () {
-      modal.modal("hide").remove();
+    var cntr = $('.modal-body', modal),
+      _class = new IndividualModel('gen:ContractStageChanging'),
+      ContractStageChanging = new IndividualModel(),
+      tmpl = new IndividualModel('gen:ContractStageChangingTemplate');
+    ContractStageChanging['rdf:type'] = [_class];
+    ContractStageChanging['v-s:backwardTarget'] = [individual];
+    ContractStageChanging['v-s:backwardProperty'] = [new IndividualModel('gen:hasContractStageChanging')];
+    ContractStageChanging['v-s:canRead'] = [true];
+    ContractStageChanging['gen:hasContractStage'] = [new IndividualModel('d:nq4w68sngp2q296unrdotup48f')];
+    ContractStageChanging.present(cntr, tmpl, 'edit');
+    ContractStageChanging.one('beforeReset', function () {
+      modal.modal('hide').remove();
     });
-    ContractStageChanging.one("afterSave", function () {
-      modal.modal("hide").remove();
+    ContractStageChanging.one('afterSave', function () {
+      modal.modal('hide').remove();
     });
   });
 
-  $("#add-ContractStageChanging_close", template).click(function () {
-    var modal = $("#notification-modal-template").html();
+  $('#add-ContractStageChanging_close', template).click(function () {
+    var modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({"show": false});
-    $("body").append(modal);
-    modal.modal("show");
-    template.one("remove", function () {
-      modal.modal("hide").remove();
+    modal.modal({ show: false });
+    $('body').append(modal);
+    modal.modal('show');
+    template.one('remove', function () {
+      modal.modal('hide').remove();
     });
-    var cntr = $(".modal-body", modal),
-        _class = new IndividualModel("gen:ContractStageChanging"),
-        ContractStageChanging = new IndividualModel(),
-        tmpl = new IndividualModel("gen:ContractStageChangingTemplate");
-    ContractStageChanging["rdf:type"] = [_class];
-    ContractStageChanging["v-s:backwardTarget"] = [individual];
-    ContractStageChanging["v-s:backwardProperty"] = [new IndividualModel("gen:hasContractStageChanging")];
-    ContractStageChanging["v-s:canRead"] = [ true ];
-    ContractStageChanging["v-s:backwardReplace"] = [new IndividualModel("gen:isContractClosed")];
-    ContractStageChanging["gen:hasContractStage"] = [new IndividualModel("d:uolcp82wtvh9nhjvkwmjd8s1kj")];
-    ContractStageChanging.present(cntr, tmpl, "edit");
-    ContractStageChanging.one("beforeReset", function () {
-      modal.modal("hide").remove();
+    var cntr = $('.modal-body', modal),
+      _class = new IndividualModel('gen:ContractStageChanging'),
+      ContractStageChanging = new IndividualModel(),
+      tmpl = new IndividualModel('gen:ContractStageChangingTemplate');
+    ContractStageChanging['rdf:type'] = [_class];
+    ContractStageChanging['v-s:backwardTarget'] = [individual];
+    ContractStageChanging['v-s:backwardProperty'] = [new IndividualModel('gen:hasContractStageChanging')];
+    ContractStageChanging['v-s:canRead'] = [true];
+    ContractStageChanging['v-s:backwardReplace'] = [new IndividualModel('gen:isContractClosed')];
+    ContractStageChanging['gen:hasContractStage'] = [new IndividualModel('d:uolcp82wtvh9nhjvkwmjd8s1kj')];
+    ContractStageChanging.present(cntr, tmpl, 'edit');
+    ContractStageChanging.one('beforeReset', function () {
+      modal.modal('hide').remove();
     });
-    ContractStageChanging.one("afterSave", function () {
-      modal.modal("hide").remove();
+    ContractStageChanging.one('afterSave', function () {
+      modal.modal('hide').remove();
     });
   });
 
-  $("#add-ContractStageChanging_reopen", template).click(function () {
-    var modal = $("#notification-modal-template").html();
+  $('#add-ContractStageChanging_reopen', template).click(function () {
+    var modal = $('#notification-modal-template').html();
     modal = $(modal);
-    modal.modal({"show": false});
-    $("body").append(modal);
-    modal.modal("show");
-    template.one("remove", function () {
-      modal.modal("hide").remove();
+    modal.modal({ show: false });
+    $('body').append(modal);
+    modal.modal('show');
+    template.one('remove', function () {
+      modal.modal('hide').remove();
     });
-    var cntr = $(".modal-body", modal),
-        _class = new IndividualModel("gen:ContractStageChanging"),
-        ContractStageChanging = new IndividualModel(),
-        tmpl = new IndividualModel("gen:ContractStageChangingTemplate");
-    ContractStageChanging["rdf:type"] = [_class];
-    ContractStageChanging["v-s:backwardTarget"] = [individual];
-    ContractStageChanging["v-s:backwardProperty"] = [new IndividualModel("gen:hasContractStageChanging")];
-    ContractStageChanging["v-s:canRead"] = [ true ];
-    ContractStageChanging["v-s:backwardReplace"] = [new IndividualModel("gen:isContractClosed")];
-    ContractStageChanging["gen:hasContractStage"] = [new IndividualModel("d:a8one4lqfat24wuccfih99ovcb7")];
-    ContractStageChanging.present(cntr, tmpl, "edit");
-    ContractStageChanging.one("beforeReset", function () {
-      modal.modal("hide").remove();
+    var cntr = $('.modal-body', modal),
+      _class = new IndividualModel('gen:ContractStageChanging'),
+      ContractStageChanging = new IndividualModel(),
+      tmpl = new IndividualModel('gen:ContractStageChangingTemplate');
+    ContractStageChanging['rdf:type'] = [_class];
+    ContractStageChanging['v-s:backwardTarget'] = [individual];
+    ContractStageChanging['v-s:backwardProperty'] = [new IndividualModel('gen:hasContractStageChanging')];
+    ContractStageChanging['v-s:canRead'] = [true];
+    ContractStageChanging['v-s:backwardReplace'] = [new IndividualModel('gen:isContractClosed')];
+    ContractStageChanging['gen:hasContractStage'] = [new IndividualModel('d:a8one4lqfat24wuccfih99ovcb7')];
+    ContractStageChanging.present(cntr, tmpl, 'edit');
+    ContractStageChanging.one('beforeReset', function () {
+      modal.modal('hide').remove();
     });
-    ContractStageChanging.one("afterSave", function () {
-      modal.modal("hide").remove();
+    ContractStageChanging.one('afterSave', function () {
+      modal.modal('hide').remove();
     });
   });
   function prolongateHandler() {
-    if (individual.hasValue("gen:isAutoProlongateProvides", true)) {
-      $('#add-ContractStageChanging_prolongate', template).removeClass("hidden");
+    if (individual.hasValue('gen:isAutoProlongateProvides', true)) {
+      $('#add-ContractStageChanging_prolongate', template).removeClass('hidden');
     } else {
-      $('#add-ContractStageChanging_prolongate', template).addClass("hidden");
+      $('#add-ContractStageChanging_prolongate', template).addClass('hidden');
     }
-    if (individual.hasValue("gen:isContractClosed", true)) {
-      $('#add-ContractStageChanging_close', template).addClass("hidd  en");
-      $('#add-ContractStageChanging_reopen', template).removeClass("hidden");
-      $("#add-AdditionalAgreement", template).prop("disabled", true);
+    if (individual.hasValue('gen:isContractClosed', true)) {
+      $('#add-ContractStageChanging_close', template).addClass('hidd  en');
+      $('#add-ContractStageChanging_reopen', template).removeClass('hidden');
+      $('#add-AdditionalAgreement', template).prop('disabled', true);
     } else {
-      $('#add-ContractStageChanging_close', template).removeClass("hidden");
-      $('#add-ContractStageChanging_reopen', template).addClass("hidden");
-      $("#add-AdditionalAgreement", template).prop("disabled", false);
+      $('#add-ContractStageChanging_close', template).removeClass('hidden');
+      $('#add-ContractStageChanging_reopen', template).addClass('hidden');
+      $('#add-AdditionalAgreement', template).prop('disabled', false);
     }
   }
-  individual.on("gen:isAutoProlongateProvides", prolongateHandler);
-  individual.on("gen:isContractClosed", prolongateHandler);
-  template.one("remove", function () {
-    individual.off("gen:isAutoProlongateProvides", prolongateHandler);
-    individual.off("gen:isContractClosed", prolongateHandler);
+  individual.on('gen:isAutoProlongateProvides', prolongateHandler);
+  individual.on('gen:isContractClosed', prolongateHandler);
+  template.one('remove', function () {
+    individual.off('gen:isAutoProlongateProvides', prolongateHandler);
+    individual.off('gen:isContractClosed', prolongateHandler);
   });
   prolongateHandler();
 
+  $('#add-AdditionalAgreement', template).click(function () {
+    var _class = new IndividualModel('gen:AdditionalAgreement'),
+      AdditionalAgreement = new IndividualModel(),
+      tmpl = 'gen:AdditionalAgreementTemplate';
+    AdditionalAgreement['rdf:type'] = [_class];
+    AdditionalAgreement['v-s:backwardTarget'] = [individual];
+    AdditionalAgreement['v-s:theme'] = individual['v-s:theme'];
+    AdditionalAgreement['v-s:initiator'] = individual['v-s:initiator'];
+    AdditionalAgreement['v-s:supportSpecialistOfContract'] = individual['v-s:supportSpecialistOfContract'];
+    AdditionalAgreement['v-s:hasObligationKind'] = individual['v-s:hasDeliveryConditions'];
+    AdditionalAgreement['v-s:backwardProperty'] = [new IndividualModel('gen:hasAdditionalAgreement')];
+    AdditionalAgreement['v-s:canRead'] = [true];
 
-  $("#add-AdditionalAgreement", template).click(function () {
-    var _class = new IndividualModel("gen:AdditionalAgreement"),
-        AdditionalAgreement = new IndividualModel(),
-        tmpl = "gen:AdditionalAgreementTemplate";
-    AdditionalAgreement["rdf:type"] = [_class];
-    AdditionalAgreement["v-s:backwardTarget"] = [individual];
-    AdditionalAgreement["v-s:theme"] = individual["v-s:theme"];
-    AdditionalAgreement["v-s:initiator"] = individual["v-s:initiator"];
-    AdditionalAgreement["v-s:supportSpecialistOfContract"] = individual["v-s:supportSpecialistOfContract"];
-    AdditionalAgreement["v-s:hasObligationKind"] = individual["v-s:hasDeliveryConditions"];
-    AdditionalAgreement["v-s:backwardProperty"] = [new IndividualModel("gen:hasAdditionalAgreement")];
-    AdditionalAgreement["v-s:canRead"] = [ true ];
-
-    Promise.resolve().then(function () {
-      if (individual.hasValue("gen:hasAdditionalAgreement")) {
-        var promiseArr = individual["gen:hasAdditionalAgreement"].map(function(agreement){
-          return agreement.load();
-        });
-        return Promise.all(promiseArr).then(function(agreements) {
-          var massivregnum = [];
-          agreements.forEach(function(agreement){
-            var object;
-            if (agreement.hasValue("v-s:registrationNumberAdd")) {
-              object = agreement["v-s:registrationNumberAdd"][0].toString();
-            } else {
-              object = "0";
-            };
-            var proverca = object.lastIndexOf(".");
-            var a;
-            if (proverca > 0){
-              a = parseInt(object.split('.')[0])
-            } else {
-              a = parseInt(object);
-            }
-            if ( isNaN(a) ) {
-              massivregnum.splice(i, 0, 0)
-            } else {
-              massivregnum.splice(i, 0, a)
-            }
-          })
-          return (getMaxValue(massivregnum)+1);
-        })
-      } else {
-        return (1).toString();
-      }
-    }).then(function(result) {
-      AdditionalAgreement["v-s:registrationNumberAdd"] = [result];
-      AdditionalAgreement["v-s:registrationNumber"] = [
-        [ individual["v-s:registrationNumber"][0],
-          AdditionalAgreement["v-s:registrationNumberAdd"][0]
-        ].join(".")
-      ];
-    })
+    Promise.resolve()
+      .then(function () {
+        if (individual.hasValue('gen:hasAdditionalAgreement')) {
+          var promiseArr = individual['gen:hasAdditionalAgreement'].map(function (agreement) {
+            return agreement.load();
+          });
+          return Promise.all(promiseArr).then(function (agreements) {
+            var massivregnum = [];
+            agreements.forEach(function (agreement) {
+              var object;
+              if (agreement.hasValue('v-s:registrationNumberAdd')) {
+                object = agreement['v-s:registrationNumberAdd'][0].toString();
+              } else {
+                object = '0';
+              }
+              var proverca = object.lastIndexOf('.');
+              var a;
+              if (proverca > 0) {
+                a = parseInt(object.split('.')[0]);
+              } else {
+                a = parseInt(object);
+              }
+              if (isNaN(a)) {
+                massivregnum.splice(i, 0, 0);
+              } else {
+                massivregnum.splice(i, 0, a);
+              }
+            });
+            return getMaxValue(massivregnum) + 1;
+          });
+        } else {
+          return (1).toString();
+        }
+      })
+      .then(function (result) {
+        AdditionalAgreement['v-s:registrationNumberAdd'] = [result];
+        AdditionalAgreement['v-s:registrationNumber'] = [
+          [individual['v-s:registrationNumber'][0], AdditionalAgreement['v-s:registrationNumberAdd'][0]].join('.'),
+        ];
+      });
     // В случае если есть допы у контракта, скрипт вычисляет количество допов, скажем их 6
     // и прибавляет один получаем цифру 7, пробегает по всем привязанным допам и проверяет не занят ли этот доп номер
-    function getMaxValue(array){
+    function getMaxValue(array) {
       var max = array[0]; // берем первый элемент массива
-      for (var i = 0; i < array.length; i++) { // переберем весь массив
+      for (var i = 0; i < array.length; i++) {
+        // переберем весь массив
         // если элемент больше, чем в переменной, то присваиваем его значение переменной
         if (max < array[i]) max = array[i];
       }
@@ -179,16 +179,16 @@ export const post = function (individual, template, container, mode, extra) {
       return max;
     }
 
-    riot.route( ["#", AdditionalAgreement.id, "#main", tmpl, "edit"].join("/") );
+    riot.route(['#', AdditionalAgreement.id, '#main', tmpl, 'edit'].join('/'));
   });
 
   function processHandler() {
     individual.canUpdate().then(function (canUpdate) {
-      if ( individual.hasValue("v-wf:isProcess") ) {
+      if (individual.hasValue('v-wf:isProcess')) {
         $('#send.action', template).remove();
         $('#delete.action', template).remove();
-      } else if ( individual.isNew() || canUpdate ) {
-        $('#send.action', template).off("click");
+      } else if (individual.isNew() || canUpdate) {
+        $('#send.action', template).off('click');
         $('#send.action', template).on('click', function () {
           BrowserUtil.send(individual, template, 's-wf:complexRouteTransform', undefined, 'gen:Contract_ComplexRouteStartForm_Template');
         });

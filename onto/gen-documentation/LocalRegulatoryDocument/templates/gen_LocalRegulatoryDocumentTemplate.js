@@ -6,30 +6,31 @@ export const post = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  $("#add-RegulatoryDocument", template).click(function () {
-    var _class = new IndividualModel("v-s:VersionOfLocalRegulatoryDocument"),
-        RegulatoryDocument = new IndividualModel(),
-        tmpl = "gen:VersionOfLocalRegulatoryDocumentTemplate";
-    RegulatoryDocument["rdf:type"] = [_class];
-    RegulatoryDocument["v-s:backwardTarget"] = [individual];
-    RegulatoryDocument["v-s:backwardProperty"] = [new IndividualModel("v-s:hasVersionOfLocalRegulatoryDocument")];
-    RegulatoryDocument["v-s:canRead"] = [ true ];
-    RegulatoryDocument["v-s:hasDocumentKind"] = individual["v-s:hasDocumentKind"] ;
-    RegulatoryDocument["v-s:title"] = individual["v-s:title"] ;
-    var newRegNumber = individual["v-s:hasVersionOfLocalRegulatoryDocument"].reduce(function(max, current) {
-      if (current.hasValue("v-s:registrationNumberAdd")) {
-        var numberAdd = +current["v-s:registrationNumberAdd"][0];
-        if ( !isNaN(numberAdd) ) {
-          if (numberAdd > max) max = numberAdd;
+  $('#add-RegulatoryDocument', template).click(function () {
+    var _class = new IndividualModel('v-s:VersionOfLocalRegulatoryDocument'),
+      RegulatoryDocument = new IndividualModel(),
+      tmpl = 'gen:VersionOfLocalRegulatoryDocumentTemplate';
+    RegulatoryDocument['rdf:type'] = [_class];
+    RegulatoryDocument['v-s:backwardTarget'] = [individual];
+    RegulatoryDocument['v-s:backwardProperty'] = [new IndividualModel('v-s:hasVersionOfLocalRegulatoryDocument')];
+    RegulatoryDocument['v-s:canRead'] = [true];
+    RegulatoryDocument['v-s:hasDocumentKind'] = individual['v-s:hasDocumentKind'];
+    RegulatoryDocument['v-s:title'] = individual['v-s:title'];
+    var newRegNumber =
+      individual['v-s:hasVersionOfLocalRegulatoryDocument'].reduce(function (max, current) {
+        if (current.hasValue('v-s:registrationNumberAdd')) {
+          var numberAdd = +current['v-s:registrationNumberAdd'][0];
+          if (!isNaN(numberAdd)) {
+            if (numberAdd > max) max = numberAdd;
+          }
         }
-      }
-      return max;
-    }, 0) + 1;
-    RegulatoryDocument["v-s:registrationNumberAdd"] = [newRegNumber];
-    RegulatoryDocument["v-s:registrationNumber"] = [ individual["v-s:registrationNumber"][0] + "." + newRegNumber ];
-    riot.route( ["#", RegulatoryDocument.id, "#main", tmpl, "edit"].join("/") );
+        return max;
+      }, 0) + 1;
+    RegulatoryDocument['v-s:registrationNumberAdd'] = [newRegNumber];
+    RegulatoryDocument['v-s:registrationNumber'] = [individual['v-s:registrationNumber'][0] + '.' + newRegNumber];
+    riot.route(['#', RegulatoryDocument.id, '#main', tmpl, 'edit'].join('/'));
   });
-  if (template.data("mode") == "view" && new Date (2018,10,27) > individual["v-s:created"][0]){
+  if (template.data('mode') == 'view' && new Date(2018, 10, 27) > individual['v-s:created'][0]) {
     $('button#send').hide();
     $('button#edit').hide();
   }

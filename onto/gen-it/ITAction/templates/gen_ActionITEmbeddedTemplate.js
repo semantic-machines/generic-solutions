@@ -1,5 +1,5 @@
 export const html = `
-<div class="panel panel-default">
+  <div class="panel panel-default">
     <div class="panel-heading clearfix">
       <h3 class="panel-title pull-left">
         <span about="@" data-template="v-ui:IconModalTemplate"></span>
@@ -36,7 +36,7 @@ export const html = `
         </div>
         <div class="col-sm-10 col-xs-7">
           <div rel="v-s:responsible" class="view -edit -search" data-template="v-ui:LabelTemplate"></div>
-          <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext" ></veda-control>
+          <veda-control data-type="link" rel="v-s:responsible" class="-view edit search fulltext"></veda-control>
         </div>
       </div>
       <div class="row row-attribute">
@@ -65,7 +65,7 @@ export const html = `
           <veda-control data-type="text" property="v-s:reportDescription" class="-view edit search"></veda-control>
         </div>
       </div>
-     <div class="row row-attribute">
+      <div class="row row-attribute">
         <div class="col-sm-1 col-xs-5"></div>
         <div class="col-sm-11 col-xs-7">
           <div rel="gen:hasActionIT" class="view edit search" data-template="gen:ActionITEmbeddedTemplate" data-embedded="true"></div>
