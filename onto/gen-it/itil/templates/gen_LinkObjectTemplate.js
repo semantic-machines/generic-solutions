@@ -23,7 +23,6 @@ export const post = function (individual, template, container, mode, extra) {
       }, 250);
     });
   });
-  // # sourceURL=gen:LinkObjectTemplate_post
 };
 
 export const html = `
