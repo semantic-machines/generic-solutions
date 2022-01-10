@@ -5,7 +5,7 @@ export const pre = function (individual, template, container, mode, extra) {
   container = $(container);
 
   if (!individual.hasValue('v-s:tabNumber')) {
-    const regexp = new RegExp('(\\' + 'D*([0-9]+)\\' + 'D*)');
+    const regexp = /(\D*(\d+)\D*)/;
     const tabNumber = individual.id.replace(regexp, '$2');
     $('#tabNumber', template).removeAttr('about').removeAttr('property').text(tabNumber);
   }
