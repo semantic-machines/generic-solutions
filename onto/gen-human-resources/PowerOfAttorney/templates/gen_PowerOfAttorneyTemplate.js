@@ -119,7 +119,7 @@ export const post = function (individual, template, container, mode, extra) {
   }
 
   function regRecordHandler () {
-    if (template.data('mode') === 'edit') {
+    if (template.attr('data-mode') === 'edit') {
       if (individual.hasValue('gen:hasPowerOfAttorneyRegistrationRecord')) {
         $('#buttonReg', template).hide();
       } else {
@@ -128,7 +128,7 @@ export const post = function (individual, template, container, mode, extra) {
     }
   }
   function absencePeriodHandler () {
-    if (template.data('mode') === 'edit') {
+    if (template.attr('data-mode') === 'edit') {
       if (individual.hasValue('v-s:isIssuedForAbsencePeriodOfEmployee', true)) {
         $('#toggle-AbsencePeriod', template).show();
       } else {

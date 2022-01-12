@@ -7,7 +7,7 @@ export const pre = function (individual, template, container, mode, extra) {
   template = $(template);
   container = $(container);
 
-  if (mode === 'edit' || template.data('mode') === 'edit') {
+  if (mode === 'edit' || template.attr('data-mode') === 'edit') {
     const enumerated = new IndividualModel('v-s:LetterRegistrationRecordEnumerated');
 
     // These events are triggered in v-s:CorrespondentTemplate
@@ -39,8 +39,8 @@ export const post = function (individual, template, container, mode, extra) {
   }
 
   // Частная валидация для кнопки сохранить
-  template.on('internal-validated', function (e, validation) {
-    validation = validation || e.detail;
+  template.on('internal-validated', function (e) {
+    validation = e.detail;
     if (validation.state) {
       $('.action#save2', template).removeAttr('disabled');
     } else {

@@ -14,7 +14,7 @@ export const pre = function (individual, template, container, mode, extra) {
 
   function handler () {
     Promise.all([canCreateProfile, canUpdatePromise]).then(function (results) {
-      if (template.data('mode') === 'edit' || individual.hasValue('v-s:hasContractorProfile') || !(results[0] && results[1])) {
+      if (template.attr('data-mode') === 'edit' || individual.hasValue('v-s:hasContractorProfile') || !(results[0] && results[1])) {
         $('#add-profile', template).remove();
       }
     });

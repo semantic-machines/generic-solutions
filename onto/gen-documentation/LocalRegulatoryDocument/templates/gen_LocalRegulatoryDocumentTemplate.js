@@ -30,7 +30,7 @@ export const post = function (individual, template, container, mode, extra) {
     RegulatoryDocument['v-s:registrationNumber'] = [individual['v-s:registrationNumber'][0] + '.' + newRegNumber];
     riot.route(['#', RegulatoryDocument.id, '#main', tmpl, 'edit'].join('/'));
   });
-  if (template.data('mode') == 'view' && new Date(2018, 10, 27) > individual['v-s:created'][0]) {
+  if (template.attr('data-mode') == 'view' && new Date(2018, 10, 27) > individual['v-s:created'][0]) {
     $('button#send').hide();
     $('button#edit').hide();
   }

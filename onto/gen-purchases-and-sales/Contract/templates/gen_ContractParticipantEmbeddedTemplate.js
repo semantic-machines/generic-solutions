@@ -19,7 +19,7 @@ export const post = function (individual, template, container, mode, extra) {
     }
   }
   function linkedOrganization () {
-    if (template.data('mode') == 'edit') {
+    if (template.attr('data-mode') == 'edit') {
       individual['v-s:hasOrganization'] = individual['v-s:hasContractor'][0]['v-s:linkedOrganization'];
     }
   }

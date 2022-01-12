@@ -171,7 +171,7 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   function modifiedHandlerSupplier () {
-    if (template.data('mode') === 'edit' && individual.hasValue('v-s:supplier')) {
+    if (template.attr('data-mode') === 'edit' && individual.hasValue('v-s:supplier')) {
       if (!individual.hasValue('gen:businessTripOrganization')) {
         individual.getPropertyChain('v-s:supplier', 'v-s:shortLabel').then(function (shortLabel) {
           if (shortLabel.length > 0) individual['gen:businessTripOrganization'] = shortLabel;
@@ -193,7 +193,7 @@ export const post = function (individual, template, container, mode, extra) {
   modifiedHandlerSupplier();
 
   function getDepartment () {
-    if (individual.hasValue('v-s:businessTripEmployee') && template.data('mode') === 'edit') {
+    if (individual.hasValue('v-s:businessTripEmployee') && template.attr('data-mode') === 'edit') {
       individual.getPropertyChain('v-s:businessTripEmployee', 'v-s:parentUnit').then(function (parentUnit) {
         individual['v-s:businessTripDepartment'] = parentUnit;
       });
@@ -201,7 +201,7 @@ export const post = function (individual, template, container, mode, extra) {
   }
 
   function directionBT () {
-    if (template.data('mode') === 'edit') {
+    if (template.attr('data-mode') === 'edit') {
       if (individual.hasValue('v-s:hasClassifierCountry', new IndividualModel('d:Country_RUS'))) {
         individual['gen:hasBusinessTripDirection'] = [new IndividualModel('d:87116c2092da45cba4300daa6de0b748')];
       } else individual['gen:hasBusinessTripDirection'] = [new IndividualModel('d:d4cf39d06aec4a9aafcd4663f7996125')];
@@ -245,7 +245,7 @@ export const post = function (individual, template, container, mode, extra) {
   });
 
   function notifyHandler () {
-    if (template.data('mode') != 'search') {
+    if (template.attr('data-mode') != 'search') {
       if (individual.hasValue('gen:hasChangeOfTerms')) {
         $('#notify.action', template).removeClass('hidden');
         $('#notify.action', template).off('click');
@@ -278,7 +278,7 @@ export const post = function (individual, template, container, mode, extra) {
     individual.off('propertyModified', handler1);
   });
 
-  if (template.data('mode') === 'edit' && (individual.hasValue('v-wf:hasStatusWorkflow', 'v-wf:Completed') || individual.hasValue('v-wf:isProcess'))) {
+  if (template.attr('data-mode') === 'edit' && (individual.hasValue('v-wf:hasStatusWorkflow', 'v-wf:Completed') || individual.hasValue('v-wf:isProcess'))) {
     $('.action#save, .action#edit, .action#cancel, .action#delete', template).remove();
   }
 
