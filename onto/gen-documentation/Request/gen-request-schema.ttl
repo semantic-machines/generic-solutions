@@ -10,6 +10,7 @@
 @prefix cfg: <http://semantic-machines.com/veda/config/> .
 @prefix v-fc: <http://semantic-machines.com/veda/veda-function-create/> .
 
+
 <http://semantic-machines.com/veda/gen-request-schema>
   rdf:type owl:Ontology ;
   rdfs:label "Онтология ОБЩИЕ РЕШЕНИЯ. Заявка. Схема"@ru ;
@@ -31,7 +32,7 @@ gen:PS_registrationNumber_Request
    rdf:type v-ui:ObjectPropertySpecification ;
    v-ui:forClass v-s:Request;
    v-ui:forProperty v-s:registrationNumber ;
-   v-ui:minCardinality 1 ;
+   v-ui:minCardinality 0 ;
    v-ui:maxCardinality 1 ;
    rdfs:label "Спецификация свойства v-s:registrationNumber для класса v-s:Request"@ru ;
    rdfs:label "v-s:registrationNumber property specification v-s:Request"@en ;
@@ -43,7 +44,7 @@ gen:PS_hasStatus_Request
    rdf:type v-ui:ObjectPropertySpecification ;
    v-ui:forClass v-s:Request;
    v-ui:forProperty v-s:hasStatus ;
-   v-ui:minCardinality 1 ;
+   v-ui:minCardinality 0 ;
    v-ui:maxCardinality 1 ;
    rdfs:label "Спецификация свойства v-s:hasStatus для класса v-s:Request"@ru ;
    rdfs:label "v-s:hasStatus property specification v-s:Request"@en ;
@@ -58,7 +59,7 @@ gen:PS_theme_Request
   rdf:type v-ui:ObjectPropertySpecification ;
   v-ui:forClass v-s:Request;
   v-ui:forProperty v-s:theme ;
-  v-ui:minCardinality 1 ;
+  v-ui:minCardinality 0 ;
   v-ui:maxCardinality 1 ;
   rdfs:label "Спецификация свойства v-s:theme для класса v-s:Request"@ru ;
   rdfs:label "v-s:theme property specification v-s:Request"@en ;
@@ -70,7 +71,7 @@ gen:PS_initiator_Request
   rdf:type v-ui:ObjectPropertySpecification ;
   v-ui:forClass v-s:Request;
   v-ui:forProperty v-s:initiator ;
-  v-ui:minCardinality 1 ;
+  v-ui:minCardinality 0 ;
   v-ui:maxCardinality 1 ;
   v-ui:queryPrefix "('rdf:type'=='v-s:OrganizationUnit')"^^xsd:string;
   rdfs:label "Спецификация свойства v-s:theme для класса v-s:Request"@ru ;
@@ -83,7 +84,7 @@ gen:PS_hasAction_Request
    rdf:type v-ui:ObjectPropertySpecification ;
    v-ui:forClass v-s:Request;
    v-ui:forProperty v-s:hasAction ;
-   v-ui:minCardinality 1 ;
+   v-ui:minCardinality 0 ;
    v-ui:maxCardinality 1 ;
    rdfs:label "Спецификация свойства v-s:hasAction для класса v-s:Request"@ru ;
    rdfs:label "v-s:hasAction property specification v-s:Request"@en ;
