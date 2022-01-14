@@ -40,7 +40,7 @@ export const post = function (individual, template, container, mode, extra) {
 
   // Частная валидация для кнопки сохранить
   template.on('internal-validated', function (e) {
-    validation = e.detail;
+    const validation = e.detail;
     if (validation.state) {
       $('.action#save2', template).removeAttr('disabled');
     } else {
