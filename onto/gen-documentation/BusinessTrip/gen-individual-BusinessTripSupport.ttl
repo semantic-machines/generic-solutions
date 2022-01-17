@@ -13,22 +13,22 @@
 
 
 #--------------------------------------------------------------
-d:vsrnx8uo3usituskyddeolm2q3
+d:gvsrnx8uo3usituskyddeolm2q3
   rdf:type gen:BusinessTripSupport ;
   rdfs:label "Оформление визы"@ru;
   rdfs:label "Visa processing"@en;
 .
-d:a75pf0ng5jfk3auiuzfhhvia2re
+d:ga75pf0ng5jfk3auiuzfhhvia2re
   rdf:type gen:BusinessTripSupport ;
   rdfs:label "Трансфер"@ru;
   rdfs:label "Shuttle"@en;
 .
-d:z536kz8wdk155kibur0t03m74f
+d:gz536kz8wdk155kibur0t03m74f
   rdf:type gen:BusinessTripSupport ;
   rdfs:label "Проживание"@ru;
   rdfs:label "Accommodation"@en;
 .
-d:upw10et4u53vkzgk6ekzey6foj
+d:gupw10et4u53vkzgk6ekzey6foj
   rdf:type gen:BusinessTripSupport ;
   rdfs:label "Билеты"@ru;
   rdfs:label "Tickets"@en;
