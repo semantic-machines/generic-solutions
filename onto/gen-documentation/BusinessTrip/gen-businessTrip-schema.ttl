@@ -24,6 +24,7 @@ gen:BusinessTrip
   rdfs:subClassOf v-s:BusinessTrip ;
   rdfs:subClassOf v-s:Labeled ;
   rdfs:subClassOf v-s:AutomaticallyVersioned ;
+  rdfs:subClassOf v-s:UserSearchableDocument ;
   v-s:labelPattern "{@.v-s:hasBusinessTripRegistrationRecord.v-s:registrationNumber} {@.v-s:businessTripEmployee.rdfs:label} ({@.v-s:hasClassifierCountry.rdfs:label}, {@.v-s:dateFrom} - {@.v-s:dateTo})" ;
   rdfs:label "Командировка"@ru ;
   rdfs:label "BusinessTrip"@en ;
@@ -227,7 +228,7 @@ v-s:BusinessTripRegistrationRecord
   v-s:hasNumeration v-s:RegistrationNumberSimpleNumerationYear ;
   rdfs:label "Регистрационная запись командировки"@ru ;
   rdfs:label "Business trip registration record"@en ;
-  v-ui:hasTemplate gen:BusinessTripRegistrationRecordTemplate ;  
+  v-ui:hasTemplate gen:BusinessTripRegistrationRecordTemplate ;
 .
 
 gen:TS_BusinessTripRegistrationRecord

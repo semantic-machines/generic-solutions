@@ -24,6 +24,7 @@ gen:RepresentativeCosts
   rdfs:subClassOf v-s:Activity ;
   rdfs:subClassOf v-s:Initiative ;
   rdfs:subClassOf v-s:Labeled ;
+  rdfs:subClassOf v-s:UserSearchableDocument ;
   v-s:labelPattern "{@.v-s:goal} - {@.v-s:dateFrom} - {@.v-s:dateTo}" ;
   rdfs:label "Представительские расходы"@ru ;
   rdfs:label "RepresentativeCosts"@en ;

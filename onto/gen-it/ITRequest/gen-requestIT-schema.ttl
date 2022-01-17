@@ -19,7 +19,10 @@
 # ------------------------------------------------------------ КЛАССЫ --
 gen:RequestIT
   rdf:type owl:Class ;
-  rdfs:subClassOf v-s:Request, v-s:Labeled, v-s:Enumerated ;
+  rdfs:subClassOf v-s:Request ;
+  rdfs:subClassOf v-s:Labeled ;
+  rdfs:subClassOf v-s:Enumerated ;
+  rdfs:subClassOf v-s:UserSearchableDocument ;
   v-s:labelPattern "{@.v-s:registrationNumber} {@.v-s:theme} {@.v-s:date}" ;
   v-s:hasNumeration v-s:RegistrationNumberYearNumeration2_6;
   v-ui:hasTemplate gen:RequestITTemplate ;

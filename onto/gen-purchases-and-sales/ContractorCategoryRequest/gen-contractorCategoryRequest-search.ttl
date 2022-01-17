@@ -27,98 +27,15 @@ gen:ContractorCategoryRequestSearch
   v-fs:searchResultTemplate gen:ContractorCategoryRequestSearchResultTemplate ;
 .
 # ---------------------------------------------------- Registry result template--
-
 gen:ContractorCategoryRequestSearchBlankTemplate
   rdf:type v-ui:ClassTemplate ;
   rdfs:label "Шаблон поиска ContractorCategoryRequest"@ru ;
   rdfs:label "ContractorCategoryRequest blank template"@en ;
-  v-ui:template """
-<div class="container sheet">
-  <h3 class="margin-sm">
-    <span about="@" property="rdf:type"></span>
-    <small about="@" property="rdfs:label" class="view edit -search"></small>
-  </h3>
-  <section id="MainProperties">
-    <h4 class="section-header" about="v-s:MainProperties" property="rdfs:label"></h4>
-    <div class="row row-attribute">
-      <div class="col-sm-3 col-xs-5">
-        <label about="rdfs:comment" property="rdfs:label"></label>
-      </div>
-      <div class="col-sm-9 col-xs-7">
-        <div property="rdfs:comment" class="view -edit -search"></div>
-        <veda-control data-type="string" property="rdfs:comment" class="-view edit search"></veda-control>
-      </div>
-    </div>
-  </section>
-  <hr>
-  <div about="@" data-template="v-ui:SystemPropertiesNewTemplate" data-embedded="true"></div>
-  <br>
-  <div about="@" rel="v-s:backwardTarget" data-embedded="true">
-    <div about="@" rel="v-s:backwardTarget" data-embedded="true" data-template="gen:OrganizationSearchEmbededBlankTemplate"></div>
-  </div>
-  <br>  
-</div>
-
-  """ ;
+  v-ui:template "gen_ContractorCategoryRequestSearchBlankTemplate.js" ;
 .
-
 gen:ContractorCategoryRequestSearchResultTemplate
   rdf:type v-ui:ClassTemplate ;
   rdfs:label "Шаблон результатов реестра запроса на согласование контрагента"@ru ;
   rdfs:label "Contractor category request registry result template"@en ;
-  v-ui:template """
-<table class="table table-bordered">
-  <thead class="result-header">
-    <tr>
-      <th colspan="3" about="v-s:ContractorCategoryRequest" property="rdfs:label"></th>
-      <th colspan="2" about="v-s:Organization" property="rdfs:label"></th>
-      <th colspan="5" about="v-s:hasContractorCategoryDecision" property="rdfs:label"></th>
-    </tr>
-    <tr class="active">
-      <th width="1%">#</th>
-      <th width="1%"><span class="glyphicon glyphicon-search"></span></th>
-      <th class="orderby" data-orderby="rdfs:comment"><span about="rdfs:comment" property="rdfs:label"></span></th>
-      <th class="orderby" data-orderby="v-s:shortLabel"><span about="v-s:shortLabel" property="rdfs:label"></span></th>
-      <th class="orderby" data-orderby="v-s:taxId"><span about="v-s:taxId" property="rdfs:label"></span></th>
-      <th class="orderby" data-orderby="v-s:hasContractorCategoryDecision.v-s:isOrganizationOk"><span about="v-s:isOrganizationOk" property="rdfs:label"></span></th>
-      <th class="orderby" data-orderby="v-s:hasContractorCategoryDecision.v-s:hasContractorCategoryDecisionSecurity.v-s:isContractorOkSecurityDepSummary"><span about="v-s:isContractorOkSecurityDepSummary" property="rdfs:label"></span></th>
-      <th class="orderby" data-orderby="v-s:hasContractorCategoryDecision.v-s:hasContractorCategoryDecisionLegal.v-s:isContractorOkLegalDepSummary"><span about="v-s:isContractorOkLegalDepSummary" property="rdfs:label"></span></th>
-      <th class="orderby" data-orderby="v-s:hasContractorCategoryDecision.v-s:hasContractorCategoryDecisionFinancial.v-s:isContractorOkFinancialDepSummary"><span about="v-s:isContractorOkFinancialDepSummary" property="rdfs:label"></span></th>
-      <th class="orderby" data-orderby="v-s:hasContractorCategoryDecision.v-s:hasContractorCategoryDecisionManagement.v-s:isContractorOkManagementSummary"><span about="v-s:isContractorOkManagementSummary" property="rdfs:label"></span></th>
-    </tr>
-  </thead>
-  <tbody class="result-container">
-    <tr>
-      <td class="serial-number"></td>
-      <td><a href="#/@" class="glyphicon glyphicon-search"></a></td>
-      <td property="rdfs:comment"></td>
-      <td about="@" rel="v-s:backwardTarget"> <span rel="v-s:backwardTarget"><span property="v-s:shortLabel"></span></span></td>
-      <td about="@" rel="v-s:backwardTarget"><span rel="v-s:backwardTarget"><span property="v-s:taxId"></span></span></td>
-      <td rel="v-s:hasContractorCategoryDecision">
-        <span property="v-s:isOrganizationOk"></span>
-      </td>
-      <td rel="v-s:hasContractorCategoryDecision">
-        <div rel="v-s:hasContractorCategoryDecisionSecurity">
-          <span property="v-s:isContractorOkSecurityDepSummary"></span>
-        </div>
-      </td>
-      <td rel="v-s:hasContractorCategoryDecision">
-        <div  rel="v-s:hasContractorCategoryDecisionLegal">
-          <span property="v-s:isContractorOkLegalDepSummary"></span>
-        </div>
-      </td>
-      <td rel="v-s:hasContractorCategoryDecision">
-        <div  rel="v-s:hasContractorCategoryDecisionFinancial">
-          <span property="v-s:isContractorOkFinancialDepSummary"></span>
-        </div>
-      </td>
-      <td rel="v-s:hasContractorCategoryDecision">
-        <div  rel="v-s:hasContractorCategoryDecisionManagement">
-          <span property="v-s:isContractorOkManagementSummary"></span>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-  """ ;
+  v-ui:template "gen_ContractorCategoryRequestSearchResultTemplate.js" ;
 .

@@ -27,7 +27,7 @@ gen:TS_Meeting
 gen:TS_MeetingAction
   rdf:type v-ui:TemplateSpecification ;
   v-ui:forClass v-s:Action ;
-  v-ui:defaultTemplate gen:ActionTemplate ;
+  v-ui:defaultTemplate gen:MeetingActionTemplate ;
 .
 
 # v-s:theme - Тема
@@ -167,6 +167,6 @@ gen:PS_hasAction_Meeting
   v-ui:forProperty v-s:hasAction ;
   v-ui:minCardinality 0 ;
   v-ui:maxCardinality 100 ;
-  v-ui:rangeRestriction v-s:MeetingAction ;
+  v-ui:rangeRestriction v-s:Action ;
 .
 

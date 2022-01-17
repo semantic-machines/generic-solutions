@@ -173,9 +173,6 @@ gen:PS_operator_IT_InfrastructureObjects
 #-----Комментарий
 #rdfs:comment
 
-
-
-
 #--------------------------------------------------- Техническое обеспечение --
 #v-s:IT_InfrastructureObjectsHardware
 gen:TS_IT_InfrastructureObjectsHardware
@@ -194,12 +191,12 @@ gen:TS_IT_InfrastructureObjectsDataBase
   v-s:loadPriority 10 ;
 .
 
-#-------------------------------------------------------- Инсталция --
+#-------------------------------------------------------- Инсталляция --
 #v-s:LinkObject
 gen:TS_LinkObject
   rdf:type v-ui:TemplateSpecification ;
   v-ui:forClass v-s:LinkObject ;
-  v-ui:defaultTemplate gen:IT_InstallationTemplate ;
+  v-ui:defaultTemplate gen:LinkObjectTemplate ;
   v-s:loadPriority 10 ;
 .
 gen:PS_from_to_LinkObject
@@ -208,15 +205,9 @@ gen:PS_from_to_LinkObject
   v-ui:forProperty v-s:from;
   v-ui:forProperty v-s:to;
   v-ui:queryPrefix "'rdf:type'=='v-s:IT_InfrastructureObjects'"^^xsd:string;
-  rdfs:label "Спецификация свойства v-s:from и v-s:to  для класса v-s:LinkObject"@ru ;
+  rdfs:label "Спецификация свойства v-s:from и v-s:to для класса v-s:LinkObject"@ru ;
   rdfs:label "v-s:from и v-s:to property specification for v-s:LinkObject class"@en ;
 .
-
-
-
-
-
-
 
 #-------------------------------------------------------- Вид объекта ИТ --
 v-s:MaintenanceObjectKind

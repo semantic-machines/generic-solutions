@@ -25,6 +25,7 @@ gen:AdditionalAgreement
   rdfs:subClassOf gen:Contract ;
   rdfs:subClassOf v-s:BackwardLink ;
   rdfs:subClassOf v-s:Labeled ;
+  rdfs:subClassOf v-s:UserSearchableDocument ;
   rdfs:label "AdditionalAgreement"@en ;
   rdfs:label "Дополнительное соглашение"@ru ;
   v-s:labelPattern "{@.v-s:registrationNumberAdd} - {@.v-s:theme}" ;
