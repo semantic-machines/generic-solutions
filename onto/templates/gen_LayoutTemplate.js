@@ -25,7 +25,7 @@ export const pre = function (individual, template, container, mode, extra) {
     markdown.each(function () {
       this.classList.add('observed');
       const text = this.textContent;
-      this.innerHTML = marked(text);
+      this.innerHTML = marked.parse(text);
       const markdownObserver = new MutationObserver(function (mutations, observer) {
         const lastMutation = mutations.pop();
         processMarkdown(lastMutation, observer);
@@ -40,7 +40,7 @@ export const pre = function (individual, template, container, mode, extra) {
     observer.disconnect();
     const target = mutation.target;
     const text = target.textContent;
-    target.innerHTML = marked(text);
+    target.innerHTML = marked.parse(text);
     observer.observe(target, markdownConfig);
   }
 };
