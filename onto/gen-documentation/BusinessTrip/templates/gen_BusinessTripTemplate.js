@@ -29,7 +29,7 @@ export const pre = function (individual, template, container, mode, extra) {
       }
     });
   }
-  handler('gen:hasChangeOfTerms', individual['gen:hasChangeOfTerms']);
+  handler();
   individual.on('propertyModified', handler);
   template.one('remove', function () {
     individual.off('propertyModified', handler);

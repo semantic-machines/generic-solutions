@@ -61,7 +61,7 @@ export const post = function (individual, template, container, mode, extra) {
     TechnicalDocument['v-s:registrationDate'] = individual['v-s:registrationDate'];
     TechnicalDocument['v-s:hasLifecycleStage'] = individual['v-s:hasLifecycleStage'];
     TechnicalDocument['v-s:hasClassifierSectionOfProjectDocumentation'] = individual['v-s:hasClassifierSectionOfProjectDocumentation'];
-    TechnicalDocument['v-s:hasClassifierSectionOfProjectDocumentation'] = individual['v-s:hasClassifierMarkOfWorkingDrawingsSet'];
+    TechnicalDocument['v-s:hasClassifierMarkOfWorkingDrawingsSet'] = individual['v-s:hasClassifierMarkOfWorkingDrawingsSet'];
     TechnicalDocument['v-s:hasProject'] = individual['v-s:hasProject'];
     Promise.resolve()
       .then(function () {

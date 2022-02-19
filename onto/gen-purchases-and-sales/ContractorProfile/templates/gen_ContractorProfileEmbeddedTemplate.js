@@ -30,7 +30,7 @@ export const pre = function (individual, template, container, mode, extra) {
   const files = $('.files', template);
   const relNameTmpl = files.children('.rel-name').remove();
   const relValueTmpl = files.children('.rel-value').remove();
-  props.map(function (property_uri) {
+  props.forEach(function (property_uri) {
     const relName = relNameTmpl.clone();
     relName.find('strong').attr('about', property_uri);
     relName.find('veda-control').attr('rel', property_uri);

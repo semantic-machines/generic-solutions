@@ -32,7 +32,7 @@ export const pre = function (individual, template, container, mode, extra) {
   const relNameTmpl = $('.rel-name', template).get(0).outerHTML;
   const relValueTmpl = $('.rel-value', template).get(0).outerHTML;
   $('.rel-name, .rel-value', template).remove();
-  props.map(function (property_uri) {
+  props.forEach(function (property_uri) {
     const relName = $(relNameTmpl);
     relName.find('strong').attr('about', property_uri);
     relName.find('veda-control').attr('rel', property_uri);
