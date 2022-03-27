@@ -89,8 +89,8 @@ var result = query(ticket, queryString).result;
 for (var i=0;i<result.length;i++){
   var individ = get_individual(ticket, result[i]);
 
-  var dateTo = individ["v-s:dateTo"][0];
-  var dateFrom = individ["v-s:dateFrom"][0];
+  var dateTo = new Date(individ["v-s:dateTo"][0]);
+  var dateFrom = new Date(individ["v-s:dateFrom"][0]);
   var durability = Math.round((dateTo.data - dateFrom.data)/ (1000*60*60*24));
   if (durability < 200) continue;
 
