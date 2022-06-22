@@ -109,9 +109,9 @@ export const html = `
       <div id="copyright" class="text-right text-muted">
         <span about="v-s:PoweredBy" property="rdfs:label"></span>
         <a about="v-s:VedaPlatform" property="rdfs:label"></a>. &copy;
-        <a href="http://www.semantic-machines.com" about="v-s:SemanticMachines" property="rdfs:label"></a>.
+        <a href="https://semantic-machines.com" about="v-s:SemanticMachines" property="rdfs:label"></a>.
         <span about="v-s:License" property="rdfs:label"></span>
-        <a alt="GNU General Public License version 3 official text" href="http://www.gnu.org/licenses/gpl.html">GPLv3.</a>
+        <a alt="GNU General Public License version 3 official text" href="https://www.gnu.org/licenses/gpl.html">GPLv3.</a>
       </div>
     </nav>
   </div>
